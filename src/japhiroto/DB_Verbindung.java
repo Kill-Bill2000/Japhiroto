@@ -5,6 +5,10 @@
  */
 package japhiroto;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 /**
@@ -15,9 +19,11 @@ public class DB_Verbindung {
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private String url, dbHost, dbName, dbUser, dbPass;
-    private String uri = "jdbc:mysql://sql7.freemysqlhosting.net/sql7265228";
+    private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     
+    public DB_Verbindung() throws FileNotFoundException, IOException{
+        einlesen("zugangsdaten_db");
+    }
     
     public DB_Verbindung(String host, String name, String user, String pass){
         this.dbHost = host;
@@ -28,11 +34,35 @@ public class DB_Verbindung {
     
     public boolean verbindungAufbauen() throws SQLException{
         //baut eine Verbindung zur Datenbank mit Host-Adresse, Benutzername und Passwort der DB auf
-        //gibt 'true' zurück, wenn die Verbindung nach 5 Sekunden noch nicht geschlossen und valide ist
-        
-        con = DriverManager.getConnection("jdbc:mysql://" + dbHost + "/" + dbName, dbUser, dbPass);
+        //liefert 'true' zurück, wenn die Verbindung nach 5 Sekunden noch nicht geschlossen und valide ist
+        url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+        con = DriverManager.getConnection(url, dbUser, dbPass);
         return con.isValid(5);
     }
 
+    public void einlesen(String dateipfad) throws FileNotFoundException, IOException{
+        //Aufbau der 'zugangsdaten_db'-Datei:
+        //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
+        //2 [port](Zugriffsport für DBs)(default: 3306)
+        //3 [name](Name der DB)
+        //4 [user](Username der DB)
+        //5 [pass](Passwort der DB)
+        
+        BufferedReader br;
+        FileReader fr;
+        
+        fr = new FileReader(dateipfad);
+        br = new BufferedReader(fr);
+        
+        this.dbHost = br.readLine();
+        this.dbPort = br.readLine();
+        this.dbName = br.readLine();
+        this.dbUser = br.readLine();
+        this.dbPass = br.readLine();
+        
+        fr.close();
+        br.close();
+        
+    }
     
 }
