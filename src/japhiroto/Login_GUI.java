@@ -5,6 +5,9 @@
  */
 package japhiroto;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author robin
@@ -16,6 +19,7 @@ public class Login_GUI extends javax.swing.JFrame {
      */
     public Login_GUI() {
         initComponents();
+        initGUI();
     }
 
     /**
@@ -27,21 +31,138 @@ public class Login_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jpbLogo = new japhiroto.JPictureBox();
+        btnAnmelden = new javax.swing.JButton();
+        lblBenutzername = new javax.swing.JLabel();
+        txfBenutzername = new javax.swing.JTextField();
+        lblPasswort = new javax.swing.JLabel();
+        txpPasswort = new javax.swing.JPasswordField();
+        lblErweitert = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Japhiroto - Login");
+
+        jpbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/japhiroto/Japhiroto_lang_schwarz.png"))); // NOI18N
+        jpbLogo.setSizeMode(japhiroto.JPictureBox.SizeMode.ZOOM);
+
+        btnAnmelden.setText("Anmelden");
+        btnAnmelden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnmeldenActionPerformed(evt);
+            }
+        });
+
+        lblBenutzername.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblBenutzername.setText("Benutzername");
+
+        txfBenutzername.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        lblPasswort.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblPasswort.setText("Passwort");
+
+        txpPasswort.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txpPasswort.setText("jPasswordField1");
+
+        lblErweitert.setForeground(new java.awt.Color(0, 0, 255));
+        lblErweitert.setText("Erweitert ▼");
+        lblErweitert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblErweitertMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblErweitertMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblErweitertMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jpbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(lblBenutzername)
+                            .addComponent(txfBenutzername)
+                            .addComponent(lblPasswort)
+                            .addComponent(txpPasswort))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblErweitert)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAnmelden, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblBenutzername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfBenutzername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPasswort)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txpPasswort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnmelden, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblErweitert, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private boolean ausgeklappt = false;
+    
+    private void initGUI(){
+        
+    }
+    
+    private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAnmeldenActionPerformed
+
+    private void lblErweitertMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseEntered
+        if (ausgeklappt) {
+           lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>"); 
+        } else {
+           lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>"); 
+        }
+        
+        
+    }//GEN-LAST:event_lblErweitertMouseEntered
+
+    private void lblErweitertMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseExited
+        if (ausgeklappt) {
+            lblErweitert.setText("Erweitert ▲");
+        } else {
+            lblErweitert.setText("Erweitert ▼");
+        }
+        
+        
+    }//GEN-LAST:event_lblErweitertMouseExited
+
+    private void lblErweitertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseClicked
+        if (!ausgeklappt) {
+            ausgeklappt = true;
+            lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>"); 
+        } else {
+            ausgeklappt = false;
+            lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>"); 
+        }
+
+        
+        
+    }//GEN-LAST:event_lblErweitertMouseClicked
 
     /**
      * @param args the command line arguments
@@ -80,5 +201,12 @@ public class Login_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnmelden;
+    private japhiroto.JPictureBox jpbLogo;
+    private javax.swing.JLabel lblBenutzername;
+    private javax.swing.JLabel lblErweitert;
+    private javax.swing.JLabel lblPasswort;
+    private javax.swing.JTextField txfBenutzername;
+    private javax.swing.JPasswordField txpPasswort;
     // End of variables declaration//GEN-END:variables
 }
