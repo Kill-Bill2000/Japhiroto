@@ -116,5 +116,16 @@ public class DB_Verbindung {
         return rs;
     }
     
+    public void update(String sqlBefehl) throws SQLException{
+        //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
+        //sendet ein Update (ISERT, UPDATE, DELETE) an die DB
+        //Statement wird dann wieder geschlossen
+        Statement stmt;
+        
+        stmt = con.createStatement();
+        stmt.executeUpdate(sqlBefehl);
+        
+        stmt.close();
+    }
     
 }
