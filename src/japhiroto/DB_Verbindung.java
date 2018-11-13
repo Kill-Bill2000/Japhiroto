@@ -14,8 +14,6 @@ import java.sql.*;
  */
 public class DB_Verbindung {
     private Connection con;
-    private Statement stmt;
-    private ResultSet rs;
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
@@ -101,5 +99,22 @@ public class DB_Verbindung {
         
         return !con.isValid(5);
     }
+    
+    public ResultSet abfragen(String sqlBefehl) throws SQLException{
+        //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
+        //liefert das abgefragte ResultSet zurück.
+        //ResultSet und Statement werden dann wieder geschlossen
+        Statement stmt;
+        ResultSet rs;
+        
+        stmt = con.createStatement();
+        rs = stmt.executeQuery(sqlBefehl);
+        
+        rs.close();
+        stmt.close();
+        
+        return rs;
+    }
+    
     
 }
