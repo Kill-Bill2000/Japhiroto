@@ -19,7 +19,6 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
-        //liest die Zugangsdaten aus der Datei 'zugangsdaten_db'
         einlesen("zugangsdaten_db");
     }
     
@@ -95,5 +94,12 @@ public class DB_Verbindung {
         return con.isValid(5);
     }
     
+    public boolean verbindungSchliessen() throws SQLException{
+        //schliesst die DB
+        //liefert 'true' zurück, wenn die Verbindung nach 5 Sekunden geschlossen oder nicht mehr valide ist
+        con.close();
+        
+        return !con.isValid(5);
+    }
     
 }
