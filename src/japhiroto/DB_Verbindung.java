@@ -22,6 +22,7 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
+        //liest die Zugangsdaten aus der Datei 'zugangsdaten_db'
         einlesen("zugangsdaten_db");
     }
     
@@ -41,6 +42,7 @@ public class DB_Verbindung {
     }
 
     public void einlesen(String dateipfad) throws FileNotFoundException, IOException{
+        //liest die Zugangsdaten der übergebenen Datei ein und speichert diese in der Variablen
         //Aufbau der 'zugangsdaten_db'-Datei:
         //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
         //2 [port](Zugriffsport für DBs)(default: 3306)
@@ -62,7 +64,12 @@ public class DB_Verbindung {
         
         fr.close();
         br.close();
-        
     }
+    
+    public boolean isVerbindungValid() throws SQLException{
+        //liefert 'true' zurück, wenn Verbindung zur DB nach 5 Sekunden noch nicht geschlossen und valide ist
+        return con.isValid(5);
+    }
+    
     
 }
