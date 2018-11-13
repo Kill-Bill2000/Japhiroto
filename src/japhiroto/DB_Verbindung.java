@@ -5,10 +5,7 @@
  */
 package japhiroto;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 
 /**
@@ -26,11 +23,13 @@ public class DB_Verbindung {
         einlesen("zugangsdaten_db");
     }
     
-    public DB_Verbindung(String host, String name, String user, String pass){
+    public DB_Verbindung(String host, String port, String name, String user, String pass) throws IOException{
         this.dbHost = host;
+        this.dbPort = port;
         this.dbName = name;
         this.dbUser = user;
         this.dbPass = pass;
+        speichern();
     }
     
     public boolean verbindungAufbauen() throws SQLException{
@@ -41,7 +40,7 @@ public class DB_Verbindung {
         return con.isValid(5);
     }
 
-    public void einlesen(String dateipfad) throws FileNotFoundException, IOException{
+    private void einlesen(String dateipfad) throws FileNotFoundException, IOException{
         //liest die Zugangsdaten der übergebenen Datei ein und speichert diese in der Variablen
         //Aufbau der 'zugangsdaten_db'-Datei:
         //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
@@ -62,8 +61,33 @@ public class DB_Verbindung {
         this.dbUser = br.readLine();
         this.dbPass = br.readLine();
         
-        fr.close();
         br.close();
+        fr.close();
+    }
+    
+    private void speichern() throws IOException{
+        //schreibt die Zugangsdaten aus den globalen Variablen in die 'zugangsdaten_db'-Datei und speichert diese
+        //Aufbau der 'zugangsdaten_db'-Datei:
+        //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
+        //2 [port](Zugriffsport für DBs)(default: 3306)
+        //3 [name](Name der DB)
+        //4 [user](Username der DB)
+        //5 [pass](Passwort der DB)
+        
+        BufferedWriter br;
+        FileWriter fr;
+        
+        fr = new FileWriter("zugangsdaten_db");
+        br = new BufferedWriter(fr);
+        
+        br.write(this.dbHost + "\r\n");
+        br.write(this.dbPort + "\r\n");
+        br.write(this.dbName + "\r\n");
+        br.write(this.dbUser + "\r\n");
+        br.write(this.dbPass + "\r\n");
+        
+        br.close();
+        fr.close();
     }
     
     public boolean isVerbindungValid() throws SQLException{
