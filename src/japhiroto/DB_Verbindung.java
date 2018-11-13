@@ -110,8 +110,8 @@ public class DB_Verbindung {
         stmt = con.createStatement();
         rs = stmt.executeQuery(sqlBefehl);
         
-        rs.close();
-        stmt.close();
+        //rs.close();   //Fehler bei .close(): 'SQLException: Operation not allowed after ResultSet closed'
+        //stmt.close();
         
         return rs;
     }
