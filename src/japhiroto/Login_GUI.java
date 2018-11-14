@@ -5,8 +5,7 @@
  */
 package japhiroto;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 /**
  *
@@ -65,6 +64,8 @@ public class Login_GUI extends javax.swing.JFrame {
 
         lblErweitert.setForeground(new java.awt.Color(0, 0, 255));
         lblErweitert.setText("Erweitert ▼");
+        lblErweitert.setMaximumSize(new java.awt.Dimension(70, 16));
+        lblErweitert.setPreferredSize(new java.awt.Dimension(70, 16));
         lblErweitert.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblErweitertMouseClicked(evt);
@@ -92,8 +93,8 @@ public class Login_GUI extends javax.swing.JFrame {
                             .addComponent(lblPasswort)
                             .addComponent(txpPasswort))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblErweitert)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblErweitert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAnmelden, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -114,7 +115,7 @@ public class Login_GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnmelden, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblErweitert, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblErweitert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -147,23 +148,29 @@ public class Login_GUI extends javax.swing.JFrame {
         } else {
             lblErweitert.setText("Erweitert ▼");
         }
-        
-        
+ 
     }//GEN-LAST:event_lblErweitertMouseExited
 
     private void lblErweitertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseClicked
+        //ändert die Größe des JFrames, wenn auf 'Erweitert' eklickt wird
+        
+        int newGroesse = 250;
+        
         if (!ausgeklappt) {
             ausgeklappt = true;
             lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>"); 
+            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + newGroesse));
         } else {
             ausgeklappt = false;
             lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>"); 
+            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - newGroesse));
         }
 
-        
-        
+        this.pack();
     }//GEN-LAST:event_lblErweitertMouseClicked
 
+
+    
     /**
      * @param args the command line arguments
      */
