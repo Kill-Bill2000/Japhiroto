@@ -133,6 +133,8 @@ public class Login_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnmeldenActionPerformed
 
     private void lblErweitertMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseEntered
+        //fügt einen Unterstrich hinzu, wenn die Maus das Label berührt
+        
         if (ausgeklappt) {
            lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>"); 
         } else {
@@ -143,6 +145,8 @@ public class Login_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_lblErweitertMouseEntered
 
     private void lblErweitertMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseExited
+        //entfernt den Unterstrich, wenn das Label mit der Maus verlassen wird
+        
         if (ausgeklappt) {
             lblErweitert.setText("Erweitert ▲");
         } else {
