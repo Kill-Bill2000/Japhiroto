@@ -30,40 +30,227 @@ public class Login_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlNormal = new javax.swing.JPanel();
         jpbLogo = new japhiroto.JPictureBox();
-        btnAnmelden = new javax.swing.JButton();
         lblBenutzername = new javax.swing.JLabel();
         txfBenutzername = new javax.swing.JTextField();
         lblPasswort = new javax.swing.JLabel();
         txpPasswort = new javax.swing.JPasswordField();
+        sep1 = new javax.swing.JSeparator();
+        pnlErweitert = new javax.swing.JPanel();
+        lblHost = new javax.swing.JLabel();
+        txfIP1 = new javax.swing.JTextField();
+        lblPunkt1 = new javax.swing.JLabel();
+        txfIP2 = new javax.swing.JTextField();
+        txfPunkt2 = new javax.swing.JLabel();
+        txfIP3 = new javax.swing.JTextField();
+        txfPunkt3 = new javax.swing.JLabel();
+        txfIP4 = new javax.swing.JTextField();
+        lblDPunkt = new javax.swing.JLabel();
+        lblPort = new javax.swing.JLabel();
+        txfPort = new javax.swing.JTextField();
+        lblDBName = new javax.swing.JLabel();
+        txfDBName = new javax.swing.JTextField();
+        lblDBUser = new javax.swing.JLabel();
+        txfDBUser = new javax.swing.JTextField();
+        lblDBPass = new javax.swing.JLabel();
+        txpDBPass = new javax.swing.JPasswordField();
+        pnlButtons = new javax.swing.JPanel();
         lblErweitert = new javax.swing.JLabel();
+        btnAnmelden = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Japhiroto - Login");
+        setResizable(false);
 
         jpbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/japhiroto/Japhiroto_lang_schwarz.png"))); // NOI18N
         jpbLogo.setSizeMode(japhiroto.JPictureBox.SizeMode.ZOOM);
 
-        btnAnmelden.setText("Anmelden");
-        btnAnmelden.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnmeldenActionPerformed(evt);
-            }
-        });
-
         lblBenutzername.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        lblBenutzername.setText("Benutzername");
+        lblBenutzername.setText("Benutzername:");
 
         txfBenutzername.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblPasswort.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        lblPasswort.setText("Passwort");
+        lblPasswort.setText("Passwort:");
 
         txpPasswort.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txpPasswort.setText("jPasswordField1");
+        txpPasswort.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txpPasswortFocusGained(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlNormalLayout = new javax.swing.GroupLayout(pnlNormal);
+        pnlNormal.setLayout(pnlNormalLayout);
+        pnlNormalLayout.setHorizontalGroup(
+            pnlNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNormalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sep1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlNormalLayout.createSequentialGroup()
+                        .addGroup(pnlNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txpPasswort, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfBenutzername, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBenutzername, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPasswort, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpbLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlNormalLayout.setVerticalGroup(
+            pnlNormalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNormalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblBenutzername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfBenutzername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPasswort)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txpPasswort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        lblHost.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblHost.setText("Host-Adresse:");
+
+        txfIP1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfIP1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfIP1.setText("127");
+        txfIP1.setPreferredSize(new java.awt.Dimension(40, 27));
+
+        lblPunkt1.setText(".");
+
+        txfIP2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfIP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfIP2.setText("0");
+        txfIP2.setPreferredSize(new java.awt.Dimension(40, 27));
+
+        txfPunkt2.setText(".");
+
+        txfIP3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfIP3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfIP3.setText("0");
+        txfIP3.setPreferredSize(new java.awt.Dimension(40, 27));
+
+        txfPunkt3.setText(".");
+
+        txfIP4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfIP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfIP4.setText("1");
+        txfIP4.setPreferredSize(new java.awt.Dimension(40, 27));
+
+        lblDPunkt.setText(":");
+
+        lblPort.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblPort.setText("Port:");
+
+        txfPort.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfPort.setText("3306");
+
+        lblDBName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblDBName.setText("DB-Name:");
+
+        txfDBName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        lblDBUser.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblDBUser.setText("DB-Username:");
+
+        txfDBUser.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        lblDBPass.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblDBPass.setText("DB-Passwort:");
+
+        txpDBPass.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txpDBPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txpDBPassFocusGained(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlErweitertLayout = new javax.swing.GroupLayout(pnlErweitert);
+        pnlErweitert.setLayout(pnlErweitertLayout);
+        pnlErweitertLayout.setHorizontalGroup(
+            pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlErweitertLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfDBName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txfDBUser)
+                    .addComponent(txpDBPass, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlErweitertLayout.createSequentialGroup()
+                        .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDBName)
+                            .addComponent(lblDBUser)
+                            .addComponent(lblDBPass)
+                            .addGroup(pnlErweitertLayout.createSequentialGroup()
+                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHost)
+                                    .addGroup(pnlErweitertLayout.createSequentialGroup()
+                                        .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPunkt1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfPunkt2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfPunkt3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblDPunkt)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPort))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlErweitertLayout.setVerticalGroup(
+            pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlErweitertLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHost)
+                    .addComponent(lblPort))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPunkt1)
+                    .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfPunkt2)
+                    .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfPunkt3)
+                    .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDPunkt))
+                .addGap(18, 18, 18)
+                .addComponent(lblDBName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfDBName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblDBUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txfDBUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblDBPass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txpDBPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         lblErweitert.setForeground(new java.awt.Color(0, 0, 255));
         lblErweitert.setText("Erweitert ▼");
+        lblErweitert.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblErweitert.setMaximumSize(new java.awt.Dimension(70, 16));
         lblErweitert.setPreferredSize(new java.awt.Dimension(70, 16));
         lblErweitert.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -78,54 +265,66 @@ public class Login_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnAnmelden.setText("Anmelden");
+        btnAnmelden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnmelden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnmeldenActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlButtonsLayout = new javax.swing.GroupLayout(pnlButtons);
+        pnlButtons.setLayout(pnlButtonsLayout);
+        pnlButtonsLayout.setHorizontalGroup(
+            pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblErweitert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAnmelden, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlButtonsLayout.setVerticalGroup(
+            pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlButtonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAnmelden)
+                    .addComponent(lblErweitert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jpbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                            .addComponent(lblBenutzername)
-                            .addComponent(txfBenutzername)
-                            .addComponent(lblPasswort)
-                            .addComponent(txpPasswort))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblErweitert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAnmelden, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(pnlNormal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlErweitert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBenutzername)
+                .addComponent(pnlErweitert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfBenutzername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblPasswort)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txpPasswort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAnmelden, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblErweitert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(pnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean ausgeklappt = false;
+    private int height = 256;
     
     private void initGUI(){
-        
+        //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
+        //der Button 'Anmelden' erhält den Fokus
+        pnlErweitert.setVisible(false);
+        this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - height));
+        this.pack();
+        btnAnmelden.requestFocus();
     }
     
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
@@ -141,11 +340,10 @@ public class Login_GUI extends javax.swing.JFrame {
            lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>"); 
         }
         
-        
     }//GEN-LAST:event_lblErweitertMouseEntered
 
     private void lblErweitertMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseExited
-        //entfernt den Unterstrich, wenn das Label mit der Maus verlassen wird
+        //entfernt den Unterstrich, wenn die Maus das Label verlässt
         
         if (ausgeklappt) {
             lblErweitert.setText("Erweitert ▲");
@@ -156,24 +354,35 @@ public class Login_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_lblErweitertMouseExited
 
     private void lblErweitertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseClicked
-        //ändert die Größe des JFrames, wenn auf 'Erweitert' eklickt wird
-        
-        int newGroesse = 250;
-        
-        if (!ausgeklappt) {
-            ausgeklappt = true;
+        //ändert die Größe des Fensters, wenn auf 'Erweitert' eklickt wird
+                
+        if (!ausgeklappt) {     //'Erweitert' ist nicht sichtbar
+            //'Erweitert' ist wird sichtbar, Fenster wird größer, Pfeil des Labels zeigt nach oben
+            pnlErweitert.setVisible(true);
             lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>"); 
-            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + newGroesse));
-        } else {
-            ausgeklappt = false;
+            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + height));
+        } else {                //'Erweitert' ist sichtbar
+            //'Erweitert' ist wird unsichtbar, Fenster wird kleiner, Pfeil des Labels zeigt nach unten
+            pnlErweitert.setVisible(false);
             lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>"); 
-            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - newGroesse));
+            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - height));
         }
-
+        ausgeklappt = !ausgeklappt;
         this.pack();
+        
     }//GEN-LAST:event_lblErweitertMouseClicked
 
+    private void txpPasswortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txpPasswortFocusGained
+        //löscht den Text, wenn das Passwort-Feld den Fokus erhält
+        txpPasswort.setText("");
+    }//GEN-LAST:event_txpPasswortFocusGained
 
+    private void txpDBPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txpDBPassFocusGained
+        //löscht den Text, wenn das Passwort-Feld den Fokus erhält
+        txpDBPass.setText("");
+    }//GEN-LAST:event_txpDBPassFocusGained
+
+    
     
     /**
      * @param args the command line arguments
@@ -215,9 +424,30 @@ public class Login_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAnmelden;
     private japhiroto.JPictureBox jpbLogo;
     private javax.swing.JLabel lblBenutzername;
+    private javax.swing.JLabel lblDBName;
+    private javax.swing.JLabel lblDBPass;
+    private javax.swing.JLabel lblDBUser;
+    private javax.swing.JLabel lblDPunkt;
     private javax.swing.JLabel lblErweitert;
+    private javax.swing.JLabel lblHost;
     private javax.swing.JLabel lblPasswort;
+    private javax.swing.JLabel lblPort;
+    private javax.swing.JLabel lblPunkt1;
+    private javax.swing.JPanel pnlButtons;
+    private javax.swing.JPanel pnlErweitert;
+    private javax.swing.JPanel pnlNormal;
+    private javax.swing.JSeparator sep1;
     private javax.swing.JTextField txfBenutzername;
+    private javax.swing.JTextField txfDBName;
+    private javax.swing.JTextField txfDBUser;
+    private javax.swing.JTextField txfIP1;
+    private javax.swing.JTextField txfIP2;
+    private javax.swing.JTextField txfIP3;
+    private javax.swing.JTextField txfIP4;
+    private javax.swing.JTextField txfPort;
+    private javax.swing.JLabel txfPunkt2;
+    private javax.swing.JLabel txfPunkt3;
+    private javax.swing.JPasswordField txpDBPass;
     private javax.swing.JPasswordField txpPasswort;
     // End of variables declaration//GEN-END:variables
 }
