@@ -6,6 +6,12 @@
 package japhiroto;
 
 import java.awt.Dimension;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -124,6 +130,11 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txfIP1.setText("127");
         txfIP1.setPreferredSize(new java.awt.Dimension(40, 27));
+        txfIP1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfIP1FocusGained(evt);
+            }
+        });
 
         lblPunkt1.setText(".");
 
@@ -131,6 +142,11 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txfIP2.setText("0");
         txfIP2.setPreferredSize(new java.awt.Dimension(40, 27));
+        txfIP2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfIP2FocusGained(evt);
+            }
+        });
 
         txfPunkt2.setText(".");
 
@@ -138,6 +154,11 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txfIP3.setText("0");
         txfIP3.setPreferredSize(new java.awt.Dimension(40, 27));
+        txfIP3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfIP3FocusGained(evt);
+            }
+        });
 
         txfPunkt3.setText(".");
 
@@ -145,6 +166,11 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txfIP4.setText("1");
         txfIP4.setPreferredSize(new java.awt.Dimension(40, 27));
+        txfIP4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfIP4FocusGained(evt);
+            }
+        });
 
         lblDPunkt.setText(":");
 
@@ -153,6 +179,11 @@ public class Login_GUI extends javax.swing.JFrame {
 
         txfPort.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfPort.setText("3306");
+        txfPort.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfPortFocusGained(evt);
+            }
+        });
 
         lblDBName.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblDBName.setText("DB-Name:");
@@ -315,20 +346,77 @@ public class Login_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean ausgeklappt = false;
-    private int height = 256;
+    private boolean ausgeklappt;
+    private int height;
+    private String user, pass, host, port, dbName, dbUser, dbPass;
     
     private void initGUI(){
-        //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
-        //der Button 'Anmelden' erhält den Fokus
-        pnlErweitert.setVisible(false);
+        //"ausgelagerter" Konstruktor: ausgelagerte Befehle, die im Konstruktor ausgeführt werden sollen
+        this.height = 256;
+        pnlErweitert.setVisible(false);     //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
         this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - height));
         this.pack();
-        btnAnmelden.requestFocus();
+        btnAnmelden.requestFocus();     //der Button 'Anmelden' erhält den Fokus
+        
+        //globale Variablen werden initialisiert
+        this.ausgeklappt = false;
+        this.user = "";
+        this.host = "";
+        this.port = "";
+        this.dbName = "";
+        this.dbUser = "";
+        this.pass = "";
+        this.dbPass = "";
     }
     
+    private ResultSet rs;
+    
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
-        // TODO add your handling code here:
+        
+        DB_Verbindung verb;
+        
+        try {
+            if (erweitertAusgefuellt()) {
+                verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
+            } else {
+                verb = new DB_Verbindung();
+            }
+                       
+            verb.verbindungAufbauen();
+            
+            
+            /*
+                TEST    DB-Verbindung
+             */
+            System.out.format("Verbindung gültig: %s", verb.isVerbindungValid());
+            String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = '" + this.user + "' AND passwort = '" + this.pass + "')";
+            //String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = 'h.finke' AND passwort = 'flinkerFink')";
+            
+            
+            rs = verb.abfragen(abfrage);
+            rs.next();
+            System.out.format("\nRolle: %d", rs.getInt(1));
+            rs.close();
+            rs = null;
+            
+            verb.verbindungSchliessen();
+            verb = null;
+            
+            /*
+                TEST ENDE
+             */
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nDie Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
+                    + "\n\n Bitte überprüfen Sie Ihre Eingaben \noder Ihre Internetverbindung", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Login_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nEs dürfen nur Zahlen bei \n'Host-Adresse' bzw. 'Port' \n"
+                    + "verwendet werden", "Eingabefehler", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnAnmeldenActionPerformed
 
     private void lblErweitertMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseEntered
@@ -382,6 +470,63 @@ public class Login_GUI extends javax.swing.JFrame {
         txpDBPass.setText("");
     }//GEN-LAST:event_txpDBPassFocusGained
 
+    private void txfIP1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP1FocusGained
+        //löscht den Text, wenn das IP-Feld den Fokus erhält
+        txfIP1.setText("");
+    }//GEN-LAST:event_txfIP1FocusGained
+
+    private void txfIP2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP2FocusGained
+        //löscht den Text, wenn das IP-Feld den Fokus erhält
+        txfIP2.setText("");
+    }//GEN-LAST:event_txfIP2FocusGained
+
+    private void txfIP3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP3FocusGained
+        //löscht den Text, wenn das IP-Feld den Fokus erhält
+        txfIP3.setText("");
+    }//GEN-LAST:event_txfIP3FocusGained
+
+    private void txfIP4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP4FocusGained
+        //löscht den Text, wenn das IP-Feld den Fokus erhält
+        txfIP4.setText("");
+    }//GEN-LAST:event_txfIP4FocusGained
+
+    private void txfPortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfPortFocusGained
+        //löscht den Text, wenn das Port-Feld den Fokus erhält
+        txfPort.setText("");
+    }//GEN-LAST:event_txfPortFocusGained
+
+    private void datenSpeichern() throws NumberFormatException{
+        //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
+        //Konvertierung zu int und dann zu Sttring bewirkt das einfache Abfangen von NumberFormatExceptions
+        
+        int ip1 = Integer.parseInt(txfIP1.getText());
+        int ip2 = Integer.parseInt(txfIP2.getText());
+        int ip3 = Integer.parseInt(txfIP3.getText());
+        int ip4 = Integer.parseInt(txfIP4.getText());
+        this.user = txfBenutzername.getText();
+        this.host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+        this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
+        this.dbName = txfDBName.getText();
+        this.dbUser = txfDBUser.getText();
+        
+        for (int i = 0; i < txpPasswort.getPassword().length; i++) {
+            pass += txpPasswort.getPassword()[i];
+        }
+        
+        for (int i = 0; i < txpDBPass.getPassword().length; i++) {
+            dbPass += txpDBPass.getPassword()[i];
+        }
+        
+    }
+    
+    private boolean erweitertAusgefuellt() throws NumberFormatException{
+        //liefert true zurück, wenn alle Felder der erweiterten Oberfläche ausgefüllt sind
+        
+        datenSpeichern();
+
+        return (!this.user.equals("") && !this.host.equals("") && !this.port.equals("") && !this.dbName.equals("") && 
+                !this.dbUser.equals("") && !this.pass.equals("") && !this.dbPass.equals(""));
+    }
     
     
     /**

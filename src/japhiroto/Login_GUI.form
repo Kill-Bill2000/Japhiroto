@@ -247,6 +247,9 @@
               <Dimension value="[40, 27]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfIP1FocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPunkt1">
           <Properties>
@@ -264,6 +267,9 @@
               <Dimension value="[40, 27]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfIP2FocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="txfPunkt2">
           <Properties>
@@ -281,6 +287,9 @@
               <Dimension value="[40, 27]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfIP3FocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="txfPunkt3">
           <Properties>
@@ -298,6 +307,9 @@
               <Dimension value="[40, 27]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfIP4FocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDPunkt">
           <Properties>
@@ -319,6 +331,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="3306"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfPortFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDBName">
           <Properties>
