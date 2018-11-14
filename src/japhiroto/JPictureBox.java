@@ -17,13 +17,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 public class JPictureBox extends JComponent {
-    //Möglichkeit zum einfachen Anzeigen von Bildern in Oberflächen
+    //Möglichkeit zum einfachen Einfügen von Bildern in Oberflächen
     
     
     private Icon icon = null;
     private final Dimension dimension = new Dimension(100, 100);
     private Image image = null;
-    private ImageIcon ii = null;
+    private ImageIcon imageIcon = null;
     private SizeMode sizeMode = SizeMode.STRETCH;
     private int newHeight, newWidth, originalHeight, originalWidth;
 
@@ -35,10 +35,12 @@ public class JPictureBox extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        if (ii != null) {
+        //unterschiedliches Verhalten bei ausgewählten Modi 'NORMAL', 'ZOOM', 'STRETCH' und 'CENTER'
+        
+        if (imageIcon != null) {
             switch (getSizeMode()) {
                 case NORMAL:
-                    g.drawImage(image, 0, 0, ii.getIconWidth(), ii.getIconHeight(), null);
+                    g.drawImage(image, 0, 0, imageIcon.getIconWidth(), imageIcon.getIconHeight(), null);
                     break;
                 case ZOOM:
                     aspectRatio();
@@ -48,7 +50,7 @@ public class JPictureBox extends JComponent {
                     g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
                     break;
                 case CENTER:
-                    g.drawImage(image, (int) (this.getWidth() / 2) - (int) (ii.getIconWidth() / 2), (int) (this.getHeight() / 2) - (int) (ii.getIconHeight() / 2), ii.getIconWidth(), ii.getIconHeight(), null);
+                    g.drawImage(image, (int) (this.getWidth() / 2) - (int) (imageIcon.getIconWidth() / 2), (int) (this.getHeight() / 2) - (int) (imageIcon.getIconHeight() / 2), imageIcon.getIconWidth(), imageIcon.getIconHeight(), null);
                     break;
                 default:
                     g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
@@ -57,26 +59,31 @@ public class JPictureBox extends JComponent {
     }
 
     public Icon getIcon() {
+        //liefert das gespeicherte Icon zurück
         return icon;
     }
 
     public void setIcon(Icon icon) {
+        //speichert das übergebene Icon als Icon sowie als Image und speichert dieses + Größe des Bilds
         this.icon = icon;
-        ii = (ImageIcon) icon;
-        image = ii.getImage();
-        originalHeight = ii.getIconHeight();
-        originalWidth = ii.getIconWidth();
+        imageIcon = (ImageIcon) icon;
+        image = imageIcon.getImage();
+        originalHeight = imageIcon.getIconHeight();
+        originalWidth = imageIcon.getIconWidth();
     }
 
     public SizeMode getSizeMode() {
+        //liefert den ausgewählten Modus zurück
         return sizeMode;
     }
 
     public void setSizeMode(SizeMode sizeMode) {
+        //setzt/speichert den übergebenen Modus
         this.sizeMode = sizeMode;
     }
 
     public enum SizeMode {
+        //verfügbare/auswählbare Modi
         NORMAL,
         STRETCH,
         CENTER,
@@ -84,7 +91,8 @@ public class JPictureBox extends JComponent {
     }
 
     private void aspectRatio() {
-        if (ii != null) {
+        //ändert die Größenverhältnisse des ImageIcons, wenn dieses existiert
+        if (imageIcon != null) {
             newHeight = this.getHeight();
             newWidth = (originalWidth * newHeight) / originalHeight;
         }
