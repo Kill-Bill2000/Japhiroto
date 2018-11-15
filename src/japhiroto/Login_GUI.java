@@ -388,19 +388,19 @@ public class Login_GUI extends javax.swing.JFrame {
             /*
                 TEST    DB-Verbindung
              */
-            System.out.format("Verbindung gültig: %s", verb.isVerbindungValid());
-            String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = '" + this.user + "' AND passwort = '" + this.pass + "')";
-            //String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = 'h.finke' AND passwort = 'flinkerFink')";
-            
-            
-            rs = verb.abfragen(abfrage);
-            rs.next();
-            System.out.format("\nRolle: %d", rs.getInt(1));
-            rs.close();
-            rs = null;
-            
-            verb.verbindungSchliessen();
-            verb = null;
+//            System.out.format("Verbindung gültig: %s", verb.isVerbindungValid());
+//            String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = '" + this.user + "' AND passwort = '" + this.pass + "')";
+//            //String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = 'h.finke' AND passwort = 'flinkerFink')";
+//            
+//            
+//            rs = verb.abfragen(abfrage);
+//            rs.next();
+//            System.out.format("\nRolle: %d", rs.getInt(1));
+//            rs.close();
+//            rs = null;
+//            
+//            verb.verbindungSchliessen();
+//            verb = null;
             
             /*
                 TEST ENDE
