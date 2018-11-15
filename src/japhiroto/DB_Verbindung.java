@@ -100,7 +100,7 @@ public class DB_Verbindung {
         return !con.isValid(5);
     }
     
-    public ResultSet abfragen(String sqlBefehl) throws SQLException{
+    private ResultSet abfragen(String sqlBefehl) throws SQLException{
         //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
         //liefert das abgefragte ResultSet zurück.
         //ResultSet und Statement werden dann wieder geschlossen
@@ -116,7 +116,7 @@ public class DB_Verbindung {
         return rs;
     }
     
-    public void updaten(String sqlBefehl) throws SQLException{
+    private void updaten(String sqlBefehl) throws SQLException{
         //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
         //sendet ein Update (ISERT, UPDATE, DELETE) an die DB
         //Statement wird dann wieder geschlossen
