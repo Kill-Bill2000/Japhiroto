@@ -132,6 +132,12 @@ public class DB_Verbindung {
         //ein neuer Mitabeiter wird der DB hinzugefügt
     }
     
+    public void mitarbeiterBearbeiten(int mitarbeiterId){
+        
+    }
+    
+    
+    
     public void nutzerkontoAnlegen(String username, String passwort, int rolle){
         //ein neues Nutzerkonto wird der DB hinzugefügt
         
