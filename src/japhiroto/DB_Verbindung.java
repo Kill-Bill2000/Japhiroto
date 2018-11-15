@@ -128,4 +128,28 @@ public class DB_Verbindung {
         stmt.close();
     }
     
+    public void mitarbeiterAnlegen(String vorname, String nachname){
+        //ein neuer Mitabeiter wird der DB hinzugefügt
+    }
+    
+    public void nutzerkontoAnlegen(String username, String passwort, int rolle){
+        //ein neues Nutzerkonto wird der DB hinzugefügt
+        
+    }
+    
+    public int rolleAbfragen(String username, String passwort){
+        //die Rolle eines Benutzerkontos wird von der DB angefragt und ausgegeben
+        //Rollen: 
+        //-1 = keine Rolle
+        // 0 = Supermarktleiter
+        // 1 = Kassierer
+        // 2 = Lagerist
+        
+        int rolle = -1;
+        
+        
+        return rolle;
+    }
+    
+    
 }
