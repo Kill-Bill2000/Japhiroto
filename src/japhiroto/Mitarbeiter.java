@@ -21,8 +21,9 @@ public class Mitarbeiter {
     private int ort;
     private int stundenLohn;
 
-    public Mitarbeiter(String anrede, String vorname, String nachname, String strasse, int hausNr, int plz, int ort, int stundenLohn) {
+    public Mitarbeiter(int mitarbeiterId, String anrede, String vorname, String nachname, String strasse, int hausNr, int plz, int ort, int stundenLohn) {
         //initialisiert die Variablen mit den übergebenen Werten
+        this.mitarbeiterId = mitarbeiterId;
         this.anrede = anrede;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -40,6 +41,11 @@ public class Mitarbeiter {
     public int getMitarbeiterId() {
         //gibt die gespeicherte Mitarbeiter-ID aus
         return mitarbeiterId;
+    }
+
+    public void setMitarbeiterId(int mitarbeiterId) {
+        //speichert die übergebene Mitarbeiter-ID in die Variable
+        this.mitarbeiterId = mitarbeiterId;
     }
 
     public String getAnrede() {
