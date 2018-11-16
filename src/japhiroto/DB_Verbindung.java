@@ -171,15 +171,13 @@ public class DB_Verbindung {
         
         return mitarb;
     }
-    
-    public void accountAnlegen(String username, String passwort, int rolle, int mitarbeiterId) throws SQLException{
-        //ein neues Nutzerkonto wird der DB hinzugefügt
         
+    public void accountAnlegen(Account acc) throws SQLException{
+        //der übergebene Account wird der DB hinzugefügt
         
-        String befehl = String.format("INSERT INTO Accounts (benutzername, passwort, rolle, mitarbeiterId) VALUES ('%1$s', '%2$s', %3$d, %4$d)", username, passwort, rolle, mitarbeiterId);
+        String befehl = String.format("INSERT INTO Accounts (benutzername, passwort, rolle, mitarbeiterId) VALUES ('%1$s', '%2$s', %3$d, %4$d)", acc.getBenutzername(), acc.getPasswort(), acc.getRolle(), acc.getMitarbeiterId());
         
         updaten(befehl);
-        
     }
     
     public int rolleAbfragen(String username, String passwort) throws SQLException{
