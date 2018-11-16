@@ -181,14 +181,14 @@ public class DB_Verbindung {
     }
     
     public int rolleAbfragen(String username, String passwort) throws SQLException{
-        //die Rolle eines Benutzerkontos wird von der DB angefragt und ausgegeben
+        //die Rolle des Benutzerkontos mit den übergebenen Anmeldedaten wird von der DB angefragt und ausgegeben
         //Rollen: 
-        //-1 = keine Rolle
         // 0 = Supermarktleiter
         // 1 = Kassierer
         // 2 = Lagerist
         
         int rolle;
+        
         String befehl = String.format("SELECT rolle FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", username, passwort);
         ResultSet rs = abfragen(befehl);
         rs.next();
