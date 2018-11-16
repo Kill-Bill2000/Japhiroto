@@ -221,7 +221,21 @@ public class DB_Verbindung {
             valid = false;
         }
         
+        return valid;
+    }
+    
+    public boolean accountUeberpruefen(Account acc) throws SQLException{
+        //prueft, ob der User mit den Anmeldedaten des übergebenen Accounts existiert bzw. valide ist
+        
+        boolean valid = true;
+        String befehl = String.format("SELECT COUNT(rolle) FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", acc.getBenutzername(), acc.getPasswort());
+        ResultSet rs = abfragen(befehl);
+        rs.next();
 
+        if (rs.getInt(1) == 0 ) {
+            valid = false;
+        }
+        
         return valid;
     }
     
