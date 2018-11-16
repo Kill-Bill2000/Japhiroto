@@ -6,11 +6,13 @@
 package japhiroto;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -367,6 +369,8 @@ public class Login_GUI extends javax.swing.JFrame {
         this.dbUser = "";
         this.pass = "";
         this.dbPass = "";
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz.png")));
     }
     
     
