@@ -136,9 +136,15 @@ public class DB_Verbindung {
         updaten(befehl);
     }
     
-//    public void mitarbeiterBearbeiten(int mitarbeiterId){
-//        
-//    }
+    public void mitarbeiterBearbeiten(int mitarbeiterId, String anrede, String vorname, String nachname, String strasse, int hausNr, int plz, String ort, double stundenLohn) throws SQLException{
+        
+        String befehl = String.format("UPDATE Mitarbeiter SET (anrede = '%1$s', vorname = '%2$s', nachname = '%3$s', strasse = '%4$s'"
+                 + "hausNr = '%5$d', plz = '%6$d', ort = '%7$s', stundenLohn = '%8$f) WHERE mitarbeiterId = %9$d", 
+                anrede, vorname, nachname, strasse, hausNr, plz, ort, stundenLohn, mitarbeiterId);
+        
+        updaten(befehl);
+        
+    }
     
     public int mitarbeiterIdAbfragen(String vorname, String nachname) throws SQLException{
         //liefert die Mitarbeiter-ID der DB zurück
@@ -192,7 +198,7 @@ public class DB_Verbindung {
             valid = false;
         }
         
-        
+
         return valid;
     }
     
