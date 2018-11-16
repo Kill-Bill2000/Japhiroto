@@ -197,6 +197,18 @@ public class DB_Verbindung {
         return rolle;
     }
     
+    public Account rolleAbfragen(Account acc) throws SQLException{
+        //die Rolle des Benutzerkontos mit den übergebenen Anmeldedaten wird von der DB angefragt und als kombinierter Account ausgegeben
+        
+        String befehl = String.format("SELECT * FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", acc.getBenutzername(), acc.getPasswort());
+        ResultSet rs = abfragen(befehl);
+        rs.next();   
+        acc.setRolle(rs.getInt("rolle"));
+        acc.setMitarbeiterId(rs.getInt("mitarbeiterId"));
+        
+        return acc;
+    }
+    
     public boolean accountUeberpruefen(String username, String passwort) throws SQLException{
         //prueft, ob der User mit den übergebenen Anmeldedaten existiert bzw. valide ist
         
