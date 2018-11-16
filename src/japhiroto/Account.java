@@ -30,6 +30,11 @@ public class Account {
         this.rolle = rolle;
     }
 
+    public Account(String benutzername, String passwort){
+        this.benutzername = benutzername;
+        this.passwort = passwort;
+    }
+    
     public int getAccountId() {
         //gibt die gespeicherte Account-ID aus
         return accountId;
