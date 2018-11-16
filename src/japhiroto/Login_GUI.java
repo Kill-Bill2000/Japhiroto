@@ -379,29 +379,36 @@ public class Login_GUI extends javax.swing.JFrame {
         try {
             user = txfBenutzername.getText();
             pass = passwortToString(txpPasswort.getPassword());
+            
             if (erweitertAusgefuellt()) {
                 verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
                 verb = new DB_Verbindung();
             }
                        
-            verb.verbindungAufbauen();
-            
+            System.out.format("Verbindung aufgebaut: %s\n", verb.verbindungAufbauen());
+            System.out.format("Account überprüfen: %b\n", verb.accountUeberpruefen(user, pass));
             
             if(verb.accountUeberpruefen(user, pass)){
                 if (verb.rolleAbfragen(user, pass) == 0) {
                     //Supermarktleiter GUI aufrufen
+                    System.out.println("SUPERMARKTLEITER");
                     
                 } else if (verb.rolleAbfragen(user, pass) == 1){
                     //Kassierer GUI aufrufen
+                    System.out.println("KASSIERER");
                     
                 } else if(verb.rolleAbfragen(user, pass) == 2){
                     //Lagerist GUI aufrufen
+                    System.out.println("LAGERIST");
                     
                 } else {
                     //Rolle nicht gefunden oder falsche Rolle
                     JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\nBitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Anmeldung fehlgeschlagen.\nBenutzername oder Passwort ungültig!\nBitte überprüfen Sie Ihre Zugangsdaten.", "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
             }
             
             
