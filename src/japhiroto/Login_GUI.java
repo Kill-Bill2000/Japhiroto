@@ -369,13 +369,16 @@ public class Login_GUI extends javax.swing.JFrame {
         this.dbPass = "";
     }
     
-    private ResultSet rs;
     
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
         
         DB_Verbindung verb;
+        String user, pass;
+        
         
         try {
+            user = txfBenutzername.getText();
+            pass = passwortToString(txpPasswort.getPassword());
             if (erweitertAusgefuellt()) {
                 verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
@@ -383,6 +386,23 @@ public class Login_GUI extends javax.swing.JFrame {
             }
                        
             verb.verbindungAufbauen();
+            
+            
+            if(verb.accountUeberpruefen(user, pass)){
+                if (verb.rolleAbfragen(user, pass) == 0) {
+                    //Supermarktleiter GUI aufrufen
+                    
+                } else if (verb.rolleAbfragen(user, pass) == 1){
+                    //Kassierer GUI aufrufen
+                    
+                } else if(verb.rolleAbfragen(user, pass) == 2){
+                    //Lagerist GUI aufrufen
+                    
+                } else {
+                    //Rolle nicht gefunden oder falsche Rolle
+                    JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\nBitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
             
             
             /*
@@ -509,14 +529,9 @@ public class Login_GUI extends javax.swing.JFrame {
         this.dbName = txfDBName.getText();
         this.dbUser = txfDBUser.getText();
         
-        for (int i = 0; i < txpPasswort.getPassword().length; i++) {
-            pass += txpPasswort.getPassword()[i];
-        }
+        pass = passwortToString(txpPasswort.getPassword());
         
-        for (int i = 0; i < txpDBPass.getPassword().length; i++) {
-            dbPass += txpDBPass.getPassword()[i];
-        }
-        
+        dbPass = passwortToString(txpDBPass.getPassword());
     }
     
     private boolean erweitertAusgefuellt() throws NumberFormatException{
@@ -528,6 +543,15 @@ public class Login_GUI extends javax.swing.JFrame {
                 !this.dbUser.equals("") && !this.pass.equals("") && !this.dbPass.equals(""));
     }
     
+    private String passwortToString(char[] password) {
+        String out = "";
+        
+        for (int i = 0; i < password.length; i++) {
+            out += password[i];
+        }
+        
+        return out;
+    }
     
     /**
      * @param args the command line arguments
@@ -595,4 +619,6 @@ public class Login_GUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txpDBPass;
     private javax.swing.JPasswordField txpPasswort;
     // End of variables declaration//GEN-END:variables
+
+    
 }
