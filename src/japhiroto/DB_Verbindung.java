@@ -128,22 +128,42 @@ public class DB_Verbindung {
         stmt.close();
     }
     
-    public void mitarbeiterAnlegen(String vorname, String nachname){
+    public void mitarbeiterAnlegen(String vorname, String nachname) throws SQLException{
         //ein neuer Mitabeiter wird der DB hinzugefügt
+        
+        String befehl = String.format("INSERT INTO Mitarbeiter (vorname, nachname) VALUES ('%1$s', %2$s')", vorname, nachname);
+        
+        updaten(befehl);
     }
     
-    public void mitarbeiterBearbeiten(int mitarbeiterId){
+//    public void mitarbeiterBearbeiten(int mitarbeiterId){
+//        
+//    }
+    
+    public int mitarbeiterIdAbfragen(String vorname, String nachname) throws SQLException{
+        //liefert die Mitarbeiter-ID der DB zurück
+        
+        int id = -1;
+        String befehl = String.format("SELECT mitarbeiterId FROM Mitarbeiter WHERE (vorname = '%1$s' AND nachname = '%2$s')", vorname, nachname);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        id = rs.getInt(1);
+        
+        return id;
         
     }
     
-    
-    
-    public void nutzerkontoAnlegen(String username, String passwort, int rolle){
+    public void accountAnlegen(String username, String passwort, int rolle, int mitarbeiterId) throws SQLException{
         //ein neues Nutzerkonto wird der DB hinzugefügt
         
+        
+        String befehl = String.format("INSERT INTO Accounts (benutzername, passwort, rolle, mitarbeiterId) VALUES ('%1$s', '%2$s', %3$d, %4$d)", username, passwort, rolle, mitarbeiterId);
+        
+        updaten(befehl);
+        
     }
     
-    public int rolleAbfragen(String username, String passwort){
+    public int rolleAbfragen(String username, String passwort) throws SQLException{
         //die Rolle eines Benutzerkontos wird von der DB angefragt und ausgegeben
         //Rollen: 
         //-1 = keine Rolle
@@ -152,10 +172,28 @@ public class DB_Verbindung {
         // 2 = Lagerist
         
         int rolle = -1;
-        
+        String befehl = String.format("SELECT rolle FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", username, passwort);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        rolle = rs.getInt(1);
         
         return rolle;
     }
     
+    public boolean accountUeberpruefen(String username, String passwort) throws SQLException{
+        //prueft, ob der User mit den übergebenen Anmeldedaten existiert bzw. valide ist
+        
+        boolean valid = true;
+        String befehl = String.format("SELECT COUNT(rolle) FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", username, passwort);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+
+        if (rs.getInt(1) == 0 ) {
+            valid = false;
+        }
+        
+        
+        return valid;
+    }
     
 }
