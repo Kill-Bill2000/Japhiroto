@@ -127,11 +127,12 @@ public class DB_Verbindung {
         
         stmt.close();
     }
-    
-    public void mitarbeiterAnlegen(String vorname, String nachname) throws SQLException{
-        //ein neuer Mitabeiter wird der DB hinzugefügt
         
-        String befehl = String.format("INSERT INTO Mitarbeiter (vorname, nachname) VALUES ('%1$s', %2$s')", vorname, nachname);
+    public void mitarbeiterAnlegen(Mitarbeiter marb) throws SQLException{
+        //der übergebene Mitabeiter wird der DB hinzugefügt
+        
+        String befehl = String.format("INSERT INTO Mitarbeiter VALUES ('%1$s', '%2$s', '%3$s', '%4$s', '%5$d', '%6$d', '%7$s', '%8$f)"
+                , marb.getAnrede(), marb.getVorname(), marb.getNachname(), marb.getStrasse(), marb.getHausNr(), marb.getPlz(), marb.getOrt(), marb.getStundenLohn());
         
         updaten(befehl);
     }
