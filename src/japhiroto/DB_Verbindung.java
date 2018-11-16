@@ -131,20 +131,19 @@ public class DB_Verbindung {
     public void mitarbeiterAnlegen(Mitarbeiter marb) throws SQLException{
         //der übergebene Mitabeiter wird der DB hinzugefügt
         
-        String befehl = String.format("INSERT INTO Mitarbeiter VALUES ('%1$s', '%2$s', '%3$s', '%4$s', '%5$d', '%6$d', '%7$s', '%8$f)"
-                , marb.getAnrede(), marb.getVorname(), marb.getNachname(), marb.getStrasse(), marb.getHausNr(), marb.getPlz(), marb.getOrt(), marb.getStundenLohn());
+        String befehl = String.format("INSERT INTO Mitarbeiter VALUES ('%1$s', '%2$s', '%3$s', '%4$s', '%5$d', '%6$d', '%7$s', '%8$f)",
+                marb.getAnrede(), marb.getVorname(), marb.getNachname(), marb.getStrasse(), marb.getHausNr(), marb.getPlz(), marb.getOrt(), marb.getStundenLohn());
         
         updaten(befehl);
     }
-    
-    public void mitarbeiterBearbeiten(int mitarbeiterId, String anrede, String vorname, String nachname, String strasse, int hausNr, int plz, String ort, double stundenLohn) throws SQLException{
+        
+    public void mitarbeiterBearbeiten(Mitarbeiter mitarb) throws SQLException{
         
         String befehl = String.format("UPDATE Mitarbeiter SET (anrede = '%1$s', vorname = '%2$s', nachname = '%3$s', strasse = '%4$s'"
                  + "hausNr = '%5$d', plz = '%6$d', ort = '%7$s', stundenLohn = '%8$f) WHERE mitarbeiterId = %9$d", 
-                anrede, vorname, nachname, strasse, hausNr, plz, ort, stundenLohn, mitarbeiterId);
+                mitarb.getAnrede(), mitarb.getVorname(), mitarb.getNachname(), mitarb.getStrasse(), mitarb.getHausNr(), mitarb.getPlz(), mitarb.getOrt(), mitarb.getStundenLohn(), mitarb.getMitarbeiterId());
         
         updaten(befehl);
-        
     }
     
     public int mitarbeiterIdAbfragen(String vorname, String nachname) throws SQLException{
