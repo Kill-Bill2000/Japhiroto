@@ -149,7 +149,7 @@ public class DB_Verbindung {
     public int mitarbeiterIdAbfragen(String vorname, String nachname) throws SQLException{
         //liefert die Mitarbeiter-ID der DB zurück
         
-        int id = -1;
+        int id;
         String befehl = String.format("SELECT mitarbeiterId FROM Mitarbeiter WHERE (vorname = '%1$s' AND nachname = '%2$s')", vorname, nachname);
         ResultSet rs = abfragen(befehl);
         rs.next();
@@ -157,6 +157,19 @@ public class DB_Verbindung {
         
         return id;
         
+    }
+    
+    public Mitarbeiter mitarbeiterAbfragen(int mitarbeiterId) throws SQLException{
+        //liefert den Mitarbeiter der DB zurück, der sie übergebene Mitarbeiter-ID enthält
+        
+        Mitarbeiter mitarb;
+        String befehl = String.format("SELECT * FROM Mitarbeiter WHERE mitarbeiterId = %1$d", mitarbeiterId);
+        ResultSet rs = abfragen(befehl);
+        
+        rs.next();
+        mitarb = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
+        
+        return mitarb;
     }
     
     public void accountAnlegen(String username, String passwort, int rolle, int mitarbeiterId) throws SQLException{
@@ -177,7 +190,7 @@ public class DB_Verbindung {
         // 1 = Kassierer
         // 2 = Lagerist
         
-        int rolle = -1;
+        int rolle;
         String befehl = String.format("SELECT rolle FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", username, passwort);
         ResultSet rs = abfragen(befehl);
         rs.next();
