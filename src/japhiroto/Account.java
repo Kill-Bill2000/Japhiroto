@@ -16,6 +16,10 @@ public class Account {
     private String benutzername;
     private String passwort;
     private int rolle;
+        //Rollen: 
+        // 0 = Supermarktleiter
+        // 1 = Kassierer
+        // 2 = Lagerist
 
     public Account(int accountId, int mitarbeiterId, String benutzername, String passwort, int rolle) {
         //initialisiert die Variablen mit den übergebenen Werten
