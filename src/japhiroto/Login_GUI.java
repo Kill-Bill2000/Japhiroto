@@ -410,29 +410,7 @@ public class Login_GUI extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Anmeldung fehlgeschlagen.\nBenutzername oder Passwort ungültig!\nBitte überprüfen Sie Ihre Zugangsdaten.", "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
             }
-            
-            
-            /*
-                TEST    DB-Verbindung
-             */
-//            System.out.format("Verbindung gültig: %s", verb.isVerbindungValid());
-//            String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = '" + this.user + "' AND passwort = '" + this.pass + "')";
-//            //String abfrage = "SELECT rolle FROM Mitarbeiter WHERE (username = 'h.finke' AND passwort = 'flinkerFink')";
-//            
-//            
-//            rs = verb.abfragen(abfrage);
-//            rs.next();
-//            System.out.format("\nRolle: %d", rs.getInt(1));
-//            rs.close();
-//            rs = null;
-//            
-//            verb.verbindungSchliessen();
-//            verb = null;
-            
-            /*
-                TEST ENDE
-             */
-            
+                        
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nDie Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
