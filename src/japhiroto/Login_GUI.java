@@ -411,7 +411,7 @@ public class Login_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nDie Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
                     + "\n\n Bitte überprüfen Sie Ihre Eingaben \noder Ihre Internetverbindung", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(Login_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten!", "Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nEs dürfen nur Zahlen bei \n'Host-Adresse' bzw. 'Port' \n"
                     + "verwendet werden", "Eingabefehler", JOptionPane.INFORMATION_MESSAGE);
