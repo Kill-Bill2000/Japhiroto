@@ -371,6 +371,7 @@ public class Login_GUI extends javax.swing.JFrame {
     
     
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
+        //Klick auf den 'Anmelden'-Button
         
         DB_Verbindung verb;
         String user, pass;
@@ -380,27 +381,35 @@ public class Login_GUI extends javax.swing.JFrame {
             user = txfBenutzername.getText();
             pass = passwortToString(txpPasswort.getPassword());
             
-            if (erweitertAusgefuellt()) {
+            if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
                 verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
                 verb = new DB_Verbindung();
             }
-                       
+             
+        //TEST
             System.out.format("Verbindung aufgebaut: %s\n", verb.verbindungAufbauen());
             System.out.format("Account überprüfen: %b\n", verb.accountUeberpruefen(user, pass));
+        //TEST ENDE
             
             if(verb.accountUeberpruefen(user, pass)){
                 if (verb.rolleAbfragen(user, pass) == 0) {
                     //Supermarktleiter GUI aufrufen
+        //TEST
                     System.out.println("SUPERMARKTLEITER");
-                    
+        //TEST ENDE  
+        
                 } else if (verb.rolleAbfragen(user, pass) == 1){
                     //Kassierer GUI aufrufen
+        //TEST
                     System.out.println("KASSIERER");
+        //TEST ENDE
                     
                 } else if(verb.rolleAbfragen(user, pass) == 2){
                     //Lagerist GUI aufrufen
+        //TEST
                     System.out.println("LAGERIST");
+        //TEST ENDE
                     
                 } else {
                     //Rolle nicht gefunden oder falsche Rolle
