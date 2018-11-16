@@ -18,10 +18,10 @@ public class Mitarbeiter {
     private String strasse;
     private int hausNr;
     private int plz;
-    private int ort;
-    private int stundenLohn;
+    private String ort;
+    private double stundenLohn;
 
-    public Mitarbeiter(int mitarbeiterId, String anrede, String vorname, String nachname, String strasse, int hausNr, int plz, int ort, int stundenLohn) {
+    public Mitarbeiter(int mitarbeiterId, String anrede, String vorname, String nachname, String strasse, int hausNr, int plz, String ort, double stundenLohn) {
         //initialisiert die Variablen mit den übergebenen Werten
         this.mitarbeiterId = mitarbeiterId;
         this.anrede = anrede;
@@ -108,22 +108,22 @@ public class Mitarbeiter {
         this.plz = plz;
     }
 
-    public int getOrt() {
+    public String getOrt() {
         //gibt den gespeicherten Ort aus
         return ort;
     }
 
-    public void setOrt(int ort) {
+    public void setOrt(String ort) {
         //speichert den übergebenen Ort in die Variable
         this.ort = ort;
     }
 
-    public int getStundenLohn() {
+    public double getStundenLohn() {
         //gibt den gespeicherten Stundenlohn aus
         return stundenLohn;
     }
 
-    public void setStundenLohn(int stundenLohn) {
+    public void setStundenLohn(double stundenLohn) {
         //speichert den übergebenen Stundenlohn in die Variable
         this.stundenLohn = stundenLohn;
     }
