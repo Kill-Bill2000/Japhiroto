@@ -8,6 +8,7 @@ package japhiroto;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -436,7 +437,7 @@ public class Login_GUI extends javax.swing.JFrame {
             pass = passwortToString(txpPasswort.getPassword());
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
-                datenSpeichern();
+                dbDatenAendern();
                 verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
                 verb = new DB_Verbindung();
@@ -620,7 +621,7 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP1.setText("");
     }//GEN-LAST:event_txfIP1FocusGained
 
-    private void datenSpeichern() throws NumberFormatException{
+    private void dbDatenAendern() throws NumberFormatException{
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
         //Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
         
@@ -633,10 +634,8 @@ public class Login_GUI extends javax.swing.JFrame {
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
         this.dbName = txfDBName.getText();
         this.dbUser = txfDBUser.getText();
-        
-        pass = passwortToString(txpPasswort.getPassword());
-        
-        dbPass = passwortToString(txpDBPass.getPassword());
+        this.pass = passwortToString(txpPasswort.getPassword());
+        this.dbPass = passwortToString(txpDBPass.getPassword());
     }
     
     private boolean erweitertAusgefuellt() throws NumberFormatException{
