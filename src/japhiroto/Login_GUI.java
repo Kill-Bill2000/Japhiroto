@@ -370,6 +370,7 @@ public class Login_GUI extends javax.swing.JFrame {
         this.pass = "";
         this.dbPass = "";
         
+        //IconImage setzen
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz.png")));
     }
     
@@ -421,16 +422,20 @@ public class Login_GUI extends javax.swing.JFrame {
                 
                 }
             } else {
+                getToolkit().beep();    //Fehler-Ton
                 JOptionPane.showMessageDialog(this, "Anmeldung fehlgeschlagen.\nBenutzername oder Passwort ungültig!\nBitte überprüfen Sie Ihre Zugangsdaten.", "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
             }
                         
             
         } catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nDie Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
                     + "\n\n Bitte überprüfen Sie Ihre Eingaben \noder Ihre Internetverbindung", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
+            getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten!", "Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException ex){
+            getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nEs dürfen nur Zahlen bei \n'Host-Adresse' bzw. 'Port' \n"
                     + "verwendet werden", "Eingabefehler", JOptionPane.INFORMATION_MESSAGE);
         }
