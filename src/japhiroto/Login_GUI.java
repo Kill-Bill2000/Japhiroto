@@ -558,7 +558,7 @@ public class Login_GUI extends javax.swing.JFrame {
         //löscht den Text, wenn das Port-Feld den Fokus erhält
         txfPort.setText("");
     }//GEN-LAST:event_txfPortFocusGained
-
+    
     private void txfIP2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP2KeyTyped
         //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
         if(txfIP2.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
@@ -610,13 +610,13 @@ public class Login_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txfIP1KeyTyped
 
     private void txfIP1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP1FocusGained
-        //löscht den Text, wenn das IP-Feld den Fokus erhält
+        //lösche den Text, wenn das IP-Feld den Fokus erhält
         txfIP1.setText("");
     }//GEN-LAST:event_txfIP1FocusGained
 
     private void datenSpeichern() throws NumberFormatException{
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
-        //Konvertierung zu int und dann zu Sttring bewirkt das einfache Abfangen von NumberFormatExceptions
+        //Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
         
         int ip1 = Integer.parseInt(txfIP1.getText());
         int ip2 = Integer.parseInt(txfIP2.getText());
@@ -643,6 +643,7 @@ public class Login_GUI extends javax.swing.JFrame {
     }
     
     private String passwortToString(char[] password) {
+        //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
         String out = "";
         
         for (int i = 0; i < password.length; i++) {
