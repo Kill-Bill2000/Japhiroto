@@ -7,6 +7,7 @@ package japhiroto;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,6 +79,11 @@ public class Login_GUI extends javax.swing.JFrame {
         lblBenutzername.setText("Benutzername:");
 
         txfBenutzername.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfBenutzername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfBenutzernameKeyTyped(evt);
+            }
+        });
 
         lblPasswort.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblPasswort.setText("Passwort:");
@@ -86,6 +92,11 @@ public class Login_GUI extends javax.swing.JFrame {
         txpPasswort.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txpPasswortFocusGained(evt);
+            }
+        });
+        txpPasswort.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txpPasswortKeyTyped(evt);
             }
         });
 
@@ -130,11 +141,15 @@ public class Login_GUI extends javax.swing.JFrame {
 
         txfIP1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfIP1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfIP1.setText("127");
         txfIP1.setPreferredSize(new java.awt.Dimension(40, 27));
         txfIP1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txfIP1FocusGained(evt);
+            }
+        });
+        txfIP1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfIP1KeyTyped(evt);
             }
         });
 
@@ -142,11 +157,15 @@ public class Login_GUI extends javax.swing.JFrame {
 
         txfIP2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfIP2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfIP2.setText("0");
         txfIP2.setPreferredSize(new java.awt.Dimension(40, 27));
         txfIP2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txfIP2FocusGained(evt);
+            }
+        });
+        txfIP2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfIP2KeyTyped(evt);
             }
         });
 
@@ -154,11 +173,15 @@ public class Login_GUI extends javax.swing.JFrame {
 
         txfIP3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfIP3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfIP3.setText("0");
         txfIP3.setPreferredSize(new java.awt.Dimension(40, 27));
         txfIP3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txfIP3FocusGained(evt);
+            }
+        });
+        txfIP3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfIP3KeyTyped(evt);
             }
         });
 
@@ -166,11 +189,15 @@ public class Login_GUI extends javax.swing.JFrame {
 
         txfIP4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfIP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfIP4.setText("1");
         txfIP4.setPreferredSize(new java.awt.Dimension(40, 27));
         txfIP4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txfIP4FocusGained(evt);
+            }
+        });
+        txfIP4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfIP4KeyTyped(evt);
             }
         });
 
@@ -180,10 +207,16 @@ public class Login_GUI extends javax.swing.JFrame {
         lblPort.setText("Port:");
 
         txfPort.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txfPort.setText("3306");
+        txfPort.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfPort.setPreferredSize(new java.awt.Dimension(56, 27));
         txfPort.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txfPortFocusGained(evt);
+            }
+        });
+        txfPort.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPortKeyTyped(evt);
             }
         });
 
@@ -214,38 +247,35 @@ public class Login_GUI extends javax.swing.JFrame {
             .addGroup(pnlErweitertLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txfDBName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txfDBName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(txfDBUser)
                     .addComponent(txpDBPass, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDBName)
+                    .addComponent(lblDBUser)
+                    .addComponent(lblDBPass)
                     .addGroup(pnlErweitertLayout.createSequentialGroup()
                         .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDBName)
-                            .addComponent(lblDBUser)
-                            .addComponent(lblDBPass)
+                            .addComponent(lblHost)
                             .addGroup(pnlErweitertLayout.createSequentialGroup()
-                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblHost)
-                                    .addGroup(pnlErweitertLayout.createSequentialGroup()
-                                        .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblPunkt1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txfPunkt2)))
+                                .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPunkt1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfPunkt3)
+                                .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblDPunkt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPort))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txfPunkt2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txfPunkt3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblDPunkt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPort)
+                            .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         pnlErweitertLayout.setVerticalGroup(
@@ -372,6 +402,22 @@ public class Login_GUI extends javax.swing.JFrame {
         
         //IconImage setzen
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz.png")));
+        
+        //Filter für maximale Anzahl an Zeichen, die eingegeben werden können
+        txfBenutzername.setDocument(new JTextFieldLimit(32));
+        txpPasswort.setDocument(new JTextFieldLimit(32));
+        txfIP1.setDocument(new JTextFieldLimit(3));
+        txfIP2.setDocument(new JTextFieldLimit(3));
+        txfIP3.setDocument(new JTextFieldLimit(3));
+        txfIP4.setDocument(new JTextFieldLimit(3));
+        txfPort.setDocument(new JTextFieldLimit(5));
+        
+        //default-Werte, die zu Beginn eingetragen sind
+        txfIP1.setText("127");
+        txfIP2.setText("0");
+        txfIP3.setText("0");
+        txfIP4.setText("1");
+        txfPort.setText("3306");
     }
     
     
@@ -394,7 +440,7 @@ public class Login_GUI extends javax.swing.JFrame {
              
         //TEST
             System.out.format("Verbindung aufgebaut: %s\n", verb.verbindungAufbauen());
-            System.out.format("Account überprüfen: %b\n", verb.accountUeberpruefen(user, pass));
+            System.out.format("Account valide: %b\n", verb.accountUeberpruefen(user, pass));
         //TEST ENDE
             
             if(verb.accountUeberpruefen(user, pass)){
@@ -493,11 +539,6 @@ public class Login_GUI extends javax.swing.JFrame {
         txpDBPass.setText("");
     }//GEN-LAST:event_txpDBPassFocusGained
 
-    private void txfIP1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP1FocusGained
-        //löscht den Text, wenn das IP-Feld den Fokus erhält
-        txfIP1.setText("");
-    }//GEN-LAST:event_txfIP1FocusGained
-
     private void txfIP2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP2FocusGained
         //löscht den Text, wenn das IP-Feld den Fokus erhält
         txfIP2.setText("");
@@ -517,6 +558,61 @@ public class Login_GUI extends javax.swing.JFrame {
         //löscht den Text, wenn das Port-Feld den Fokus erhält
         txfPort.setText("");
     }//GEN-LAST:event_txfPortFocusGained
+
+    private void txfIP2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP2KeyTyped
+        //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txfIP2.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txfIP2KeyTyped
+
+    private void txfIP3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP3KeyTyped
+        //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txfIP3.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txfIP3KeyTyped
+
+    private void txfIP4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP4KeyTyped
+        //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txfIP4.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txfIP4KeyTyped
+
+    private void txfPortKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPortKeyTyped
+        //nach 5 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txfPort.getText().length() >= 5 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txfPortKeyTyped
+
+    private void txfBenutzernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBenutzernameKeyTyped
+        //nach 32 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txfBenutzername.getText().length() >= 32 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+
+        }
+    }//GEN-LAST:event_txfBenutzernameKeyTyped
+
+    private void txpPasswortKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txpPasswortKeyTyped
+        //nach 32 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txpPasswort.getPassword().length >= 32 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txpPasswortKeyTyped
+
+    private void txfIP1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP1KeyTyped
+        //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
+        if(txfIP1.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_txfIP1KeyTyped
+
+    private void txfIP1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP1FocusGained
+        //löscht den Text, wenn das IP-Feld den Fokus erhält
+        txfIP1.setText("");
+    }//GEN-LAST:event_txfIP1FocusGained
 
     private void datenSpeichern() throws NumberFormatException{
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
