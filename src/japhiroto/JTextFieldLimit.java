@@ -22,6 +22,8 @@ public class JTextFieldLimit extends PlainDocument {
     }
 
     public void insertString(int offset, String  str, AttributeSet attr ) throws BadLocationException {
+        //übergebene Werte werden an Mutterklasse übergeben
+        //wenn str 'null' ist, wird die Methode beendet
         if (str == null) {
             return;
         }
