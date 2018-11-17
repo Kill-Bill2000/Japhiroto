@@ -250,32 +250,35 @@ public class Login_GUI extends javax.swing.JFrame {
                     .addComponent(txfDBName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(txfDBUser)
                     .addComponent(txpDBPass, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDBName)
-                    .addComponent(lblDBUser)
-                    .addComponent(lblDBPass)
                     .addGroup(pnlErweitertLayout.createSequentialGroup()
                         .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblHost)
+                            .addComponent(lblDBName)
+                            .addComponent(lblDBUser)
+                            .addComponent(lblDBPass)
                             .addGroup(pnlErweitertLayout.createSequentialGroup()
-                                .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPunkt1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfPunkt2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txfPunkt3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblDPunkt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPort)
-                            .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlErweitertLayout.createSequentialGroup()
+                                        .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPunkt1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfPunkt2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfPunkt3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblDPunkt))
+                                    .addComponent(lblHost))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblPort)
+                                    .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlErweitertLayout.setVerticalGroup(
@@ -433,6 +436,7 @@ public class Login_GUI extends javax.swing.JFrame {
             pass = passwortToString(txpPasswort.getPassword());
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
+                datenSpeichern();
                 verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
                 verb = new DB_Verbindung();
@@ -464,12 +468,14 @@ public class Login_GUI extends javax.swing.JFrame {
                     
                 } else {
                     //Rolle nicht gefunden oder falsche Rolle
-                    JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\nBitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
+                            + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
                 
                 }
             } else {
                 getToolkit().beep();    //Fehler-Ton
-                JOptionPane.showMessageDialog(this, "Anmeldung fehlgeschlagen.\nBenutzername oder Passwort ungültig!\nBitte überprüfen Sie Ihre Zugangsdaten.", "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Anmeldung fehlgeschlagen.\nBenutzername oder Passwort ungültig!\n"
+                        + "Bitte überprüfen Sie Ihre Zugangsdaten.", "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
             }
                         
             
@@ -483,7 +489,7 @@ public class Login_GUI extends javax.swing.JFrame {
         } catch (NumberFormatException ex){
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nEs dürfen nur Zahlen bei \n'Host-Adresse' bzw. 'Port' \n"
-                    + "verwendet werden", "Eingabefehler", JOptionPane.INFORMATION_MESSAGE);
+                    + "verwendet werden", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_btnAnmeldenActionPerformed
@@ -636,10 +642,10 @@ public class Login_GUI extends javax.swing.JFrame {
     private boolean erweitertAusgefuellt() throws NumberFormatException{
         //liefert true zurück, wenn alle Felder der erweiterten Oberfläche ausgefüllt sind
         
-        datenSpeichern();
-
-        return (!this.user.equals("") && !this.host.equals("") && !this.port.equals("") && !this.dbName.equals("") && 
+        boolean ausg = (!this.user.equals("") && !this.host.equals("") && !this.port.equals("") && !this.dbName.equals("") && 
                 !this.dbUser.equals("") && !this.pass.equals("") && !this.dbPass.equals(""));
+        
+        return ausg;
     }
     
     private String passwortToString(char[] password) {
