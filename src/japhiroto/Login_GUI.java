@@ -425,6 +425,9 @@ public class Login_GUI extends javax.swing.JFrame {
     
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
         //Klick auf den 'Anmelden'-Button
+        //Verbindung zur Datenbank wird hergestellt,
+            //die Zugangsdaten werden bei manueller Eingabe in einer Datei gespeichert
+            //die rollenbezogene GUI wird je nach abgefragter Benutzerrolle aufgerufen
         
         DB_Verbindung verb;
         String user, pass;
@@ -432,7 +435,7 @@ public class Login_GUI extends javax.swing.JFrame {
         
         try {
             user = txfBenutzername.getText();
-            pass = passwortToString(txpPasswort.getPassword());
+            pass = passwortToString(txpPasswort.getPassword()); 
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
                 dbDatenAendern();
@@ -668,8 +671,17 @@ public class Login_GUI extends javax.swing.JFrame {
     private boolean erweitertAusgefuellt() throws NumberFormatException{
         //liefert true zurück, wenn alle Felder der erweiterten Oberfläche ausgefüllt sind
         
-        boolean ausg = (!this.user.equals("") && !this.host.equals("") && !this.port.equals("") && !this.dbName.equals("") && 
-                !this.dbUser.equals("") && !this.pass.equals("") && !this.dbPass.equals(""));
+        boolean ausg;
+        boolean ip1Ausg = !txfIP1.getText().equals("");
+        boolean ip2Ausg = !txfIP2.getText().equals("");
+        boolean ip3Ausg = !txfIP3.getText().equals("");
+        boolean ip4Ausg = !txfIP4.getText().equals("");
+        boolean portAusg = !txfPort.getText().equals("");
+        boolean dbNameAusg = !txfDBName.getText().equals("");
+        boolean dbUserAusg = !txfDBUser.getText().equals("");
+        boolean dbPassAusg = !passwortToString(txpDBPass.getPassword()).equals("");
+        
+        ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg;
         
         return ausg;
     }
