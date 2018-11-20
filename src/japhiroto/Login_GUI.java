@@ -8,13 +8,11 @@ package japhiroto;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -482,14 +480,14 @@ public class Login_GUI extends javax.swing.JFrame {
             
         } catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nDie Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
                     + "\n\n Bitte überprüfen Sie Ihre Eingaben \noder Ihre Internetverbindung", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten!", "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException ex){
             getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten!\nEs dürfen nur Zahlen bei \n'Host-Adresse' bzw. 'Port' \n"
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nEs dürfen nur Zahlen bei \n'Host-Adresse' bzw. 'Port' \n"
                     + "verwendet werden", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -519,20 +517,49 @@ public class Login_GUI extends javax.swing.JFrame {
 
     private void lblErweitertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblErweitertMouseClicked
         //ändert die Größe des Fensters, wenn auf 'Erweitert' eklickt wird
-                
+        
+        String[] daten;
+        
         if (!ausgeklappt) {     //'Erweitert' ist nicht sichtbar
-            //'Erweitert' ist wird sichtbar, Fenster wird größer, Pfeil des Labels zeigt nach oben
-            pnlErweitert.setVisible(true);
-            lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>"); 
-            this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + height));
+                //'Erweitert' ist wird sichtbar, Fenster wird größer, Pfeil des Labels zeigt nach oben
+                pnlErweitert.setVisible(true);
+                lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>");
+                this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + height));
+                
         } else {                //'Erweitert' ist sichtbar
             //'Erweitert' ist wird unsichtbar, Fenster wird kleiner, Pfeil des Labels zeigt nach unten
             pnlErweitert.setVisible(false);
-            lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>"); 
+            lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>");
             this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - height));
-        }
+        }   
+        
         ausgeklappt = !ausgeklappt;
         this.pack();
+
+        
+        try {   //Daten aus 'zugangsdaten_db' werden eingelesen und in den entsprechenden Textfeldern ausgegeben
+            if (ausgeklappt == true) {
+                daten = datenEinlesen("zugangsdaten_db");
+                txfIP1.setText(daten[0]);
+                txfIP2.setText(daten[1]);
+                txfIP3.setText(daten[2]);
+                txfIP4.setText(daten[3]);
+                txfPort.setText(daten[4]);
+                txfDBName.setText(daten[5]);
+                txfDBUser.setText(daten[6]);
+                txpDBPass.setText(daten[7]);
+            }
+            
+        } catch (IOException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nDie Datei \'zugangsdaten_db\'\nwurde nicht gefunden."
+                    , "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
+        } catch (NullPointerException ex){
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Datei \'zugangsdaten_db\'\nbeinhaltet keine Zugangsdaten."
+                    , "Zugangsdaten nicht gefunden", JOptionPane.INFORMATION_MESSAGE);
+        }
+
         
     }//GEN-LAST:event_lblErweitertMouseClicked
 
@@ -656,6 +683,56 @@ public class Login_GUI extends javax.swing.JFrame {
         }
         
         return out;
+    }
+    
+    private String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
+        //liest die in 'zugangsdaten_db' vorhandenen Date nein und liefert die in einem Array zurück
+        //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port]  [db_name]   [db_username]   [db_passwort]
+        //IP-Adresse Aufbau: [host_ip_1].[host_ip_2].[host_ip_3].[host_ip_4]
+        
+        String hostIP, ip1 = "", ip2 = "", ip3 = "", ip4 = "";
+        int ind = 0;
+        String[] daten = new String[8];
+        BufferedReader br;
+        
+        br = new BufferedReader(new FileReader(dateipfad));
+        
+        hostIP = br.readLine();
+
+        //erste Zeile der Datei (-> Host-IP-Adresse) auslesen und einzelne Teile in Array speichern
+        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+            ip1 += hostIP.charAt(ind);
+            ind++;
+        }
+        ind++;
+        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+            ip2 += hostIP.charAt(ind);
+            ind++;
+        }
+        ind++;
+        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+            ip3 += hostIP.charAt(ind);
+            ind++;
+        }
+        ind++;
+        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+            ip4 += hostIP.charAt(ind);
+            ind++;
+        }
+               
+        daten[0] = ip1;
+        daten[1] = ip2;
+        daten[2] = ip3;
+        daten[3] = ip4;
+        
+        //restliche Zeilen der Datei auslesen und in Array speichern
+        for (int i = 4; i < daten.length; i++) {
+            daten[i] = br.readLine();
+        }
+        
+        br.close();
+        
+        return daten;
     }
     
     /**
