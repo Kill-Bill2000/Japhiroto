@@ -402,6 +402,10 @@ public class Login_GUI extends javax.swing.JFrame {
         this.pass = "";
         this.dbPass = "";
         
+        //'•' als Platzhalter für Passwortfelder
+        txpPasswort.setEchoChar('•');
+        txpDBPass.setEchoChar('•');
+        
         //IconImage setzen
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz.png")));
         
