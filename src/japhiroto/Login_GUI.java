@@ -382,7 +382,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
     private boolean ausgeklappt;
     private int height;
-    private String user, pass, host, port, dbName, dbUser, dbPass;
+    private String host, port, dbName, dbUser, dbPass;
     
     private void initGUI(){
         //"ausgelagerter" Konstruktor: ausgelagerte Befehle, die im Konstruktor ausgeführt werden sollen
@@ -394,12 +394,10 @@ public class Login_GUI extends javax.swing.JFrame {
         
         //globale Variablen werden initialisiert
         this.ausgeklappt = false;
-        this.user = "";
         this.host = "";
         this.port = "";
         this.dbName = "";
         this.dbUser = "";
-        this.pass = "";
         this.dbPass = "";
         
         //'•' als Platzhalter für Passwortfelder
@@ -663,12 +661,10 @@ public class Login_GUI extends javax.swing.JFrame {
         int ip2 = Integer.parseInt(txfIP2.getText());
         int ip3 = Integer.parseInt(txfIP3.getText());
         int ip4 = Integer.parseInt(txfIP4.getText());
-        this.user = txfBenutzername.getText();
         this.host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
         this.dbName = txfDBName.getText();
         this.dbUser = txfDBUser.getText();
-        this.pass = passwortToString(txpPasswort.getPassword());
         this.dbPass = passwortToString(txpDBPass.getPassword());
     }
     
