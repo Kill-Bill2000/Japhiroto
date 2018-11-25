@@ -385,6 +385,10 @@ public class Login_GUI extends javax.swing.JFrame {
     private String host, port, dbName, dbUser, dbPass;
     
     private void initGUI(){
+        //Position in der Mitte des Bildschirms
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
+        
         //"ausgelagerter" Konstruktor: ausgelagerte Befehle, die im Konstruktor ausgeführt werden sollen
         this.height = 256;
         pnlErweitert.setVisible(false);     //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
