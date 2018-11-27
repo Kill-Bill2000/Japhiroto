@@ -117,6 +117,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfBenutzernameFocusGained"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfBenutzernameKeyTyped"/>
           </Events>
         </Component>
@@ -357,6 +358,9 @@
               <Font name="Dialog" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfDBNameFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDBUser">
           <Properties>
@@ -372,6 +376,9 @@
               <Font name="Dialog" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txfDBUserFocusGained"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDBPass">
           <Properties>

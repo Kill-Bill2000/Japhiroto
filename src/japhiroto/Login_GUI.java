@@ -78,6 +78,11 @@ public class Login_GUI extends javax.swing.JFrame {
         lblBenutzername.setText("Benutzername:");
 
         txfBenutzername.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfBenutzername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfBenutzernameFocusGained(evt);
+            }
+        });
         txfBenutzername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfBenutzernameKeyTyped(evt);
@@ -223,11 +228,21 @@ public class Login_GUI extends javax.swing.JFrame {
         lblDBName.setText("DB-Name:");
 
         txfDBName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfDBName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfDBNameFocusGained(evt);
+            }
+        });
 
         lblDBUser.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblDBUser.setText("DB-Username:");
 
         txfDBUser.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txfDBUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txfDBUserFocusGained(evt);
+            }
+        });
 
         lblDBPass.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblDBPass.setText("DB-Passwort:");
@@ -390,7 +405,7 @@ public class Login_GUI extends javax.swing.JFrame {
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
         //"ausgelagerter" Konstruktor: ausgelagerte Befehle, die im Konstruktor ausgeführt werden sollen
-        this.height = 256;
+        this.height = 276;
         pnlErweitert.setVisible(false);     //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
         this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - height));
         this.pack();
@@ -653,9 +668,24 @@ public class Login_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txfIP1KeyTyped
 
     private void txfIP1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfIP1FocusGained
-        //lösche den Text, wenn das IP-Feld den Fokus erhält
+        //löscht den Text, wenn das IP-Feld den Fokus erhält
         txfIP1.setText("");
     }//GEN-LAST:event_txfIP1FocusGained
+
+    private void txfDBNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfDBNameFocusGained
+        //löscht den Text, wenn das DBName-Feld den Fokus erhält
+        txfDBName.setText("");
+    }//GEN-LAST:event_txfDBNameFocusGained
+
+    private void txfDBUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfDBUserFocusGained
+       //löscht den Text, wenn das DBUser-Feld den Fokus erhält
+        txfDBUser.setText("");
+    }//GEN-LAST:event_txfDBUserFocusGained
+
+    private void txfBenutzernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txfBenutzernameFocusGained
+        //löscht den Text, wenn das Benutzername-Feld den Fokus erhält
+        txfBenutzername.setText("");
+    }//GEN-LAST:event_txfBenutzernameFocusGained
 
     private void dbDatenAendern() throws NumberFormatException{
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
