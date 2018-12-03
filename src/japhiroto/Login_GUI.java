@@ -472,19 +472,19 @@ public class Login_GUI extends javax.swing.JFrame {
             
             if(verb.accountUeberpruefen(user, pass)){
                 if (verb.rolleAbfragen(user, pass) == 0) {
-                    //Supermarktleiter GUI aufrufen
+                    //Supermarktleiter GUI aufrufen und Login GUI schließen
         //TEST
                     System.out.println("SUPERMARKTLEITER");
         //TEST ENDE  
         
                 } else if (verb.rolleAbfragen(user, pass) == 1){
-                    //Kassierer GUI aufrufen
+                    //Kassierer GUI aufrufen und Login GUI schließen
         //TEST
                     System.out.println("KASSIERER");
         //TEST ENDE
                     
                 } else if(verb.rolleAbfragen(user, pass) == 2){
-                    //Lagerist GUI aufrufen
+                    //Lagerist GUI aufrufen und Login GUI schließen
         //TEST
                     System.out.println("LAGERIST");
         //TEST ENDE
