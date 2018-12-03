@@ -20,7 +20,6 @@ public class Japhiroto {
         try {
             // Setzt den Java L&F ("Nimbus")            
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-            throw new IllegalAccessException("");
         } 
         catch (UnsupportedLookAndFeelException e) {
             Toolkit.getDefaultToolkit().beep();
