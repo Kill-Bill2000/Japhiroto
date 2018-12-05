@@ -24,6 +24,7 @@ public class Login_GUI extends javax.swing.JFrame {
     public Login_GUI() {
         initComponents();
         initGUI();
+        dManager = new DataManager();   //DataManager initialisieren
     }
 
     /**
@@ -399,8 +400,6 @@ public class Login_GUI extends javax.swing.JFrame {
     DataManager dManager;
     
     private void initGUI(){   
-        dManager = new DataManager();   //DataManager initialisieren
-        
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
