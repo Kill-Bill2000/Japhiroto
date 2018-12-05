@@ -34,8 +34,12 @@ public class Login {
         return verb.verbindungSchliessen();
     }
     
-    public void accountUeberpruefen(String user, String pass) throws SQLException{
-        verb.accountUeberpruefen(user, pass);
+    public boolean accountUeberpruefen(String user, String pass) throws SQLException{
+        return verb.accountUeberpruefen(user, pass);
+    }
+    
+    public boolean accountUeberpruefen(Account acc) throws SQLException{
+        return verb.accountUeberpruefen(acc);
     }
     
     public int rolleAbfragen(String user, String pass) throws SQLException{
