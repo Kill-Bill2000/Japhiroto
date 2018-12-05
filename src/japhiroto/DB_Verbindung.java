@@ -46,11 +46,11 @@ public class DB_Verbindung {
         //übergebenen-Datei in den Variablen zu speichern
         String[] daten = dManager.datenEinlesen(dateipfad);
         
-        this.dbHost = daten[0];
-        this.dbPort = daten[1];
-        this.dbName = daten[2];
-        this.dbUser = daten[3];
-        this.dbPass = daten[4];
+        this.dbHost = daten[0] + "." + daten[1] + "." + daten[2] + "." + daten[3];
+        this.dbPort = daten[4];
+        this.dbName = daten[5];
+        this.dbUser = daten[6];
+        this.dbPass = daten[7];
 
     }
     
