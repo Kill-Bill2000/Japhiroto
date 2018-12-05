@@ -6,8 +6,10 @@
 package japhiroto;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -77,4 +79,28 @@ public class DataManager {
         return daten;
     }
     
+    public void zugangsdatenSpeichern(String host, String port, String name, String user, String pass, String dateipfad) throws IOException{
+        //schreibt die Zugangsdaten aus den globalen Variablen in die 'zugangsdaten_db'-Datei und speichert diese
+        //Aufbau der 'zugangsdaten_db'-Datei:
+        //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
+        //2 [port](Zugriffsport für DBs)(default: 3306)
+        //3 [name](Name der DB)
+        //4 [user](Username der DB)
+        //5 [pass](Passwort der DB)
+        
+        BufferedWriter br;
+        FileWriter fr;
+        
+        fr = new FileWriter(dateipfad);
+        br = new BufferedWriter(fr);
+        
+        br.write(host + "\r\n");
+        br.write(port + "\r\n");
+        br.write(name + "\r\n");
+        br.write(user + "\r\n");
+        br.write(pass + "\r\n");
+        
+        br.close();
+        fr.close();
+    }
 }
