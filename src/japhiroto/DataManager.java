@@ -19,7 +19,7 @@ import java.io.IOException;
 public class DataManager {
     
     public String passwortToString(char[] password) {
-        //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
+        //konvertiert das als Character-Array übergebene Passwort zu einem String und liefert diesen zurück
         String out = "";
         
         for (int i = 0; i < password.length; i++) {
