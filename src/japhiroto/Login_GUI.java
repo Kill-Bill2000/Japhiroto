@@ -396,7 +396,6 @@ public class Login_GUI extends javax.swing.JFrame {
     private boolean ausgeklappt;
     private int height;
     private String host, port, dbName, dbUser, dbPass;
-    private Login login;
     DataManager dManager;
     
     private void initGUI(){   
