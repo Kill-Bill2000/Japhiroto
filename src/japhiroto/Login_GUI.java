@@ -398,8 +398,9 @@ public class Login_GUI extends javax.swing.JFrame {
     private boolean ausgeklappt;
     private int height;
     private String host, port, dbName, dbUser, dbPass;
+    private Login login;
     
-    private void initGUI(){
+    private void initGUI(){        
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
@@ -450,9 +451,9 @@ public class Login_GUI extends javax.swing.JFrame {
             //die Zugangsdaten werden bei manueller Eingabe in einer Datei gespeichert
             //die rollenbezogene GUI wird je nach abgefragter Benutzerrolle aufgerufen
         
-        DB_Verbindung verb;
+        Login login;
         String user, pass;
-        
+        int rolle;
         
         try {
             user = txfBenutzername.getText();
@@ -460,30 +461,33 @@ public class Login_GUI extends javax.swing.JFrame {
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
                 dbDatenAendern();
-                verb = new DB_Verbindung(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
+                login = new Login(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
-                verb = new DB_Verbindung();
+                login = new Login();
             }
              
+            login.verbindungAufbauen();
+            
         //TEST
-            System.out.format("Verbindung aufgebaut: %s\n", verb.verbindungAufbauen());
-            System.out.format("Account valide: %b\n", verb.accountUeberpruefen(user, pass));
+            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufbauen());
+            System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
         //TEST ENDE
             
-            if(verb.accountUeberpruefen(user, pass)){
-                if (verb.rolleAbfragen(user, pass) == 0) {
+            if(login.accountUeberpruefen(user, pass)){
+                rolle = login.rolleAbfragen(user, pass);
+                if (rolle == 0) {
                     //Supermarktleiter GUI aufrufen und Login GUI schließen
         //TEST
                     System.out.println("SUPERMARKTLEITER");
         //TEST ENDE  
         
-                } else if (verb.rolleAbfragen(user, pass) == 1){
+                } else if (rolle == 1){
                     //Kassierer GUI aufrufen und Login GUI schließen
         //TEST
                     System.out.println("KASSIERER");
         //TEST ENDE
                     
-                } else if(verb.rolleAbfragen(user, pass) == 2){
+                } else if(rolle == 2){
                     //Lagerist GUI aufrufen und Login GUI schließen
         //TEST
                     System.out.println("LAGERIST");
@@ -543,6 +547,7 @@ public class Login_GUI extends javax.swing.JFrame {
         //ändert die Größe des Fensters, wenn auf 'Erweitert' eklickt wird
         
         String[] daten;
+        DataManager dmanager = new DataManager();
         
         if (!ausgeklappt) {     //'Erweitert' ist nicht sichtbar
                 //'Erweitert' ist wird sichtbar, Fenster wird größer, Pfeil des Labels zeigt nach oben
@@ -563,7 +568,7 @@ public class Login_GUI extends javax.swing.JFrame {
         
         try {   //Daten aus 'zugangsdaten_db' werden eingelesen und in den entsprechenden Textfeldern ausgegeben
             if (ausgeklappt == true) {
-                daten = datenEinlesen("zugangsdaten_db");
+                daten = dmanager.datenEinlesen("zugangsdaten_db");
                 txfIP1.setText(daten[0]);
                 txfIP2.setText(daten[1]);
                 txfIP3.setText(daten[2]);
@@ -731,55 +736,7 @@ public class Login_GUI extends javax.swing.JFrame {
         return out;
     }
     
-    private String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
-        //liest die in 'zugangsdaten_db' vorhandenen Date nein und liefert die in einem Array zurück
-        //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port]  [db_name]   [db_username]   [db_passwort]
-        //IP-Adresse Aufbau: [host_ip_1].[host_ip_2].[host_ip_3].[host_ip_4]
-        
-        String hostIP, ip1 = "", ip2 = "", ip3 = "", ip4 = "";
-        int ind = 0;
-        String[] daten = new String[8];
-        BufferedReader br;
-        
-        br = new BufferedReader(new FileReader(dateipfad));
-        
-        hostIP = br.readLine();
-
-        //erste Zeile der Datei (-> Host-IP-Adresse) auslesen und einzelne Teile in Array speichern
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip1 += hostIP.charAt(ind);
-            ind++;
-        }
-        ind++;
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip2 += hostIP.charAt(ind);
-            ind++;
-        }
-        ind++;
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip3 += hostIP.charAt(ind);
-            ind++;
-        }
-        ind++;
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip4 += hostIP.charAt(ind);
-            ind++;
-        }
-               
-        daten[0] = ip1;
-        daten[1] = ip2;
-        daten[2] = ip3;
-        daten[3] = ip4;
-        
-        //restliche Zeilen der Datei auslesen und in Array speichern
-        for (int i = 4; i < daten.length; i++) {
-            daten[i] = br.readLine();
-        }
-        
-        br.close();
-        
-        return daten;
-    }
+    
     
     /**
      * @param args the command line arguments
