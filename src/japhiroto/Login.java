@@ -50,16 +50,7 @@ public class Login {
         return verb.rolleAbfragen(acc);
     }
     
-    public String passwortToString(char[] password) {
-        //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
-        String out = "";
-        
-        for (int i = 0; i < password.length; i++) {
-            out += password[i];
-        }
-        
-        return out;
-    }
+    
     
     
 }
