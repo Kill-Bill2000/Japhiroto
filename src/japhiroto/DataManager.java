@@ -30,7 +30,7 @@ public class DataManager {
     }
     
     public String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
-        //liest die in 'zugangsdaten_db' vorhandenen Date nein und liefert die in einem Array zurück
+        //liest die in Daten der Datei des übergebenen Dateipfades ein und liefert die in einem Array zurück
         //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port]  [db_name]   [db_username]   [db_passwort]
         //IP-Adresse Aufbau: [host_ip_1].[host_ip_2].[host_ip_3].[host_ip_4]
         
@@ -80,7 +80,7 @@ public class DataManager {
     }
     
     public void zugangsdatenSpeichern(String host, String port, String name, String user, String pass, String dateipfad) throws IOException{
-        //schreibt die Zugangsdaten aus den globalen Variablen in die 'zugangsdaten_db'-Datei und speichert diese
+        //schreibt die Zugangsdaten aus den globalen Variablen in die übergebeneDatei und speichert diese
         //Aufbau der 'zugangsdaten_db'-Datei:
         //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
         //2 [port](Zugriffsport für DBs)(default: 3306)
@@ -98,7 +98,7 @@ public class DataManager {
         br.write(port + "\r\n");
         br.write(name + "\r\n");
         br.write(user + "\r\n");
-        br.write(pass + "\r\n");
+        br.write(pass);
         
         br.close();
         fr.close();
