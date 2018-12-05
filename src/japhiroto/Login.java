@@ -26,6 +26,10 @@ public class Login {
         verb = new DB_Verbindung(host, port, name, user, pass);
     }
 
+    public boolean verbindungAufbauen() throws SQLException{
+        return verb.verbindungAufbauen();
+    }
+    
     public void accountUeberpruefen(String user, String pass) throws SQLException{
         verb.accountUeberpruefen(user, pass);
     }
