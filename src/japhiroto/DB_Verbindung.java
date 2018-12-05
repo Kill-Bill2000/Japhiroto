@@ -15,12 +15,16 @@ import java.sql.*;
 public class DB_Verbindung {
     private Connection con;
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
+    private DataManager dataManager;
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
+        dataManager = new DataManager();
         einlesen("zugangsdaten_db");
+        
     }
     
     public DB_Verbindung(String host, String port, String name, String user, String pass) throws IOException{
+        dataManager = new DataManager();
         this.dbHost = host;
         this.dbPort = port;
         this.dbName = name;
