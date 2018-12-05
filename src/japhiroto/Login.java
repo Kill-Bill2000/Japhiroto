@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -25,7 +26,9 @@ public class Login {
         verb = new DB_Verbindung(host, port, name, user, pass);
     }
 
-   
+    public void accountUeberpruefen(String user, String pass) throws SQLException{
+        verb.accountUeberpruefen(user, pass);
+    }
     
     public String passwortToString(char[] password) {
         //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
