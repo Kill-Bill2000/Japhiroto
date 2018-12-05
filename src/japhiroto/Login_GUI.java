@@ -546,13 +546,13 @@ public class Login_GUI extends javax.swing.JFrame {
         
         String[] daten;
         
-        if (!ausgeklappt) {     //'Erweitert' ist nicht sichtbar
+        if (!ausgeklappt) {     //bisheriger Status: 'Erweitert' ist nicht sichtbar
                 //'Erweitert' ist wird sichtbar, Fenster wird größer, Pfeil des Labels zeigt nach oben
                 pnlErweitert.setVisible(true);
                 lblErweitert.setText("<HTML><U>Erweitert ▲</U></HTML>");
                 this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() + height));
                 
-        } else {                //'Erweitert' ist sichtbar
+        } else {                //bisheriger Status: 'Erweitert' ist sichtbar
             //'Erweitert' ist wird unsichtbar, Fenster wird kleiner, Pfeil des Labels zeigt nach unten
             pnlErweitert.setVisible(false);
             lblErweitert.setText("<HTML><U>Erweitert ▼</U></HTML>");
@@ -651,7 +651,6 @@ public class Login_GUI extends javax.swing.JFrame {
         //nach 32 eingegebenen Zeichen ertönt ein Fehler-Ton
         if(txfBenutzername.getText().length() >= 32 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
             getToolkit().beep();
-
         }
     }//GEN-LAST:event_txfBenutzernameKeyTyped
 
@@ -691,7 +690,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
     private void dbDatenAendern() throws NumberFormatException{
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
-        //Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
+        //Hinweis: Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
         
         int ip1 = Integer.parseInt(txfIP1.getText());
         int ip2 = Integer.parseInt(txfIP2.getText());
