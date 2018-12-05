@@ -396,10 +396,10 @@ public class Login_GUI extends javax.swing.JFrame {
     private int height;
     private String host, port, dbName, dbUser, dbPass;
     private Login login;
-    DataManager dmanager;
+    DataManager dManager;
     
     private void initGUI(){   
-        dmanager = new DataManager();   //DataManager initialisieren
+        dManager = new DataManager();   //DataManager initialisieren
         
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -457,7 +457,7 @@ public class Login_GUI extends javax.swing.JFrame {
         
         try {
             user = txfBenutzername.getText();
-            pass = dmanager.passwortToString(txpPasswort.getPassword()); 
+            pass = dManager.passwortToString(txpPasswort.getPassword()); 
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
                 dbDatenAendern();
@@ -567,7 +567,7 @@ public class Login_GUI extends javax.swing.JFrame {
         
         try {   //Daten aus 'zugangsdaten_db' werden eingelesen und in den entsprechenden Textfeldern ausgegeben
             if (ausgeklappt == true) {
-                daten = dmanager.datenEinlesen("zugangsdaten_db");
+                daten = dManager.datenEinlesen("zugangsdaten_db");
                 txfIP1.setText(daten[0]);
                 txfIP2.setText(daten[1]);
                 txfIP3.setText(daten[2]);
@@ -703,7 +703,7 @@ public class Login_GUI extends javax.swing.JFrame {
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
         this.dbName = txfDBName.getText();
         this.dbUser = txfDBUser.getText();
-        this.dbPass = dmanager.passwortToString(txpDBPass.getPassword());
+        this.dbPass = dManager.passwortToString(txpDBPass.getPassword());
     }
     
     private boolean erweitertAusgefuellt() throws NumberFormatException{
@@ -717,7 +717,7 @@ public class Login_GUI extends javax.swing.JFrame {
         boolean portAusg = !txfPort.getText().equals("");
         boolean dbNameAusg = !txfDBName.getText().equals("");
         boolean dbUserAusg = !txfDBUser.getText().equals("");
-        boolean dbPassAusg = !dmanager.passwortToString(txpDBPass.getPassword()).equals("");
+        boolean dbPassAusg = !dManager.passwortToString(txpDBPass.getPassword()).equals("");
         
         ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg;
         
