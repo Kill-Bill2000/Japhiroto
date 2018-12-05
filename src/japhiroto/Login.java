@@ -15,6 +15,17 @@ import java.io.IOException;
  * @author robin
  */
 public class Login {
+    private DB_Verbindung verb;
+    
+    public Login() throws IOException{
+        verb = new DB_Verbindung();
+    }
+    
+    public Login(String host, String port, String name, String user, String pass) throws IOException{
+        verb = new DB_Verbindung(host, port, name, user, pass);
+    }
+
+   
     
     public String passwortToString(char[] password) {
         //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
