@@ -585,8 +585,6 @@ public class Login_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Die Datei \'zugangsdaten_db\'\nbeinhaltet keine Zugangsdaten."
                     , "Zugangsdaten nicht gefunden", JOptionPane.INFORMATION_MESSAGE);
         }
-
-        
     }//GEN-LAST:event_lblErweitertMouseClicked
 
     private void txpPasswortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txpPasswortFocusGained
