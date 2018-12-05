@@ -38,6 +38,14 @@ public class Login {
         verb.accountUeberpruefen(user, pass);
     }
     
+    public int rolleAbfragen(String user, String pass) throws SQLException{
+        return verb.rolleAbfragen(user, pass);
+    }
+    
+    public Account rolleAbfragen(Account acc) throws SQLException{
+        return verb.rolleAbfragen(acc);
+    }
+    
     public String passwortToString(char[] password) {
         //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
         String out = "";
