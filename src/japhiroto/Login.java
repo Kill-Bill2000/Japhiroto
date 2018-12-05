@@ -15,6 +15,18 @@ import java.io.IOException;
  * @author robin
  */
 public class Login {
+    
+    private String passwortToString(char[] password) {
+        //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
+        String out = "";
+        
+        for (int i = 0; i < password.length; i++) {
+            out += password[i];
+        }
+        
+        return out;
+    }
+    
     private String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
         //liest die in 'zugangsdaten_db' vorhandenen Date nein und liefert die in einem Array zurück
         //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port]  [db_name]   [db_username]   [db_passwort]
