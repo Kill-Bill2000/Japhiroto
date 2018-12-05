@@ -42,8 +42,9 @@ public class DB_Verbindung {
     }
 
     private void einlesen(String dateipfad) throws FileNotFoundException, IOException{
-        
-        String[] daten = dManager.datenEinlesen("zugangsdaten_db");
+        //verwendet die datenEinlesen-Methode der DataManager-Klasse, um die Daten aus der 
+        //übergebenen-Datei in den Variablen zu speichern
+        String[] daten = dManager.datenEinlesen(dateipfad);
         
         this.dbHost = daten[0];
         this.dbPort = daten[1];
@@ -54,6 +55,8 @@ public class DB_Verbindung {
     }
     
     private void speichern(String dateipfad) throws IOException{
+        //verwendet die zugangsdatenSpeichern-Methode der DataManager-Klasse, um die Parameter 
+        // in der übergebenen-Datei zu speichern
         dManager.zugangsdatenSpeichern(dbHost, dbPort, dbName, dbUser, dbPass, dateipfad);
     }
     
