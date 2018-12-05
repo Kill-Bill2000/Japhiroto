@@ -30,6 +30,10 @@ public class Login {
         return verb.verbindungAufbauen();
     }
     
+    public boolean verbindungSchliessen() throws SQLException{
+        return verb.verbindungSchliessen();
+    }
+    
     public void accountUeberpruefen(String user, String pass) throws SQLException{
         verb.accountUeberpruefen(user, pass);
     }
