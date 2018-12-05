@@ -103,4 +103,32 @@ public class DataManager {
         br.close();
         fr.close();
     }
+
+    public String[] zugangsdatenEinlesen(String dateipfad) throws FileNotFoundException, IOException{
+        //liest die Zugangsdaten der übergebenen Datei ein und liefert diese in einem Array zurück
+        //Aufbau der 'zugangsdaten_db'-Datei:
+        //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
+        //2 [port](Zugriffsport für DBs)(default: 3306)
+        //3 [name](Name der DB)
+        //4 [user](Username der DB)
+        //5 [pass](Passwort der DB)
+        //Anordnung im Array: [host][port][name][user][pass]
+        
+        String[] data = new String[5];
+        
+        BufferedReader br;
+        FileReader fr;
+        
+        fr = new FileReader(dateipfad);
+        br = new BufferedReader(fr);
+        
+        for (int i = 0; i < 5; i++) {
+            data[i] = br.readLine();
+        }
+        
+        br.close();
+        fr.close();
+        
+        return data;
+    }
 }
