@@ -31,7 +31,8 @@ public class DataManager {
     
     public String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
         //liest die in Daten der Datei des übergebenen Dateipfades ein und liefert die in einem Array zurück
-        //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port]  [db_name]   [db_username]   [db_passwort]
+        //Array Index:  [    0    ] [    1    ] [    2    ] [    3    ] [ 4  ] [   5   ] [      6    ] [     7     ]
+        //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port] [db_name] [db_username] [db_passwort]
         //IP-Adresse Aufbau: [host_ip_1].[host_ip_2].[host_ip_3].[host_ip_4]
         
         String hostIP, ip1 = "", ip2 = "", ip3 = "", ip4 = "";
@@ -104,31 +105,5 @@ public class DataManager {
         fr.close();
     }
 
-    public String[] zugangsdatenEinlesen(String dateipfad) throws FileNotFoundException, IOException{
-        //liest die Zugangsdaten der übergebenen Datei ein und liefert diese in einem Array zurück
-        //Aufbau der 'zugangsdaten_db'-Datei:
-        //1 [host](Host-Adresse der DB)(default: 127.0.0.1)
-        //2 [port](Zugriffsport für DBs)(default: 3306)
-        //3 [name](Name der DB)
-        //4 [user](Username der DB)
-        //5 [pass](Passwort der DB)
-        //Anordnung im Array: [host][port][name][user][pass]
-        
-        String[] data = new String[5];
-        
-        BufferedReader br;
-        FileReader fr;
-        
-        fr = new FileReader(dateipfad);
-        br = new BufferedReader(fr);
-        
-        for (int i = 0; i < 5; i++) {
-            data[i] = br.readLine();
-        }
-        
-        br.close();
-        fr.close();
-        
-        return data;
-    }
+
 }
