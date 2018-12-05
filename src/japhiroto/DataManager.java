@@ -16,7 +16,16 @@ import java.io.IOException;
  */
 public class DataManager {
     
-    
+    public String passwortToString(char[] password) {
+        //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
+        String out = "";
+        
+        for (int i = 0; i < password.length; i++) {
+            out += password[i];
+        }
+        
+        return out;
+    }
     
     public String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
         //liest die in 'zugangsdaten_db' vorhandenen Date nein und liefert die in einem Array zurück
