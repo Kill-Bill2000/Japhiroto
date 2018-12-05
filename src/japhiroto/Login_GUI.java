@@ -399,8 +399,11 @@ public class Login_GUI extends javax.swing.JFrame {
     private int height;
     private String host, port, dbName, dbUser, dbPass;
     private Login login;
+    DataManager dmanager;
     
-    private void initGUI(){        
+    private void initGUI(){   
+        dmanager = new DataManager();   //DataManager initialisieren
+        
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
@@ -457,7 +460,7 @@ public class Login_GUI extends javax.swing.JFrame {
         
         try {
             user = txfBenutzername.getText();
-            pass = passwortToString(txpPasswort.getPassword()); 
+            pass = dmanager.passwortToString(txpPasswort.getPassword()); 
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
                 dbDatenAendern();
@@ -547,7 +550,6 @@ public class Login_GUI extends javax.swing.JFrame {
         //ändert die Größe des Fensters, wenn auf 'Erweitert' eklickt wird
         
         String[] daten;
-        DataManager dmanager = new DataManager();
         
         if (!ausgeklappt) {     //'Erweitert' ist nicht sichtbar
                 //'Erweitert' ist wird sichtbar, Fenster wird größer, Pfeil des Labels zeigt nach oben
@@ -704,7 +706,7 @@ public class Login_GUI extends javax.swing.JFrame {
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
         this.dbName = txfDBName.getText();
         this.dbUser = txfDBUser.getText();
-        this.dbPass = passwortToString(txpDBPass.getPassword());
+        this.dbPass = dmanager.passwortToString(txpDBPass.getPassword());
     }
     
     private boolean erweitertAusgefuellt() throws NumberFormatException{
@@ -718,24 +720,13 @@ public class Login_GUI extends javax.swing.JFrame {
         boolean portAusg = !txfPort.getText().equals("");
         boolean dbNameAusg = !txfDBName.getText().equals("");
         boolean dbUserAusg = !txfDBUser.getText().equals("");
-        boolean dbPassAusg = !passwortToString(txpDBPass.getPassword()).equals("");
+        boolean dbPassAusg = !dmanager.passwortToString(txpDBPass.getPassword()).equals("");
         
         ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg;
         
         return ausg;
     }
-    
-    private String passwortToString(char[] password) {
-        //konvertiert das übergebene Passwort (als Character-Array) zu einem String und liefert diesen zurück
-        String out = "";
-        
-        for (int i = 0; i < password.length; i++) {
-            out += password[i];
-        }
-        
-        return out;
-    }
-    
+      
     
     
     /**
