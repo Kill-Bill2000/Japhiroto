@@ -16,6 +16,8 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
      */
     public LagerArtikelSuchen() {
         initComponents();
+        diaArtNrEingeben.setVisible(true);
+        diaArtNrEingeben.setSize(450, 150);
     }
 
     /**
@@ -28,20 +30,26 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     private void initComponents() {
 
         diaArtNrEingeben = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblSucheArtSuche = new javax.swing.JLabel();
+        txfSucheArtNr = new javax.swing.JTextField();
+        lblSucheArtNr = new javax.swing.JLabel();
+        btnSucheSuchen = new javax.swing.JButton();
         lblArtikel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Artikel suchen");
+        lblSucheArtSuche.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblSucheArtSuche.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSucheArtSuche.setText("Artikel suchen");
 
-        jTextField1.setText("jTextField1");
+        lblSucheArtNr.setText("Artikel-Nummer");
 
-        jLabel2.setText("Artikel-Nummer");
+        btnSucheSuchen.setText("Artikel suchen");
+        btnSucheSuchen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSucheSuchenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout diaArtNrEingebenLayout = new javax.swing.GroupLayout(diaArtNrEingeben.getContentPane());
         diaArtNrEingeben.getContentPane().setLayout(diaArtNrEingebenLayout);
@@ -50,24 +58,27 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             .addGroup(diaArtNrEingebenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(diaArtNrEingebenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSucheSuchen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(diaArtNrEingebenLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel2)
+                        .addComponent(lblSucheArtNr)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txfSucheArtNr, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+                    .addComponent(lblSucheArtSuche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         diaArtNrEingebenLayout.setVerticalGroup(
             diaArtNrEingebenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(diaArtNrEingebenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSucheArtSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(diaArtNrEingebenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(190, Short.MAX_VALUE))
+                    .addComponent(txfSucheArtNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSucheArtNr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSucheSuchen)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,6 +129,11 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSucheSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucheSuchenActionPerformed
+        this.setVisible(true);
+        diaArtNrEingeben.setVisible(false);
+    }//GEN-LAST:event_btnSucheSuchenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,12 +170,13 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSucheSuchen;
     private javax.swing.JDialog diaArtNrEingeben;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblArtikel;
+    private javax.swing.JLabel lblSucheArtNr;
+    private javax.swing.JLabel lblSucheArtSuche;
+    private javax.swing.JTextField txfSucheArtNr;
     // End of variables declaration//GEN-END:variables
 }
