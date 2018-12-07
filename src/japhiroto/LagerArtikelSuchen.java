@@ -6,6 +6,7 @@
 package japhiroto;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,11 +15,24 @@ import javax.swing.table.DefaultTableModel;
  */
 public class LagerArtikelSuchen extends javax.swing.JFrame {
 
-    ArtikelVerwaltung artikel;
+    private ArtikelVerwaltung artikel;
+    private LagerUbersichtGUI ubersicht;
+    public LagerArtikelSuchen(LagerUbersichtGUI ub) {
+        initComponents();
+        //diaArtNrEingeben.setVisible(true);
+        diaArtNrEingeben.setSize(450, 150);
+        ubersicht = ub;
+        artikel = new ArtikelVerwaltung();
+        
+        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
+        for (int i = 0; i < artikel.anzahlArtikel(); i++) {
+            model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis()});
+        }
+    }
     public LagerArtikelSuchen() {
         initComponents();
-        diaArtNrEingeben.setVisible(true);
         diaArtNrEingeben.setSize(450, 150);
+        artikel = new ArtikelVerwaltung();
     }
 
     /**
@@ -39,6 +53,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblArtikel = new javax.swing.JTable();
         btnNeueSuche = new javax.swing.JButton();
+        btnZuruck = new javax.swing.JToggleButton();
 
         lblSucheArtSuche.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblSucheArtSuche.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -84,6 +99,14 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblArtikel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblArtikel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -124,6 +147,13 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             }
         });
 
+        btnZuruck.setText("zurück");
+        btnZuruck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZuruckActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,7 +163,10 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblArtikel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
-                    .addComponent(btnNeueSuche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNeueSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnZuruck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,7 +175,9 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblArtikel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNeueSuche)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNeueSuche)
+                    .addComponent(btnZuruck))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addContainerGap())
@@ -158,7 +193,12 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         String gesuchteArtNr = txfSucheArtNr.getText();     //String mit der gesuchenten Artikel Nummer
         
         ArrayList<Artikel> gesuchte = new ArrayList<Artikel>(); //ArrayList zum speichern der gefundenen Artikel
-        gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
+        try {
+            gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
+        }
+        catch(NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
+        }
         
         DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
         for (int i = 0; i < gesuchte.size(); i++) {
@@ -169,6 +209,24 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     private void btnNeueSucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeueSucheActionPerformed
         diaArtNrEingeben.setVisible(true);
     }//GEN-LAST:event_btnNeueSucheActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setVisible(false);
+        diaArtNrEingeben.setVisible(false);
+        ubersicht.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.setVisible(false);
+        diaArtNrEingeben.setVisible(false);
+        ubersicht.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnZuruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZuruckActionPerformed
+        this.setVisible(false);
+        diaArtNrEingeben.setVisible(false);
+        ubersicht.setVisible(true);
+    }//GEN-LAST:event_btnZuruckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,6 +266,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNeueSuche;
     private javax.swing.JButton btnSucheSuchen;
+    private javax.swing.JToggleButton btnZuruck;
     private javax.swing.JDialog diaArtNrEingeben;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblArtikel;
