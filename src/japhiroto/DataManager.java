@@ -31,47 +31,57 @@ public class DataManager {
     
     public String[] datenEinlesen(String dateipfad) throws FileNotFoundException, IOException, NullPointerException{
         //liest die in Daten der Datei des übergebenen Dateipfades ein und liefert die in einem Array zurück
-        //Array Index:  [    0    ] [    1    ] [    2    ] [    3    ] [ 4  ] [   5   ] [      6    ] [     7     ]
-        //Array Aufbau: [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port] [db_name] [db_username] [db_passwort]
+        //Array Index:  [          0          ] [    1    ] [    2    ] [    3    ] [    4    ] [ 5  ] [   6   ] [     7     ] [     8     ]
+        //Array Aufbau: [ip-adresse vorhanden?] [host_ip_1] [host_ip_2] [host_ip_3] [host_ip_4] [port] [db_name] [db_username] [db_passwort]
         //IP-Adresse Aufbau: [host_ip_1].[host_ip_2].[host_ip_3].[host_ip_4]
+        //Wenn eine IP-Adresse in der Datei erkannt wird, ist der erste Wert des Arrays "true", sonst "false"
+        //Wenn eine URL vorhanden ist (also keine IP-Adresse), dann wird diese an Stelle [1] geschrieben 
         
         String hostIP, ip1 = "", ip2 = "", ip3 = "", ip4 = "";
         int ind = 0;
-        String[] daten = new String[8];
+        String[] daten = new String[9];
         BufferedReader br;
         
         br = new BufferedReader(new FileReader(dateipfad));
         
-        hostIP = br.readLine();
+                
+        if (ipAdresseVorhanden(dateipfad)) {     //Eine IP-Adresse ist vorhanden
+            daten[0] = "true";
 
-        //erste Zeile der Datei (-> Host-IP-Adresse) auslesen und einzelne Teile in Array speichern
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip1 += hostIP.charAt(ind);
+            hostIP = br.readLine();
+            
+            //erste Zeile der Datei (-> Host-IP-Adresse) auslesen und einzelne Teile in Array speichern
+            while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+                ip1 += hostIP.charAt(ind);
+                ind++;
+            }
             ind++;
-        }
-        ind++;
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip2 += hostIP.charAt(ind);
+            while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+                ip2 += hostIP.charAt(ind);
+                ind++;
+            }
             ind++;
-        }
-        ind++;
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip3 += hostIP.charAt(ind);
+            while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+                ip3 += hostIP.charAt(ind);
+                ind++;
+            }
             ind++;
+            while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
+                ip4 += hostIP.charAt(ind);
+                ind++;
+            }
+
+            daten[1] = ip1;
+            daten[2] = ip2;
+            daten[3] = ip3;
+            daten[4] = ip4;
+        } else {        //Eine URL ist vorhanden
+            daten[0] = "false";
+            daten[1] = br.readLine();
         }
-        ind++;
-        while(hostIP.length() > ind && hostIP.charAt(ind) != '.'){
-            ip4 += hostIP.charAt(ind);
-            ind++;
-        }
-               
-        daten[0] = ip1;
-        daten[1] = ip2;
-        daten[2] = ip3;
-        daten[3] = ip4;
         
         //restliche Zeilen der Datei auslesen und in Array speichern
-        for (int i = 4; i < daten.length; i++) {
+        for (int i = 5; i < daten.length; i++) {
             daten[i] = br.readLine();
         }
         
@@ -103,6 +113,31 @@ public class DataManager {
         
         br.close();
         fr.close();
+    }
+
+    public boolean ipAdresseVorhanden(String dateipfad) throws FileNotFoundException, IOException {
+        //liefert 'true' zurück, wenn in der Datei eine IP-Adresse gefunden wurde
+        //Prüfung erfolgt, indem die Punkte in der ersten Zeile der Datei gezählt werden.
+        //Wenn punkte < 3, dann wurde keine IP-Adresse gefunden
+        boolean out = true;
+        BufferedReader br;
+        String host;
+        int punkte = 0;
+        
+        br = new BufferedReader(new FileReader(dateipfad));
+        host = br.readLine();
+        
+        for (int i = 0; i < host.length(); i++) {
+            if (host.charAt(i) == '.') {
+                punkte++;
+            }
+        }
+        
+        if (punkte < 3) {
+            out = false;
+        }
+        
+        return out;
     }
 
 
