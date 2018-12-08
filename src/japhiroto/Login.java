@@ -6,6 +6,7 @@
 package japhiroto;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -15,20 +16,27 @@ import java.sql.SQLException;
  */
 public class Login {
     private DB_Verbindung verb;
+    private DataManager dMan;
     
-    public Login() throws IOException{
-        //initialisiert verb
-        verb = new DB_Verbindung();
+    public Login(){
+        //initialisiert dMan
+        dMan = new DataManager();
     }
     
-    public Login(String host, String port, String name, String user, String pass) throws IOException{
-        //initialisiert verb
-        verb = new DB_Verbindung(host, port, name, user, pass);
-    }
-
-    public boolean verbindungAufbauen() throws SQLException{
+    public boolean verbindungAufbauen() throws SQLException, IOException{
         //ruft die verbindungAufbauen-Methode der Klasse DB_Verbindung auf
+        verb = new DB_Verbindung();
         return verb.verbindungAufbauen();
+    }
+    
+    public boolean verbindungAufbauen(String host, String port, String name, String user, String pass) throws SQLException, IOException{
+        //ruft die verbindungAufbauen-Methode der Klasse DB_Verbindung auf
+        verb = new DB_Verbindung(host, port, name, user, pass);
+        return verb.verbindungAufbauen();
+    }
+    
+    public boolean verbindungAufgebaut() throws SQLException{
+        return verb.isVerbindungValid();
     }
     
     public boolean verbindungSchliessen() throws SQLException{
@@ -56,7 +64,20 @@ public class Login {
         return verb.rolleAbfragen(acc);
     }
     
+    public String[] datenEinlesen(String dateipfad) throws IOException{
+        //ruft die datenEinlesen-Methode der Klasse DataManager auf
+        return dMan.datenEinlesen(dateipfad);
+    }
     
+    public boolean ipAdresseVorhanden(String dateipfad) throws FileNotFoundException, IOException{
+        //ruft die ipAdresseVorhanden-Mathode der Klasse DataManager auf
+        return dMan.ipAdresseVorhanden(dateipfad);
+    }
+    
+    public String passwortToString(char[] password){
+        //ruft die PasswortToString Methode der Klasse DataManager auf
+        return dMan.passwortToString(password);
+    }
     
     
 }
