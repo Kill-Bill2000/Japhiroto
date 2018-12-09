@@ -476,8 +476,7 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP4.setText("1");
         txfPort.setText("3306");
     }
-    
-    
+     
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
         //Klick auf den 'Anmelden'-Button
         //Verbindung zur Datenbank wird hergestellt,
