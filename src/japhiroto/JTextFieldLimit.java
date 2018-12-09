@@ -6,7 +6,6 @@
 package japhiroto;
 
 import javax.swing.text.*;
-import java.awt.Toolkit;
 
 /**
  *
