@@ -20,7 +20,6 @@ public class Japhiroto {
         try {
             // Setzt den Java L&F ("Nimbus")            
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-            throw new IllegalAccessException("");
         } 
         catch (UnsupportedLookAndFeelException e) {
             Toolkit.getDefaultToolkit().beep();
@@ -39,7 +38,7 @@ public class Japhiroto {
             JOptionPane.showMessageDialog(null, "Der Zugriff auf den Look & Feel \n\'" + UIManager.getLookAndFeel().getName() + "\' ist nicht möglich.", "L&F Fehler", JOptionPane.ERROR_MESSAGE);
         }
         
-        new Login_GUI().setVisible(true); //erzeut und ruft die Login_GUI auf
+        new Login_GUI().setVisible(true); //erzeugt und ruft die Login_GUI auf
     }
     
 }

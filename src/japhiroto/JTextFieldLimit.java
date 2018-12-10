@@ -6,7 +6,6 @@
 package japhiroto;
 
 import javax.swing.text.*;
-import java.awt.Toolkit;
 
 /**
  *
@@ -16,7 +15,7 @@ public class JTextFieldLimit extends PlainDocument {
     //'Filter' für maximale Anzahl an Zeichen
     private int limit;
 
-    JTextFieldLimit(int limit) {
+    public JTextFieldLimit(int limit) {
         super();
         this.limit = limit;
     }
