@@ -21,13 +21,15 @@ public class JPictureBox extends JComponent {
     
     
     private Icon icon = null;
-    private final Dimension dimension = new Dimension(100, 100);
+    private final Dimension dimension;
     private Image image = null;
     private ImageIcon imageIcon = null;
-    private SizeMode sizeMode = SizeMode.STRETCH;
+    private SizeMode sizeMode;
     private int newHeight, newWidth, originalHeight, originalWidth;
 
     public JPictureBox() {
+        dimension = new Dimension(100, 100);
+        this.sizeMode = SizeMode.STRETCH;
         JPictureBox.this.setPreferredSize(dimension);
         JPictureBox.this.setOpaque(false);
         JPictureBox.this.setSizeMode(SizeMode.STRETCH);
@@ -35,7 +37,7 @@ public class JPictureBox extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        //unterschiedliches Verhalten bei ausgewählten Modi 'NORMAL', 'ZOOM', 'STRETCH' und 'CENTER'
+        //passt das Verhalten bei ausgewählten Modi 'NORMAL', 'ZOOM', 'STRETCH' und 'CENTER' an
         
         if (imageIcon != null) {
             switch (getSizeMode()) {

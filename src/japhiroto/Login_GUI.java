@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Login_GUI extends javax.swing.JFrame {
     public Login_GUI() {
         initComponents();
         initGUI();
-        dManager = new DataManager();   //DataManager initialisieren
+        login = new Login();   //DataManager initialisieren
     }
 
     /**
@@ -36,6 +37,7 @@ public class Login_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgHostModus = new javax.swing.ButtonGroup();
         pnlNormal = new javax.swing.JPanel();
         jpbLogo = new japhiroto.JPictureBox();
         lblBenutzername = new javax.swing.JLabel();
@@ -48,9 +50,9 @@ public class Login_GUI extends javax.swing.JFrame {
         txfIP1 = new javax.swing.JTextField();
         lblPunkt1 = new javax.swing.JLabel();
         txfIP2 = new javax.swing.JTextField();
-        txfPunkt2 = new javax.swing.JLabel();
+        lblPunkt2 = new javax.swing.JLabel();
         txfIP3 = new javax.swing.JTextField();
-        txfPunkt3 = new javax.swing.JLabel();
+        lblPunkt3 = new javax.swing.JLabel();
         txfIP4 = new javax.swing.JTextField();
         lblDPunkt = new javax.swing.JLabel();
         lblPort = new javax.swing.JLabel();
@@ -61,6 +63,8 @@ public class Login_GUI extends javax.swing.JFrame {
         txfDBUser = new javax.swing.JTextField();
         lblDBPass = new javax.swing.JLabel();
         txpDBPass = new javax.swing.JPasswordField();
+        rbtIP = new javax.swing.JRadioButton();
+        rbtURL = new javax.swing.JRadioButton();
         pnlButtons = new javax.swing.JPanel();
         lblErweitert = new javax.swing.JLabel();
         btnAnmelden = new javax.swing.JButton();
@@ -171,7 +175,7 @@ public class Login_GUI extends javax.swing.JFrame {
             }
         });
 
-        txfPunkt2.setText(".");
+        lblPunkt2.setText(".");
 
         txfIP3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfIP3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -187,7 +191,7 @@ public class Login_GUI extends javax.swing.JFrame {
             }
         });
 
-        txfPunkt3.setText(".");
+        lblPunkt3.setText(".");
 
         txfIP4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txfIP4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -252,6 +256,23 @@ public class Login_GUI extends javax.swing.JFrame {
             }
         });
 
+        btgHostModus.add(rbtIP);
+        rbtIP.setSelected(true);
+        rbtIP.setText("IP");
+        rbtIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtIPActionPerformed(evt);
+            }
+        });
+
+        btgHostModus.add(rbtURL);
+        rbtURL.setText("URL");
+        rbtURL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtURLActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlErweitertLayout = new javax.swing.GroupLayout(pnlErweitert);
         pnlErweitert.setLayout(pnlErweitertLayout);
         pnlErweitertLayout.setHorizontalGroup(
@@ -259,15 +280,16 @@ public class Login_GUI extends javax.swing.JFrame {
             .addGroup(pnlErweitertLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txfDBName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(txfDBName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txfDBUser)
                     .addComponent(txpDBPass, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlErweitertLayout.createSequentialGroup()
                         .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDBName)
-                            .addComponent(lblDBUser)
-                            .addComponent(lblDBPass)
                             .addGroup(pnlErweitertLayout.createSequentialGroup()
+                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbtIP)
+                                    .addComponent(rbtURL))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlErweitertLayout.createSequentialGroup()
                                         .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,41 +298,54 @@ public class Login_GUI extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txfPunkt2)
+                                        .addComponent(lblPunkt2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txfPunkt3)
+                                        .addComponent(lblPunkt3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblDPunkt))
+                                        .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblHost))
-                                .addGap(18, 18, 18)
-                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblPort)
-                                    .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnlErweitertLayout.createSequentialGroup()
+                                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDBName)
+                                    .addComponent(lblDBUser)
+                                    .addComponent(lblDBPass))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(5, 5, 5)
+                        .addComponent(lblDPunkt)
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPort))))
                 .addContainerGap())
         );
         pnlErweitertLayout.setVerticalGroup(
             pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlErweitertLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHost)
-                    .addComponent(lblPort))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPunkt1)
-                    .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txfPunkt2)
-                    .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txfPunkt3)
-                    .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDPunkt))
+                .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlErweitertLayout.createSequentialGroup()
+                        .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblHost)
+                            .addComponent(lblPort))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txfIP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPunkt1)
+                            .addComponent(txfIP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPunkt2)
+                            .addComponent(txfIP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPunkt3)
+                            .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDPunkt)))
+                    .addGroup(pnlErweitertLayout.createSequentialGroup()
+                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addComponent(rbtIP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbtURL)))
                 .addGap(18, 18, 18)
                 .addComponent(lblDBName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -323,7 +358,7 @@ public class Login_GUI extends javax.swing.JFrame {
                 .addComponent(lblDBPass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txpDBPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         lblErweitert.setForeground(new java.awt.Color(0, 0, 255));
@@ -396,7 +431,8 @@ public class Login_GUI extends javax.swing.JFrame {
     private boolean ausgeklappt;
     private int height;
     private String host, port, dbName, dbUser, dbPass;
-    DataManager dManager;
+    private Login login;
+    private final String dateipfad = "zugangsdaten_db";
     
     private void initGUI(){   
         //Position in der Mitte des Bildschirms
@@ -404,7 +440,7 @@ public class Login_GUI extends javax.swing.JFrame {
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
         //"ausgelagerter" Konstruktor: ausgelagerte Befehle, die im Konstruktor ausgeführt werden sollen
-        this.height = 276;
+        this.height = 290;
         pnlErweitert.setVisible(false);     //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
         this.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - height));
         this.pack();
@@ -428,46 +464,41 @@ public class Login_GUI extends javax.swing.JFrame {
         //Filter für maximale Anzahl an Zeichen, die eingegeben werden können
         txfBenutzername.setDocument(new JTextFieldLimit(32));
         txpPasswort.setDocument(new JTextFieldLimit(32));
-        txfIP1.setDocument(new JTextFieldLimit(3));
-        txfIP2.setDocument(new JTextFieldLimit(3));
-        txfIP3.setDocument(new JTextFieldLimit(3));
-        txfIP4.setDocument(new JTextFieldLimit(3));
         txfPort.setDocument(new JTextFieldLimit(5));
         
-        //default-Werte, die zu Beginn eingetragen sind
+        //Modus der Host-Adressen-Eingabe wird festgelegt
+        setHostModus(rbtIP.isSelected());
+     
+        //Standardwerte für die Host-Eingabe werden gesetzt
         txfIP1.setText("127");
         txfIP2.setText("0");
         txfIP3.setText("0");
         txfIP4.setText("1");
         txfPort.setText("3306");
     }
-    
-    
+     
     private void btnAnmeldenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnmeldenActionPerformed
         //Klick auf den 'Anmelden'-Button
         //Verbindung zur Datenbank wird hergestellt,
             //die Zugangsdaten werden bei manueller Eingabe in einer Datei gespeichert
             //die rollenbezogene GUI wird je nach abgefragter Benutzerrolle aufgerufen
         
-        Login login;
         String user, pass;
         int rolle;
         
         try {
             user = txfBenutzername.getText();
-            pass = dManager.passwortToString(txpPasswort.getPassword()); 
+            pass = login.passwortToString(txpPasswort.getPassword()); 
             
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
-                dbDatenAendern();
-                login = new Login(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
+                dbDatenAendern(login.ipAdresseVorhanden(dateipfad));
+                login.verbindungAufbauen(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
-                login = new Login();
+                login.verbindungAufbauen();
             }
-             
-            login.verbindungAufbauen();
             
         //TEST
-            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufbauen());
+            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufgebaut());
             System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
         //TEST ENDE
             
@@ -565,28 +596,25 @@ public class Login_GUI extends javax.swing.JFrame {
         
         try {   //Daten aus 'zugangsdaten_db' werden eingelesen und in den entsprechenden Textfeldern ausgegeben
             if (ausgeklappt == true) {
-                daten = dManager.datenEinlesen("zugangsdaten_db");
-                txfIP1.setText(daten[0]);
-                txfIP2.setText(daten[1]);
-                txfIP3.setText(daten[2]);
-                txfIP4.setText(daten[3]);
-                txfPort.setText(daten[4]);
-                txfDBName.setText(daten[5]);
-                txfDBUser.setText(daten[6]);
-                txpDBPass.setText(daten[7]);
+                daten = login.datenEinlesen(dateipfad);
+                
+                setHostValues(rbtIP.isSelected());
+                
+                txfPort.setText(daten[5]);
+                txfDBName.setText(daten[6]);
+                txfDBUser.setText(daten[7]);
+                txpDBPass.setText(daten[8]);
             }
             
         } catch (IOException ex) {
             getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nDie Datei \'zugangsdaten_db\'\nwurde nicht gefunden."
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nDie Datei \'" + dateipfad + "\'\nwurde nicht gefunden."
                     , "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
         } catch (NullPointerException ex){
             getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Die Datei \'zugangsdaten_db\'\nbeinhaltet keine Zugangsdaten."
+            JOptionPane.showMessageDialog(this, "Die Datei \'" + dateipfad + "\'\nbeinhaltet keine Zugangsdaten."
                     , "Zugangsdaten nicht gefunden", JOptionPane.INFORMATION_MESSAGE);
         }
-
-        
     }//GEN-LAST:event_lblErweitertMouseClicked
 
     private void txpPasswortFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txpPasswortFocusGained
@@ -688,40 +716,165 @@ public class Login_GUI extends javax.swing.JFrame {
         txfBenutzername.setText("");
     }//GEN-LAST:event_txfBenutzernameFocusGained
 
-    private void dbDatenAendern() throws NumberFormatException{
+    private void rbtIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtIPActionPerformed
+        try {
+            //Passt die Ansicht der Host-Eingabe an
+            setHostModus(rbtIP.isSelected());
+            setHostValues(rbtIP.isSelected());
+        } catch (IOException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nDie Datei \'" + dateipfad + "\'\nwurde nicht gefunden."
+                    , "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_rbtIPActionPerformed
+
+    private void rbtURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtURLActionPerformed
+        try {
+            //Passt die Ansicht der Host-Eingabe an
+            setHostModus(rbtIP.isSelected());
+            setHostValues(rbtIP.isSelected());
+        } catch (IOException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nDie Datei \'" + dateipfad + "\'\nwurde nicht gefunden."
+                    , "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_rbtURLActionPerformed
+
+    private void dbDatenAendern(boolean ipVorhanden) throws NumberFormatException{
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
         //Hinweis: Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
         
-        int ip1 = Integer.parseInt(txfIP1.getText());
-        int ip2 = Integer.parseInt(txfIP2.getText());
-        int ip3 = Integer.parseInt(txfIP3.getText());
-        int ip4 = Integer.parseInt(txfIP4.getText());
-        this.host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+        if (!ipVorhanden) {
+            this.host = txfIP1.getText();
+        } else {
+            int ip1 = Integer.parseInt(txfIP1.getText());
+            int ip2 = Integer.parseInt(txfIP2.getText());
+            int ip3 = Integer.parseInt(txfIP3.getText());
+            int ip4 = Integer.parseInt(txfIP4.getText());
+            this.host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+        }
+        
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
         this.dbName = txfDBName.getText();
         this.dbUser = txfDBUser.getText();
-        this.dbPass = dManager.passwortToString(txpDBPass.getPassword());
+        this.dbPass = login.passwortToString(txpDBPass.getPassword());
     }
     
     private boolean erweitertAusgefuellt() throws NumberFormatException{
         //liefert true zurück, wenn alle Felder der erweiterten Oberfläche ausgefüllt sind
         
         boolean ausg;
-        boolean ip1Ausg = !txfIP1.getText().equals("");
-        boolean ip2Ausg = !txfIP2.getText().equals("");
-        boolean ip3Ausg = !txfIP3.getText().equals("");
-        boolean ip4Ausg = !txfIP4.getText().equals("");
+        boolean ip1Ausg;
+        boolean ip2Ausg;
+        boolean ip3Ausg;
+        boolean ip4Ausg;
+        
+        if (rbtIP.isSelected()) {
+            ip1Ausg = !txfIP1.getText().equals("");
+            ip2Ausg = !txfIP2.getText().equals("");
+            ip3Ausg = !txfIP3.getText().equals("");
+            ip4Ausg = !txfIP4.getText().equals("");
+        } else {
+            ip1Ausg = !txfIP1.getText().equals("");
+            ip2Ausg = true;
+            ip3Ausg = true;
+            ip4Ausg = true;
+        }
+        
         boolean portAusg = !txfPort.getText().equals("");
         boolean dbNameAusg = !txfDBName.getText().equals("");
         boolean dbUserAusg = !txfDBUser.getText().equals("");
-        boolean dbPassAusg = !dManager.passwortToString(txpDBPass.getPassword()).equals("");
+        boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
         
         ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg;
         
         return ausg;
     }
       
+    private void setHostModus(boolean ipSelected){
+        //passt die Eingabe der Host-Adresse dem ausgewählten Radio-Button an
+        
+        if(ipSelected){     //rbtIP ist ausgewählt
+            //Alle IP-Felder sichtbar machen
+            txfIP1.setVisible(true);
+            txfIP2.setVisible(true);
+            txfIP3.setVisible(true);
+            txfIP4.setVisible(true);
+            lblPunkt1.setVisible(true);
+            lblPunkt2.setVisible(true);
+            lblPunkt3.setVisible(true);
+            
+            //Größe der IP-Felder setzen
+            txfIP1.setPreferredSize(new Dimension(40, 27));
+            txfIP2.setPreferredSize(new Dimension(40, 27));
+            txfIP3.setPreferredSize(new Dimension(40, 27));
+            txfIP4.setPreferredSize(new Dimension(40, 27));
+            
+            //Maximale Zeichenlänge festlegen
+            txfIP1.setDocument(new JTextFieldLimit(3));
+            txfIP2.setDocument(new JTextFieldLimit(3));
+            txfIP3.setDocument(new JTextFieldLimit(3));
+            txfIP4.setDocument(new JTextFieldLimit(3));
+            
+            //IP-Feld 1 zentriert machen
+            txfIP1.setHorizontalAlignment(JTextField.CENTER);
+            
+        } else {        //rtbURL ist ausgewählt
+            //IP-Felder 2 - 4 und Punkte unsichtbar machen
+            txfIP1.setVisible(true);
+            txfIP2.setVisible(false);
+            txfIP3.setVisible(false);
+            txfIP4.setVisible(false);
+            lblPunkt1.setVisible(false);
+            lblPunkt2.setVisible(false);
+            lblPunkt3.setVisible(false);
+            
+            //Größe von IP-Feld 1 setzen
+            txfIP1.setPreferredSize(new Dimension(205, 27));
+            txfIP2.setPreferredSize(new Dimension(40, 27));
+            txfIP3.setPreferredSize(new Dimension(40, 27));
+            txfIP4.setPreferredSize(new Dimension(40, 27));
+            
+            //Maximale Zeichenlänge festlegen
+            txfIP1.setDocument(new JTextFieldLimit(50));
+            txfIP2.setDocument(new JTextFieldLimit(3));
+            txfIP3.setDocument(new JTextFieldLimit(3));
+            txfIP4.setDocument(new JTextFieldLimit(3));
+            
+            //IP-Feld 1 linksbündig machen
+            txfIP1.setHorizontalAlignment(JTextField.LEFT);
+        }
+        
+
+    }
     
+    private void setHostValues(boolean ipSelected) throws IOException{
+        //setzt die Werte der Host-Felder
+        
+        String[] daten = login.datenEinlesen(dateipfad);
+
+        if (ipSelected) {
+            if (daten[0].equals("false")) {
+                txfIP1.setText("");
+                txfIP2.setText("");
+                txfIP3.setText("");
+                txfIP4.setText("");
+                getToolkit().beep();
+                JOptionPane.showMessageDialog(this, "Die gefundene Host-Adresse ist eine URL. \n\nBitte wählen Sie den URL-Modus aus, \num diese anzuzeigen.", "URL gefunden", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                txfIP1.setText(daten[1]);
+                txfIP2.setText(daten[2]);
+                txfIP3.setText(daten[3]);
+                txfIP4.setText(daten[4]);
+            }
+        } else {
+            if (daten[0].equals("false")) {
+                txfIP1.setText(daten[1]);
+            } else {
+                txfIP1.setText(daten[1] + "." + daten[2] + "." + daten[3] + "." + daten[4]);
+            }
+        }
+    }
     
     /**
      * @param args the command line arguments
@@ -760,6 +913,7 @@ public class Login_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgHostModus;
     private javax.swing.JButton btnAnmelden;
     private japhiroto.JPictureBox jpbLogo;
     private javax.swing.JLabel lblBenutzername;
@@ -772,9 +926,13 @@ public class Login_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblPasswort;
     private javax.swing.JLabel lblPort;
     private javax.swing.JLabel lblPunkt1;
+    private javax.swing.JLabel lblPunkt2;
+    private javax.swing.JLabel lblPunkt3;
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JPanel pnlErweitert;
     private javax.swing.JPanel pnlNormal;
+    private javax.swing.JRadioButton rbtIP;
+    private javax.swing.JRadioButton rbtURL;
     private javax.swing.JSeparator sep1;
     private javax.swing.JTextField txfBenutzername;
     private javax.swing.JTextField txfDBName;
@@ -784,8 +942,6 @@ public class Login_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txfIP3;
     private javax.swing.JTextField txfIP4;
     private javax.swing.JTextField txfPort;
-    private javax.swing.JLabel txfPunkt2;
-    private javax.swing.JLabel txfPunkt3;
     private javax.swing.JPasswordField txpDBPass;
     private javax.swing.JPasswordField txpPasswort;
     // End of variables declaration//GEN-END:variables

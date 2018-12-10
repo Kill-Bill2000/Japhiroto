@@ -16,10 +16,11 @@ public class DB_Verbindung {
     private Connection con;
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     private DataManager dManager;
+    private final String dateipfad = "zugangsdaten_db";
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
         dManager = new DataManager();
-        einlesen("zugangsdaten_db");
+        einlesen(dateipfad);
         
     }
     
@@ -30,7 +31,7 @@ public class DB_Verbindung {
         this.dbName = name;
         this.dbUser = user;
         this.dbPass = pass;
-        speichern("zugangsdaten_db");
+        speichern(dateipfad);
     }
     
     public boolean verbindungAufbauen() throws SQLException{
@@ -46,11 +47,16 @@ public class DB_Verbindung {
         //übergebenen-Datei in den Variablen zu speichern
         String[] daten = dManager.datenEinlesen(dateipfad);
         
-        this.dbHost = daten[0] + "." + daten[1] + "." + daten[2] + "." + daten[3];
-        this.dbPort = daten[4];
-        this.dbName = daten[5];
-        this.dbUser = daten[6];
-        this.dbPass = daten[7];
+        if (daten[0].equals("false")){      //setzt den Host der Datenbank entsprechend den Werten des Arrays
+            this.dbHost = daten[1];
+        } else {
+            this.dbHost = daten[1] + "." + daten[2] + "." + daten[3] + "." + daten[4];
+        }
+        
+        this.dbPort = daten[5];
+        this.dbName = daten[6];
+        this.dbUser = daten[7];
+        this.dbPass = daten[8];
 
     }
     
