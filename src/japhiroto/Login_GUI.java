@@ -489,7 +489,6 @@ public class Login_GUI extends javax.swing.JFrame {
         try {
             user = txfBenutzername.getText();
             pass = login.passwortToString(txpPasswort.getPassword()); 
-            
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
                 dbDatenAendern(login.ipAdresseVorhanden(dateipfad));
                 login.verbindungAufbauen(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
@@ -697,7 +696,11 @@ public class Login_GUI extends javax.swing.JFrame {
 
     private void txfIP1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP1KeyTyped
         //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
-        if(txfIP1.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+        if(rbtIP.isSelected() && txfIP1.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+        
+        if (rbtURL.isSelected() && txfIP1.getText().length() >= 50 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
             getToolkit().beep();
         }
     }//GEN-LAST:event_txfIP1KeyTyped
