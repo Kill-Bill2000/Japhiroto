@@ -496,10 +496,10 @@ public class Login_GUI extends javax.swing.JFrame {
                 login.verbindungAufbauen();
             }
             
-        //TEST
-            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufgebaut());
-            System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
-        //TEST ENDE
+//        //TEST
+//            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufgebaut());
+//            System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
+//        //TEST ENDE
             
             if(login.accountUeberpruefen(user, pass)){
                 rolle = login.rolleAbfragen(user, pass);
@@ -507,25 +507,16 @@ public class Login_GUI extends javax.swing.JFrame {
                     //Supermarktleiter GUI aufrufen und Login GUI schließen
                     new Marktleiter_GUI().setVisible(true);
                     this.dispose();
-        //TEST
-                    System.out.println("SUPERMARKTLEITER");
-        //TEST ENDE  
         
                 } else if (rolle == 1){
                     //Kassierer GUI aufrufen und Login GUI schließen
                     new Kasse_GUI().setVisible(true);
                     this.dispose();
-        //TEST
-                    System.out.println("KASSIERER");
-        //TEST ENDE
                     
                 } else if(rolle == 2){
                     //Lagerist GUI aufrufen und Login GUI schließen
                     new LagerUbersichtGUI().setVisible(true);
                     this.dispose();
-        //TEST
-                    System.out.println("LAGERIST");
-        //TEST ENDE
                     
                 } else {
                     //Rolle nicht gefunden oder falsche Rolle
