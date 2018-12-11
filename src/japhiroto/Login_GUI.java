@@ -506,18 +506,24 @@ public class Login_GUI extends javax.swing.JFrame {
                 rolle = login.rolleAbfragen(user, pass);
                 if (rolle == 0) {
                     //Supermarktleiter GUI aufrufen und Login GUI schließen
+                    new Marktleiter_GUI().setVisible(true);
+                    this.dispose();
         //TEST
                     System.out.println("SUPERMARKTLEITER");
         //TEST ENDE  
         
                 } else if (rolle == 1){
                     //Kassierer GUI aufrufen und Login GUI schließen
+                    new Kasse_GUI().setVisible(true);
+                    this.dispose();
         //TEST
                     System.out.println("KASSIERER");
         //TEST ENDE
                     
                 } else if(rolle == 2){
                     //Lagerist GUI aufrufen und Login GUI schließen
+                    new LagerUbersichtGUI().setVisible(true);
+                    this.dispose();
         //TEST
                     System.out.println("LAGERIST");
         //TEST ENDE
