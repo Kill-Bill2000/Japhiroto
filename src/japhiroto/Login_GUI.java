@@ -490,9 +490,10 @@ public class Login_GUI extends javax.swing.JFrame {
             user = txfBenutzername.getText();
             pass = login.passwortToString(txpPasswort.getPassword()); 
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
-                dbDatenAendern(login.ipAdresseVorhanden(dateipfad));
+                dbDatenAendern(login.ipAdresseVorhanden(this.dateipfad));
                 login.verbindungAufbauen(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
+                dbDatenAendern(false);
                 login.verbindungAufbauen();
             }
             
@@ -745,14 +746,15 @@ public class Login_GUI extends javax.swing.JFrame {
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
         //Hinweis: Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
         
-        if (!ipVorhanden) {
-            this.host = txfIP1.getText();
-        } else {
+        if (ipVorhanden && rbtIP.isSelected()) {
             int ip1 = Integer.parseInt(txfIP1.getText());
             int ip2 = Integer.parseInt(txfIP2.getText());
             int ip3 = Integer.parseInt(txfIP3.getText());
             int ip4 = Integer.parseInt(txfIP4.getText());
             this.host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+        } else {
+            
+            this.host = txfIP1.getText();
         }
         
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
