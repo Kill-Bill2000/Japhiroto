@@ -503,26 +503,27 @@ public class Login_GUI extends javax.swing.JFrame {
             
             if(login.accountUeberpruefen(user, pass)){
                 rolle = login.rolleAbfragen(user, pass);
-                if (rolle == 0) {
-                    //Supermarktleiter GUI aufrufen und Login GUI schließen
-                    new Marktleiter_GUI().setVisible(true);
-                    this.dispose();
-        
-                } else if (rolle == 1){
-                    //Kassierer GUI aufrufen und Login GUI schließen
-                    new Kasse_GUI().setVisible(true);
-                    this.dispose();
-                    
-                } else if(rolle == 2){
-                    //Lagerist GUI aufrufen und Login GUI schließen
-                    new LagerUbersichtGUI().setVisible(true);
-                    this.dispose();
-                    
-                } else {
-                    //Rolle nicht gefunden oder falsche Rolle
-                    JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
-                            + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-                
+                switch (rolle) {
+                    case 0:
+                        //Supermarktleiter GUI aufrufen und Login GUI schließen
+                        new Marktleiter_GUI().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 1:
+                        //Kassierer GUI aufrufen und Login GUI schließen
+                        new Kasse_GUI().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 2:
+                        //Lagerist GUI aufrufen und Login GUI schließen
+                        new LagerUbersichtGUI().setVisible(true);
+                        this.dispose();
+                        break;
+                    default:
+                        //Rolle nicht gefunden oder falsche Rolle
+                        JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
+                                + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                        break;
                 }
             } else {
                 getToolkit().beep();    //Fehler-Ton
