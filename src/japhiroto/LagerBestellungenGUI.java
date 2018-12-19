@@ -6,6 +6,7 @@
 package japhiroto;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,15 +19,14 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
      * Creates new form LagerBestellungenGUI
      */
     private ArrayList<Bestellung> bestellungen;
+    private NoDatabase noDB;
     public LagerBestellungenGUI() {
         initComponents();
-    }
-    public LagerBestellungenGUI(ArrayList<Bestellung> best) {
-        initComponents();
-        bestellungen = best;
-        DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();
-        for (int i = 0; i < bestellungen.size(); i++) {
-            model.addRow(new Object[]{bestellungen.get(i).getBestellNr(), "z.Z. kein Lieferantverfügbar"});
+        noDB = new NoDatabase();
+        
+        DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
+        for (int i = 0; i < noDB.getAnzahlBestellungen(); i++) {
+            model.addRow(new Object[]{noDB.getBestellungListenNummer(i).getBestellNr(), "z.Z. kein Lieferantverfügbar"});
         }
     }
 
@@ -43,6 +43,8 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        lblBestellNr = new javax.swing.JLabel();
+        txfBestellNr = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBestellungen = new javax.swing.JTable();
@@ -66,6 +68,10 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bestellung");
 
+        lblBestellNr.setText("Bestellnummer:");
+
+        txfBestellNr.setEditable(false);
+
         javax.swing.GroupLayout diaBestellungLayout = new javax.swing.GroupLayout(diaBestellung.getContentPane());
         diaBestellung.getContentPane().setLayout(diaBestellungLayout);
         diaBestellungLayout.setHorizontalGroup(
@@ -73,7 +79,12 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             .addGroup(diaBestellungLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(diaBestellungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addGroup(diaBestellungLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblBestellNr)
+                        .addGap(18, 18, 18)
+                        .addComponent(txfBestellNr))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -81,9 +92,13 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             diaBestellungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, diaBestellungLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2)
+                .addGap(5, 5, 5)
+                .addGroup(diaBestellungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBestellNr)
+                    .addComponent(txfBestellNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -94,12 +109,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
 
         tblBestellungen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Bestellnummer", "Lieferant"
@@ -136,6 +146,11 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         });
 
         jButton1.setText("Wareneingang");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,6 +192,18 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private void tblBestellungenPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tblBestellungenPropertyChange
 
     }//GEN-LAST:event_tblBestellungenPropertyChange
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int selectZeile = tblBestellungen.getSelectedRow();
+        if (selectZeile == -1) {
+            JOptionPane.showMessageDialog(this, "keine Bestellung ausgewählt!");
+        }
+        else {
+            diaBestellung.setVisible(true);
+            diaBestellung.setSize(380, 590);
+            txfBestellNr.setText(String.valueOf(selectZeile));
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
@@ -223,6 +250,8 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBestellNr;
     private javax.swing.JTable tblBestellungen;
+    private javax.swing.JTextField txfBestellNr;
     // End of variables declaration//GEN-END:variables
 }
