@@ -22,22 +22,28 @@ public class Bestellung {
         bestellNummer = bestellNr;
     }
     
-    public void artikelAngekommen(Artikel art, int anz) {
-        for (int i = 0; i < artikel.size(); i++) {
-            if (artikel.get(i) == art) {
-                if (anzahl.get(i) == anz) {
-                    artikel.remove(i);
-                    anzahl.remove(i);
-                }
-                else {
-                    int neu;
-                    neu = anzahl.get(i) - anz;
-                    anzahl.set(i, neu);
-                }
-            }
+    public void artikelAngekommen(int art, int anz) {
+        if (anz == anzahl.get(art)) {
+            artikel.remove(anz);
+            anzahl.remove(anz);
+        }
+        else {
+            int alt, neu;
+            alt = anzahl.get(art);
+            neu = alt - anz;
+            anzahl.set(art, neu);
         }
     }
     public String getBestellNr() {
         return bestellNummer;
+    }
+    public int getAnzahlArtikel() {
+        return artikel.size();
+    }
+    public Artikel bestellterArtikel(int nr) {
+        return artikel.get(nr);
+    }
+    public int anzahlArtikel(int nr) {
+        return anzahl.get(nr);
     }
 }
