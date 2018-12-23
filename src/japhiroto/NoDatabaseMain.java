@@ -50,7 +50,6 @@ public class NoDatabaseMain {
             }
             bestellungen.add(new Bestellung(art, anz, "B" + i * 57));
         }
-        
         return liste;
     }
     
