@@ -14,11 +14,14 @@ import java.util.ArrayList;
 public class NoDatabase {
     private static ArtikelVerwaltung verwaltung;
     private static ArrayList<Bestellung> bestellungen;
+    private static ArrayList<Lager> lager;
     
     public NoDatabase() {
         verwaltung = new ArtikelVerwaltung(doSomeArtikel());
         bestellungen = new ArrayList<Bestellung>();
+        lager = new ArrayList<>();
         doSomeBestellung();
+        doSomeLager();
     }
     
     private ArrayList<Artikel> doSomeArtikel() {
@@ -58,12 +61,26 @@ public class NoDatabase {
 //        retu = new Bestellung(artikel, anzahl, "B" + String.valueOf(this.hashCode()));
 //        return retu;
     }
+    private void doSomeLager() {
+        for (int i = 0; i < 3; i++) {
+            ArrayList<Artikel> art = new ArrayList<Artikel>();
+            ArrayList<Integer> anz = new ArrayList<>();
+            for (int j = 0; j < 10; j++) {
+                art.add(verwaltung.getArtikelListenNummer(j * (i + 1)));
+                anz.add(i * j + 5);
+            }
+            lager.add(new Lager(art, anz, String.valueOf(i + 1)));
+        }
+    }
     
     public int getAnzahlBestellungen() {
         return bestellungen.size();
     }
     public Bestellung getBestellungListenNummer(int i) {
         return bestellungen.get(i);
+    }
+    public Lager getLagerListenNummer(int i) {
+        return lager.get(i);
     }
     
     public void checkLeereBestellungen() {
