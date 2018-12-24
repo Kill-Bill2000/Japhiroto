@@ -15,6 +15,7 @@ public class Bestellung {
     private ArrayList<Artikel> artikel;
     private ArrayList<Integer> anzahl;
     private String bestellNummer;
+    private String lieferant;
     
     public Bestellung(ArrayList<Artikel> art, ArrayList<Integer> anz, String bestellNr) {
         anzahl = anz;
@@ -24,8 +25,8 @@ public class Bestellung {
     
     public void artikelAngekommen(int art, int anz) {
         if (anz == anzahl.get(art)) {
-            artikel.remove(anz);
-            anzahl.remove(anz);
+            artikel.remove(art);
+            anzahl.remove(art);
         }
         else {
             int alt, neu;
