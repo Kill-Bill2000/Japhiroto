@@ -263,15 +263,15 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnWareneingangActionPerformed
 
     private void btnWarenEingangSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarenEingangSpeichernActionPerformed
-        int bestellung = Integer.valueOf(txfWarenBestellNr.getText());
-        System.out.println(bestellung);
+        int bestellung = Integer.valueOf(txfWarenBestellNr.getText());          //Auswahl welches Lager
+        //System.out.println(bestellung);
         for (int i = 0; i < noDB.getBestellungListenNummer(bestellung).getAnzahlArtikel(); i++) {
             String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
             int intEingang = Integer.valueOf(strEingang);
             if (intEingang > 0) {
                 noDB.getBestellungListenNummer(bestellung).artikelAngekommen(i, intEingang);
             }
-            System.out.println(intEingang);
+            //System.out.println(intEingang);
         }
         warenEingangLeeren();
         noDB.checkLeereBestellungen();
