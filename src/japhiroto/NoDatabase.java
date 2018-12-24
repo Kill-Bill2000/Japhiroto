@@ -65,4 +65,19 @@ public class NoDatabase {
     public Bestellung getBestellungListenNummer(int i) {
         return bestellungen.get(i);
     }
+    
+    public void checkLeereBestellungen() {
+        for (int i = 0; i < bestellungen.size(); i++) {
+            Bestellung best = getBestellungListenNummer(i);
+            int leereArtikel = 0;
+            for (int j = 0; j < best.getAnzahlArtikel(); j++) {
+                if (best.anzahlArtikel(j) == 0) {
+                    leereArtikel = leereArtikel + 1;
+                }
+            }
+            if (leereArtikel == best.getAnzahlArtikel()) {
+                bestellungen.remove(i);
+            }
+        }
+    }
 }
