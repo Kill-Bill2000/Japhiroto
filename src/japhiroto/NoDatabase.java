@@ -14,14 +14,11 @@ import java.util.ArrayList;
 public class NoDatabase {
     private static ArtikelVerwaltung verwaltung;
     private static ArrayList<Bestellung> bestellungen;
-    private static ArrayList<Lager> lager;
     
     public NoDatabase() {
-        verwaltung = new ArtikelVerwaltung(doSomeArtikel());
+        verwaltung = new ArtikelVerwaltung(doSomeArtikel(), doSomeBestand());
         bestellungen = new ArrayList<Bestellung>();
-        lager = new ArrayList<>();
         doSomeBestellung();
-        doSomeLager();
     }
     
     private ArrayList<Artikel> doSomeArtikel() {
@@ -55,22 +52,11 @@ public class NoDatabase {
                 art.add(verwaltung.getArtikelListenNummer(j));
                 anz.add(j);
             }
-            bestellungen.add(new Bestellung(art, anz, "B" + i * 57));
+            bestellungen.add(new Bestellung(art, anz, "B" + i * 57, "z.Z. kein Lieferant vorhanden"));
         }
 //        
 //        retu = new Bestellung(artikel, anzahl, "B" + String.valueOf(this.hashCode()));
 //        return retu;
-    }
-    private void doSomeLager() {
-        for (int i = 0; i < 3; i++) {
-            ArrayList<Artikel> art = new ArrayList<Artikel>();
-            ArrayList<Integer> anz = new ArrayList<>();
-            for (int j = 0; j < 10; j++) {
-                art.add(verwaltung.getArtikelListenNummer(j * (i + 1)));
-                anz.add(i * j + 5);
-            }
-            lager.add(new Lager(art, anz, String.valueOf(i + 1)));
-        }
     }
     
     public int getAnzahlBestellungen() {
@@ -78,9 +64,6 @@ public class NoDatabase {
     }
     public Bestellung getBestellungListenNummer(int i) {
         return bestellungen.get(i);
-    }
-    public Lager getLagerListenNummer(int i) {
-        return lager.get(i);
     }
     
     public void checkLeereBestellungen() {
@@ -96,5 +79,23 @@ public class NoDatabase {
                 bestellungen.remove(i);
             }
         }
+    }
+    public ArtikelVerwaltung getVerwaltung() {
+        return verwaltung;
+    }
+    private ArrayList<Integer> doSomeBestand() {
+        ArrayList<Integer> bestand = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            bestand.add(i * 2);
+        }
+        return bestand;
+    }
+    public void warenEingang(int artListenNr, int anz) {
+        int alteAnzahl = 5; // verwaltung.getBestandArtikel(artListenNr); //SQL Abfrage aktuelle Anzahl
+        String sql = "UPDATE artikel SET bestand = "+ (alteAnzahl + anz) + " WHERE artikelNummer = " + verwaltung.getArtikelListenNummer(artListenNr).getArtikelNummer();//hier kommt eingetlich eine SQL Abfrage, die die Anzahl zum Eintrag hinzufügt
+    }
+    public ArrayList<Bestellung> getBestellungen() {
+        String sql = "SELECT * FROM bestellung WHERE abgeschlossen = 0"; //SQL Abfrage in Objekt umwandeln
+        return bestellungen;
     }
 }
