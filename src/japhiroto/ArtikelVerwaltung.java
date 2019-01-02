@@ -12,10 +12,12 @@ import java.util.ArrayList;
  * @author philip
  */
 public class ArtikelVerwaltung {
-    private static ArrayList<Artikel> artikelListe;
+    private ArrayList<Artikel> artikelListe;
+    private ArrayList<Integer> bestand;
     
-    public ArtikelVerwaltung(ArrayList<Artikel> artikel) {
-        artikelListe = artikel; //kommentar
+    public ArtikelVerwaltung(ArrayList<Artikel> artikel, ArrayList<Integer> bestand) {
+        artikelListe = artikel; //für die Datenbankklasse
+        this.bestand = bestand;
     }
     public ArtikelVerwaltung() {
     }
@@ -63,6 +65,9 @@ public class ArtikelVerwaltung {
     
     public int anzahlArtikel() {
         return artikelListe.size();
+    }
+    public int getBestandArtikel(int artListeNr) {
+        return bestand.get(artListeNr);
     }
     public Artikel getArtikelListenNummer(int nr) {
         return artikelListe.get(nr);
