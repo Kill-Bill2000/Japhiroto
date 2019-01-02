@@ -16,23 +16,16 @@ import javax.swing.table.DefaultTableModel;
 public class LagerArtikelSuchen extends javax.swing.JFrame {
 
     private ArtikelVerwaltung artikel;
-    private LagerUbersichtGUI ubersicht;
-    public LagerArtikelSuchen(LagerUbersichtGUI ub) {
-        initComponents();
-        //diaArtNrEingeben.setVisible(true);
-        diaArtNrEingeben.setSize(450, 150);
-        ubersicht = ub;
-        artikel = new ArtikelVerwaltung();
-        
-        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
-        for (int i = 0; i < artikel.anzahlArtikel(); i++) {
-            model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis()});
-        }
-    }
+    private NoDatabase noDB;
     public LagerArtikelSuchen() {
         initComponents();
+        noDB = new NoDatabase();
         diaArtNrEingeben.setSize(450, 150);
-        artikel = new ArtikelVerwaltung();
+        artikel = noDB.getVerwaltung();
+        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
+        for (int i = 0; i < artikel.anzahlArtikel(); i++) {
+            model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(i)});
+        }
     }
 
     /**
@@ -117,14 +110,14 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Art.-Nr.", "Artikel", "Preis"
+                "Art.-Nr.", "Artikel", "Preis", "Bestand"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -213,19 +206,16 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         this.setVisible(false);
         diaArtNrEingeben.setVisible(false);
-        ubersicht.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.setVisible(false);
         diaArtNrEingeben.setVisible(false);
-        ubersicht.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void btnZuruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZuruckActionPerformed
         this.setVisible(false);
         diaArtNrEingeben.setVisible(false);
-        ubersicht.setVisible(true);
     }//GEN-LAST:event_btnZuruckActionPerformed
 
     /**
