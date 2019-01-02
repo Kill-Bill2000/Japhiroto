@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Dez 2018 um 19:31
+-- Erstellungszeit: 02. Jan 2019 um 14:54
 -- Server-Version: 10.1.37-MariaDB
--- PHP-Version: 7.2.12
+-- PHP-Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `account`
+-- Tabellenstruktur für Tabelle `accounts`
 --
 
-CREATE TABLE `Accounts` (
+CREATE TABLE `accounts` (
   `accountId` int(16) NOT NULL,
   `mitarbeiterId` int(16) NOT NULL,
   `benutzername` varchar(32) COLLATE latin1_german1_ci NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `Accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Daten für Tabelle `account`
+-- Daten für Tabelle `accounts`
 --
 
-INSERT INTO `Accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`, `rolle`) VALUES
+INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`, `rolle`) VALUES
 (1, 1, 'm.mustermann.leiter', 'muster123', 0),
 (2, 1, 'm.mustermann.kasse', 'muster123', 1),
 (3, 1, 'm.mustermann.lager', 'muster123', 2);
@@ -48,10 +48,32 @@ INSERT INTO `Accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `artikel`
+--
+
+CREATE TABLE `artikel` (
+  `artikelNr` int(16) NOT NULL,
+  `bezeichnung` varchar(64) COLLATE utf8_german2_ci NOT NULL,
+  `preis` double(9,2) NOT NULL,
+  `bestand` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `artikel`
+--
+
+INSERT INTO `artikel` (`artikelNr`, `bezeichnung`, `preis`, `bestand`) VALUES
+(1, 'Testartikel1', 9.99, 10),
+(2, 'Testartikel2', 4.49, 1),
+(3, 'Testartikel3', 29.99, 59);
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `mitarbeiter`
 --
 
-CREATE TABLE `Mitarbeiter` (
+CREATE TABLE `mitarbeiter` (
   `mitarbeiterId` int(16) NOT NULL,
   `anrede` varchar(4) COLLATE latin1_german1_ci DEFAULT NULL,
   `vorname` varchar(32) COLLATE latin1_german1_ci NOT NULL,
@@ -67,7 +89,7 @@ CREATE TABLE `Mitarbeiter` (
 -- Daten für Tabelle `mitarbeiter`
 --
 
-INSERT INTO `Mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
+INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
 (1, 'Herr', 'Max', 'Mustermann', 'Musterstrasse', 1, 12345, 'Musterstadt', 8.50);
 
 --
@@ -75,15 +97,21 @@ INSERT INTO `Mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `st
 --
 
 --
--- Indizes für die Tabelle `account`
+-- Indizes für die Tabelle `accounts`
 --
-ALTER TABLE `Accounts`
+ALTER TABLE `accounts`
   ADD PRIMARY KEY (`accountId`);
+
+--
+-- Indizes für die Tabelle `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`artikelNr`);
 
 --
 -- Indizes für die Tabelle `mitarbeiter`
 --
-ALTER TABLE `Mitarbeiter`
+ALTER TABLE `mitarbeiter`
   ADD PRIMARY KEY (`mitarbeiterId`);
 
 --
@@ -91,15 +119,21 @@ ALTER TABLE `Mitarbeiter`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `account`
+-- AUTO_INCREMENT für Tabelle `accounts`
 --
-ALTER TABLE `Accounts`
+ALTER TABLE `accounts`
   MODIFY `accountId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT für Tabelle `artikel`
+--
+ALTER TABLE `artikel`
+  MODIFY `artikelNr` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `mitarbeiter`
 --
-ALTER TABLE `Mitarbeiter`
+ALTER TABLE `mitarbeiter`
   MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
