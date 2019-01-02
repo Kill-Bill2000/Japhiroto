@@ -489,44 +489,42 @@ public class Login_GUI extends javax.swing.JFrame {
         try {
             user = txfBenutzername.getText();
             pass = login.passwortToString(txpPasswort.getPassword()); 
-            
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
-                dbDatenAendern(login.ipAdresseVorhanden(dateipfad));
+                dbDatenAendern(login.ipAdresseVorhanden(this.dateipfad));
                 login.verbindungAufbauen(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
+                dbDatenAendern(false);
                 login.verbindungAufbauen();
             }
             
-        //TEST
-            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufgebaut());
-            System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
-        //TEST ENDE
+//        //TEST
+//            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufgebaut());
+//            System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
+//        //TEST ENDE
             
             if(login.accountUeberpruefen(user, pass)){
                 rolle = login.rolleAbfragen(user, pass);
-                if (rolle == 0) {
-                    //Supermarktleiter GUI aufrufen und Login GUI schließen
-        //TEST
-                    System.out.println("SUPERMARKTLEITER");
-        //TEST ENDE  
-        
-                } else if (rolle == 1){
-                    //Kassierer GUI aufrufen und Login GUI schließen
-        //TEST
-                    System.out.println("KASSIERER");
-        //TEST ENDE
-                    
-                } else if(rolle == 2){
-                    //Lagerist GUI aufrufen und Login GUI schließen
-        //TEST
-                    System.out.println("LAGERIST");
-        //TEST ENDE
-                    
-                } else {
-                    //Rolle nicht gefunden oder falsche Rolle
-                    JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
-                            + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-                
+                switch (rolle) {
+                    case 0:
+                        //Supermarktleiter GUI aufrufen und Login GUI schließen
+                        new Marktleiter_GUI().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 1:
+                        //Kassierer GUI aufrufen und Login GUI schließen
+                        new Kasse_GUI().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 2:
+                        //Lagerist GUI aufrufen und Login GUI schließen
+                        new LagerUbersichtGUI().setVisible(true);
+                        this.dispose();
+                        break;
+                    default:
+                        //Rolle nicht gefunden oder falsche Rolle
+                        JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
+                                + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                        break;
                 }
             } else {
                 getToolkit().beep();    //Fehler-Ton
@@ -691,7 +689,11 @@ public class Login_GUI extends javax.swing.JFrame {
 
     private void txfIP1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfIP1KeyTyped
         //nach 3 eingegebenen Zeichen ertönt ein Fehler-Ton
-        if(txfIP1.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+        if(rbtIP.isSelected() && txfIP1.getText().length() >= 3 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
+            getToolkit().beep();
+        }
+        
+        if (rbtURL.isSelected() && txfIP1.getText().length() >= 50 && !((evt.getKeyChar() == KeyEvent.VK_DELETE) || (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE))) {
             getToolkit().beep();
         }
     }//GEN-LAST:event_txfIP1KeyTyped
@@ -744,14 +746,15 @@ public class Login_GUI extends javax.swing.JFrame {
         //liest die eingegebenen Daten der Oberfläche ein und speichert diese in den globalen Variablen
         //Hinweis: Konvertierung zu int und dann zu String dient zum einfachen Abfangen von NumberFormatExceptions
         
-        if (!ipVorhanden) {
-            this.host = txfIP1.getText();
-        } else {
+        if (ipVorhanden && rbtIP.isSelected()) {
             int ip1 = Integer.parseInt(txfIP1.getText());
             int ip2 = Integer.parseInt(txfIP2.getText());
             int ip3 = Integer.parseInt(txfIP3.getText());
             int ip4 = Integer.parseInt(txfIP4.getText());
             this.host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+        } else {
+            
+            this.host = txfIP1.getText();
         }
         
         this.port = Integer.toString(Integer.parseInt(txfPort.getText()));
