@@ -36,7 +36,8 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         }
         DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
         for (int i = 0; i < artikel.anzahlArtikel(); i++) {
-            model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(i)});
+            String artNr = artikel.getArtikelListenNummer(i).getArtikelNummer();
+            model.addRow(new Object[]{artNr, artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(artNr)});
         }
     }
 
