@@ -23,19 +23,15 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     public LagerBestellungenGUI() {
         initComponents();
         noDB = new NoDatabase();
-        
-        DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
-        for (int i = 0; i < noDB.getAnzahlBestellungen(); i++) {
-            model.addRow(new Object[]{noDB.getBestellungListenNummer(i).getBestellNr(), "z.Z. kein Lieferantverfügbar"});
-        }
+        bestellungenNeuLaden();
     }
 
     private void bestellungenNeuLaden() {
+        bestellungen = noDB.getBestellungen();
         DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();
         model.setRowCount(0);
-        //noDB.checkLeereBestellungen();
-        for (int i = 0; i < noDB.getAnzahlBestellungen(); i++) {
-            model.addRow(new Object[]{noDB.getBestellungListenNummer(i).getBestellNr(), "z.Z. kein Lieferantverfügbar"});
+        for (int i = 0; i < bestellungen.size(); i++) {
+            model.addRow(new Object[]{bestellungen.get(i).getBestellNr(), bestellungen.get(i).getLieferant()});
         }
     }
     private void warenEingangLeeren() {
@@ -256,25 +252,26 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             diaWareneingang.setSize(380, 590);
             txfWarenBestellNr.setText(String.valueOf(selectZeile));
             DefaultTableModel model = (DefaultTableModel) tblWarenArtikel.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
-            for (int i = 0; i < noDB.getBestellungListenNummer(selectZeile).getAnzahlArtikel(); i++) {
-                model.addRow(new Object[]{noDB.getBestellungListenNummer(selectZeile).anzahlArtikel(i), noDB.getBestellungListenNummer(selectZeile).bestellterArtikel(i).getName(), 0});
+            for (int i = 0; i < bestellungen.get(selectZeile).getAnzahlArtikel(); i++) {
+                model.addRow(new Object[]{bestellungen.get(selectZeile).anzahlArtikel(i), bestellungen.get(selectZeile).bestellterArtikel(i).getName(), 0});
             }
         }
     }//GEN-LAST:event_btnWareneingangActionPerformed
 
     private void btnWarenEingangSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarenEingangSpeichernActionPerformed
         int bestellung = Integer.valueOf(txfWarenBestellNr.getText());          //Auswahl welches Lager
-        //System.out.println(bestellung);
-        for (int i = 0; i < noDB.getBestellungListenNummer(bestellung).getAnzahlArtikel(); i++) {
+        for (int i = 0; i < bestellungen.get(bestellung).getAnzahlArtikel(); i++) {
             String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
             int intEingang = Integer.valueOf(strEingang);
             if (intEingang > 0) {
-                noDB.getBestellungListenNummer(bestellung).artikelAngekommen(i, intEingang);
+                bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
+                int artNr = Integer.valueOf(bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer());
+                noDB.warenEingang(artNr, intEingang);
             }
-            //System.out.println(intEingang);
         }
         warenEingangLeeren();
         noDB.checkLeereBestellungen();
+        bestellungenNeuLaden();
         diaWareneingang.setVisible(false);
     }//GEN-LAST:event_btnWarenEingangSpeichernActionPerformed
 
@@ -288,6 +285,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
 
     private void btnWarenZuruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarenZuruckActionPerformed
         warenEingangLeeren();
+        bestellungenNeuLaden();
         diaWareneingang.setVisible(false);
     }//GEN-LAST:event_btnWarenZuruckActionPerformed
 
