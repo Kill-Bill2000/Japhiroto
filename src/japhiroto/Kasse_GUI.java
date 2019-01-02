@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class Kasse_GUI extends javax.swing.JFrame {
 
+    private String aktuellesTextfeld = "txfArtikelNr";
     /**
      * Creates new form Kasse_GUI
      */
@@ -71,15 +72,33 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         lblArtikelliste.setText("Artikelliste:");
 
+        txfArtikelNr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfArtikelNrMouseClicked(evt);
+            }
+        });
+
         lblArtikelNr.setText("Artikel-Nr.:");
 
         lblAnzahl.setText("Anzahl:");
+
+        txfAnzahl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfAnzahlMouseClicked(evt);
+            }
+        });
 
         btnHinzufuegen.setText("Hinzufügen");
 
         btnBezahlen.setText("Bar bezahlen");
 
         lblGegeben.setText("Gegeben:");
+
+        txfGegeben.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfGegebenMouseClicked(evt);
+            }
+        });
 
         lblZurueck.setText("Zurück:");
 
@@ -276,21 +295,31 @@ public class Kasse_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnZifferEinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferEinsActionPerformed
-        //Ueberpruefen von ausgewähtem Textfeld:
-        if(txfArtikelNr.isFocusOwner()){
-            txfArtikelNr.setText(txfArtikelNr.getText()+"1");
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "1");
         }
-        else if(txfAnzahl.isFocusOwner()){
+        else if(aktuellesTextfeld == "txfAnzahl"){
             txfAnzahl.setText(txfAnzahl.getText()+"1");
         }
-        else if(txfGegeben.isFocusOwner()){
+        else if(aktuellesTextfeld == "txfGegeben"){
             txfGegeben.setText(txfGegeben.getText()+"1");
         }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Es ist kein Textfeld gewählt!");
-        }
     }//GEN-LAST:event_btnZifferEinsActionPerformed
+
+    private void txfArtikelNrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfArtikelNrMouseClicked
+        aktuellesTextfeld = "txfArtikelNr";
+    }//GEN-LAST:event_txfArtikelNrMouseClicked
+
+    private void txfAnzahlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfAnzahlMouseClicked
+        aktuellesTextfeld = "txfAnzahl";
+    }//GEN-LAST:event_txfAnzahlMouseClicked
+
+    private void txfGegebenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfGegebenMouseClicked
+        aktuellesTextfeld = "txfGegeben";
+    }//GEN-LAST:event_txfGegebenMouseClicked
 
     /**
      * @param args the command line arguments
