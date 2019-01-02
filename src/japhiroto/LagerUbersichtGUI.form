@@ -34,12 +34,13 @@
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblLagerUbersicht" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnLagerArtikelSuchen" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnLagerArtikel" min="-2" pref="130" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblLagerBestellungen" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnLagerLager" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnLagerArtikelSuchen" alignment="0" pref="187" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="lblLagerBestellungen" min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -57,13 +58,12 @@
               <Component id="lblLagerUbersicht" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnLagerArtikel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblLagerBestellungen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblLagerBestellungen" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLagerArtikelSuchen" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="196" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnLagerLager" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,16 +87,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Artikel suchen"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnLagerArtikel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Wareneingang"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLagerArtikelSuchenActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="lblLagerBestellungen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bestellungen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lblLagerBestellungenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLagerLager">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lager anzeigen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLagerLagerActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
