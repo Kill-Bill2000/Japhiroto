@@ -5,7 +5,12 @@
  */
 package japhiroto;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,15 +22,32 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
 
     private ArtikelVerwaltung artikel;
     private NoDatabase noDB;
+    private DB_Verbindung verbindung;
+    
     public LagerArtikelSuchen() {
         initComponents();
-        noDB = new NoDatabase();
-        diaArtNrEingeben.setSize(450, 150);
-        artikel = noDB.getVerwaltung();
-        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
-        for (int i = 0; i < artikel.anzahlArtikel(); i++) {
-            model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(i)});
+        
+        try {  
+            
+            verbindung = new DB_Verbindung();
+            
+            noDB = new NoDatabase();
+            diaArtNrEingeben.setSize(450, 150);
+            artikel = noDB.getVerwaltung();
+            
+            DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
+            for (int i = 0; i < artikel.anzahlArtikel(); i++) {
+                model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(i)});
+            }
+            
+        } catch (FileNotFoundException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Die Zugangsdaten wurde nicht gefunden..", "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex){
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
 
     /**
@@ -180,22 +202,34 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSucheSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucheSuchenActionPerformed
-        this.setVisible(true);
-        diaArtNrEingeben.setVisible(false);         //Fenster werden geöffnet und geschlossen
+        int gesuchteArtNr;//int mit der gesuchenten Artikel Nummer
+        ArrayList<Artikel> gesuchte; //ArrayList zum speichern der gefundenen Artikel
         
-        String gesuchteArtNr = txfSucheArtNr.getText();     //String mit der gesuchenten Artikel Nummer
-        
-        ArrayList<Artikel> gesuchte = new ArrayList<Artikel>(); //ArrayList zum speichern der gefundenen Artikel
-        try {
-            gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
+        try {                                               
+            this.setVisible(true);
+            diaArtNrEingeben.setVisible(false);         //Fenster werden geöffnet und geschlossen
+            
+            gesuchteArtNr = Integer.parseInt(txfSucheArtNr.getText());
+            
+            verbindung.verbindungAufbauen();
+            
+            gesuchte = verbindung.getArtikelFromNr(gesuchteArtNr);    //Suche
+            
+            
+            DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
+            for (int i = 0; i < gesuchte.size(); i++) {
+                model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis()});
+            }
         }
-        catch(NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
-        for (int i = 0; i < gesuchte.size(); i++) {
-            model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis()});
+        catch(SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
+                    + "\nDie Zugangsdaten sind nicht gültig.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        } catch(NullPointerException ex) {
+                JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
+        } catch (NumberFormatException ex){
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nEs dürfen nur Zahlen verwendet werden", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSucheSuchenActionPerformed
 
