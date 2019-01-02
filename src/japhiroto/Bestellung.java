@@ -17,10 +17,11 @@ public class Bestellung {
     private String bestellNummer;
     private String lieferant;
     
-    public Bestellung(ArrayList<Artikel> art, ArrayList<Integer> anz, String bestellNr) {
+    public Bestellung(ArrayList<Artikel> art, ArrayList<Integer> anz, String bestellNr, String lief) {
         anzahl = anz;
         artikel = art;
         bestellNummer = bestellNr;
+        lieferant = lief;
     }
     
     public void artikelAngekommen(int art, int anz) {
@@ -46,5 +47,8 @@ public class Bestellung {
     }
     public int anzahlArtikel(int nr) {
         return anzahl.get(nr);
+    }
+    public String getLieferant() {
+        return lieferant;
     }
 }
