@@ -5,7 +5,11 @@
  */
 package japhiroto;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,15 +23,23 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
      * Creates new form LagerBestellungenGUI
      */
     private ArrayList<Bestellung> bestellungen;
-    private NoDatabase noDB;
+    private DB_Verbindung db;
     public LagerBestellungenGUI() {
         initComponents();
-        noDB = new NoDatabase();
         bestellungenNeuLaden();
+        try {
+            db = new DB_Verbindung();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        }
     }
 
     private void bestellungenNeuLaden() {
-        bestellungen = noDB.getBestellungen();
+        try {
+            bestellungen = db.getBestellungen();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        }
         DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();
         model.setRowCount(0);
         for (int i = 0; i < bestellungen.size(); i++) {
@@ -265,12 +277,15 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             int intEingang = Integer.valueOf(strEingang);
             if (intEingang > 0) {
                 bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
-                int artNr = Integer.valueOf(bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer());
-                noDB.warenEingang(artNr, intEingang);
+                String artNr = bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer();
+                try {
+                    db.wareAngekommen(bestellungen.get(bestellung).getBestellNr(), artNr, intEingang);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
+                }
             }
         }
         warenEingangLeeren();
-        noDB.checkLeereBestellungen();
         bestellungenNeuLaden();
         diaWareneingang.setVisible(false);
     }//GEN-LAST:event_btnWarenEingangSpeichernActionPerformed
