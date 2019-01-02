@@ -62,6 +62,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasse");
 
+        txaAusgabe.setEditable(false);
         txaAusgabe.setColumns(20);
         txaAusgabe.setRows(5);
         jScrollPane1.setViewportView(txaAusgabe);
@@ -79,6 +80,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
         lblGegeben.setText("Gegeben:");
 
         lblZurueck.setText("Zurück:");
+
+        txfZurueck.setEditable(false);
 
         btnStorno.setText("Storno");
 
