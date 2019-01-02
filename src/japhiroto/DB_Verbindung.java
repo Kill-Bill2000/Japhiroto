@@ -241,9 +241,9 @@ public class DB_Verbindung {
         return art;
     }
     
-    public Bestellung getBestellung(int bestellID) throws SQLException {
+    public Bestellung getBestellung(String bestellID) throws SQLException {
         Bestellung bestell;
-        String befehl = String.format("SELECT * FROM bestellung WHERE ID = '%1$s'", bestellID);
+        String befehl = String.format("SELECT * FROM bestellung WHERE bestellNummer = '%1$s'", bestellID);
         ResultSet rs = abfragen(befehl);
         rs.next();
         String lieferant = rs.getString("lieferant");
@@ -264,14 +264,42 @@ public class DB_Verbindung {
     public ArrayList<Bestellung> getBestellungen() throws SQLException {
         ArrayList<Bestellung> retBestell = new ArrayList<>();
         
-        String befehl = "SELECT * FROM Bestellung";
+        String befehl = "SELECT * FROM Bestellung WHERE erledigt = 0";
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            Bestellung b = getBestellung(rs.getInt("ID"));
+            Bestellung b = getBestellung(rs.getString("bestellNummer"));
             retBestell.add(b);
         }
 
         return retBestell;
+    }
+    public void checkBestellung() throws SQLException {
+        String befehl = "SELECT * FROM Bestellung WHERE erledigt = 0";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            String bestellNummer = rs.getString("bestellNummer");
+            int anzahlArtikel = getBestellung(bestellNummer).getAnzahlArtikel();
+            befehl = String.format("SELECT * FROM BestellteArtikel WHERE bestellID = '%1$s'", bestellNummer);
+            ResultSet rese = abfragen(befehl);
+            
+        }
+    }
+    private void bestellungVollstaendig(String bestellNummer) throws SQLException {
+        String befehl = String.format("UPDATE bestellteArtikel SET anzahl = 0 WHERE bestellID = '%1$s'", bestellNummer);
+        updaten(befehl);
+        befehl = String.format("UPDATE bestellung SET erledight = 1 WHERE bestellNummer = '%1$s'", bestellNummer);
+        updaten(befehl);
+    }
+    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException {
+        Bestellung best = getBestellung(bestellNummer);
+        int i = best.anzahlArtikelNr(artikelNr);
+        if (i >= anz) {
+            String befehl = String.format("UPDATE bestellteArtikel SET anzahl = '%1$d' WHERE bestellID = '%2$s' AND artikelID = '%3$s'", anz, bestellNummer, artikelNr);
+            updaten(befehl);
+            int neu = anz + getVerwaltung().getBestandArtikel(artikelNr);
+            befehl = String.format("UPDATE Artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artikelNr);
+            updaten(befehl);
+        }
     }
     
     public ArtikelVerwaltung getVerwaltung() throws SQLException {
