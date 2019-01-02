@@ -273,4 +273,18 @@ public class DB_Verbindung {
 
         return retBestell;
     }
+    
+    public ArtikelVerwaltung getVerwaltung() throws SQLException {
+        ArtikelVerwaltung verw = new ArtikelVerwaltung();
+        
+        String befehl = "SELECT * FROM Artikel";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            Artikel a = getArtikel(rs.getString("artikelNummer"));
+            int b = rs.getInt("bestand");
+            verw.addArtikel(a, b);
+        }
+        
+        return verw;
+    }
 }
