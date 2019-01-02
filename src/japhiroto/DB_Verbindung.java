@@ -7,6 +7,7 @@ package japhiroto;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -218,4 +219,58 @@ public class DB_Verbindung {
         return valid;
     }
     
+    /**
+     * Lagerabfragen
+     */
+    
+    public Artikel getArtikel(String artikelNummer) throws SQLException {
+        Artikel art;
+        String artNr, artName;
+        double vk;
+        
+        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        
+        artNr = rs.getString("artikelNummer");
+        artName = rs.getString("artikelName");
+        vk = rs.getDouble("verkaufPreis");
+        
+        art = new Artikel(artName, vk, artNr);
+        
+        return art;
+    }
+    
+    public Bestellung getBestellung(int bestellID) throws SQLException {
+        Bestellung bestell;
+        String befehl = String.format("SELECT * FROM bestellung WHERE ID = '%1$s'", bestellID);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        String lieferant = rs.getString("lieferant");
+        String bestellNr = rs.getString("bestellNummer");
+        ArrayList<Artikel> artikel = new ArrayList<>();
+        ArrayList<Integer> anzahl = new ArrayList<>();
+        String befehlZwei = String.format("SELECT artikelID, anzahl FROM bestellteArtikel WHERE bestellID = '%1$s'", bestellID);
+        ResultSet rese = abfragen(befehlZwei);
+        while(rese.next()) {
+            Artikel art = getArtikel(rese.getString("artikelID"));
+            artikel.add(art);
+            anzahl.add(rese.getInt("anzahl"));
+        }
+        bestell = new Bestellung(artikel, anzahl, bestellNr, lieferant);
+        return bestell;
+    }
+    
+    public ArrayList<Bestellung> getBestellungen() throws SQLException {
+        ArrayList<Bestellung> retBestell = new ArrayList<>();
+        
+        String befehl = "SELECT * FROM Bestellung";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            Bestellung b = getBestellung(rs.getInt("ID"));
+            retBestell.add(b);
+        }
+
+        return retBestell;
+    }
 }
