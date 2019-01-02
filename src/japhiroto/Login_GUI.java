@@ -789,7 +789,8 @@ public class Login_GUI extends javax.swing.JFrame {
         boolean dbUserAusg = !txfDBUser.getText().equals("");
         boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
         
-        ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg;
+        //ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg; //mit Passwort
+        ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg;
         
         return ausg;
     }
