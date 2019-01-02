@@ -5,7 +5,11 @@
  */
 package japhiroto;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,12 +20,20 @@ import javax.swing.table.DefaultTableModel;
 public class LagerArtikelSuchen extends javax.swing.JFrame {
 
     private ArtikelVerwaltung artikel;
-    private NoDatabase noDB;
+    private DB_Verbindung db;
     public LagerArtikelSuchen() {
         initComponents();
-        noDB = new NoDatabase();
+        try {
+            db = new DB_Verbindung();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        }
         diaArtNrEingeben.setSize(450, 150);
-        artikel = noDB.getVerwaltung();
+        try {
+            artikel = db.getVerwaltung();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        }
         DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
         for (int i = 0; i < artikel.anzahlArtikel(); i++) {
             model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(i)});
@@ -189,8 +201,8 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         try {
             gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
         }
-        catch(NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
+        catch(Exception ex) {
+            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden: \n" + ex.getMessage());
         }
         
         DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
