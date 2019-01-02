@@ -66,8 +66,15 @@ public class ArtikelVerwaltung {
     public int anzahlArtikel() {
         return artikelListe.size();
     }
-    public int getBestandArtikel(int artListeNr) {
-        return bestand.get(artListeNr);
+    public int getBestandArtikel(String artNr) {
+        int a = -1;
+        for (int i = 0; i < artikelListe.size(); i++) {
+            if (artikelListe.get(i).getArtikelNummer() == artNr) {
+                a = i;
+                i = artikelListe.size();
+            }
+        }
+        return bestand.get(a);
     }
     public Artikel getArtikelListenNummer(int nr) {
         return artikelListe.get(nr);
