@@ -54,7 +54,7 @@ public class ArtikelVerwaltung {
 //    }
     private boolean checkName(String artName, String vergleich) {
         boolean ret;
-        if (artName.contains(vergleich) || artName.startsWith(vergleich) || artName.endsWith(vergleich)) {
+        if (artName.contains(vergleich) || artName.startsWith(vergleich) || artName.endsWith(vergleich) || artName == vergleich) {
             ret = true;
         }
         else {
@@ -71,5 +71,9 @@ public class ArtikelVerwaltung {
     }
     public Artikel getArtikelListenNummer(int nr) {
         return artikelListe.get(nr);
+    }
+    public void addArtikel(Artikel a, int b) {
+        artikelListe.add(a);
+        bestand.add(b);
     }
 }
