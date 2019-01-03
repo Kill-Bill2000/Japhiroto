@@ -5,12 +5,18 @@
  */
 package japhiroto;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author janbo
  */
 public class Kasse_GUI extends javax.swing.JFrame {
 
+    private Kasse_Verwaltung dieKasse_Verwaltung;
+    private String aktuellesTextfeld = "txfArtikelNr";
+    private ArrayList<Artikel> Artikelliste = new ArrayList<Artikel>();
     /**
      * Creates new form Kasse_GUI
      */
@@ -44,19 +50,45 @@ public class Kasse_GUI extends javax.swing.JFrame {
         btnMinus = new javax.swing.JButton();
         btnKarte = new javax.swing.JButton();
         btnBonDrucken = new javax.swing.JButton();
+        btnZifferEins = new javax.swing.JButton();
+        btnZifferDrei = new javax.swing.JButton();
+        btnZifferSechs = new javax.swing.JButton();
+        btnZifferFünf = new javax.swing.JButton();
+        btnZifferVier = new javax.swing.JButton();
+        btnZifferZwei = new javax.swing.JButton();
+        btnZifferAcht = new javax.swing.JButton();
+        btnZifferNeun = new javax.swing.JButton();
+        btnZifferNull = new javax.swing.JButton();
+        btnZifferKomma = new javax.swing.JButton();
+        btnZifferSieben = new javax.swing.JButton();
+        btnNeuerKaufvorgang = new javax.swing.JButton();
+        btnAuskunft = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasse");
 
+        txaAusgabe.setEditable(false);
         txaAusgabe.setColumns(20);
         txaAusgabe.setRows(5);
         jScrollPane1.setViewportView(txaAusgabe);
 
         lblArtikelliste.setText("Artikelliste:");
 
+        txfArtikelNr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfArtikelNrMouseClicked(evt);
+            }
+        });
+
         lblArtikelNr.setText("Artikel-Nr.:");
 
         lblAnzahl.setText("Anzahl:");
+
+        txfAnzahl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfAnzahlMouseClicked(evt);
+            }
+        });
 
         btnHinzufuegen.setText("Hinzufügen");
 
@@ -64,7 +96,15 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         lblGegeben.setText("Gegeben:");
 
+        txfGegeben.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txfGegebenMouseClicked(evt);
+            }
+        });
+
         lblZurueck.setText("Zurück:");
+
+        txfZurueck.setEditable(false);
 
         btnStorno.setText("Storno");
 
@@ -74,32 +114,152 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnBonDrucken.setText("letzten Bon drucken");
 
+        btnZifferEins.setText("1");
+        btnZifferEins.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferEinsActionPerformed(evt);
+            }
+        });
+
+        btnZifferDrei.setText("3");
+        btnZifferDrei.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferDreiActionPerformed(evt);
+            }
+        });
+
+        btnZifferSechs.setText("6");
+        btnZifferSechs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferSechsActionPerformed(evt);
+            }
+        });
+
+        btnZifferFünf.setText("5");
+        btnZifferFünf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferFünfActionPerformed(evt);
+            }
+        });
+
+        btnZifferVier.setText("4");
+        btnZifferVier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferVierActionPerformed(evt);
+            }
+        });
+
+        btnZifferZwei.setText("2");
+        btnZifferZwei.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferZweiActionPerformed(evt);
+            }
+        });
+
+        btnZifferAcht.setText("8");
+        btnZifferAcht.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferAchtActionPerformed(evt);
+            }
+        });
+
+        btnZifferNeun.setText("9");
+        btnZifferNeun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferNeunActionPerformed(evt);
+            }
+        });
+
+        btnZifferNull.setText("0");
+        btnZifferNull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferNullActionPerformed(evt);
+            }
+        });
+
+        btnZifferKomma.setText(",");
+        btnZifferKomma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferKommaActionPerformed(evt);
+            }
+        });
+
+        btnZifferSieben.setText("7");
+        btnZifferSieben.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferSiebenActionPerformed(evt);
+            }
+        });
+
+        btnNeuerKaufvorgang.setText("Neuer Kaufvorgang");
+
+        btnAuskunft.setText("Auskunft");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblArtikelNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblAnzahl)
-                        .addComponent(lblGegeben, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lblZurueck))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txfGegeben, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(txfArtikelNr, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txfAnzahl, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(txfZurueck, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHinzufuegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBezahlen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
-                .addComponent(btnKarte, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(btnZifferNull, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnZifferKomma, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblArtikelNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAnzahl)
+                                .addComponent(lblGegeben, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblZurueck))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnZifferEins, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnZifferZwei, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnZifferDrei, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnZifferSieben, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnZifferAcht, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnZifferNeun, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnZifferVier, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnZifferFünf, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnZifferSechs, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txfGegeben, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                        .addComponent(txfArtikelNr, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txfAnzahl, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(txfZurueck, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(89, 89, 89)
+                                        .addComponent(btnHinzufuegen, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                                        .addComponent(btnBezahlen, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnNeuerKaufvorgang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnAuskunft, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnKarte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblArtikelliste)
                     .addComponent(jScrollPane1)
@@ -114,43 +274,231 @@ public class Kasse_GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(lblArtikelliste)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblArtikelNr)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAnzahl)
-                                    .addComponent(txfAnzahl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txfArtikelNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHinzufuegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblArtikelNr)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblAnzahl)
+                                            .addComponent(txfAnzahl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txfArtikelNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnHinzufuegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblGegeben)
                                     .addComponent(txfGegeben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblZurueck)
-                                    .addComponent(txfZurueck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnBezahlen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnKarte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txfZurueck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBezahlen, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnKarte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnZifferEins, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnZifferZwei, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnZifferDrei, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnZifferVier, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnZifferFünf, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnZifferSechs, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAuskunft, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnNeuerKaufvorgang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)))
+                                .addGap(51, 51, 51))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblArtikelliste)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBonDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnZifferNeun, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnZifferAcht, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnZifferSieben, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(btnBonDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMinus, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                    .addComponent(btnStorno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnZifferKomma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnZifferNull, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnMinus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnStorno, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    private void btnZifferEinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferEinsActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "1");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"1");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"1");
+        }
+    }//GEN-LAST:event_btnZifferEinsActionPerformed
+
+    private void txfArtikelNrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfArtikelNrMouseClicked
+        aktuellesTextfeld = "txfArtikelNr";
+    }//GEN-LAST:event_txfArtikelNrMouseClicked
+
+    private void txfAnzahlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfAnzahlMouseClicked
+        aktuellesTextfeld = "txfAnzahl";
+    }//GEN-LAST:event_txfAnzahlMouseClicked
+
+    private void txfGegebenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txfGegebenMouseClicked
+        aktuellesTextfeld = "txfGegeben";
+    }//GEN-LAST:event_txfGegebenMouseClicked
+
+    private void btnZifferZweiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferZweiActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "2");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"2");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"2");
+        }
+    }//GEN-LAST:event_btnZifferZweiActionPerformed
+
+    private void btnZifferDreiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferDreiActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "3");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"3");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"3");
+        }
+    }//GEN-LAST:event_btnZifferDreiActionPerformed
+
+    private void btnZifferVierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferVierActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "4");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"4");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"4");
+        }
+    }//GEN-LAST:event_btnZifferVierActionPerformed
+
+    private void btnZifferFünfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferFünfActionPerformed
+       // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "5");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"5");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"5");
+        }
+    }//GEN-LAST:event_btnZifferFünfActionPerformed
+
+    private void btnZifferSechsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferSechsActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "6");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"6");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"6");
+        }
+    }//GEN-LAST:event_btnZifferSechsActionPerformed
+
+    private void btnZifferSiebenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferSiebenActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "7");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"7");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"7");
+        }
+    }//GEN-LAST:event_btnZifferSiebenActionPerformed
+
+    private void btnZifferAchtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferAchtActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "8");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"8");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"8");
+        }
+    }//GEN-LAST:event_btnZifferAchtActionPerformed
+
+    private void btnZifferNeunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferNeunActionPerformed
+       // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "9");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"9");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"9");
+        }
+    }//GEN-LAST:event_btnZifferNeunActionPerformed
+
+    private void btnZifferNullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferNullActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ "0");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+"0");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+"0");
+        }
+    }//GEN-LAST:event_btnZifferNullActionPerformed
+
+    private void btnZifferKommaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferKommaActionPerformed
+        // Nach Ausgewähtem Textfeld suchen
+        if(aktuellesTextfeld == "txfArtikelNr"){
+            txfArtikelNr.setText(txfArtikelNr.getText()+ ".");
+        }
+        else if(aktuellesTextfeld == "txfAnzahl"){
+            txfAnzahl.setText(txfAnzahl.getText()+".");
+        }
+        else if(aktuellesTextfeld == "txfGegeben"){
+            txfGegeben.setText(txfGegeben.getText()+".");
+        }
+    }//GEN-LAST:event_btnZifferKommaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +536,25 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAuskunft;
     private javax.swing.JButton btnBezahlen;
     private javax.swing.JButton btnBonDrucken;
     private javax.swing.JButton btnHinzufuegen;
     private javax.swing.JButton btnKarte;
     private javax.swing.JButton btnMinus;
+    private javax.swing.JButton btnNeuerKaufvorgang;
     private javax.swing.JButton btnStorno;
+    private javax.swing.JButton btnZifferAcht;
+    private javax.swing.JButton btnZifferDrei;
+    private javax.swing.JButton btnZifferEins;
+    private javax.swing.JButton btnZifferFünf;
+    private javax.swing.JButton btnZifferKomma;
+    private javax.swing.JButton btnZifferNeun;
+    private javax.swing.JButton btnZifferNull;
+    private javax.swing.JButton btnZifferSechs;
+    private javax.swing.JButton btnZifferSieben;
+    private javax.swing.JButton btnZifferVier;
+    private javax.swing.JButton btnZifferZwei;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnzahl;
     private javax.swing.JLabel lblArtikelNr;
