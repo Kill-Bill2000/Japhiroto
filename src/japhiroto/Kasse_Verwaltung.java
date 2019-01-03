@@ -50,6 +50,7 @@ public class Kasse_Verwaltung {
             
             gesamtBetrag = gesamtBetrag + (artikelliste.get(i).getPreis()*artikelliste.get(i).getAnzahl());
         }
+        gesamtBetrag = (Math.round(gesamtBetrag)*10)/10;
         return gesamtBetrag;
     }
     
