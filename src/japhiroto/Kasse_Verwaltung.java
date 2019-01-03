@@ -5,7 +5,9 @@
  */
 package japhiroto;
 
-    public DB_Verbindung dieDB_Verbindung;
+import java.sql.*;
+
+    
 
 /**
  *
@@ -13,8 +15,22 @@ package japhiroto;
  */
 public class Kasse_Verwaltung {
     
-    public Artikel artikelSuchen(){
+    private DB_Verbindung dieDB_Verbindung;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public Artikel artikelSuchen(String ArtikelNr) throws SQLException{
         
+        
+        //rs = dieDB_Verbindung.abfragen("SELECT * FROM japhiroto WHERE artikelNr = "+ArtikelNr);
+        return null;
     }
     
     
