@@ -21,7 +21,7 @@ public class Artikel {
         this.artikelNummer = nummer;
     }
 
-    public Artikel(String name, double preis, String nummer, int artikelNummer) {
+    public Artikel(String name, double preis, String nummer, int anzahl) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
         this.artikelNummer = nummer;
