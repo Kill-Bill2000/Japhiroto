@@ -18,6 +18,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private Kasse_Verwaltung dieKasse_Verwaltung;
     private String aktuellesTextfeld = "txfArtikelNr";
     private ArrayList<Artikel> artikelliste = new ArrayList<Artikel>();
+    private boolean bezahlt=false;
     /**
      * Creates new form Kasse_GUI
      */
@@ -624,6 +625,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAuskunftActionPerformed
 
     private void btnBezahlenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBezahlenActionPerformed
+    if(bezahlt){
+        JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
+    }
+    else{
         if(txfGegeben.getText()== "" || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
             JOptionPane.showInputDialog(rootPane, "Bitte Gegebenfeld überprüfen!");
         }
@@ -631,11 +636,35 @@ public class Kasse_GUI extends javax.swing.JFrame {
             Double zurueck;
             zurueck = Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10 - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
             txfZurueck.setText(Double.toString(zurueck));
+            bezahlt=true;
         }
+    }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
     private void btnKarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKarteActionPerformed
+    if(bezahlt){
+        JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
+    }
+    else{
+        int zufallszahl;
+        zufallszahl = (int)(Math.random()*100);
+        txfZurueck.setText("0.00");
+        JOptionPane.showInputDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist...");
+        try{
+            Thread.sleep(1000);
         
+            if (zufallszahl <=20){
+                JOptionPane.showInputDialog(rootPane, "Transaktion fehlgeschlagen! Bitte erneut versuchen.");
+            }
+            else{
+                JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
+                bezahlt=true;
+            }
+        }
+        catch(InterruptedException e){
+            JOptionPane.showInputDialog(rootPane, e.getMessage());
+                }
+    }
     }//GEN-LAST:event_btnKarteActionPerformed
 
     /**
