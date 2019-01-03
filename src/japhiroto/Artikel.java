@@ -42,10 +42,10 @@ public class Artikel {
         artikelName = name;
     }
     
-    public int getArtikelNummer() {
+    public String getArtikelNummer() {
         return artikelNummer;
     }
-    public void setArtikelNummer(int artNr) {
+    public void setArtikelNummer(String artNr) {
         artikelNummer = artNr;
     }
 }
