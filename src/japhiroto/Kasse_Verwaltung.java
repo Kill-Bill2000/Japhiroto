@@ -37,6 +37,12 @@ public class Kasse_Verwaltung {
         rArtikel = dieDB_Verbindung.getArtikel(artikelNr);
         return rArtikel;
     }
+    public Artikel artikelSuchenMitAnzahl(String artikelNr,int anz) throws SQLException{
+        
+        Artikel rArtikel;
+        rArtikel = dieDB_Verbindung.getArtikelMitAnzahl(artikelNr,anz);
+        return rArtikel;
+    }
     
     
 }
