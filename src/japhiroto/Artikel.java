@@ -45,6 +45,9 @@ public class Artikel {
     public String getArtikelNummer() {
         return artikelNummer;
     }
+    public int getAnzahl(){
+        return anzahl;
+    }
     public void setArtikelNummer(String artNr) {
         artikelNummer = artNr;
     }
