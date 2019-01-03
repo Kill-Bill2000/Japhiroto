@@ -51,4 +51,14 @@ public class Bestellung {
     public String getLieferant() {
         return lieferant;
     }
+    public int anzahlArtikelNr(String nr) {
+        int a = 0;
+        for (int i = 0; i < artikel.size(); i++) {
+            if (artikel.get(i).getArtikelNummer() == nr) {
+                a = i;
+                i = artikel.size();
+            }
+        }
+        return a;
+    }
 }
