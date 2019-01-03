@@ -26,7 +26,7 @@ public class Kasse_Verwaltung {
     
     
     
-    public Artikel artikelSuchen(String ArtikelNr) throws SQLException{
+    public Artikel artikelSuchen(String artikelNr) throws SQLException{
         
         
         //rs = dieDB_Verbindung.abfragen("SELECT * FROM japhiroto WHERE artikelNr = "+ArtikelNr);
