@@ -6,6 +6,7 @@
 package japhiroto;
 
 import java.sql.*;
+import java.util.ArrayList;
 
     
 
@@ -42,6 +43,14 @@ public class Kasse_Verwaltung {
         Artikel rArtikel;
         rArtikel = dieDB_Verbindung.getArtikelMitAnzahl(artikelNr,anz);
         return rArtikel;
+    }
+    public double gesamtbetragBerechnen(ArrayList<Artikel> artikelliste){
+        double gesamtBetrag=0;
+        for (int i = 0; i <= artikelliste.size(); i++) {
+            
+            gesamtBetrag = gesamtBetrag + (artikelliste.get(i).getPreis()*artikelliste.get(i).getAnzahl());
+        }
+        return gesamtBetrag;
     }
     
     
