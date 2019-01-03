@@ -35,10 +35,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblLagerUbersicht" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnLagerLager" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnLagerArtikelSuchen" alignment="0" pref="187" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="btnLagerArtikelSuchen" min="-2" pref="187" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Component id="lblLagerBestellungen" min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
@@ -61,8 +58,6 @@
                   <Component id="lblLagerBestellungen" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLagerArtikelSuchen" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnLagerLager" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -85,7 +80,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnLagerArtikelSuchen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Artikel suchen"/>
+        <Property name="text" type="java.lang.String" value="Lager"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLagerArtikelSuchenActionPerformed"/>
@@ -97,14 +92,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lblLagerBestellungenActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnLagerLager">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Lager anzeigen"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLagerLagerActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
