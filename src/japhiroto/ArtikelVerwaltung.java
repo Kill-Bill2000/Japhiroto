@@ -25,7 +25,7 @@ public class ArtikelVerwaltung {
     public Artikel getArtikelFromNummer(String artikelNummer) {
         Artikel gesuchterArtikel = null;
         for (int i = 0; i < artikelListe.size(); i++) {
-            if (checkName(artikelListe.get(i).getArtikelNummer(), artikelNummer)) {
+            if (checkName(Integer.toString(artikelListe.get(i).getArtikelNummer()), artikelNummer)) {
                 artikelListe.get(i);
                 i = artikelListe.size();
             }
@@ -35,7 +35,7 @@ public class ArtikelVerwaltung {
     public ArrayList<Artikel> getArtikelListeFromNummer(String artNr) {
         ArrayList<Artikel> gesuchteArtikel = null;
         for (int i = 0; i < artikelListe.size(); i++) {
-            if (checkName(artikelListe.get(i).getArtikelNummer(), artNr)) {
+            if (checkName(Integer.toString(artikelListe.get(i).getArtikelNummer()), artNr)) {
                 gesuchteArtikel.add(artikelListe.get(i));
             }
         }
