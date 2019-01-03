@@ -219,6 +219,7 @@ public class DB_Verbindung {
         return valid;
     }
     
+
     public ArrayList<Artikel> getArtikelFromNr(int nr) throws SQLException{
         //sucht die Artikel nach der Artikelnummer aus der DB und liefert diese in einer ArrayList zurück
         ArrayList<Artikel> artikelliste = new ArrayList<>();
@@ -235,4 +236,101 @@ public class DB_Verbindung {
         return artikelliste;
     }
     
+
+    /**
+     * Lagerabfragen
+     */
+    
+    public Artikel getArtikel(String artikelNummer) throws SQLException {
+        Artikel art;
+        String artNr, artName;
+        double vk;
+        
+        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        
+        artNr = rs.getString("artikelNummer");
+        artName = rs.getString("artikelName");
+        vk = rs.getDouble("verkaufPreis");
+        
+        art = new Artikel(artName, vk, artNr);
+        
+        return art;
+    }
+    
+    public Bestellung getBestellung(String bestellID) throws SQLException {
+        Bestellung bestell;
+        String befehl = String.format("SELECT * FROM bestellung WHERE bestellNummer = '%1$s'", bestellID);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        String lieferant = rs.getString("lieferant");
+        String bestellNr = rs.getString("bestellNummer");
+        ArrayList<Artikel> artikel = new ArrayList<>();
+        ArrayList<Integer> anzahl = new ArrayList<>();
+        String befehlZwei = String.format("SELECT artikelID, anzahl FROM bestellteArtikel WHERE bestellID = '%1$s'", bestellID);
+        ResultSet rese = abfragen(befehlZwei);
+        while(rese.next()) {
+            Artikel art = getArtikel(rese.getString("artikelID"));
+            artikel.add(art);
+            anzahl.add(rese.getInt("anzahl"));
+        }
+        bestell = new Bestellung(artikel, anzahl, bestellNr, lieferant);
+        return bestell;
+    }
+    
+    public ArrayList<Bestellung> getBestellungen() throws SQLException {
+        ArrayList<Bestellung> retBestell = new ArrayList<>();
+        
+        String befehl = "SELECT * FROM Bestellung WHERE erledigt = 0";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            Bestellung b = getBestellung(rs.getString("bestellNummer"));
+            retBestell.add(b);
+        }
+
+        return retBestell;
+    }
+    public void checkBestellung() throws SQLException {
+        String befehl = "SELECT * FROM Bestellung WHERE erledigt = 0";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            String bestellNummer = rs.getString("bestellNummer");
+            int anzahlArtikel = getBestellung(bestellNummer).getAnzahlArtikel();
+            befehl = String.format("SELECT * FROM BestellteArtikel WHERE bestellID = '%1$s'", bestellNummer);
+            ResultSet rese = abfragen(befehl);
+            
+        }
+    }
+    private void bestellungVollstaendig(String bestellNummer) throws SQLException {
+        String befehl = String.format("UPDATE bestellteArtikel SET anzahl = 0 WHERE bestellID = '%1$s'", bestellNummer);
+        updaten(befehl);
+        befehl = String.format("UPDATE bestellung SET erledight = 1 WHERE bestellNummer = '%1$s'", bestellNummer);
+        updaten(befehl);
+    }
+    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException {
+        Bestellung best = getBestellung(bestellNummer);
+        int i = best.anzahlArtikelNr(artikelNr);
+        if (i >= anz) {
+            String befehl = String.format("UPDATE bestellteArtikel SET anzahl = '%1$d' WHERE bestellID = '%2$s' AND artikelID = '%3$s'", anz, bestellNummer, artikelNr);
+            updaten(befehl);
+            int neu = anz + getVerwaltung().getBestandArtikel(artikelNr);
+            befehl = String.format("UPDATE Artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artikelNr);
+            updaten(befehl);
+        }
+    }
+    
+    public ArtikelVerwaltung getVerwaltung() throws SQLException {
+        ArtikelVerwaltung verw = new ArtikelVerwaltung();
+        
+        String befehl = "SELECT * FROM Artikel";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            Artikel a = getArtikel(rs.getString("artikelNummer"));
+            int b = rs.getInt("bestand");
+            verw.addArtikel(a, b);
+        }
+        
+        return verw;
+    }
 }
