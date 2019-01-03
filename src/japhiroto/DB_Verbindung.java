@@ -229,7 +229,7 @@ public class DB_Verbindung {
         ResultSet rs = abfragen(befehl);
         
         while(rs.next()){
-            artikelliste.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getInt("artikelNr")));
+            artikelliste.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getString("artikelNr")));
         }
         
         
@@ -255,6 +255,25 @@ public class DB_Verbindung {
         vk = rs.getDouble("verkaufPreis");
         
         art = new Artikel(artName, vk, artNr);
+        
+        return art;
+    }
+    public Artikel getArtikelMitAnzahl(String artikelNummer,int anzahl) throws SQLException {
+        Artikel art;
+        String artNr, artName;
+        double vk;
+        int anz;
+        
+        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        
+        artNr = rs.getString("artikelNummer");
+        artName = rs.getString("artikelName");
+        vk = rs.getDouble("verkaufPreis");
+        anz = anzahl;
+        
+        art = new Artikel(artName, vk, artNr,anz);
         
         return art;
     }
