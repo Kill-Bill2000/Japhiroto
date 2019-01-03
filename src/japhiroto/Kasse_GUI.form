@@ -100,25 +100,33 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnNeuerKaufvorgang" alignment="0" pref="135" max="32767" attributes="0"/>
+                  <Component id="btnKaufvorgangAbbrechen" alignment="0" max="32767" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="btnAuskunft" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnKarte" alignment="0" pref="109" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jButton1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblArtikelliste" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="btnStorno" min="-2" pref="114" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnMinus" pref="99" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblArtikelliste" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btnStorno" min="-2" pref="114" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnMinus" pref="99" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="btnBonDrucken" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnBonDrucken" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblImpressum" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,7 +150,7 @@
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnBonDrucken" alignment="3" min="-2" pref="66" max="-2" attributes="0"/>
-                                  <Component id="btnNeuerKaufvorgang" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Component id="btnKaufvorgangAbbrechen" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -208,8 +216,11 @@
                                           <Component id="btnZifferNull" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButton1" min="-2" pref="59" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblImpressum" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton1" min="-2" pref="59" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -313,6 +324,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="EC - Karte"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKarteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBonDrucken">
       <Properties>
@@ -407,9 +421,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnZifferSiebenActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnNeuerKaufvorgang">
+    <Component class="javax.swing.JButton" name="btnKaufvorgangAbbrechen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Neuer Kaufvorgang"/>
+        <Property name="text" type="java.lang.String" value="Kaufvorgang abbrechen"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnAuskunft">
@@ -433,6 +447,11 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Logout"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblImpressum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xa9; Japhiroto 2019"/>
       </Properties>
     </Component>
   </SubComponents>

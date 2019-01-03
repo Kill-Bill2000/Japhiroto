@@ -65,11 +65,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
         btnZifferNull = new javax.swing.JButton();
         btnZifferKomma = new javax.swing.JButton();
         btnZifferSieben = new javax.swing.JButton();
-        btnNeuerKaufvorgang = new javax.swing.JButton();
+        btnKaufvorgangAbbrechen = new javax.swing.JButton();
         btnAuskunft = new javax.swing.JButton();
         lblGesamt = new javax.swing.JLabel();
         txfGesamt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        lblImpressum = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasse");
@@ -128,6 +129,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
         btnMinus.setText("Minus");
 
         btnKarte.setText("EC - Karte");
+        btnKarte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKarteActionPerformed(evt);
+            }
+        });
 
         btnBonDrucken.setText("letzten Bon drucken");
 
@@ -208,7 +214,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
-        btnNeuerKaufvorgang.setText("Neuer Kaufvorgang");
+        btnKaufvorgangAbbrechen.setText("Kaufvorgang abbrechen");
 
         btnAuskunft.setText("Auskunft");
         btnAuskunft.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +228,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txfGesamt.setEditable(false);
 
         jButton1.setText("Logout");
+
+        lblImpressum.setText("© Japhiroto 2019");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -285,21 +293,26 @@ public class Kasse_GUI extends javax.swing.JFrame {
                         .addComponent(btnZifferKomma, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(183, 183, 183)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNeuerKaufvorgang, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(btnKaufvorgangAbbrechen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnAuskunft, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnKarte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblArtikelliste)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnStorno, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMinus, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
-                    .addComponent(btnBonDrucken, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblArtikelliste)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnStorno, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMinus, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
+                            .addComponent(btnBonDrucken, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblImpressum)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +332,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                 .addGap(53, 53, 53)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnBonDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnNeuerKaufvorgang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnKaufvorgangAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnMinus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -372,7 +385,9 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                             .addComponent(btnZifferKomma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(btnZifferNull, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblImpressum)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addContainerGap())))))))
         );
 
@@ -619,6 +634,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
+    private void btnKarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKarteActionPerformed
+        
+    }//GEN-LAST:event_btnKarteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -660,8 +679,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnBonDrucken;
     private javax.swing.JButton btnHinzufuegen;
     private javax.swing.JButton btnKarte;
+    private javax.swing.JButton btnKaufvorgangAbbrechen;
     private javax.swing.JButton btnMinus;
-    private javax.swing.JButton btnNeuerKaufvorgang;
     private javax.swing.JButton btnStorno;
     private javax.swing.JButton btnZifferAcht;
     private javax.swing.JButton btnZifferDrei;
@@ -681,6 +700,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblArtikelliste;
     private javax.swing.JLabel lblGegeben;
     private javax.swing.JLabel lblGesamt;
+    private javax.swing.JLabel lblImpressum;
     private javax.swing.JLabel lblZurueck;
     private javax.swing.JTextArea txaAusgabe;
     private javax.swing.JTextField txfAnzahl;
