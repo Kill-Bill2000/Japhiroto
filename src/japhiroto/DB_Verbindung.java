@@ -260,7 +260,7 @@ public class DB_Verbindung {
     }
     public Artikel getArtikelMitAnzahl(String artikelNummer,int anzahl) throws SQLException {
         Artikel art;
-        String artNr, artName;
+        String artNr, artName; 
         double vk;
         int anz;
         
