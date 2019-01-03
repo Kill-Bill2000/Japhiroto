@@ -94,21 +94,7 @@ public class DB_Verbindung {
         
         return rs;
     }
-     private Artikel artikelAbfragen(String artikelNr) throws SQLException{
-        //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
-        //liefert das abgefragte ResultSet zurück.
-        //ResultSet und Statement werden dann wieder geschlossen
-        Statement stmt;
-        ResultSet rs;
-        String sqlBefehl = "SELECT * FROM japhiroto WHERE artikelNr = "+artikelNr;
-        stmt = con.createStatement();
-        rs = stmt.executeQuery(sqlBefehl);
-        
-        //rs.close();   //Fehler bei .close(): 'SQLException: Operation not allowed after ResultSet closed'
-        //stmt.close();
-        
-        return null;
-    }
+     
     
     private void updaten(String sqlBefehl) throws SQLException{
         //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
