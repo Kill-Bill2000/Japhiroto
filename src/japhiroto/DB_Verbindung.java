@@ -7,6 +7,7 @@ package japhiroto;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,8 +38,8 @@ public class DB_Verbindung {
     public boolean verbindungAufbauen() throws SQLException{
         //baut eine Verbindung zur Datenbank mit Host-Adresse, Benutzername und Passwort der DB auf
         //liefert 'true' zurück, wenn die Verbindung nach 5 Sekunden noch nicht geschlossen und valide ist
-        url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
-        con = DriverManager.getConnection(url, dbUser, dbPass);
+        this.url = "jdbc:mysql://" + this.dbHost + ":" + this.dbPort + "/" + this.dbName;
+        con = DriverManager.getConnection(this.url, this.dbUser, dbPass);
         return con.isValid(5);
     }
 
@@ -94,7 +95,6 @@ public class DB_Verbindung {
         
         return rs;
     }
-     
     
     private void updaten(String sqlBefehl) throws SQLException{
         //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
@@ -192,13 +192,13 @@ public class DB_Verbindung {
     public boolean accountUeberpruefen(String username, String passwort) throws SQLException{
         //prueft, ob der User mit den übergebenen Anmeldedaten existiert bzw. valide ist
         
-        boolean valid = true;
+        boolean valid = false;
         String befehl = String.format("SELECT COUNT(rolle) FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", username, passwort);
         ResultSet rs = abfragen(befehl);
         rs.next();
 
-        if (rs.getInt(1) == 0 ) {
-            valid = false;
+        if (rs.getInt(1) != 0 ) {
+            valid = true;
         }
         
         return valid;
@@ -207,16 +207,130 @@ public class DB_Verbindung {
     public boolean accountUeberpruefen(Account acc) throws SQLException{
         //prueft, ob der User mit den Anmeldedaten des übergebenen Accounts existiert bzw. valide ist
         
-        boolean valid = true;
+        boolean valid = false;
         String befehl = String.format("SELECT COUNT(rolle) FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", acc.getBenutzername(), acc.getPasswort());
         ResultSet rs = abfragen(befehl);
         rs.next();
 
-        if (rs.getInt(1) == 0 ) {
-            valid = false;
+        if (rs.getInt(1) != 0 ) {
+            valid = true;
         }
         
         return valid;
     }
     
+
+    public ArrayList<Artikel> getArtikelFromNr(int nr) throws SQLException{
+        //sucht die Artikel nach der Artikelnummer aus der DB und liefert diese in einer ArrayList zurück
+        ArrayList<Artikel> artikelliste = new ArrayList<>();
+        
+        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNr = %1$d", nr);
+        
+        ResultSet rs = abfragen(befehl);
+        
+        while(rs.next()){
+            artikelliste.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getInt("artikelNr")));
+        }
+        
+        
+        return artikelliste;
+    }
+    
+
+    /**
+     * Lagerabfragen
+     */
+    
+    public Artikel getArtikel(String artikelNummer) throws SQLException {
+        Artikel art;
+        String artNr, artName;
+        double vk;
+        
+        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        
+        artNr = rs.getString("artikelNummer");
+        artName = rs.getString("artikelName");
+        vk = rs.getDouble("verkaufPreis");
+        
+        art = new Artikel(artName, vk, artNr);
+        
+        return art;
+    }
+    
+    public Bestellung getBestellung(String bestellID) throws SQLException {
+        Bestellung bestell;
+        String befehl = String.format("SELECT * FROM bestellung WHERE bestellNummer = '%1$s'", bestellID);
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        String lieferant = rs.getString("lieferant");
+        String bestellNr = rs.getString("bestellNummer");
+        ArrayList<Artikel> artikel = new ArrayList<>();
+        ArrayList<Integer> anzahl = new ArrayList<>();
+        String befehlZwei = String.format("SELECT artikelID, anzahl FROM bestellteArtikel WHERE bestellID = '%1$s'", bestellID);
+        ResultSet rese = abfragen(befehlZwei);
+        while(rese.next()) {
+            Artikel art = getArtikel(rese.getString("artikelID"));
+            artikel.add(art);
+            anzahl.add(rese.getInt("anzahl"));
+        }
+        bestell = new Bestellung(artikel, anzahl, bestellNr, lieferant);
+        return bestell;
+    }
+    
+    public ArrayList<Bestellung> getBestellungen() throws SQLException {
+        ArrayList<Bestellung> retBestell = new ArrayList<>();
+        
+        String befehl = "SELECT * FROM Bestellung WHERE erledigt = 0";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            Bestellung b = getBestellung(rs.getString("bestellNummer"));
+            retBestell.add(b);
+        }
+
+        return retBestell;
+    }
+    public void checkBestellung() throws SQLException {
+        String befehl = "SELECT * FROM Bestellung WHERE erledigt = 0";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            String bestellNummer = rs.getString("bestellNummer");
+            int anzahlArtikel = getBestellung(bestellNummer).getAnzahlArtikel();
+            befehl = String.format("SELECT * FROM BestellteArtikel WHERE bestellID = '%1$s'", bestellNummer);
+            ResultSet rese = abfragen(befehl);
+            
+        }
+    }
+    private void bestellungVollstaendig(String bestellNummer) throws SQLException {
+        String befehl = String.format("UPDATE bestellteArtikel SET anzahl = 0 WHERE bestellID = '%1$s'", bestellNummer);
+        updaten(befehl);
+        befehl = String.format("UPDATE bestellung SET erledight = 1 WHERE bestellNummer = '%1$s'", bestellNummer);
+        updaten(befehl);
+    }
+    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException {
+        Bestellung best = getBestellung(bestellNummer);
+        int i = best.anzahlArtikelNr(artikelNr);
+        if (i >= anz) {
+            String befehl = String.format("UPDATE bestellteArtikel SET anzahl = '%1$d' WHERE bestellID = '%2$s' AND artikelID = '%3$s'", anz, bestellNummer, artikelNr);
+            updaten(befehl);
+            int neu = anz + getVerwaltung().getBestandArtikel(artikelNr);
+            befehl = String.format("UPDATE Artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artikelNr);
+            updaten(befehl);
+        }
+    }
+    
+    public ArtikelVerwaltung getVerwaltung() throws SQLException {
+        ArtikelVerwaltung verw = new ArtikelVerwaltung();
+        
+        String befehl = "SELECT * FROM Artikel";
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            Artikel a = getArtikel(rs.getString("artikelNummer"));
+            int b = rs.getInt("bestand");
+            verw.addArtikel(a, b);
+        }
+        
+        return verw;
+    }
 }

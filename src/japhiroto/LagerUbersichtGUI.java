@@ -5,6 +5,8 @@
  */
 package japhiroto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author philip
@@ -30,7 +32,6 @@ public class LagerUbersichtGUI extends javax.swing.JFrame {
         lblLagerLager = new javax.swing.JLabel();
         lblLagerUbersicht = new javax.swing.JLabel();
         btnLagerArtikelSuchen = new javax.swing.JButton();
-        btnLagerArtikel = new javax.swing.JButton();
         lblLagerBestellungen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,11 +42,19 @@ public class LagerUbersichtGUI extends javax.swing.JFrame {
 
         lblLagerUbersicht.setText("Übersicht");
 
-        btnLagerArtikelSuchen.setText("Artikel suchen");
-
-        btnLagerArtikel.setText("Wareneingang");
+        btnLagerArtikelSuchen.setText("Lager");
+        btnLagerArtikelSuchen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLagerArtikelSuchenActionPerformed(evt);
+            }
+        });
 
         lblLagerBestellungen.setText("Bestellungen");
+        lblLagerBestellungen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblLagerBestellungenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,11 +71,9 @@ public class LagerUbersichtGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblLagerUbersicht)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLagerArtikelSuchen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLagerArtikel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblLagerBestellungen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnLagerArtikelSuchen, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(lblLagerBestellungen, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -78,15 +85,21 @@ public class LagerUbersichtGUI extends javax.swing.JFrame {
                 .addComponent(lblLagerUbersicht)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLagerArtikel)
-                        .addComponent(lblLagerBestellungen))
+                    .addComponent(lblLagerBestellungen)
                     .addComponent(btnLagerArtikelSuchen))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblLagerBestellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblLagerBestellungenActionPerformed
+        new LagerBestellungenGUI().setVisible(true);
+    }//GEN-LAST:event_lblLagerBestellungenActionPerformed
+
+    private void btnLagerArtikelSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLagerArtikelSuchenActionPerformed
+        new LagerArtikelSuchen().setVisible(true);
+    }//GEN-LAST:event_btnLagerArtikelSuchenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,7 +138,6 @@ public class LagerUbersichtGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLagerArtikel;
     private javax.swing.JButton btnLagerArtikelSuchen;
     private javax.swing.JButton lblLagerBestellungen;
     private javax.swing.JLabel lblLagerLager;
