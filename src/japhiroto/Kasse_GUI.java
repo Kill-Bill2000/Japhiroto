@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -16,12 +17,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
     private Kasse_Verwaltung dieKasse_Verwaltung;
     private String aktuellesTextfeld = "txfArtikelNr";
-    private ArrayList<Artikel> Artikelliste = new ArrayList<Artikel>();
+    private ArrayList<Artikel> artikelliste = new ArrayList<Artikel>();
     /**
      * Creates new form Kasse_GUI
      */
-    public Kasse_GUI() {
+    public Kasse_GUI(Kasse_Verwaltung dieKasse_Verwaltung) {
         initComponents();
+        this.dieKasse_Verwaltung = dieKasse_Verwaltung;
     }
 
     /**
@@ -91,6 +93,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
         });
 
         btnHinzufuegen.setText("Hinzufügen");
+        btnHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHinzufuegenActionPerformed(evt);
+            }
+        });
 
         btnBezahlen.setText("Bar bezahlen");
 
@@ -344,6 +351,38 @@ public class Kasse_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ausgabeErstellen(){
+        txaAusgabe.setText("");
+        txaAusgabe.setText("Artikel:"+"\n"+"\n");
+    }
+    
+    private void ausgabeAktualisieren(){
+        for (int i = 0; i <= artikelliste.size(); i++) {
+            String name,leerzeichen="";
+            int anzahlBuchstaben;
+            int anzahlLeerzeichen;
+            name = artikelliste.get(i).getName();
+            anzahlBuchstaben = name.length();
+            if(anzahlBuchstaben>16){
+                String teil1 = name.substring(0, 14);
+                String teil2 = name.substring(15);
+                anzahlLeerzeichen = 26 - teil2.length();
+                for (i=0; i<anzahlLeerzeichen; i++){
+                    leerzeichen = leerzeichen +" ";
+                }
+                txaAusgabe.setText(txaAusgabe.getText()+teil1+"-"+"\n"+
+                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n");
+            }
+            else{
+                anzahlLeerzeichen = 26 - anzahlBuchstaben;
+                for (i=0; i<anzahlLeerzeichen; i++){
+                    leerzeichen = leerzeichen +" ";
+                }
+                txaAusgabe.setText(txaAusgabe.getText()+name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n");
+            }
+        }
+    }
+    
     
     private void btnZifferEinsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferEinsActionPerformed
         // Nach Ausgewähtem Textfeld suchen
@@ -499,6 +538,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
             txfGegeben.setText(txfGegeben.getText()+".");
         }
     }//GEN-LAST:event_btnZifferKommaActionPerformed
+
+    private void btnHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHinzufuegenActionPerformed
+       try{
+        artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));
+       
+       }
+       catch(SQLException e){
+           JOptionPane.showInputDialog("Artikel nicht gefunden oder Fehler bei Server!");
+       }
+    }//GEN-LAST:event_btnHinzufuegenActionPerformed
 
     /**
      * @param args the command line arguments
