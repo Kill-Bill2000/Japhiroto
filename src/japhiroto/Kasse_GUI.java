@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class Kasse_GUI extends javax.swing.JFrame {
 
+    private Kasse_Verwaltung dieKasse_Verwaltung;
     private String aktuellesTextfeld = "txfArtikelNr";
+    private ArrayList<Artikel> Artikelliste = new ArrayList<Artikel>();
     /**
      * Creates new form Kasse_GUI
      */
