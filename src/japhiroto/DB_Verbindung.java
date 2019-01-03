@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.awt.List;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -150,6 +151,25 @@ public class DB_Verbindung {
         mitarb = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
         
         return mitarb;
+    }
+    
+        public List mitarbeiterAuflisten() throws SQLException{
+        //liefert die Namen aller Mitarbeiter
+        
+        List liste = null;     
+        String befehl = String.format("SELECT anrede ,vorname, nachname FROM Mitarbeiter");
+        ResultSet rs = abfragen(befehl);
+        
+        rs.next();
+        
+        //die anzahl der Mitarbeiter (=länge der schleife) muss abgefragt werden
+        for (int i = 0; i < 10; i++) {
+            String einMitarbeiter = "" + rs.getString(1)+ rs.getString(2)+ rs.getString(3);
+            liste.add(einMitarbeiter);
+        } 
+                
+        return liste;
+        
     }
         
     public void accountAnlegen(Account acc) throws SQLException{
