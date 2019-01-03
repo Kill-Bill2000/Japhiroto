@@ -609,7 +609,14 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAuskunftActionPerformed
 
     private void btnBezahlenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBezahlenActionPerformed
-        // TODO add your handling code here:
+        if(txfGegeben.getText()== "" || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
+            JOptionPane.showInputDialog(rootPane, "Bitte Gegebenfeld überprüfen!");
+        }
+        else{
+            Double zurueck;
+            zurueck = Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10 - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
+            txfZurueck.setText(Double.toString(zurueck));
+        }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
     /**
