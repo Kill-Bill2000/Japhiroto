@@ -490,10 +490,10 @@ public class Login_GUI extends javax.swing.JFrame {
             user = txfBenutzername.getText();
             pass = login.passwortToString(txpPasswort.getPassword()); 
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
-                dbDatenAendern(login.ipAdresseVorhanden(this.dateipfad));
+                dbDatenAendern(true);
                 login.verbindungAufbauen(this.host, this.port, this.dbName, this.dbUser, this.dbPass);
             } else {
-                dbDatenAendern(false);
+                dbDatenAendern(login.ipAdresseVorhanden(this.dateipfad));
                 login.verbindungAufbauen();
             }
             
@@ -532,7 +532,6 @@ public class Login_GUI extends javax.swing.JFrame {
                         + "Bitte überprüfen Sie Ihre Zugangsdaten.", "Anmeldefehler", JOptionPane.ERROR_MESSAGE);
             }
                         
-            
         } catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden."
@@ -789,7 +788,8 @@ public class Login_GUI extends javax.swing.JFrame {
         boolean dbUserAusg = !txfDBUser.getText().equals("");
         boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
         
-        ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg;
+        //ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg; //mit Passwort
+        ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg;
         
         return ausg;
     }

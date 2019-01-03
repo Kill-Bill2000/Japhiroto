@@ -38,8 +38,8 @@ public class DB_Verbindung {
     public boolean verbindungAufbauen() throws SQLException{
         //baut eine Verbindung zur Datenbank mit Host-Adresse, Benutzername und Passwort der DB auf
         //liefert 'true' zurück, wenn die Verbindung nach 5 Sekunden noch nicht geschlossen und valide ist
-        url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
-        con = DriverManager.getConnection(url, dbUser, dbPass);
+        this.url = "jdbc:mysql://" + this.dbHost + ":" + this.dbPort + "/" + this.dbName;
+        con = DriverManager.getConnection(this.url, this.dbUser, dbPass);
         return con.isValid(5);
     }
 
@@ -219,6 +219,24 @@ public class DB_Verbindung {
         return valid;
     }
     
+
+    public ArrayList<Artikel> getArtikelFromNr(int nr) throws SQLException{
+        //sucht die Artikel nach der Artikelnummer aus der DB und liefert diese in einer ArrayList zurück
+        ArrayList<Artikel> artikelliste = new ArrayList<>();
+        
+        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNr = %1$d", nr);
+        
+        ResultSet rs = abfragen(befehl);
+        
+        while(rs.next()){
+            artikelliste.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getInt("artikelNr")));
+        }
+        
+        
+        return artikelliste;
+    }
+    
+
     /**
      * Lagerabfragen
      */
