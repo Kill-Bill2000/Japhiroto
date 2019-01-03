@@ -31,10 +31,82 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
+          <Component id="jSeparator1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="scrlPanAuswahl" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblMitarbeiter" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="lblAuswahl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfStundenlohn" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblRolle" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfRolle" min="-2" pref="80" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txfNummer" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblAnrede" max="32767" attributes="0"/>
+                                          <Component id="txfAnrede" min="-2" pref="41" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfVorname" min="-2" pref="73" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfNachname" min="-2" pref="73" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfStrasse" min="-2" pref="73" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblHausNr" max="32767" attributes="0"/>
+                                          <Component id="txfHausNr" min="-2" pref="48" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfOrt" min="-2" pref="64" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblUmsatz" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnDrucken" alignment="0" max="32767" attributes="0"/>
@@ -63,105 +135,20 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDatumBis" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="ComBoxDatumBis" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDatumVon" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ComBoxDatumVon" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblDatumauswahl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="scrlPanAuswahl" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblMitarbeiter" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="txfNummer" min="-2" pref="49" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblUmsatz" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblAuswahl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                                      <Component id="lblNummer" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblRolle" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfRolle" min="-2" pref="80" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfStatus" min="-2" pref="73" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfStundenlohn" min="-2" pref="80" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblArbeitszeit" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfArbeitszeit" min="-2" pref="80" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblUrlaubstage" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfUrlaubstage" min="-2" pref="95" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblAnrede" max="32767" attributes="0"/>
-                                          <Component id="txfAnrede" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfVorname" min="-2" pref="73" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfNachname" min="-2" pref="73" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfStrasse" min="-2" pref="73" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblHausNr" max="32767" attributes="0"/>
-                                          <Component id="txfHausNr" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfOrt" min="-2" pref="64" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lblDatumVon" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblDatumBis" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ComBoxDatumVon" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="153" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="cvDarstellungsfeld" min="-2" pref="500" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -174,27 +161,38 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="lblUmsatz" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnUmsAnzg" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnUmsAnzg" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDatumauswahl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="btnProdList" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="btnBestellungen" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblStatusBestellungen" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lblDatumauswahl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblDatumVon" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ComBoxDatumVon" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblDatumBis" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ComBoxDatumBis" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblDatumVon" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="ComBoxDatumVon" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="ComBoxDatumBis" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                          <Component id="lblDatumBis" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblStatusBestellungen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblBestellt" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -210,10 +208,13 @@
                           <Component id="txfInBearb" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblInBearb" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnDrucken" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="cvDarstellungsfeld" min="-2" pref="400" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -222,57 +223,54 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAuswahl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNummer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblAuswahl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="scrlPanAuswahl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="scrlPanAuswahl" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txfNummer" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txfAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="lblAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblVorname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNachname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblStarsse" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblOrt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txfVorname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfNachname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfStrasse" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfOrt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfNummer" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblRolle" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txfRolle" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txfStundenlohn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblVorname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNachname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblStarsse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblOrt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txfVorname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfNachname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfStrasse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfOrt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblStundenlohn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRolle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblArbeitszeit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUrlaubstage" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txfStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfStundenlohn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfRolle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfArbeitszeit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfUrlaubstage" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -328,9 +326,9 @@
     </Container>
     <Component class="javax.swing.JTextField" name="txfNummer">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNummer">
+    <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nummer"/>
+        <Property name="text" type="java.lang.String" value="Mitarbeiter ID"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVorname">
@@ -348,13 +346,6 @@
     <Component class="javax.swing.JLabel" name="lblNachname">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nachname"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txfStatus">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblStatus">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Status"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="ComBoxDatumVon">
@@ -384,7 +375,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblDatumBis">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bis"/>
+        <Property name="text" type="java.lang.String" value="Bis:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="ComBoxDatumBis">
@@ -409,6 +400,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Umsatz Anzeigen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUmsAnzgActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProdList">
       <Properties>
@@ -524,47 +518,12 @@
         <Property name="text" type="java.lang.String" value="Rolle"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txfArbeitszeit">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblArbeitszeit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Arbeitszeit"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txfUrlaubstage">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblUrlaubstage">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Urlaubstage"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Component class="java.awt.Canvas" name="cvDarstellungsfeld">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
       </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
+    </Component>
   </SubComponents>
 </Form>
