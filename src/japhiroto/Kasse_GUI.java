@@ -378,14 +378,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
                     leerzeichen = leerzeichen +" ";
                 }
                 txaAusgabe.setText(txaAusgabe.getText()+teil1+"-"+"\n"+
-                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n");
+                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
+                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n");
             }
             else{
                 anzahlLeerzeichen = 26 - anzahlBuchstaben;
                 for (i=0; i<anzahlLeerzeichen; i++){
                     leerzeichen = leerzeichen +" ";
                 }
-                txaAusgabe.setText(txaAusgabe.getText()+name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n");
+                txaAusgabe.setText(txaAusgabe.getText()+name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
+                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n");
             }
         }
     }
