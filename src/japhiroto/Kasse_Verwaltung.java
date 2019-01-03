@@ -16,6 +16,11 @@ import java.sql.*;
 public class Kasse_Verwaltung {
     
     private DB_Verbindung dieDB_Verbindung;
+
+    public Kasse_Verwaltung(DB_Verbindung dieDB_Verbindung) throws SQLException{
+        this.dieDB_Verbindung = dieDB_Verbindung;
+        dieDB_Verbindung.verbindungAufbauen();
+    }
     
     
     
@@ -28,9 +33,9 @@ public class Kasse_Verwaltung {
     
     public Artikel artikelSuchen(String artikelNr) throws SQLException{
         
-        
-        //rs = dieDB_Verbindung.abfragen("SELECT * FROM japhiroto WHERE artikelNr = "+ArtikelNr);
-        return null;
+        Artikel rArtikel;
+        rArtikel = dieDB_Verbindung.getArtikel(artikelNr);
+        return rArtikel;
     }
     
     
