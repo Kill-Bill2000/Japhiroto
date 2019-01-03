@@ -102,6 +102,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
         });
 
         btnBezahlen.setText("Bar bezahlen");
+        btnBezahlen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBezahlenActionPerformed(evt);
+            }
+        });
 
         lblGegeben.setText("Gegeben:");
 
@@ -579,11 +584,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
             JOptionPane.showInputDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
                     "Artikelname: "+derArtikel.getName()+"\n"+
                     "Preis: "+derArtikel.getPreis()+"€");
+            txfArtikelNr.setText("");
         }
         catch(SQLException e){
             JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
         }
     }//GEN-LAST:event_btnAuskunftActionPerformed
+
+    private void btnBezahlenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBezahlenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBezahlenActionPerformed
 
     /**
      * @param args the command line arguments
