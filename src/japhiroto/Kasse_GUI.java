@@ -218,6 +218,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
         });
 
         btnKaufvorgangAbbrechen.setText("Kaufvorgang abbrechen");
+        btnKaufvorgangAbbrechen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKaufvorgangAbbrechenActionPerformed(evt);
+            }
+        });
 
         btnAuskunft.setText("Auskunft");
         btnAuskunft.addActionListener(new java.awt.event.ActionListener() {
@@ -693,12 +698,32 @@ public class Kasse_GUI extends javax.swing.JFrame {
             txfGesamt.setText("");
             txfZurueck.setText("");
             artikelliste.clear();
+            bezahlt = false;
             
         }
         else{
             JOptionPane.showInputDialog(rootPane, "Zuerst Bezahlvorgang abschließen oder abbrechen.");
         }
     }//GEN-LAST:event_btnNeuerKaufvorgangActionPerformed
+
+    private void btnKaufvorgangAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKaufvorgangAbbrechenActionPerformed
+        int antwort = JOptionPane.showConfirmDialog(null, "Abbruch", "Wollen Sie wirklich abbbrechen?", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        switch (antwort) {
+            case JOptionPane.OK_OPTION:
+                ausgabeErstellen();
+                txfAnzahl.setText("");
+                txfArtikelNr.setText("");
+                txfGegeben.setText("");
+                txfGesamt.setText("");
+                txfZurueck.setText("");
+                artikelliste.clear();
+                bezahlt = false;
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_btnKaufvorgangAbbrechenActionPerformed
 
     /**
      * @param args the command line arguments
