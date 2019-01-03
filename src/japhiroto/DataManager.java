@@ -133,7 +133,7 @@ public class DataManager {
             }
         }
         
-        if (punkte < 3) {
+        if (punkte > 0 && punkte < 3) {
             out = false;
         }
         

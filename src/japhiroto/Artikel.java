@@ -10,14 +10,20 @@ package japhiroto;
  * @author philip
  */
 public class Artikel {
-    private String artikelNummer;
+    private int artikelNummer;
     private double verkauftsPreis; //noch mehr kommentar
     private String artikelName;
+    
+    public Artikel(String name, double preis, int nummer) {
+        this.artikelName = name;
+        this.verkauftsPreis = preis;
+        this.artikelNummer = nummer;
+    }
     
     public Artikel(String name, double preis, String nummer) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
-        this.artikelNummer = nummer;
+        this.artikelNummer = Integer.parseInt(nummer);
     }
     
     public double getPreis() {
@@ -34,10 +40,10 @@ public class Artikel {
         artikelName = name;
     }
     
-    public String getArtikelNummer() {
+    public int getArtikelNummer() {
         return artikelNummer;
     }
-    public void setArtikelNummer(String artNr) {
+    public void setArtikelNummer(int artNr) {
         artikelNummer = artNr;
     }
 }
