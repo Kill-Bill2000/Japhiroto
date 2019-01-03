@@ -560,11 +560,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
             else{
              artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),Integer.parseInt(txfAnzahl.getText())));
             }
-            
+            txfArtikelNr.setText("");
+            txfAnzahl.setText("");
        
        }
        catch(SQLException e){
-           JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden oder Fehler bei Server!");
+           JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
        }
         catch(NumberFormatException e){
             JOptionPane.showInputDialog(rootPane, "Bitte Anzahlfeld überprüfen!");
@@ -572,7 +573,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHinzufuegenActionPerformed
 
     private void btnAuskunftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuskunftActionPerformed
-        // TODO add your handling code here:
+        Artikel derArtikel;
+        try{
+            derArtikel= dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText());
+            JOptionPane.showInputDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
+                    "Artikelname: "+derArtikel.getName()+"\n"+
+                    "Preis: "+derArtikel.getPreis()+"€");
+        }
+        catch(SQLException e){
+            JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
+        }
     }//GEN-LAST:event_btnAuskunftActionPerformed
 
     /**
