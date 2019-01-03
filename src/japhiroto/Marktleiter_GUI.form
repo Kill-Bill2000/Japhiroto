@@ -434,6 +434,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;  Aktuelle&lt;br /&gt;Darstellung&lt;br /&gt;  Drucken&lt;/html&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDruckenActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblBestellt">
       <Properties>

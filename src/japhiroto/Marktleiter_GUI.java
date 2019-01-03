@@ -177,6 +177,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         txfBestellt.setText("Anzahl");
 
         btnDrucken.setText("<html>  Aktuelle<br />Darstellung<br />  Drucken</html>");
+        btnDrucken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDruckenActionPerformed(evt);
+            }
+        });
 
         lblBestellt.setText("Bestellt:");
 
@@ -452,6 +457,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         drawSales();
     }//GEN-LAST:event_btnUmsAnzgActionPerformed
 
+    private void btnDruckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDruckenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDruckenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -500,11 +509,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // X-axis
         for (int i = 1; i < sizeX/20 - 2; i++) {
             diagram.drawLine(zeroX + i*20, zeroY - 5, zeroX + i*20, zeroY + 5);
+            diagram.drawString(""+i, zeroX + i*20 - 3, zeroY + 20);            
         }
         
         // Y-axis
         for (int i = 1; i < sizeY/20 - 2; i++) {
             diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
         }
         
         
