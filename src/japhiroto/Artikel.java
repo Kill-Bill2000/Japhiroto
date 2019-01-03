@@ -13,12 +13,21 @@ public class Artikel {
     private int artikelNummer;
     private double verkauftsPreis; //noch mehr kommentar
     private String artikelName;
+    private int anzahl;//nur für die Kasse relevant
     
     public Artikel(String name, double preis, int nummer) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
         this.artikelNummer = nummer;
     }
+
+    public Artikel(int artikelNummer, double verkauftsPreis, String artikelName, int anzahl) {
+        this.artikelNummer = artikelNummer;
+        this.verkauftsPreis = verkauftsPreis;
+        this.artikelName = artikelName;
+        this.anzahl = anzahl;
+    }
+    
     
     public Artikel(String name, double preis, String nummer) {
         this.artikelName = name;
