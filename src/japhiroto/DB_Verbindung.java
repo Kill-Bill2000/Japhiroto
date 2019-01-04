@@ -258,6 +258,7 @@ public class DB_Verbindung {
         
         return art;
     }
+    // Die folgende Methode ist für die Kasse welche zusätlich zu den Artikeleigenschaften noch eine Anzahl dieser Artikel speichert
     public Artikel getArtikelMitAnzahl(String artikelNummer,int anzahl) throws SQLException {
         Artikel art;
         String artNr, artName; 
