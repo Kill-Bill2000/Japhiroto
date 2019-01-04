@@ -24,7 +24,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     /**
      * Creates new form Kasse_GUI
      */
-    public Kasse_GUI(Kasse_Verwaltung dieKasse_Verwaltung) {    
+    public Kasse_GUI() {    
 
         initComponents();
         this.dieKasse_Verwaltung = dieKasse_Verwaltung;
