@@ -189,6 +189,19 @@ public class DB_Verbindung {
 
     }
     
+    public int getMitarbeiterAnzahl() throws SQLException{
+        //liefert die Mitarbeiter-ID der DB zurück
+        
+        int anzahl;
+        String befehl = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
+        ResultSet rs = abfragen(befehl);
+        rs.next();
+        anzahl = rs.getInt(1);
+        
+        return anzahl;
+        
+    }
+    
     public List mitarbeiterAuflisten() throws SQLException{
         //liefert die Namen aller Mitarbeiter
         
