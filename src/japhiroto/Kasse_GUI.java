@@ -26,7 +26,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         initComponents();
         this.dieKasse_Verwaltung = dieKasse_Verwaltung;
-        ausgabeErstellen();
+        
     }
 
     /**
@@ -417,38 +417,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ausgabeErstellen(){
-        txaAusgabe.setText("");
-        txaAusgabe.setText("Artikel:"+"\n"+"\n");
-    }
-    
+        
     private void ausgabeAktualisieren(){
-        for (int i = 0; i <= artikelliste.size(); i++) {
-            String name,leerzeichen="";
-            int anzahlBuchstaben;
-            int anzahlLeerzeichen;
-            name = artikelliste.get(i).getName();
-            anzahlBuchstaben = name.length();
-            if(anzahlBuchstaben>16){
-                String teil1 = name.substring(0, 14);
-                String teil2 = name.substring(15);
-                anzahlLeerzeichen = 26 - teil2.length();
-                for (i=0; i<anzahlLeerzeichen; i++){
-                    leerzeichen = leerzeichen +" ";
-                }
-                txaAusgabe.setText(txaAusgabe.getText()+teil1+"-"+"\n"+
-                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
-                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n");
-            }
-            else{
-                anzahlLeerzeichen = 26 - anzahlBuchstaben;
-                for (i=0; i<anzahlLeerzeichen; i++){
-                    leerzeichen = leerzeichen +" ";
-                }
-                txaAusgabe.setText(txaAusgabe.getText()+name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
-                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n");
-            }
-        }
+        txaAusgabe.setText("");
+        txaAusgabe.setText(dieKasse_Verwaltung.ausgabeHeader() + dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
         txfGesamt.setText(String.format ("%.2f", dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)));
     }
     
