@@ -706,11 +706,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKaufvorgangAbbrechenActionPerformed
 
     private void btnBonDruckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBonDruckenActionPerformed
-    try{    
-        dieKasse_Verwaltung.kassenzettelErzeugen(artikelliste, gegeben);
+    if(bezahlt){    
+        try{    
+            dieKasse_Verwaltung.kassenzettelErzeugen(artikelliste, gegeben);
+        }
+        catch(IOException e){
+            JOptionPane.showInputDialog(rootPane, "Kassenzettel konnte nicht erstellt werden! Bitte wenden sie sich an Ihren Systemadministrator!");
+        }
     }
-    catch(IOException e){
-        JOptionPane.showInputDialog(rootPane, "Kassenzettel konnte nicht erstellt werden! Bitte wenden sie sich an Ihren Systemadministrator!");
+    else{
+        JOptionPane.showInputDialog(rootPane, "Zuerst Bezahlvorgang abschließen um Bon zu drucken!");
     }
     }//GEN-LAST:event_btnBonDruckenActionPerformed
 
