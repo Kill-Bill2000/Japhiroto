@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private String aktuellesTextfeld = "txfArtikelNr";
     private ArrayList<Artikel> artikelliste = new ArrayList<Artikel>();
     private boolean bezahlt=false;
+    private double gegeben=0;
     /**
      * Creates new form Kasse_GUI
      */
@@ -139,6 +141,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
         });
 
         btnBonDrucken.setText("letzten Bon drucken");
+        btnBonDrucken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBonDruckenActionPerformed(evt);
+            }
+        });
 
         btnZifferEins.setText("1");
         btnZifferEins.addActionListener(new java.awt.event.ActionListener() {
@@ -313,9 +320,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnKaufvorgangAbbrechen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnAuskunft, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnKarte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))))
+                            .addComponent(btnAuskunft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnKarte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNeuerKaufvorgang, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -628,7 +634,9 @@ public class Kasse_GUI extends javax.swing.JFrame {
         }
         else{
             Double zurueck;
-            zurueck = Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10 - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
+            
+            gegeben= Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10;
+            zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
             txfZurueck.setText(Double.toString(zurueck));
             bezahlt=true;
         }
@@ -643,6 +651,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         int zufallszahl;
         zufallszahl = (int)(Math.random()*100);
         txfZurueck.setText("0.00");
+        gegeben = 0.00;
         JOptionPane.showInputDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
         try{
             Thread.sleep(1000);
@@ -670,7 +679,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             txfZurueck.setText("");
             artikelliste.clear();
             bezahlt = false;
-            
+            gegeben = 0;
         }
         else{
             JOptionPane.showInputDialog(rootPane, "Zuerst Bezahlvorgang abschließen oder abbrechen.");
@@ -689,11 +698,21 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txfZurueck.setText("");
                 artikelliste.clear();
                 bezahlt = false;
+                gegeben=0;
                 break;
             default:
                 break;
         }
     }//GEN-LAST:event_btnKaufvorgangAbbrechenActionPerformed
+
+    private void btnBonDruckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBonDruckenActionPerformed
+    try{    
+        dieKasse_Verwaltung.kassenzettelErzeugen(artikelliste, gegeben);
+    }
+    catch(IOException e){
+        JOptionPane.showInputDialog(rootPane, "Kassenzettel konnte nicht erstellt werden! Bitte wenden sie sich an Ihren Systemadministrator!");
+    }
+    }//GEN-LAST:event_btnBonDruckenActionPerformed
 
     /**
      * @param args the command line arguments
