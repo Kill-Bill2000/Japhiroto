@@ -474,22 +474,22 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        List mitarbeiterliste = mitarbeiterliste(test1, test2, test3);
+//        List mitarbeiterliste = mitarbeiterliste(test1, test2, test3);
         DefaultListModel list = new DefaultListModel();
         
         jListMitarbeiter.setModel(list);
         
         list.addElement("testdude");
         
-        try {
-            mitarbeiterliste = database.mitarbeiterAuflisten();
-        } catch (SQLException ex) {
-            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        for (int i = 0; i < mitarbeiterliste.size; i++) {
-            list.addElement(mitarbeiterliste.getItem(i));
-        }
+//        try {
+//            mitarbeiterliste = database.mitarbeiterAuflisten();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        for (int i = 0; i < mitarbeiterliste.size; i++) {
+//            list.addElement(mitarbeiterliste.getItem(i));
+//        }
       
         
      
