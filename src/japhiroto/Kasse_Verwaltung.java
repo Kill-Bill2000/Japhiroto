@@ -5,10 +5,33 @@
  */
 package japhiroto;
 
+import java.sql.*;
+
+    
+
 /**
  *
  * @author Jan
  */
 public class Kasse_Verwaltung {
+    
+    private DB_Verbindung dieDB_Verbindung;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public Artikel artikelSuchen(String artikelNr) throws SQLException{
+        
+        
+        //rs = dieDB_Verbindung.abfragen("SELECT * FROM japhiroto WHERE artikelNr = "+ArtikelNr);
+        return null;
+    }
+    
     
 }
