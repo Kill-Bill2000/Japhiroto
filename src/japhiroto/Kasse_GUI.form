@@ -293,6 +293,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnHinzufuegen">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Hinzuf&#xfc;gen"/>
       </Properties>
       <Events>
@@ -301,6 +304,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBezahlen">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Bar bezahlen"/>
       </Properties>
       <Events>
@@ -329,6 +335,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnStorno">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Storno"/>
       </Properties>
       <Events>
@@ -337,6 +346,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMinus">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Minus"/>
       </Properties>
       <Events>
@@ -345,6 +357,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnKarte">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="EC - Karte"/>
       </Properties>
       <Events>
@@ -353,6 +368,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBonDrucken">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="letzten Bon drucken"/>
       </Properties>
       <Events>
@@ -361,6 +379,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferEins">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="1"/>
       </Properties>
       <Events>
@@ -369,6 +390,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferDrei">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="3"/>
       </Properties>
       <Events>
@@ -377,6 +401,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferSechs">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="6"/>
       </Properties>
       <Events>
@@ -385,6 +412,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferF&#xfc;nf">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="5"/>
       </Properties>
       <Events>
@@ -393,6 +423,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferVier">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="4"/>
       </Properties>
       <Events>
@@ -401,6 +434,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferZwei">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="2"/>
       </Properties>
       <Events>
@@ -409,6 +445,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferAcht">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="8"/>
       </Properties>
       <Events>
@@ -417,6 +456,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferNeun">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="9"/>
       </Properties>
       <Events>
@@ -425,6 +467,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferNull">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
       <Events>
@@ -433,6 +478,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferKomma">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value=","/>
       </Properties>
       <Events>
@@ -441,6 +489,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnZifferSieben">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="99" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="7"/>
       </Properties>
       <Events>
@@ -449,6 +500,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnKaufvorgangAbbrechen">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Kaufvorgang abbrechen"/>
       </Properties>
       <Events>
@@ -457,6 +511,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAuskunft">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Auskunft"/>
       </Properties>
       <Events>
@@ -475,6 +532,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
     </Component>
@@ -485,6 +545,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnNeuerKaufvorgang">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Neuer Kaufvorgang"/>
       </Properties>
       <Events>
@@ -492,6 +555,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txfMinus">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMinusBetrag">
       <Properties>

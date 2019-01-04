@@ -105,6 +105,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnHinzufuegen.setBackground(new java.awt.Color(51, 255, 51));
         btnHinzufuegen.setText("Hinzufügen");
         btnHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +113,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnBezahlen.setBackground(new java.awt.Color(0, 204, 0));
         btnBezahlen.setText("Bar bezahlen");
         btnBezahlen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +133,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         txfZurueck.setEditable(false);
 
+        btnStorno.setBackground(new java.awt.Color(255, 255, 51));
         btnStorno.setText("Storno");
         btnStorno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +141,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnMinus.setBackground(new java.awt.Color(255, 255, 51));
         btnMinus.setText("Minus");
         btnMinus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +149,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnKarte.setBackground(new java.awt.Color(0, 204, 0));
         btnKarte.setText("EC - Karte");
         btnKarte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +157,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnBonDrucken.setBackground(new java.awt.Color(51, 255, 51));
         btnBonDrucken.setText("letzten Bon drucken");
         btnBonDrucken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +165,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferEins.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferEins.setText("1");
         btnZifferEins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +173,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferDrei.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferDrei.setText("3");
         btnZifferDrei.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +181,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferSechs.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferSechs.setText("6");
         btnZifferSechs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +189,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferFünf.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferFünf.setText("5");
         btnZifferFünf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +197,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferVier.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferVier.setText("4");
         btnZifferVier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +205,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferZwei.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferZwei.setText("2");
         btnZifferZwei.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +213,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferAcht.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferAcht.setText("8");
         btnZifferAcht.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +221,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferNeun.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferNeun.setText("9");
         btnZifferNeun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,6 +229,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferNull.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferNull.setText("0");
         btnZifferNull.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,6 +237,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferKomma.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferKomma.setText(",");
         btnZifferKomma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,6 +245,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnZifferSieben.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferSieben.setText("7");
         btnZifferSieben.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +253,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnKaufvorgangAbbrechen.setBackground(new java.awt.Color(255, 51, 51));
         btnKaufvorgangAbbrechen.setText("Kaufvorgang abbrechen");
         btnKaufvorgangAbbrechen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,6 +261,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnAuskunft.setBackground(new java.awt.Color(51, 255, 51));
         btnAuskunft.setText("Auskunft");
         btnAuskunft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,16 +273,20 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         txfGesamt.setEditable(false);
 
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setText("Logout");
 
         lblImpressum.setText("© Japhiroto 2019");
 
+        btnNeuerKaufvorgang.setBackground(new java.awt.Color(0, 204, 0));
         btnNeuerKaufvorgang.setText("Neuer Kaufvorgang");
         btnNeuerKaufvorgang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNeuerKaufvorgangActionPerformed(evt);
             }
         });
+
+        txfMinus.setBackground(new java.awt.Color(255, 255, 51));
 
         lblMinusBetrag.setText("Minus- Betrag:");
 
