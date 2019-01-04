@@ -5,6 +5,9 @@
  */
 package japhiroto;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -53,6 +56,49 @@ public class Kasse_Verwaltung {
         gesamtBetrag = (Math.round(gesamtBetrag)*10)/10;
         return gesamtBetrag;
     }
+    
+    public String kassenzettelErstellen(ArrayList<Artikel> artikelliste){
+        String ausgabe="";
+        for (int i = 0; i <= artikelliste.size(); i++) {
+            String name,leerzeichen="";
+            int anzahlBuchstaben;
+            int anzahlLeerzeichen;
+            name = artikelliste.get(i).getName();
+            anzahlBuchstaben = name.length();
+            if(anzahlBuchstaben>16){
+                String teil1 = name.substring(0, 14);
+                String teil2 = name.substring(15);
+                anzahlLeerzeichen = 26 - teil2.length();
+                for (i=0; i<anzahlLeerzeichen; i++){
+                    leerzeichen = leerzeichen +" ";
+                }
+                ausgabe = ausgabe + teil1+"-"+"\n"+
+                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
+                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n";
+            }
+            else{
+                anzahlLeerzeichen = 26 - anzahlBuchstaben;
+                for (i=0; i<anzahlLeerzeichen; i++){
+                    leerzeichen = leerzeichen +" ";
+                }
+                ausgabe= ausgabe +name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
+                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n";
+            }
+        }
+        return ausgabe;
+    }
+    
+    private void kassenzettelErzeugen(){
+        FileWriter f1;
+        String ausgabe;
+        
+        String
+        
+        try{
+            f1 = new FileWriter("kassenzettel.txt");
+            
+        }
+    } 
     
     
 }
