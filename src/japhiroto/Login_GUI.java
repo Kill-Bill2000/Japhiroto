@@ -10,6 +10,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -26,6 +28,12 @@ public class Login_GUI extends javax.swing.JFrame {
         initComponents();
         initGUI();
         login = new Login();   //DataManager initialisieren
+        try {
+            login.fileErstellen(dateipfad);
+        } catch (IOException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Datei '" + dateipfad + "' konnte nicht erstellt werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
