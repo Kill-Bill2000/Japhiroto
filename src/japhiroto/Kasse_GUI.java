@@ -631,26 +631,32 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnZifferKommaActionPerformed
 
     private void btnHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHinzufuegenActionPerformed
-        try{
-            if(Integer.parseInt(txfAnzahl.getText())<=0||Integer.parseInt(txfAnzahl.getText())>647){
-                JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
+        if(bezahlt == false){  
+            try{
+                if(Integer.parseInt(txfAnzahl.getText())<=0||Integer.parseInt(txfAnzahl.getText())>647){
+                    JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
+                }
+
+                else if(txfAnzahl.getText()== "1"||txfAnzahl.getText()== ""){
+                 artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));                  
+                }
+                else{
+                 artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),Integer.parseInt(txfAnzahl.getText())));
+                }
+                txfArtikelNr.setText("");
+                txfAnzahl.setText("");
+                txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
+
+           }
+           catch(SQLException e){
+               JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
+           }
+            catch(NumberFormatException e){
+                JOptionPane.showInputDialog(rootPane, "Bitte Anzahlfeld überprüfen!");
             }
-            
-            else if(txfAnzahl.getText()== "1"||txfAnzahl.getText()== ""){
-             artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));                  
-            }
-            else{
-             artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),Integer.parseInt(txfAnzahl.getText())));
-            }
-            txfArtikelNr.setText("");
-            txfAnzahl.setText("");
-       
-       }
-       catch(SQLException e){
-           JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
-       }
-        catch(NumberFormatException e){
-            JOptionPane.showInputDialog(rootPane, "Bitte Anzahlfeld überprüfen!");
+        }
+        else{
+            JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen! Ein Hinzufügen ist nicht mehr möglich.");
         }
     }//GEN-LAST:event_btnHinzufuegenActionPerformed
 
@@ -683,6 +689,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
             zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
             txfZurueck.setText(Double.toString(zurueck));
             bezahlt=true;
+            txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
+            txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
         }
     }
     }//GEN-LAST:event_btnBezahlenActionPerformed
@@ -706,6 +714,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
             else{
                 JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
                 bezahlt=true;
+                txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
+                txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
             }
         }
         catch(InterruptedException e){
@@ -716,6 +726,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
     private void btnNeuerKaufvorgangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeuerKaufvorgangActionPerformed
         if(bezahlt){
+            txaAusgabe.setText("");
             txfAnzahl.setText("");
             txfArtikelNr.setText("");
             txfGegeben.setText("");
@@ -735,6 +746,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         switch (antwort) {
             case JOptionPane.OK_OPTION:
+                txaAusgabe.setText("");
                 txfAnzahl.setText("");
                 txfArtikelNr.setText("");
                 txfGegeben.setText("");
