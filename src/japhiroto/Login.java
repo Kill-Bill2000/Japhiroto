@@ -79,5 +79,8 @@ public class Login {
         return dMan.passwortToString(password);
     }
     
+    public boolean fileErstellen(String dateipfad) throws IOException{
+        return dMan.fileErstellen(dateipfad);
+    }
     
 }
