@@ -94,11 +94,23 @@ public class Kasse_Verwaltung {
         return ausgabe;
     }
     
-    private void kassenzettelErzeugen(ArrayList<Artikel> artikelliste) throws IOException{
+    private String kassenzettelFuss(ArrayList<Artikel> artikelliste, Double gegeben){
+        Double gesamt,rück;
+        String ausgabe;
+        
+        gesamt = gesamtbetragBerechnen(artikelliste);
+        rück = gegeben - gesamt;
+        ausgabe = "============================"+"\n"+"Gesamt:               "+gesamt+"€"+"\n"+"Gegeben:                "+gegeben+"€"+"\n"+
+                "Zurück:                 "+rück+"€"+"\n"+"\n"+"Vielen Dank für"+"\n"+"Ihren Einkauf!";
+        
+        return ausgabe;
+    }
+    
+    private void kassenzettelErzeugen(ArrayList<Artikel> artikelliste,Double gegeben) throws IOException{
         FileWriter f1;
         String ausgabe;
         
-        ausgabe = ausgabeHeader() + kassenzettelErstellen(artikelliste);
+        ausgabe = ausgabeHeader() + kassenzettelErstellen(artikelliste)+kassenzettelFuss(artikelliste, gegeben);
 
             f1 = new FileWriter("kassenzettel.txt");
             f1.write(ausgabe);
