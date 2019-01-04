@@ -28,14 +28,6 @@ public class Kasse_Verwaltung {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     public Artikel artikelSuchen(String artikelNr) throws SQLException{
         
         Artikel rArtikel;
