@@ -23,8 +23,8 @@ public class LagerLagerGUI extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) tblLager.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
         for (int i = 0; i < noDB.getAnzahlBestellungen(); i++) {
-            Lager lager = noDB.getLagerListenNummer(i);
-            model.addRow(new Object[]{lager.getLagerName(), lager.getAnzahlArtikel()});
+            //Lager lager = noDB.getLagerListenNummer(i);
+            model.addRow(new Object[]{/*lager.getLagerName(), lager.getAnzahlArtikel()*/});
         }
         
     }
