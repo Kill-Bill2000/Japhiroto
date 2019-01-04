@@ -94,7 +94,7 @@ public class Kasse_Verwaltung {
         return ausgabe;
     }
     
-    private String kassenzettelFuss(ArrayList<Artikel> artikelliste, Double gegeben){
+    public String kassenzettelFuss(ArrayList<Artikel> artikelliste, Double gegeben){
         Double gesamt,rück;
         String ausgabe;
         
@@ -106,7 +106,7 @@ public class Kasse_Verwaltung {
         return ausgabe;
     }
     
-    private void kassenzettelErzeugen(ArrayList<Artikel> artikelliste,Double gegeben) throws IOException{
+    public void kassenzettelErzeugen(ArrayList<Artikel> artikelliste,Double gegeben) throws IOException{
         FileWriter f1;
         String ausgabe;
         
