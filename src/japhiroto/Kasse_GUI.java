@@ -130,6 +130,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txfZurueck.setEditable(false);
 
         btnStorno.setText("Storno");
+        btnStorno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStornoActionPerformed(evt);
+            }
+        });
 
         btnMinus.setText("Minus");
 
@@ -718,6 +723,29 @@ public class Kasse_GUI extends javax.swing.JFrame {
         JOptionPane.showInputDialog(rootPane, "Zuerst Bezahlvorgang abschließen um Bon zu drucken!");
     }
     }//GEN-LAST:event_btnBonDruckenActionPerformed
+
+    private void btnStornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStornoActionPerformed
+        if(bezahlt == false){
+            boolean erfolgreich=false;
+            String artikelNr = txfArtikelNr.getText();
+            
+            for (int i = 0; i < artikelliste.size(); i++) {
+                if(artikelNr == artikelliste.get(i).getArtikelNummer()){
+                    artikelliste.remove(i);
+                    erfolgreich=true;
+                }
+            }
+            if(erfolgreich){
+                JOptionPane.showInputDialog(rootPane, "Artikel mit Nr.: "+artikelNr+" erfolgreich entfernt!");
+            }
+            else{
+                JOptionPane.showInputDialog(rootPane, "Artikel konnte nicht gefunden werden! Bitte Artikelfeld überprüfen.");
+            }
+        }
+        else{
+            JOptionPane.showInputDialog(rootPane, "Storno nach Bezahlvorgang nicht mehr möglich! Bitte an Manager werden.");
+        }
+    }//GEN-LAST:event_btnStornoActionPerformed
 
     /**
      * @param args the command line arguments
