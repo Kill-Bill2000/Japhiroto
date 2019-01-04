@@ -60,7 +60,10 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             artikel = db.getVerwaltung();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "IO Fehler: " + ex.getMessage());
         }
+        
         DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
         for (int i = 0; i < artikel.anzahlArtikel(); i++) {
             String artNr = artikel.getArtikelListenNummer(i).getArtikelNummer();
