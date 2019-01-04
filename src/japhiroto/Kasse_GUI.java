@@ -663,7 +663,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
     private void btnNeuerKaufvorgangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeuerKaufvorgangActionPerformed
         if(bezahlt){
-            ausgabeErstellen();
             txfAnzahl.setText("");
             txfArtikelNr.setText("");
             txfGegeben.setText("");
@@ -683,7 +682,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         switch (antwort) {
             case JOptionPane.OK_OPTION:
-                ausgabeErstellen();
                 txfAnzahl.setText("");
                 txfArtikelNr.setText("");
                 txfGegeben.setText("");
