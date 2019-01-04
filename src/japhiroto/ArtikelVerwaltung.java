@@ -5,6 +5,9 @@
  */
 package japhiroto;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -14,12 +17,14 @@ import java.util.ArrayList;
 public class ArtikelVerwaltung {
     private ArrayList<Artikel> artikelListe;
     private ArrayList<Integer> bestand;
+    private DB_Verbindung db;
     
     public ArtikelVerwaltung(ArrayList<Artikel> artikel, ArrayList<Integer> bestand) {
         artikelListe = artikel; //für die Datenbankklasse
         this.bestand = bestand;
     }
-    public ArtikelVerwaltung() {
+    public ArtikelVerwaltung() throws IOException {
+        this.db = new DB_Verbindung();
     }
     
     public Artikel getArtikelFromNummer(String artikelNummer) {
@@ -82,5 +87,16 @@ public class ArtikelVerwaltung {
     public void addArtikel(Artikel a, int b) {
         artikelListe.add(a);
         bestand.add(b);
+    }
+    public void artikelVerkaufen(String artNr, int anz) throws SQLException, IOException {
+        int a = 0;
+        for (int i = 0; i < artikelListe.size(); i++) {
+            if (artikelListe.get(i).getArtikelNummer() == artNr) {
+                a = i;
+                i = artikelListe.size();
+            }
+        }
+        bestand.set(a, anz);
+        db.verkaufeArtikel(artNr, anz);
     }
 }
