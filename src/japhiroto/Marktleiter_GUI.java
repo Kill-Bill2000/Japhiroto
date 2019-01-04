@@ -475,12 +475,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
 //        List mitarbeiterliste = mitarbeiterliste(test1, test2, test3);
-        DefaultListModel list = new DefaultListModel();
-        
-        jListMitarbeiter.setModel(list);
-        
-        list.addElement("testdude");
-        
+//        DefaultListModel list = new DefaultListModel();
+//        
+//        jListMitarbeiter.setModel(list);
+//        
+//        list.addElement("testdude");
+//        
 //        try {
 //            mitarbeiterliste = database.mitarbeiterAuflisten();
 //        } catch (SQLException ex) {
