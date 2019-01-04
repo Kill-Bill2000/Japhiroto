@@ -56,6 +56,11 @@ public class Kasse_Verwaltung {
         gesamtBetrag = (Math.round(gesamtBetrag)*10)/10;
         return gesamtBetrag;
     }
+    public String ausgabeHeader(){
+        String text;
+        text = "Artikel:"+"\n"+"\n"; //Header noch schön gestalten
+        return text;
+    }
     
     public String kassenzettelErstellen(ArrayList<Artikel> artikelliste){
         String ausgabe="";
