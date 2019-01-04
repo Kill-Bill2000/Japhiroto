@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
     
 
@@ -93,16 +94,16 @@ public class Kasse_Verwaltung {
         return ausgabe;
     }
     
-    private void kassenzettelErzeugen(){
+    private void kassenzettelErzeugen(ArrayList<Artikel> artikelliste) throws IOException{
         FileWriter f1;
         String ausgabe;
         
-        String
-        
-        try{
+        ausgabe = ausgabeHeader() + kassenzettelErstellen(artikelliste);
+
             f1 = new FileWriter("kassenzettel.txt");
-            
-        }
+            f1.write(ausgabe);
+            f1.close();
+        
     } 
     
     
