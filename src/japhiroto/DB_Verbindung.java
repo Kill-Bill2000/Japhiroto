@@ -290,7 +290,7 @@ public class DB_Verbindung {
         befehl = String.format("UPDATE bestellung SET erledight = 1 WHERE bestellNummer = '%1$s'", bestellNummer);
         updaten(befehl);
     }
-    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException {
+    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException, IOException {
         Bestellung best = getBestellung(bestellNummer);
         int i = best.anzahlArtikelNr(artikelNr);
         if (i >= anz) {
@@ -301,8 +301,14 @@ public class DB_Verbindung {
             updaten(befehl);
         }
     }
+    public void verkaufeArtikel(String artNr, int anz) throws SQLException, IOException {
+        int alt = getVerwaltung().getBestandArtikel(artNr);
+        anz = alt - anz;
+        String befehl = String.format("UPDATE artikel SET bestnad = '%1$d' WHERE artikelNummer = '%2$s'", anz, artNr);
+        updaten(befehl);
+    }
     
-    public ArtikelVerwaltung getVerwaltung() throws SQLException {
+    public ArtikelVerwaltung getVerwaltung() throws SQLException, IOException {
         ArtikelVerwaltung verw = new ArtikelVerwaltung();
         
         String befehl = "SELECT * FROM Artikel";
