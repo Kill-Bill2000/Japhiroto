@@ -28,12 +28,6 @@ public class Login_GUI extends javax.swing.JFrame {
         initComponents();
         initGUI();
         login = new Login();   //DataManager initialisieren
-        try {
-            login.fileErstellen(dateipfad);
-        } catch (IOException ex) {
-            getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Die Datei '" + dateipfad + "' konnte nicht erstellt werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     /**
@@ -495,6 +489,17 @@ public class Login_GUI extends javax.swing.JFrame {
         int rolle;
         
         try {
+            if (login.fileErstellen(dateipfad)) {
+                getToolkit().beep();    //Ton
+                JOptionPane.showMessageDialog(this, "Die Datei '" + dateipfad + "' wurde erfolgreiche erstellt.", "Datei erstellt", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (IOException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Datei '" + dateipfad + "' konnte nicht erstellt werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        try {
             user = txfBenutzername.getText();
             pass = login.passwortToString(txpPasswort.getPassword()); 
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
@@ -531,7 +536,7 @@ public class Login_GUI extends javax.swing.JFrame {
                     default:
                         //Rolle nicht gefunden oder falsche Rolle
                         JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
-                                + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                                + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Zugriffsfehler", JOptionPane.ERROR_MESSAGE);
                         break;
                 }
             } else {
