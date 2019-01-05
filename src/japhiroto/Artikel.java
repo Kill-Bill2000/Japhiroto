@@ -18,7 +18,7 @@ public class Artikel {
     public Artikel(String name, double preis, String nummer) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
-        this.artikelNummer = nummer;
+        this.artikelNummer = Integer.toString(nummer);
     }
 
     public Artikel(String name, double preis, String nummer, int anzahl) {

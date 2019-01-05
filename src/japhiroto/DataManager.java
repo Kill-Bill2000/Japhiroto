@@ -7,6 +7,7 @@ package japhiroto;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -140,5 +141,12 @@ public class DataManager {
         return out;
     }
 
+    public boolean fileErstellen(String dateipfad) throws IOException{
+        //prueft, ob die Datei bereits existiert und erstellt, wenn nicht, eine neue
+        //liefert zurueck, ob eine Datei erstellt wurde
+        File file = new File(dateipfad);
+        return file.createNewFile();
+        
+    }
 
 }

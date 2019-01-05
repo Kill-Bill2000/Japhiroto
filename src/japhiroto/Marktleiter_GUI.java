@@ -5,10 +5,14 @@
  */
 package japhiroto;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,17 +25,19 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private int sizeY; // =400
     private int zeroX = sizeX;
     private int zeroY = sizeY;
-            
     
+    private DB_Verbindung database;
+          
     /**
      * Creates new form Marktleiter_GUI
+     * @throws java.io.IOException
      */
-    public Marktleiter_GUI() {
+    public Marktleiter_GUI() throws IOException {
         initComponents();
         
-        diagram = (Graphics2D)cvDarstellungsfeld.getGraphics();
-        sizeX = cvDarstellungsfeld.getWidth();
-        sizeY = cvDarstellungsfeld.getHeight();
+        diagram = (Graphics2D)cvDrawField.getGraphics();
+        sizeX = cvDrawField.getWidth();
+        sizeY = cvDrawField.getHeight();
                         
         //set zero
         // sizeX = 500, sizeY = 400
@@ -40,16 +46,18 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                
         zeroX = sizeX - 475;
         zeroY = sizeY - 30;
+        
+        
+        try {
+            database = new DB_Verbindung();
+            database.verbindungAufbauen();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Could not establish connection to the database", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
                           
     }
     
-//    public void paint(Graphics g) {
-//        super.paint(g);
-//        g.setFont(new Font("Dialog", Font.PLAIN, 18));
-//        g.setColor(Color.BLUE);
-//        g.drawString("Hallo Welt", 100,400);
-//    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,14 +67,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lblUmsatz = new javax.swing.JLabel();
         lblMitarbeiter = new javax.swing.JLabel();
         lblAuswahl = new javax.swing.JLabel();
         scrlPanAuswahl = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        txfNummer = new javax.swing.JTextField();
+        jListEmployees = new javax.swing.JList<>();
+        txfMitarbeiterID = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
         lblVorname = new javax.swing.JLabel();
         txfVorname = new javax.swing.JTextField();
@@ -77,12 +84,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblDatumVon = new javax.swing.JLabel();
         lblDatumBis = new javax.swing.JLabel();
         ComBoxDatumBis = new javax.swing.JComboBox<>();
-        btnUmsAnzg = new javax.swing.JButton();
-        btnProdList = new javax.swing.JButton();
-        btnBestellungen = new javax.swing.JButton();
+        btnShowSales = new javax.swing.JButton();
+        btnWarehouseList = new javax.swing.JButton();
+        btnOrders = new javax.swing.JButton();
         lblStatusBestellungen = new javax.swing.JLabel();
         txfBestellt = new javax.swing.JTextField();
-        btnDrucken = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         lblBestellt = new javax.swing.JLabel();
         txfVerschickt = new javax.swing.JTextField();
         lblVerschickt = new javax.swing.JLabel();
@@ -100,11 +107,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblOrt = new javax.swing.JLabel();
         txfStundenlohn = new javax.swing.JTextField();
         lblStundenlohn = new javax.swing.JLabel();
-        txfRolle = new javax.swing.JTextField();
-        lblRolle = new javax.swing.JLabel();
-        cvDarstellungsfeld = new java.awt.Canvas();
-
-        jLabel7.setText("jLabel7");
+        cvDrawField = new java.awt.Canvas();
+        btnLoadList = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -117,22 +121,22 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblAuswahl.setText("Auswahl");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jListEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListEmployeesMouseClicked(evt);
+            }
         });
-        scrlPanAuswahl.setViewportView(jList1);
+        scrlPanAuswahl.setViewportView(jListEmployees);
+
+        txfMitarbeiterID.setEditable(false);
 
         lblID.setText("Mitarbeiter ID");
 
         lblVorname.setText("Vorname");
 
-        txfVorname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfVornameActionPerformed(evt);
-            }
-        });
+        txfVorname.setEditable(false);
+
+        txfNachname.setEditable(false);
 
         lblNachname.setText("Nachname");
 
@@ -151,40 +155,42 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             }
         });
 
-        btnUmsAnzg.setText("Umsatz Anzeigen");
-        btnUmsAnzg.addActionListener(new java.awt.event.ActionListener() {
+        btnShowSales.setText("Umsatz Anzeigen");
+        btnShowSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUmsAnzgActionPerformed(evt);
+                btnShowSalesActionPerformed(evt);
             }
         });
 
-        btnProdList.setText("Produktliste Anzeigen");
-        btnProdList.addActionListener(new java.awt.event.ActionListener() {
+        btnWarehouseList.setText("Lager Anzeigen");
+        btnWarehouseList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProdListActionPerformed(evt);
+                btnWarehouseListActionPerformed(evt);
             }
         });
 
-        btnBestellungen.setText("Bestellungen Anzeigen");
-        btnBestellungen.addActionListener(new java.awt.event.ActionListener() {
+        btnOrders.setText("Bestellungen Anzeigen");
+        btnOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBestellungenActionPerformed(evt);
+                btnOrdersActionPerformed(evt);
             }
         });
 
         lblStatusBestellungen.setText("Status offener Bestellungen:");
 
+        txfBestellt.setEditable(false);
         txfBestellt.setText("Anzahl");
 
-        btnDrucken.setText("<html>  Aktuelle<br />Darstellung<br />  Drucken</html>");
-        btnDrucken.addActionListener(new java.awt.event.ActionListener() {
+        btnPrint.setText("<html>  Aktuelle<br />Darstellung<br />  Drucken</html>");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDruckenActionPerformed(evt);
+                btnPrintActionPerformed(evt);
             }
         });
 
         lblBestellt.setText("Bestellt:");
 
+        txfVerschickt.setEditable(false);
         txfVerschickt.setText("Anzahl");
         txfVerschickt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +200,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblVerschickt.setText("Verschickt:");
 
+        txfInBearb.setEditable(false);
         txfInBearb.setText("Anzahl");
         txfInBearb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,25 +212,36 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblAnrede.setText("Anrede");
 
+        txfAnrede.setEditable(false);
+
+        txfStrasse.setEditable(false);
+
         lblStarsse.setText("Strasse");
 
-        txfHausNr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfHausNrActionPerformed(evt);
-            }
-        });
+        txfHausNr.setEditable(false);
 
         lblHausNr.setText("Haus Nr.");
 
+        txfPLZ.setEditable(false);
+
         lblPLZ.setText("PLZ");
+
+        txfOrt.setEditable(false);
 
         lblOrt.setText("Ort");
 
+        txfStundenlohn.setEditable(false);
+
         lblStundenlohn.setText("Stundenlohn");
 
-        lblRolle.setText("Rolle");
+        cvDrawField.setBackground(new java.awt.Color(255, 255, 255));
 
-        cvDarstellungsfeld.setBackground(new java.awt.Color(255, 255, 255));
+        btnLoadList.setText("Liste Laden");
+        btnLoadList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,92 +251,84 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblMitarbeiter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblAuswahl))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblStundenlohn)
-                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblRolle)
-                                    .addComponent(txfRolle, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txfNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblAnrede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblVorname)
-                                            .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblNachname)
-                                            .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblStarsse)
-                                            .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPLZ)
-                                            .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblOrt)
-                                            .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblID))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblUmsatz)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnDrucken, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblStatusBestellungen)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblBestellt)
-                                            .addComponent(lblVerschickt)
-                                            .addComponent(lblInBearb))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txfBestellt)
-                                            .addComponent(txfVerschickt)
-                                            .addComponent(txfInBearb)))))
-                            .addComponent(btnBestellungen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnProdList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnUmsAnzg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblAuswahl, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLoadList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblID)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblAnrede))
+                            .addComponent(lblStarsse)
+                            .addComponent(txfStrasse))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPLZ)
+                                    .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblVorname)
+                            .addComponent(txfVorname))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNachname)
+                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblStundenlohn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblOrt)
+                            .addComponent(txfOrt)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ComBoxDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDatumauswahl)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblDatumVon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDatumBis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ComBoxDatumVon, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cvDarstellungsfeld, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnPrint, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblStatusBestellungen)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblBestellt)
+                                                    .addComponent(lblVerschickt)
+                                                    .addComponent(lblInBearb))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txfBestellt)
+                                                    .addComponent(txfVerschickt)
+                                                    .addComponent(txfInBearb)))))
+                                    .addComponent(btnOrders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnWarehouseList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnShowSales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ComBoxDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDatumauswahl)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblDatumVon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblDatumBis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ComBoxDatumVon, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblUmsatz))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,12 +341,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                 .addComponent(lblUmsatz)
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnUmsAnzg)
+                                    .addComponent(btnShowSales)
                                     .addComponent(lblDatumauswahl))
                                 .addGap(20, 20, 20)
-                                .addComponent(btnProdList)
+                                .addComponent(btnWarehouseList)
                                 .addGap(20, 20, 20)
-                                .addComponent(btnBestellungen))
+                                .addComponent(btnOrders))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblDatumVon)
@@ -350,7 +360,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(3, 3, 3)
                                             .addComponent(lblDatumBis))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(lblStatusBestellungen)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -364,71 +374,76 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txfInBearb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblInBearb))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cvDarstellungsfeld, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMitarbeiter)
-                .addGap(30, 30, 30)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAuswahl)
-                        .addGap(18, 18, 18)
-                        .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLoadList)
+                            .addComponent(lblAuswahl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblAnrede)
-                                .addComponent(lblID))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblVorname)
-                                    .addComponent(lblNachname)
-                                    .addComponent(lblStarsse)
-                                    .addComponent(lblHausNr)
-                                    .addComponent(lblPLZ)
-                                    .addComponent(lblOrt))
+                                    .addComponent(lblAnrede)
+                                    .addComponent(lblID))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfNummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblRolle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfRolle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblNachname)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblStundenlohn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblStundenlohn)
+                                .addComponent(lblStarsse)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblHausNr)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblOrt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPLZ))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txfPLZ, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txfVornameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfVornameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfVornameActionPerformed
-
     private void ComBoxDatumBisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDatumBisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComBoxDatumBisActionPerformed
 
-    private void btnProdListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdListActionPerformed
+    private void btnWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarehouseListActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProdListActionPerformed
+        new LagerArtikelSuchen().setVisible(true);
+    }//GEN-LAST:event_btnWarehouseListActionPerformed
 
     private void txfVerschicktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfVerschicktActionPerformed
         // TODO add your handling code here:
@@ -438,29 +453,87 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfInBearbActionPerformed
 
-    private void txfHausNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfHausNrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfHausNrActionPerformed
-
-    private void btnBestellungenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBestellungenActionPerformed
+    private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         // TODO add your handling code here:
         // Lager BestellungenGUI aufrufen
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
                 new LagerBestellungenGUI().setVisible(true);
-            }
-        });           
-    }//GEN-LAST:event_btnBestellungenActionPerformed
+//            }
+//        });           
+    }//GEN-LAST:event_btnOrdersActionPerformed
 
-    private void btnUmsAnzgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUmsAnzgActionPerformed
+    private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
         drawSales();
-    }//GEN-LAST:event_btnUmsAnzgActionPerformed
+    }//GEN-LAST:event_btnShowSalesActionPerformed
 
-    private void btnDruckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDruckenActionPerformed
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDruckenActionPerformed
+    }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnLoadListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadListActionPerformed
+        // TODO add your handling code here:             
+        DefaultListModel list = new DefaultListModel();
+        jListEmployees.setModel(list);    
+        
+//      TEST:        
+//        list.addElement("Liste Aller Mitarbeiter: ");
+
+        ArrayList<Mitarbeiter> employeesArrList= new ArrayList<>();
+               
+        try {
+            employeesArrList = database.getAllEmployeesArrayList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        for (int i = 0; i < employeesArrList.size(); i++) {
+            list.addElement( employeesArrList.get(i).getAnrede() + " " +  employeesArrList.get(i).getVorname() + " " +  employeesArrList.get(i).getNachname());
+        }         
+    }//GEN-LAST:event_btnLoadListActionPerformed
+
+    private void jListEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListEmployeesMouseClicked
+        // fills the selected employee data in corresponding fields
+        
+        String selected = jListEmployees.getSelectedValue();
+                        
+        String[] parts = selected.split(" ");
+        String name = parts[1];
+        String surname = parts[2];
+        
+//// TEST:
+//        System.out.println(selected);
+//        System.out.println(name);
+//        System.out.println(surname);        
+        
+        try {        
+            txfMitarbeiterID.setText(Integer.toString(database.getEmployeeData(name, surname).getMitarbeiterId()));
+            txfAnrede.setText(database.getEmployeeData(name, surname).getAnrede());
+            txfVorname.setText(database.getEmployeeData(name, surname).getVorname());
+            txfNachname.setText(database.getEmployeeData(name, surname).getNachname());
+            txfStrasse.setText(database.getEmployeeData(name, surname).getStrasse());
+            txfHausNr.setText(Integer.toString(database.getEmployeeData(name, surname).getHausNr()));
+            txfPLZ.setText(Integer.toString(database.getEmployeeData(name, surname).getPlz()));
+            txfOrt.setText(database.getEmployeeData(name, surname).getOrt());
+            txfStundenlohn.setText(Double.toString(database.getEmployeeData(name, surname).getStundenLohn()));
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getEmployeeData() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }       
+        
+
+
+    }//GEN-LAST:event_jListEmployeesMouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -491,7 +564,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Marktleiter_GUI().setVisible(true);
+                try {
+                    new Marktleiter_GUI().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -517,24 +594,19 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
             diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
         }
-        
-        
-    
-        
-    
-    
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComBoxDatumBis;
     private javax.swing.JComboBox<String> ComBoxDatumVon;
-    private javax.swing.JButton btnBestellungen;
-    private javax.swing.JButton btnDrucken;
-    private javax.swing.JButton btnProdList;
-    private javax.swing.JButton btnUmsAnzg;
-    private java.awt.Canvas cvDarstellungsfeld;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton btnLoadList;
+    private javax.swing.JButton btnOrders;
+    private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnShowSales;
+    private javax.swing.JButton btnWarehouseList;
+    private java.awt.Canvas cvDrawField;
+    private javax.swing.JList<String> jListEmployees;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAnrede;
     private javax.swing.JLabel lblAuswahl;
@@ -549,7 +621,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNachname;
     private javax.swing.JLabel lblOrt;
     private javax.swing.JLabel lblPLZ;
-    private javax.swing.JLabel lblRolle;
     private javax.swing.JLabel lblStarsse;
     private javax.swing.JLabel lblStatusBestellungen;
     private javax.swing.JLabel lblStundenlohn;
@@ -561,11 +632,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txfBestellt;
     private javax.swing.JTextField txfHausNr;
     private javax.swing.JTextField txfInBearb;
+    private javax.swing.JTextField txfMitarbeiterID;
     private javax.swing.JTextField txfNachname;
-    private javax.swing.JTextField txfNummer;
     private javax.swing.JTextField txfOrt;
     private javax.swing.JTextField txfPLZ;
-    private javax.swing.JTextField txfRolle;
     private javax.swing.JTextField txfStrasse;
     private javax.swing.JTextField txfStundenlohn;
     private javax.swing.JTextField txfVerschickt;

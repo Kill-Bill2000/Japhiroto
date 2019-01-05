@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.awt.List;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -151,7 +152,58 @@ public class DB_Verbindung {
         
         return mitarb;
     }
+    
+    public Mitarbeiter getEmployeeData(String name, String surname) throws SQLException{
+        //return employee details with the given name
         
+        Mitarbeiter employee;
+        String comm = String.format("SELECT * FROM Mitarbeiter WHERE (vorname = '%1$s' AND nachname = '%2$s')", name, surname);
+        ResultSet rs = abfragen(comm);
+        
+        rs.next();
+        employee = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
+        
+        return employee;
+    } 
+        
+    public ArrayList<Mitarbeiter> getAllEmployeesArrayList() throws SQLException{
+        //returns array with all employees from the database
+        
+        Mitarbeiter employee;
+        ArrayList<Mitarbeiter> employeeArray;
+        
+        String comm = String.format("SELECT * FROM Mitarbeiter ");
+        ResultSet rs = abfragen(comm);
+        
+        employeeArray = new ArrayList<>();                   
+   
+        while (rs.next()) {            
+       
+            employee = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
+
+            employeeArray.add(employee);
+
+        }
+//        TESTDATA
+//        employeeArray.add(new Mitarbeiter(1,"anrede11111", "vorname1", "nachname1", "strasse1", 45, 71229, "ort1", 88.5));
+//        employeeArray.add(new Mitarbeiter(2,"anrede22222", "vorname2", "nachname2", "strasse2", 45, 71229, "ort2", 88.5));
+//        employeeArray.add(new Mitarbeiter(3,"anrede33333", "vorname3", "nachname3", "strasse3", 45, 71229, "ort3", 88.5));        
+
+        return employeeArray;   
+    }   
+        
+//    public int getNumberOfEmployees() throws SQLException{
+//        //return the number of employees
+//        
+//        int number;
+//        String comm = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
+//        ResultSet rs = abfragen(comm);
+//        rs.next();
+//        number = rs.getInt(1);
+//        
+//        return number;        
+//    }
+    
     public void accountAnlegen(Account acc) throws SQLException{
         //der übergebene Account wird der DB hinzugefügt
         
