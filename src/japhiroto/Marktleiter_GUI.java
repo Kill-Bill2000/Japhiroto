@@ -5,11 +5,7 @@
  */
 package japhiroto;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.List;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
