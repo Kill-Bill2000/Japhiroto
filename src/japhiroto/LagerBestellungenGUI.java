@@ -282,6 +282,8 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
                     db.wareAngekommen(bestellungen.get(bestellung).getBestellNr(), artNr, intEingang);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
                 }
             }
         }

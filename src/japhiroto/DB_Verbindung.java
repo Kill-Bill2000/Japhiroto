@@ -38,8 +38,8 @@ public class DB_Verbindung {
     public boolean verbindungAufbauen() throws SQLException{
         //baut eine Verbindung zur Datenbank mit Host-Adresse, Benutzername und Passwort der DB auf
         //liefert 'true' zurück, wenn die Verbindung nach 5 Sekunden noch nicht geschlossen und valide ist
-        this.url = "jdbc:mysql://" + this.dbHost + ":" + this.dbPort + "/" + this.dbName;
-        con = DriverManager.getConnection(this.url, this.dbUser, dbPass);
+        url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+        con = DriverManager.getConnection(url, dbUser, dbPass);
         return con.isValid(5);
     }
 
@@ -192,13 +192,13 @@ public class DB_Verbindung {
     public boolean accountUeberpruefen(String username, String passwort) throws SQLException{
         //prueft, ob der User mit den übergebenen Anmeldedaten existiert bzw. valide ist
         
-        boolean valid = false;
+        boolean valid = true;
         String befehl = String.format("SELECT COUNT(rolle) FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", username, passwort);
         ResultSet rs = abfragen(befehl);
         rs.next();
 
-        if (rs.getInt(1) != 0 ) {
-            valid = true;
+        if (rs.getInt(1) == 0 ) {
+            valid = false;
         }
         
         return valid;
@@ -207,36 +207,18 @@ public class DB_Verbindung {
     public boolean accountUeberpruefen(Account acc) throws SQLException{
         //prueft, ob der User mit den Anmeldedaten des übergebenen Accounts existiert bzw. valide ist
         
-        boolean valid = false;
+        boolean valid = true;
         String befehl = String.format("SELECT COUNT(rolle) FROM Accounts WHERE (benutzername = '%1$s' AND passwort = '%2$s')", acc.getBenutzername(), acc.getPasswort());
         ResultSet rs = abfragen(befehl);
         rs.next();
 
-        if (rs.getInt(1) != 0 ) {
-            valid = true;
+        if (rs.getInt(1) == 0 ) {
+            valid = false;
         }
         
         return valid;
     }
     
-
-    public ArrayList<Artikel> getArtikelFromNr(int nr) throws SQLException{
-        //sucht die Artikel nach der Artikelnummer aus der DB und liefert diese in einer ArrayList zurück
-        ArrayList<Artikel> artikelliste = new ArrayList<>();
-        
-        String befehl = String.format("SELECT * FROM Artikel WHERE artikelNr = %1$d", nr);
-        
-        ResultSet rs = abfragen(befehl);
-        
-        while(rs.next()){
-            artikelliste.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getString("artikelNr")));
-        }
-        
-        
-        return artikelliste;
-    }
-    
-
     /**
      * Lagerabfragen
      */
@@ -258,6 +240,7 @@ public class DB_Verbindung {
         
         return art;
     }
+
     // Die folgende Methode ist für die Kasse welche zusätlich zu den Artikeleigenschaften noch eine Anzahl dieser Artikel speichert
     public Artikel getArtikelMitAnzahl(String artikelNummer,int anzahl) throws SQLException {
         Artikel art;
@@ -278,6 +261,8 @@ public class DB_Verbindung {
         
         return art;
     }
+
+
     
     public Bestellung getBestellung(String bestellID) throws SQLException {
         Bestellung bestell;
@@ -328,7 +313,7 @@ public class DB_Verbindung {
         befehl = String.format("UPDATE bestellung SET erledight = 1 WHERE bestellNummer = '%1$s'", bestellNummer);
         updaten(befehl);
     }
-    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException {
+    public void wareAngekommen(String bestellNummer, String artikelNr, int anz) throws SQLException, IOException {
         Bestellung best = getBestellung(bestellNummer);
         int i = best.anzahlArtikelNr(artikelNr);
         if (i >= anz) {
@@ -339,8 +324,14 @@ public class DB_Verbindung {
             updaten(befehl);
         }
     }
+    public void verkaufeArtikel(String artNr, int anz) throws SQLException, IOException {
+        int alt = getVerwaltung().getBestandArtikel(artNr);
+        anz = alt - anz;
+        String befehl = String.format("UPDATE artikel SET bestnad = '%1$d' WHERE artikelNummer = '%2$s'", anz, artNr);
+        updaten(befehl);
+    }
     
-    public ArtikelVerwaltung getVerwaltung() throws SQLException {
+    public ArtikelVerwaltung getVerwaltung() throws SQLException, IOException {
         ArtikelVerwaltung verw = new ArtikelVerwaltung();
         
         String befehl = "SELECT * FROM Artikel";
@@ -352,5 +343,18 @@ public class DB_Verbindung {
         }
         
         return verw;
+    }
+
+    public ArrayList<Artikel> getArtikelFromNr(String gesuchteArtNr) throws SQLException {
+        ArrayList<Artikel> artikel = new ArrayList<>();
+        String befehl;
+        
+        befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer = '%1$s'", gesuchteArtNr);;
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            artikel.add(new Artikel(rs.getString("artikelName"), rs.getDouble("verkaufPreis"), rs.getString("artikelNummer")));
+        }
+        
+        return artikel;
     }
 }
