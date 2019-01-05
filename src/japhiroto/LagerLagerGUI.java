@@ -23,6 +23,7 @@ public class LagerLagerGUI extends javax.swing.JFrame {
      */
     DB_Verbindung db;
     public LagerLagerGUI() {
+
         try {
             initComponents();
             db = new DB_Verbindung();
@@ -36,6 +37,7 @@ public class LagerLagerGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "SQL Fehler:\n" + ex.getMessage());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Fehler:\n" + ex.getMessage());
+
         }
         
     }

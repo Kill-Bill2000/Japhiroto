@@ -18,14 +18,16 @@ public class Artikel {
     public Artikel(String name, double preis, String nummer) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
-        this.artikelNummer = nummer;
+        this.artikelNummer = Integer.toString(nummer);
     }
 
     public Artikel(String name, double preis, String nummer, int anzahl) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
         this.artikelNummer = nummer;
+
         this.anzahl = anzahl;
+
     }
     
     public double getPreis() {
@@ -41,6 +43,7 @@ public class Artikel {
     public void setName(String name) {
         artikelName = name;
     }
+
     
     public String getArtikelNummer() {
         return artikelNummer;
@@ -48,6 +51,7 @@ public class Artikel {
     public int getAnzahl(){
         return anzahl;
     }
+
     public void setArtikelNummer(String artNr) {
         artikelNummer = artNr;
     }
