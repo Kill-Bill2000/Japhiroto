@@ -165,12 +165,12 @@ public class DB_Verbindung {
         
         return employee;
     } 
-    /*public ArrayList<Mitarbeiter> getAllEmployeesArray() throws SQLException{
+    public ArrayList<Mitarbeiter> getAllEmployeesArrayList() throws SQLException{
         //returns array with all employees from the database
         
         Mitarbeiter employee;
 //        Mitarbeiter[] employeeArray;
-        ArrayList<Mitarbeiter> employeeArray = new ArrayList<>();
+        ArrayList<Mitarbeiter> employeeArray;
         
         String comm = String.format("SELECT * FROM Mitarbeiter ");
         ResultSet rs = abfragen(comm);
@@ -180,21 +180,21 @@ public class DB_Verbindung {
 //        rs.beforeFirst();
         int emplNumber = 3;
         
-//        employeeArray = new Mitarbeiter[emplNumber];                   
+        employeeArray = new ArrayList<>();                   
    
-//        while (rs.next()) {            
-//       
-//            employee = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
-//
-//            employeeArray.add(employee);
-//
-//        }
-        employeeArray.add(new Mitarbeiter(1,"anrede1", "vorname1", "nachname1", "strasse1", 45, 71229, "ort1", 88.5));
-        employeeArray.add(new Mitarbeiter(2,"anrede2", "vorname2", "nachname2", "strasse2", 45, 71229, "ort2", 88.5));
-        employeeArray.add(new Mitarbeiter(3,"anrede3", "vorname3", "nachname3", "strasse3", 45, 71229, "ort3", 88.5));        
+        while (rs.next()) {            
+       
+            employee = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
+
+            employeeArray.add(employee);
+
+        }
+//        employeeArray.add(new Mitarbeiter(1,"anrede11111", "vorname1", "nachname1", "strasse1", 45, 71229, "ort1", 88.5));
+//        employeeArray.add(new Mitarbeiter(2,"anrede22222", "vorname2", "nachname2", "strasse2", 45, 71229, "ort2", 88.5));
+//        employeeArray.add(new Mitarbeiter(3,"anrede33333", "vorname3", "nachname3", "strasse3", 45, 71229, "ort3", 88.5));        
 
         return employeeArray;   
-    } */   
+    }   
     
     public Mitarbeiter[] getAllEmployeesArray() throws SQLException{
         //returns array with all employees from the database

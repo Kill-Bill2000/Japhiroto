@@ -482,8 +482,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         list.addElement("Liste Aller Mitarbeiter: ");
 
         int emplNumber = 0;
-        Mitarbeiter[] employeesList;
-//        ArrayList<Mitarbeiter> employeesList = new ArrayList<>();
+        Mitarbeiter[] employeesArr;
+        ArrayList<Mitarbeiter> employeesArrList;
         
         try {
             emplNumber = database.getNumberOfEmployees();
@@ -495,27 +495,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         
-        employeesList = new Mitarbeiter[emplNumber];
+        employeesArr = new Mitarbeiter[emplNumber];
+        employeesArrList = new ArrayList<>();
 
 //TYPE ARRAYLIST
-//        try {
-//            employeesList = database.getAllEmployeesArray();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
-//                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
-//                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
-//        }
-//        
-//        for (int i = 0; i < employeesList.size(); i++) {
-//            list.addElement(employeesList[i].getAnrede() + " " + employeesList[i].getVorname() + " " + employeesList[i].getNachname());
-//        }  
-     
-
-// TYPE: ARRAY
         try {
-            employeesList = database.getAllEmployeesArray();
+            employeesArrList = database.getAllEmployeesArrayList();
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -524,9 +509,25 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         
-        for (int i = 0; i < employeesList.length; i++) {
-            list.addElement(employeesList[i].getAnrede() + " " + employeesList[i].getVorname() + " " + employeesList[i].getNachname());
-        }         
+        for (int i = 0; i < employeesArrList.size(); i++) {
+            list.addElement( employeesArrList.get(i).getAnrede() + " " +  employeesArrList.get(i).getVorname() + " " +  employeesArrList.get(i).getNachname());
+        }  
+     
+
+// TYPE: ARRAY
+//        try {
+//            employeesArr = database.getAllEmployeesArray();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+//                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+//                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        
+//        for (int i = 0; i < employeesArr.length; i++) {
+//            list.addElement(employeesArr[i].getAnrede() + " " + employeesArr[i].getVorname() + " " + employeesArr[i].getNachname());
+//        }         
 
 
         // Employee data in txf
