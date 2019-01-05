@@ -156,49 +156,48 @@ public class DB_Verbindung {
     public Mitarbeiter[] alleMitarbeiterAbfragen() throws SQLException{
         //liefert alle Mitarbeiter der DB zurück
         
-        Mitarbeiter mitarb;
-        Mitarbeiter[] mitarbArr;
+        Mitarbeiter employee;
+        Mitarbeiter[] employeeArray;
         
         
-        String zaehlen = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
-        ResultSet rs1 = abfragen(zaehlen);
+        String count = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
+        ResultSet rs1 = abfragen(count);
         rs1.next();
-        int anzahl = rs1.getInt(1);
+        int emplNumber = rs1.getInt(1);
         
-        mitarbArr = new Mitarbeiter[anzahl];
+        employeeArray = new Mitarbeiter[emplNumber];
 
         
-        for (int i = 0; i < anzahl; i++) {        
-            String befehl1 = "SELECT mitarbeiterId FROM Mitarbeiter";
-            ResultSet rs2 = abfragen(befehl1);
+        for (int i = 0; i < emplNumber; i++) {        
+            String comm1 = "SELECT mitarbeiterId FROM Mitarbeiter";
+            ResultSet rs2 = abfragen(comm1);
             rs2.next();
             
             int mitarbeiterId = rs2.getInt(1);
                              
-            String befehl2 = String.format("SELECT * FROM Mitarbeiter WHERE mitarbeiterId = %1$d", mitarbeiterId);
-            ResultSet rs3 = abfragen(befehl2);
+            String comm2 = String.format("SELECT * FROM Mitarbeiter WHERE mitarbeiterId = %1$d", mitarbeiterId);
+            ResultSet rs3 = abfragen(comm2);
 
             rs3.next();
-            mitarb = new Mitarbeiter(rs3.getInt(1), rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getInt(6), rs3.getInt(7), rs3.getString(8), rs3.getDouble(9));
+            employee = new Mitarbeiter(rs3.getInt(1), rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getInt(6), rs3.getInt(7), rs3.getString(8), rs3.getDouble(9));
 
-            mitarbArr[i] = mitarb;
-
+            employeeArray[i] = employee;
         }
         
-        return mitarbArr;        
+        return employeeArray;        
 
     }
     
     public int getMitarbeiterAnzahl() throws SQLException{
         //liefert die Mitarbeiter-ID der DB zurück
         
-        int anzahl;
-        String befehl = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
-        ResultSet rs = abfragen(befehl);
+        int number;
+        String comm = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
+        ResultSet rs = abfragen(comm);
         rs.next();
-        anzahl = rs.getInt(1);
+        number = rs.getInt(1);
         
-        return anzahl;
+        return number;
         
     }
     
