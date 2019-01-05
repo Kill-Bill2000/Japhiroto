@@ -153,11 +153,11 @@ public class DB_Verbindung {
         return mitarb;
     }
     
-    public Mitarbeiter getEmployeeData(String vorname, String nachname) throws SQLException{
+    public Mitarbeiter getEmployeeData(String name, String surname) throws SQLException{
         //return employee details with the given name
         
         Mitarbeiter employee;
-        String comm = String.format("SELECT * FROM Mitarbeiter WHERE (vorname = '%1$s' AND nachname = '%2$s')", vorname, nachname);
+        String comm = String.format("SELECT * FROM Mitarbeiter WHERE (vorname = '%1$s' AND nachname = '%2$s')", name, surname);
         ResultSet rs = abfragen(comm);
         
         rs.next();
@@ -165,7 +165,7 @@ public class DB_Verbindung {
         
         return employee;
     } 
-    
+        
     public ArrayList<Mitarbeiter> getAllEmployeesArrayList() throws SQLException{
         //returns array with all employees from the database
         
