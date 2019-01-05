@@ -165,6 +165,7 @@ public class DB_Verbindung {
         
         return employee;
     } 
+    
     public ArrayList<Mitarbeiter> getAllEmployeesArrayList() throws SQLException{
         //returns array with all employees from the database
         
@@ -191,17 +192,17 @@ public class DB_Verbindung {
         return employeeArray;   
     }   
         
-    public int getNumberOfEmployees() throws SQLException{
-        //return the number of employees
-        
-        int number;
-        String comm = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
-        ResultSet rs = abfragen(comm);
-        rs.next();
-        number = rs.getInt(1);
-        
-        return number;        
-    }
+//    public int getNumberOfEmployees() throws SQLException{
+//        //return the number of employees
+//        
+//        int number;
+//        String comm = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
+//        ResultSet rs = abfragen(comm);
+//        rs.next();
+//        number = rs.getInt(1);
+//        
+//        return number;        
+//    }
     
     public void accountAnlegen(Account acc) throws SQLException{
         //der übergebene Account wird der DB hinzugefügt

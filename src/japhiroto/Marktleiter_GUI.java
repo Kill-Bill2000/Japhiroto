@@ -481,21 +481,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         jListEmployees.setModel(list);        
         list.addElement("Liste Aller Mitarbeiter: ");
 
-        int emplNumber = 0;
-        ArrayList<Mitarbeiter> employeesArrList;
-        
-        try {
-            emplNumber = database.getNumberOfEmployees();
-        } catch (SQLException ex) {
-            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error at: database.getNumberOfEmployees() "
-                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
-                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-        employeesArrList = new ArrayList<>();
-
+        ArrayList<Mitarbeiter> employeesArrList= new ArrayList<>();
+               
         try {
             employeesArrList = database.getAllEmployeesArrayList();
         } catch (SQLException ex) {
