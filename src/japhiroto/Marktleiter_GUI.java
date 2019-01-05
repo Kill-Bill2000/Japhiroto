@@ -455,12 +455,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         // TODO add your handling code here:
-        // Lager BestellungenGUI aufrufen
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-                new LagerBestellungenGUI().setVisible(true);
-//            }
-//        });           
+        new LagerBestellungenGUI().setVisible(true);     
     }//GEN-LAST:event_btnOrdersActionPerformed
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
