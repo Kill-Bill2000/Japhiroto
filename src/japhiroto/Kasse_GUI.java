@@ -28,9 +28,19 @@ public class Kasse_GUI extends javax.swing.JFrame {
      */
     public Kasse_GUI() {    
 
+    try{
         initComponents();
-        this.dieKasse_Verwaltung = dieKasse_Verwaltung;
+        dieKasse_Verwaltung = new Kasse_Verwaltung();
         ansageOeffnen();
+    }
+    catch(SQLException e){
+        getToolkit().beep();
+        JOptionPane.showMessageDialog(rootPane, "Fehler beim Initialisieren!", "Fehler" , JOptionPane.ERROR_MESSAGE);
+    }
+    catch(IOException e){
+        getToolkit().beep();
+        JOptionPane.showMessageDialog(rootPane, "Fehler beim Initialisieren!", "Fehler" , JOptionPane.ERROR_MESSAGE);
+    }
         
     }
 
