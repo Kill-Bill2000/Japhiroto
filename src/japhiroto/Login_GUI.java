@@ -10,8 +10,6 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -489,17 +487,6 @@ public class Login_GUI extends javax.swing.JFrame {
         int rolle;
         
         try {
-            if (login.fileErstellen(dateipfad)) {
-                getToolkit().beep();    //Ton
-                JOptionPane.showMessageDialog(this, "Die Datei '" + dateipfad + "' wurde erfolgreiche erstellt.", "Datei erstellt", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        } catch (IOException ex) {
-            getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Die Datei '" + dateipfad + "' konnte nicht erstellt werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        try {
             user = txfBenutzername.getText();
             pass = login.passwortToString(txpPasswort.getPassword()); 
             if (erweitertAusgefuellt()) {   //Verbindung zur Datenbank wird aufgebaut
@@ -536,7 +523,7 @@ public class Login_GUI extends javax.swing.JFrame {
                     default:
                         //Rolle nicht gefunden oder falsche Rolle
                         JOptionPane.showMessageDialog(this, "Die Zugriffsrechte konnten nicht validiert werden.\n"
-                                + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Zugriffsfehler", JOptionPane.ERROR_MESSAGE);
+                                + "Bitte versuchen Sie es erneut oder\nüberprüfen Sie Ihren Account", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
                         break;
                 }
             } else {
@@ -799,7 +786,7 @@ public class Login_GUI extends javax.swing.JFrame {
         boolean portAusg = !txfPort.getText().equals("");
         boolean dbNameAusg = !txfDBName.getText().equals("");
         boolean dbUserAusg = !txfDBUser.getText().equals("");
-        //boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
+        boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
         
         //ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg; //mit Passwort
         ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg;
