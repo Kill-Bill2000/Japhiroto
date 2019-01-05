@@ -5,9 +5,11 @@
  */
 package japhiroto;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.scene.media.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +30,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         initComponents();
         this.dieKasse_Verwaltung = dieKasse_Verwaltung;
+        ansageOeffnen();
         
     }
 
@@ -73,7 +76,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         btnAuskunft = new javax.swing.JButton();
         lblGesamt = new javax.swing.JLabel();
         txfGesamt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         lblImpressum = new javax.swing.JLabel();
         btnNeuerKaufvorgang = new javax.swing.JButton();
         txfMinus = new javax.swing.JTextField();
@@ -273,8 +276,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         txfGesamt.setEditable(false);
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setText("Logout");
+        btnLogout.setBackground(new java.awt.Color(255, 51, 51));
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         lblImpressum.setText("© Japhiroto 2019");
 
@@ -359,7 +367,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                 .addGap(183, 183, 183)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnKaufvorgangAbbrechen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAuskunft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnKarte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txfMinus)))
@@ -457,10 +465,9 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                     .addComponent(btnZifferKomma, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnZifferNull, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblImpressum)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))))
         );
 
@@ -472,6 +479,18 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txaAusgabe.setText("");
         txaAusgabe.setText(dieKasse_Verwaltung.ausgabeHeader() + dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
         txfGesamt.setText(String.format ("%.2f", dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)));
+    }
+    private void ansageOeffnen(){
+        String oeffnen = "oeffnenKasse1.mp3";
+        Media me = new Media(new File(oeffnen).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(me);
+        mediaPlayer.play();
+    }
+    private void ansageSchliessen(){
+        String schliessen = "schliessenKasse1.mp3";
+        Media me = new Media(new File(schliessen).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(me);
+        mediaPlayer.play();
     }
     
     
@@ -645,7 +664,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 }
                 txfArtikelNr.setText("");
                 txfAnzahl.setText("");
-                txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
+                ausgabeAktualisieren();
 
            }
            catch(SQLException e){
@@ -689,7 +708,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
             txfZurueck.setText(Double.toString(zurueck));
             bezahlt=true;
-            txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
+            ausgabeAktualisieren();
             txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
         }
     }
@@ -788,6 +807,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
             if(erfolgreich){
                 JOptionPane.showInputDialog(rootPane, "Artikel mit Nr.: "+artikelNr+" erfolgreich entfernt!");
+                ausgabeAktualisieren();
             }
             else{
                 JOptionPane.showInputDialog(rootPane, "Artikel konnte nicht gefunden werden! Bitte Artikelfeld überprüfen.");
@@ -808,8 +828,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
             minusBetrag = minusBetrag - (2*minusBetrag);
             minusArtikel = new Artikel("Minus",minusBetrag,"0");
             artikelliste.add(minusArtikel);
+            ausgabeAktualisieren();
         }
     }//GEN-LAST:event_btnMinusActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        ansageSchliessen();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -853,6 +878,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnHinzufuegen;
     private javax.swing.JButton btnKarte;
     private javax.swing.JButton btnKaufvorgangAbbrechen;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinus;
     private javax.swing.JButton btnNeuerKaufvorgang;
     private javax.swing.JButton btnStorno;
@@ -867,7 +893,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnZifferSieben;
     private javax.swing.JButton btnZifferVier;
     private javax.swing.JButton btnZifferZwei;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnzahl;
     private javax.swing.JLabel lblArtikelNr;
