@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -97,6 +99,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txfMinus = new javax.swing.JTextField();
         lblMinusBetrag = new javax.swing.JLabel();
 
+        dlgWarten.setTitle("bitte warten");
+
         lblWarten.setText("bitte warten bis Bezahlvorgang am Terminal beendet ist...");
 
         javax.swing.GroupLayout pnlWartenLayout = new javax.swing.GroupLayout(pnlWarten);
@@ -106,12 +110,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
             .addGroup(pnlWartenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblWarten)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         pnlWartenLayout.setVerticalGroup(
             pnlWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWartenLayout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(315, Short.MAX_VALUE)
                 .addComponent(lblWarten)
                 .addContainerGap())
         );
@@ -783,7 +787,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
     private void btnKarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKarteActionPerformed
-       if(bezahlt){
+        
+        JOptionPane jop = new JOptionPane();
+	jop.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+	jop.setMessage("Bitte warten bis Bezahlvorgang am Terminal beendet ist...");
+	JDialog dialog = jop.createDialog(this, "Bitte warten");
+             
+        if(bezahlt){
         JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
     }
     else{
@@ -791,13 +801,22 @@ public class Kasse_GUI extends javax.swing.JFrame {
         zufallszahl = (int)(Math.random()*100);
         txfZurueck.setText("0.00");
         gegeben = 0.00;
-        JOptionPane.showMessageDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
-        dlgWarten.setVisible(true);
-        dlgWarten.setSize(400, 100);
-        try{
-            Thread.sleep(3000);
-            dlgWarten.setVisible(false);
+        //JOptionPane.showMessageDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
+
+        new Thread(new Runnable() {
+		@Override
+		public void run() {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                    }
+                    dialog.dispose();
+		}
+	}).start();
+
+	dialog.setVisible(true);          
             
+        
             if (zufallszahl <=20){
                 JOptionPane.showInputDialog(rootPane, "Transaktion fehlgeschlagen! Bitte erneut versuchen.");
             }
@@ -808,10 +827,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
             }
         }
-        catch(InterruptedException e){
-            JOptionPane.showInputDialog(rootPane, e.getMessage());
-                }
-    }
     }//GEN-LAST:event_btnKarteActionPerformed
 
     private void btnNeuerKaufvorgangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeuerKaufvorgangActionPerformed
@@ -916,11 +931,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //Sound wird abgespielt, wenn dsa Fenster geöffnet wird
-        try {
-            ansageOeffnen();
-        } catch (FileNotFoundException | JavaLayerException ex) {
-            
-        }
+//        try {
+//            ansageOeffnen();
+//        } catch (FileNotFoundException | JavaLayerException ex) {
+//            
+//        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
