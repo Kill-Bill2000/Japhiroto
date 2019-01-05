@@ -549,7 +549,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             txfStundenlohn.setText(Double.toString(database.getEmployeeData(name, surname).getStundenLohn()));
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getEmployeeData() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }       
         
 
 
