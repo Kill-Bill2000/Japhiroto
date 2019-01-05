@@ -337,9 +337,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfVornameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txfNachname">
       <Properties>
@@ -499,9 +496,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfHausNrActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblHausNr">
       <Properties>

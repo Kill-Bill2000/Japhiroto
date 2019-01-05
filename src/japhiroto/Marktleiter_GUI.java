@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -59,13 +58,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                           
     }
     
-//    public void paint(Graphics g) {
-//        super.paint(g);
-//        g.setFont(new Font("Dialog", Font.PLAIN, 18));
-//        g.setColor(Color.BLUE);
-//        g.drawString("Hallo Welt", 100,400);
-//    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,11 +135,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblVorname.setText("Vorname");
 
         txfVorname.setEditable(false);
-        txfVorname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfVornameActionPerformed(evt);
-            }
-        });
 
         txfNachname.setEditable(false);
 
@@ -232,11 +219,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblStarsse.setText("Strasse");
 
         txfHausNr.setEditable(false);
-        txfHausNr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfHausNrActionPerformed(evt);
-            }
-        });
 
         lblHausNr.setText("Haus Nr.");
 
@@ -454,10 +436,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txfVornameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfVornameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfVornameActionPerformed
-
     private void ComBoxDatumBisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDatumBisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComBoxDatumBisActionPerformed
@@ -474,10 +452,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private void txfInBearbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfInBearbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfInBearbActionPerformed
-
-    private void txfHausNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfHausNrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfHausNrActionPerformed
 
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         // TODO add your handling code here:
