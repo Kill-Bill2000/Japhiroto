@@ -5,6 +5,11 @@
  */
 package japhiroto;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,15 +21,21 @@ public class LagerLagerGUI extends javax.swing.JFrame {
     /**
      * Creates new form LagerLagerGUI
      */
-    NoDatabase noDB;
+    DB_Verbindung db;
     public LagerLagerGUI() {
-        initComponents();
-        noDB = new NoDatabase();
-        
-        DefaultTableModel model = (DefaultTableModel) tblLager.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
-        for (int i = 0; i < noDB.getAnzahlBestellungen(); i++) {
-            //Lager lager = noDB.getLagerListenNummer(i);
-            model.addRow(new Object[]{/*lager.getLagerName(), lager.getAnzahlArtikel()*/});
+        try {
+            initComponents();
+            db = new DB_Verbindung();
+            
+            DefaultTableModel model = (DefaultTableModel) tblLager.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
+            for (int i = 0; i < db.getVerwaltung().anzahlArtikel(); i++) {
+                String artNr = db.getVerwaltung().getArtikelListenNummer(i).getArtikelNummer();
+                model.addRow(new Object[]{db.getVerwaltung().getBestandArtikel(artNr), db.getVerwaltung().getArtikelListenNummer(i).getName()});
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler:\n" + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Fehler:\n" + ex.getMessage());
         }
         
     }
@@ -54,11 +65,11 @@ public class LagerLagerGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Lager", "Artikel"
+                "Bestand", "Artikel"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false

@@ -1,7 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor..
  */
 package japhiroto;
 
@@ -13,17 +13,19 @@ public class Artikel {
     private String artikelNummer;
     private double verkauftsPreis; //noch mehr kommentar
     private String artikelName;
-    
-    public Artikel(String name, double preis, int nummer) {
-        this.artikelName = name;
-        this.verkauftsPreis = preis;
-        this.artikelNummer = Integer.toString(nummer);
-    }
+    private int anzahl=1;//nur für die Kasse relevant
     
     public Artikel(String name, double preis, String nummer) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
+        this.artikelNummer = Integer.toString(nummer);
+    }
+
+    public Artikel(String name, double preis, String nummer, int anzahl) {
+        this.artikelName = name;
+        this.verkauftsPreis = preis;
         this.artikelNummer = nummer;
+        this.anzahl = anzahl;
     }
     
     public double getPreis() {
@@ -39,9 +41,12 @@ public class Artikel {
     public void setName(String name) {
         artikelName = name;
     }
-        
+    
     public String getArtikelNummer() {
         return artikelNummer;
+    }
+    public int getAnzahl(){
+        return anzahl;
     }
     public void setArtikelNummer(String artNr) {
         artikelNummer = artNr;
