@@ -321,4 +321,17 @@ public class DB_Verbindung {
         
         return verw;
     }
+
+    public ArrayList<Artikel> getArtikelFromNr(String gesuchteArtNr) throws SQLException {
+        ArrayList<Artikel> artikel = new ArrayList<>();
+        String befehl;
+        
+        befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer = '%1$s'", gesuchteArtNr);;
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            artikel.add(new Artikel(rs.getString("artikelName"), rs.getDouble("verkaufPreis"), rs.getString("artikelNummer")));
+        }
+        
+        return artikel;
+    }
 }
