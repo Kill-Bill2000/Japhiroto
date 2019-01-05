@@ -21,7 +21,6 @@ import javax.swing.table.DefaultTableModel;
 public class LagerArtikelSuchen extends javax.swing.JFrame {
 
     private ArtikelVerwaltung artikel;
-    private NoDatabase noDB;
     private DB_Verbindung verbindung;
     
     public LagerArtikelSuchen() {
@@ -31,13 +30,13 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             
             verbindung = new DB_Verbindung();
             
-            noDB = new NoDatabase();
             diaArtNrEingeben.setSize(450, 150);
-            artikel = noDB.getVerwaltung();
+            artikel = verbindung.getVerwaltung();
             
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
             for (int i = 0; i < artikel.anzahlArtikel(); i++) {
-                model.addRow(new Object[]{artikel.getArtikelListenNummer(i).getArtikelNummer(), artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(i)});
+                String artNr = artikel.getArtikelListenNummer(i).getArtikelNummer();
+                model.addRow(new Object[]{artNr, artikel.getArtikelFromNummer(artNr).getName(), artikel.getArtikelFromNummer(artNr).getPreis(), artikel.getBestandArtikel(artNr)});
             }
             
         } catch (FileNotFoundException ex) {
@@ -46,31 +45,9 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         } catch (IOException ex){
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
-
-    private DB_Verbindung db;
-    public LagerArtikelSuchen() {
-        initComponents();
-        try {
-            db = new DB_Verbindung();
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
-        }
-        diaArtNrEingeben.setSize(450, 150);
-        try {
-            artikel = db.getVerwaltung();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "IO Fehler: " + ex.getMessage());
+            Logger.getLogger(LagerArtikelSuchen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
-        for (int i = 0; i < artikel.anzahlArtikel(); i++) {
-            String artNr = artikel.getArtikelListenNummer(i).getArtikelNummer();
-            model.addRow(new Object[]{artNr, artikel.getArtikelListenNummer(i).getName(), artikel.getArtikelListenNummer(i).getPreis(), artikel.getBestandArtikel(artNr)});
-
-        }
-        
     }
 
     /**
@@ -225,33 +202,25 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSucheSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucheSuchenActionPerformed
-        int gesuchteArtNr;//int mit der gesuchenten Artikel Nummer
+        String gesuchteArtNr;//int mit der gesuchenten Artikel Nummer
         ArrayList<Artikel> gesuchte; //ArrayList zum speichern der gefundenen Artikel
-        
-        try {                                               
-            this.setVisible(true);
-            diaArtNrEingeben.setVisible(false);         //Fenster werden geöffnet und geschlossen
+        gesuchte = new ArrayList<Artikel>(); //ArrayList zum speichern der gefundenen Artikel
+                                                      
+        this.setVisible(true);
+        diaArtNrEingeben.setVisible(false);         //Fenster werden geöffnet und geschlossen
             
-            gesuchteArtNr = Integer.parseInt(txfSucheArtNr.getText());
+        gesuchteArtNr = txfSucheArtNr.getText();
             
+        try {
             verbindung.verbindungAufbauen();
-            
             gesuchte = verbindung.getArtikelFromNr(gesuchteArtNr);    //Suche
-            
-            
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
             for (int i = 0; i < gesuchte.size(); i++) {
                 model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis()});
             }
-        ArrayList<Artikel> gesuchte = new ArrayList<Artikel>(); //ArrayList zum speichern der gefundenen Artikel
-        try {
             gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
-        }
-        catch(Exception ex) {
-            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden: \n" + ex.getMessage());
-        }
-        catch(SQLException ex) {
-            getToolkit().beep();    //Fehler-Ton
+        } catch (SQLException ex) {
+                        getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
                     + "\nDie Zugangsdaten sind nicht gültig.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch(NullPointerException ex) {
@@ -259,6 +228,8 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         } catch (NumberFormatException ex){
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nEs dürfen nur Zahlen verwendet werden", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
+        } catch(Exception ex) {
+            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden: \n" + ex.getMessage());
         }
     }//GEN-LAST:event_btnSucheSuchenActionPerformed
 
