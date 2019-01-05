@@ -115,8 +115,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblOrt = new javax.swing.JLabel();
         txfStundenlohn = new javax.swing.JTextField();
         lblStundenlohn = new javax.swing.JLabel();
-        txfRolle = new javax.swing.JTextField();
-        lblRolle = new javax.swing.JLabel();
         cvDrawField = new java.awt.Canvas();
         btnLoadList = new javax.swing.JButton();
 
@@ -138,15 +136,20 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
         scrlPanAuswahl.setViewportView(jListEmployees);
 
+        txfMitarbeiterID.setEditable(false);
+
         lblID.setText("Mitarbeiter ID");
 
         lblVorname.setText("Vorname");
 
+        txfVorname.setEditable(false);
         txfVorname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfVornameActionPerformed(evt);
             }
         });
+
+        txfNachname.setEditable(false);
 
         lblNachname.setText("Nachname");
 
@@ -188,6 +191,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblStatusBestellungen.setText("Status offener Bestellungen:");
 
+        txfBestellt.setEditable(false);
         txfBestellt.setText("Anzahl");
 
         btnPrint.setText("<html>  Aktuelle<br />Darstellung<br />  Drucken</html>");
@@ -199,6 +203,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblBestellt.setText("Bestellt:");
 
+        txfVerschickt.setEditable(false);
         txfVerschickt.setText("Anzahl");
         txfVerschickt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +213,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblVerschickt.setText("Verschickt:");
 
+        txfInBearb.setEditable(false);
         txfInBearb.setText("Anzahl");
         txfInBearb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,8 +225,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblAnrede.setText("Anrede");
 
+        txfAnrede.setEditable(false);
+
+        txfStrasse.setEditable(false);
+
         lblStarsse.setText("Strasse");
 
+        txfHausNr.setEditable(false);
         txfHausNr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfHausNrActionPerformed(evt);
@@ -229,13 +240,17 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblHausNr.setText("Haus Nr.");
 
+        txfPLZ.setEditable(false);
+
         lblPLZ.setText("PLZ");
+
+        txfOrt.setEditable(false);
 
         lblOrt.setText("Ort");
 
-        lblStundenlohn.setText("Stundenlohn");
+        txfStundenlohn.setEditable(false);
 
-        lblRolle.setText("Rolle");
+        lblStundenlohn.setText("Stundenlohn");
 
         cvDrawField.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -263,31 +278,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLoadList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblStundenlohn)
-                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblRolle)
-                                    .addComponent(txfRolle, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblVorname)
-                                    .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNachname)
-                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblStarsse)
-                                    .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -299,11 +294,31 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblOrt)
-                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblID)
+                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(lblAnrede))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblStundenlohn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txfStundenlohn))
+                                .addGap(52, 52, 52))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblID)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblAnrede)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblVorname)
+                                    .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNachname)
+                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(254, 254, 254))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -404,32 +419,35 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblVorname)
                             .addComponent(lblNachname)
-                            .addComponent(lblStarsse)
-                            .addComponent(lblHausNr)
-                            .addComponent(lblPLZ)
-                            .addComponent(lblOrt)
                             .addComponent(lblAnrede)
                             .addComponent(lblID))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblRolle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfRolle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lblStundenlohn)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblStarsse)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblStundenlohn)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblHausNr)
+                                    .addComponent(lblPLZ)
+                                    .addComponent(lblOrt))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -530,7 +548,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             txfPLZ.setText(Integer.toString(database.getEmployeeData(name, surname).getPlz()));
             txfOrt.setText(database.getEmployeeData(name, surname).getOrt());
             txfStundenlohn.setText(Double.toString(database.getEmployeeData(name, surname).getStundenLohn()));
-//            txfRolle.setText(database.mitarbeiterAbfragen(1).getRolle());
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
         }        
@@ -627,7 +644,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNachname;
     private javax.swing.JLabel lblOrt;
     private javax.swing.JLabel lblPLZ;
-    private javax.swing.JLabel lblRolle;
     private javax.swing.JLabel lblStarsse;
     private javax.swing.JLabel lblStatusBestellungen;
     private javax.swing.JLabel lblStundenlohn;
@@ -643,7 +659,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txfNachname;
     private javax.swing.JTextField txfOrt;
     private javax.swing.JTextField txfPLZ;
-    private javax.swing.JTextField txfRolle;
     private javax.swing.JTextField txfStrasse;
     private javax.swing.JTextField txfStundenlohn;
     private javax.swing.JTextField txfVerschickt;

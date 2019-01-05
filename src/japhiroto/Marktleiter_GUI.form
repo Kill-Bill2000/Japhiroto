@@ -39,36 +39,11 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfStundenlohn" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblRolle" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfRolle" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txfAnrede" min="-2" pref="41" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfVorname" min="-2" pref="73" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfNachname" min="-2" pref="73" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfStrasse" min="-2" pref="73" max="-2" attributes="0"/>
+                                  <Component id="txfStrasse" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -83,13 +58,39 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfOrt" min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="txfOrt" min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblStundenlohn" max="32767" attributes="0"/>
+                                  <Component id="txfStundenlohn" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfVorname" min="-2" pref="99" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfNachname" min="-2" pref="99" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -224,10 +225,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblVorname" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNachname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblStarsse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblOrt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -235,24 +232,35 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txfVorname" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txfNachname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfStrasse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfOrt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txfAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txfMitarbeiterID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblRolle" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txfRolle" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txfStundenlohn" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txfStrasse" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblOrt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txfStundenlohn" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txfHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfOrt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -309,6 +317,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txfMitarbeiterID">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
@@ -321,11 +332,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfVorname">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfVornameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txfNachname">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNachname">
       <Properties>
@@ -411,6 +428,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txfBestellt">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Anzahl"/>
       </Properties>
     </Component>
@@ -429,6 +447,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txfVerschickt">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Anzahl"/>
       </Properties>
       <Events>
@@ -442,6 +461,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txfInBearb">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Anzahl"/>
       </Properties>
       <Events>
@@ -459,8 +479,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfAnrede">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfStrasse">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblStarsse">
       <Properties>
@@ -468,6 +494,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfHausNr">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfHausNrActionPerformed"/>
       </Events>
@@ -478,6 +507,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfPLZ">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPLZ">
       <Properties>
@@ -485,6 +517,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfOrt">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblOrt">
       <Properties>
@@ -492,17 +527,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txfStundenlohn">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblStundenlohn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Stundenlohn"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txfRolle">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblRolle">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Rolle"/>
       </Properties>
     </Component>
     <Component class="java.awt.Canvas" name="cvDrawField">
