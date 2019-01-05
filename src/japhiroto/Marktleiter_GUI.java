@@ -8,6 +8,7 @@ package japhiroto;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -482,6 +483,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         int emplNumber = 0;
         Mitarbeiter[] employeesList;
+//        ArrayList<Mitarbeiter> employeesList = new ArrayList<>();
         
         try {
             emplNumber = database.getNumberOfEmployees();
@@ -494,8 +496,24 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         }
         
         employeesList = new Mitarbeiter[emplNumber];
-        
 
+//TYPE ARRAYLIST
+//        try {
+//            employeesList = database.getAllEmployeesArray();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+//                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+//                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        
+//        for (int i = 0; i < employeesList.size(); i++) {
+//            list.addElement(employeesList[i].getAnrede() + " " + employeesList[i].getVorname() + " " + employeesList[i].getNachname());
+//        }  
+     
+
+// TYPE: ARRAY
         try {
             employeesList = database.getAllEmployeesArray();
         } catch (SQLException ex) {
@@ -508,8 +526,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         for (int i = 0; i < employeesList.length; i++) {
             list.addElement(employeesList[i].getAnrede() + " " + employeesList[i].getVorname() + " " + employeesList[i].getNachname());
-        }    
-        
+        }         
+
+
         // Employee data in txf
         
         String selectedEmployeeName = "Max";
