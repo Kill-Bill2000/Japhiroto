@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +46,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         zeroX = sizeX - 475;
         zeroY = sizeY - 30;
         
-        database = new DB_Verbindung();
+        
+        try {
+            database = new DB_Verbindung();
+            database.verbindungAufbauen();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Could not establish connection to the database", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
                           
     }
     
@@ -478,6 +486,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             emplNumber = database.getNumberOfEmployees();
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getNumberOfEmployees() "
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         
         employeesList = new Mitarbeiter[emplNumber];
@@ -487,6 +499,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             employeesList = database.getAllEmployeesArray();
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         
         for (int i = 0; i < employeesList.length; i++) {
