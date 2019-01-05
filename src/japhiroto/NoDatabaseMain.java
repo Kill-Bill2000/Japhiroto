@@ -23,7 +23,7 @@ public class NoDatabaseMain {
         new LagerUbersichtGUI().setVisible(true);
         ArrayList<Artikel> artikel = new ArrayList<>();
         artikel = doSomeArtikel();
-        //verwaltung = new ArtikelVerwaltung(artikel);
+        verwaltung = new ArtikelVerwaltung(artikel);
         System.out.println(verwaltung.anzahlArtikel());
     }
     
@@ -48,7 +48,7 @@ public class NoDatabaseMain {
                 art.add(verwaltung.getArtikelListenNummer(j));
                 anz.add(j);
             }
-            //bestellungen.add(new Bestellung(art, anz, "B" + i * 57));
+            bestellungen.add(new Bestellung(art, anz, "B" + i * 57));
         }
         return liste;
     }
