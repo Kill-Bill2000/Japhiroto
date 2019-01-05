@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel7"/>
-      </Properties>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -42,7 +35,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblAuswahl" min="-2" pref="55" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="btnLoadList" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -104,7 +97,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnDrucken" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnPrint" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -124,9 +117,9 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="btnBestellungen" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnOrders" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnProdList" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnUmsAnzg" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnShowSales" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -142,7 +135,7 @@
                           <Component id="lblUmsatz" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cvDarstellungsfeld" min="-2" pref="500" max="-2" attributes="0"/>
+                      <Component id="cvDrawField" min="-2" pref="500" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -160,13 +153,13 @@
                               <Component id="lblUmsatz" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnUmsAnzg" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnShowSales" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblDatumauswahl" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="btnProdList" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="btnBestellungen" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnOrders" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -206,10 +199,10 @@
                           <Component id="lblInBearb" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="21" max="32767" attributes="0"/>
-                      <Component id="btnDrucken" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="btnPrint" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="cvDarstellungsfeld" min="-2" pref="400" max="-2" attributes="0"/>
+                      <Component id="cvDrawField" min="-2" pref="400" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -221,7 +214,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLoadList" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAuswahl" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -300,7 +293,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jListMitarbeiter">
+        <Component class="javax.swing.JList" name="jListEmployees">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -384,12 +377,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnUmsAnzg">
+    <Component class="javax.swing.JButton" name="btnShowSales">
       <Properties>
         <Property name="text" type="java.lang.String" value="Umsatz Anzeigen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUmsAnzgActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowSalesActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProdList">
@@ -400,12 +393,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdListActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnBestellungen">
+    <Component class="javax.swing.JButton" name="btnOrders">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bestellungen Anzeigen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBestellungenActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdersActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblStatusBestellungen">
@@ -418,12 +411,12 @@
         <Property name="text" type="java.lang.String" value="Anzahl"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnDrucken">
+    <Component class="javax.swing.JButton" name="btnPrint">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;  Aktuelle&lt;br /&gt;Darstellung&lt;br /&gt;  Drucken&lt;/html&gt;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDruckenActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblBestellt">
@@ -509,19 +502,19 @@
         <Property name="text" type="java.lang.String" value="Rolle"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Canvas" name="cvDarstellungsfeld">
+    <Component class="java.awt.Canvas" name="cvDrawField">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnLoadList">
       <Properties>
         <Property name="text" type="java.lang.String" value="Liste Laden"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadListActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

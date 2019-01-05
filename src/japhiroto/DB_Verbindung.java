@@ -153,7 +153,7 @@ public class DB_Verbindung {
         return mitarb;
     }
     
-    public Mitarbeiter[] alleMitarbeiterAbfragen() throws SQLException{
+    public Mitarbeiter[] getAllEmployeesArray() throws SQLException{
         //liefert alle Mitarbeiter der DB zurück
         
         Mitarbeiter employee;
@@ -188,8 +188,8 @@ public class DB_Verbindung {
 
     }
     
-    public int getMitarbeiterAnzahl() throws SQLException{
-        //liefert die Mitarbeiter-ID der DB zurück
+    public int getNumberOfEmployees() throws SQLException{
+        //return the number of employees
         
         int number;
         String comm = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
@@ -197,29 +197,9 @@ public class DB_Verbindung {
         rs.next();
         number = rs.getInt(1);
         
-        return number;
-        
+        return number;        
     }
     
-    public List mitarbeiterAuflisten() throws SQLException{
-        //liefert die Namen aller Mitarbeiter
-        
-        List liste = null;     
-        String befehl = String.format("SELECT anrede ,vorname, nachname FROM Mitarbeiter");
-        ResultSet rs = abfragen(befehl);
-        
-        rs.next();
-        
-        //die anzahl der Mitarbeiter (=länge der schleife) muss abgefragt werden
-        for (int i = 0; i < 10; i++) {
-            String einMitarbeiter = "" + rs.getString(1)+ rs.getString(2)+ rs.getString(3);
-            liste.add(einMitarbeiter);
-        } 
-                
-        return liste;
-        
-    }
-        
     public void accountAnlegen(Account acc) throws SQLException{
         //der übergebene Account wird der DB hinzugefügt
         
