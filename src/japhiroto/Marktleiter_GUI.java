@@ -8,6 +8,7 @@ package japhiroto;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -79,7 +80,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblAuswahl = new javax.swing.JLabel();
         scrlPanAuswahl = new javax.swing.JScrollPane();
         jListEmployees = new javax.swing.JList<>();
-        txfNummer = new javax.swing.JTextField();
+        txfMitarbeiterID = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
         lblVorname = new javax.swing.JLabel();
         txfVorname = new javax.swing.JTextField();
@@ -266,7 +267,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                     .addComponent(lblRolle)
                                     .addComponent(txfRolle, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txfNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -412,7 +413,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                             .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfNummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -477,7 +478,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:             
         DefaultListModel list = new DefaultListModel();
         jListEmployees.setModel(list);        
-        list.addElement("testdude");
+        list.addElement("Liste Aller Mitarbeiter: ");
 
         int emplNumber = 0;
         Mitarbeiter[] employeesList;
@@ -506,8 +507,25 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         }
         
         for (int i = 0; i < employeesList.length; i++) {
-            list.addElement(employeesList[i]);
+            list.addElement(employeesList[i].getAnrede() + " " + employeesList[i].getVorname() + " " + employeesList[i].getNachname());
         }    
+        
+        // Employee data in txf
+        
+        try {        
+            txfMitarbeiterID.setText(Integer.toString(database.mitarbeiterAbfragen(1).getMitarbeiterId()));
+            txfAnrede.setText(database.mitarbeiterAbfragen(1).getAnrede());
+            txfVorname.setText(database.mitarbeiterAbfragen(1).getVorname());
+            txfNachname.setText(database.mitarbeiterAbfragen(1).getNachname());
+            txfStrasse.setText(database.mitarbeiterAbfragen(1).getStrasse());
+            txfHausNr.setText(Integer.toString(database.mitarbeiterAbfragen(1).getHausNr()));
+            txfPLZ.setText(Integer.toString(database.mitarbeiterAbfragen(1).getPlz()));
+            txfOrt.setText(database.mitarbeiterAbfragen(1).getOrt());
+            txfStundenlohn.setText(Double.toString(database.mitarbeiterAbfragen(1).getStundenLohn()));
+//            txfRolle.setText(database.mitarbeiterAbfragen(1).getRolle());
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnLoadListActionPerformed
 
@@ -610,8 +628,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txfBestellt;
     private javax.swing.JTextField txfHausNr;
     private javax.swing.JTextField txfInBearb;
+    private javax.swing.JTextField txfMitarbeiterID;
     private javax.swing.JTextField txfNachname;
-    private javax.swing.JTextField txfNummer;
     private javax.swing.JTextField txfOrt;
     private javax.swing.JTextField txfPLZ;
     private javax.swing.JTextField txfRolle;

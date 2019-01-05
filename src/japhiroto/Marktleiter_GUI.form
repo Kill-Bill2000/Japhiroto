@@ -52,7 +52,7 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txfNummer" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txfAnrede" min="-2" pref="41" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -240,7 +240,7 @@
                           <Component id="txfPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txfOrt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txfAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfNummer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txfMitarbeiterID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -305,7 +305,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txfNummer">
+    <Component class="javax.swing.JTextField" name="txfMitarbeiterID">
     </Component>
     <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
