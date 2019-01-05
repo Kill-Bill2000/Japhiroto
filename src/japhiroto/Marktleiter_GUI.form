@@ -27,7 +27,7 @@
           <Component id="jSeparator1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblMitarbeiter" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -39,13 +39,23 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfStrasse" min="-2" pref="120" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
+                          <Component id="txfStrasse" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblHausNr" max="32767" attributes="0"/>
                                   <Component id="txfHausNr" min="-2" pref="48" max="-2" attributes="0"/>
@@ -55,43 +65,25 @@
                                   <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
                                   <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfOrt" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblStundenlohn" max="32767" attributes="0"/>
-                                  <Component id="txfStundenlohn" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
+                          <Component id="txfVorname" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfVorname" min="-2" pref="99" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
                                   <Component id="txfNachname" min="-2" pref="99" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblStundenlohn" max="32767" attributes="0"/>
+                                  <Component id="txfStundenlohn" min="-2" pref="71" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
+                          <Component id="txfOrt" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -139,7 +131,7 @@
                       <Component id="cvDrawField" min="-2" pref="500" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -222,44 +214,54 @@
                       <Component id="scrlPanAuswahl" min="-2" pref="139" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblVorname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNachname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txfVorname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfNachname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfMitarbeiterID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblVorname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txfVorname" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfMitarbeiterID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txfNachname" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblStundenlohn" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txfStundenlohn" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txfStrasse" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txfStrasse" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblOrt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblHausNr" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txfHausNr" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblOrt" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPLZ" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txfHausNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfPLZ" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfOrt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txfOrt" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfPLZ" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
