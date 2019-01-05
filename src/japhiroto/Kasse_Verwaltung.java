@@ -22,8 +22,8 @@ public class Kasse_Verwaltung {
     
     private DB_Verbindung dieDB_Verbindung;
 
-    public Kasse_Verwaltung(DB_Verbindung dieDB_Verbindung) throws SQLException{
-        this.dieDB_Verbindung = dieDB_Verbindung;
+    public Kasse_Verwaltung() throws SQLException, IOException{
+        dieDB_Verbindung = new DB_Verbindung();
         dieDB_Verbindung.verbindungAufbauen();
     }
     
