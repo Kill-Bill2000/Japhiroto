@@ -512,16 +512,19 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         // Employee data in txf
         
+        String selectedEmployeeName = "Max";
+        String selectedEmployeeSurname = "Mustermann";
+        
         try {        
-            txfMitarbeiterID.setText(Integer.toString(database.mitarbeiterAbfragen(1).getMitarbeiterId()));
-            txfAnrede.setText(database.mitarbeiterAbfragen(1).getAnrede());
-            txfVorname.setText(database.mitarbeiterAbfragen(1).getVorname());
-            txfNachname.setText(database.mitarbeiterAbfragen(1).getNachname());
-            txfStrasse.setText(database.mitarbeiterAbfragen(1).getStrasse());
-            txfHausNr.setText(Integer.toString(database.mitarbeiterAbfragen(1).getHausNr()));
-            txfPLZ.setText(Integer.toString(database.mitarbeiterAbfragen(1).getPlz()));
-            txfOrt.setText(database.mitarbeiterAbfragen(1).getOrt());
-            txfStundenlohn.setText(Double.toString(database.mitarbeiterAbfragen(1).getStundenLohn()));
+            txfMitarbeiterID.setText(Integer.toString(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getMitarbeiterId()));
+            txfAnrede.setText(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getAnrede());
+            txfVorname.setText(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getVorname());
+            txfNachname.setText(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getNachname());
+            txfStrasse.setText(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getStrasse());
+            txfHausNr.setText(Integer.toString(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getHausNr()));
+            txfPLZ.setText(Integer.toString(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getPlz()));
+            txfOrt.setText(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getOrt());
+            txfStundenlohn.setText(Double.toString(database.getEmployeeData(selectedEmployeeName, selectedEmployeeSurname).getStundenLohn()));
 //            txfRolle.setText(database.mitarbeiterAbfragen(1).getRolle());
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);

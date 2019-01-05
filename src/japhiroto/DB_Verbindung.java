@@ -153,6 +153,19 @@ public class DB_Verbindung {
         return mitarb;
     }
     
+    public Mitarbeiter getEmployeeData(String vorname, String nachname) throws SQLException{
+        //return employee details with the given name
+        
+        Mitarbeiter employee;
+        String comm = String.format("SELECT * FROM Mitarbeiter WHERE (vorname = '%1$s' AND nachname = '%2$s')", vorname, nachname);
+        ResultSet rs = abfragen(comm);
+        
+        rs.next();
+        employee = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
+        
+        return employee;
+    } 
+    
     public Mitarbeiter[] getAllEmployeesArray() throws SQLException{
         //returns array with all employees from the database
         
@@ -167,7 +180,9 @@ public class DB_Verbindung {
         
         employeeArray = new Mitarbeiter[emplNumber];
 
+//        con.createArrayOf("SELECT mitarbeiterId FROM Mitarbeiter", employeeArray);
         
+//        Solution 1 - not working
         for (int i = 0; i < emplNumber; i++) {        
             String comm1 = "SELECT mitarbeiterId FROM Mitarbeiter";
             ResultSet rs2 = abfragen(comm1);
