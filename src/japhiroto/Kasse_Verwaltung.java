@@ -6,11 +6,15 @@
 package japhiroto;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
     
 
@@ -27,6 +31,19 @@ public class Kasse_Verwaltung {
         dieDB_Verbindung.verbindungAufbauen();
     }
     
+    public void ansageOeffnen() throws JavaLayerException, FileNotFoundException{
+        String oeffnen = "oeffnenKasse1.mp3";
+        FileInputStream in = new FileInputStream(oeffnen);
+        Player player = new Player(in);
+        player.play();
+    }
+    
+    public void ansageSchliessen() throws FileNotFoundException, JavaLayerException{
+        String schliessen = "schliessenKasse1.mp3";
+        FileInputStream in = new FileInputStream(schliessen);
+        Player player = new Player(in);
+        player.play();
+    }
     
     public Artikel artikelSuchen(String artikelNr) throws SQLException{
         
