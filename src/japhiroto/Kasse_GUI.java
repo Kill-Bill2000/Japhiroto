@@ -5,12 +5,15 @@
  */
 package japhiroto;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javafx.scene.media.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javazoom.jl.decoder.JavaLayerException;
+
 
 /**
  *
@@ -28,19 +31,17 @@ public class Kasse_GUI extends javax.swing.JFrame {
      */
     public Kasse_GUI() {    
 
-    try{
-        initComponents();
-        dieKasse_Verwaltung = new Kasse_Verwaltung();
-        ansageOeffnen();
-    }
-    catch(SQLException e){
-        getToolkit().beep();
-        JOptionPane.showMessageDialog(rootPane, "Fehler beim Initialisieren!", "Fehler" , JOptionPane.ERROR_MESSAGE);
-    }
-    catch(IOException e){
-        getToolkit().beep();
-        JOptionPane.showMessageDialog(rootPane, "Fehler beim Initialisieren!", "Fehler" , JOptionPane.ERROR_MESSAGE);
-    }
+        try{
+            initComponents();
+            dieKasse_Verwaltung = new Kasse_Verwaltung();
+            
+        } catch(SQLException e){
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Fehler beim Initialisieren!", "Fehler" , JOptionPane.ERROR_MESSAGE);
+        } catch(IOException e){
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Fehler beim Initialisieren!", "Fehler" , JOptionPane.ERROR_MESSAGE);
+        }
         
     }
 
@@ -94,14 +95,21 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasse");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         txaAusgabe.setEditable(false);
         txaAusgabe.setColumns(20);
         txaAusgabe.setRows(5);
+        txaAusgabe.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(txaAusgabe);
 
         lblArtikelliste.setText("Artikelliste:");
 
+        txfArtikelNr.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txfArtikelNr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txfArtikelNrMouseClicked(evt);
@@ -120,6 +128,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnHinzufuegen.setBackground(new java.awt.Color(51, 255, 51));
         btnHinzufuegen.setText("Hinzufügen");
+        btnHinzufuegen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHinzufuegenActionPerformed(evt);
@@ -128,6 +137,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnBezahlen.setBackground(new java.awt.Color(0, 204, 0));
         btnBezahlen.setText("Bar bezahlen");
+        btnBezahlen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBezahlen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBezahlenActionPerformed(evt);
@@ -148,6 +158,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnStorno.setBackground(new java.awt.Color(255, 255, 51));
         btnStorno.setText("Storno");
+        btnStorno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnStorno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStornoActionPerformed(evt);
@@ -156,6 +167,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnMinus.setBackground(new java.awt.Color(255, 255, 51));
         btnMinus.setText("Minus");
+        btnMinus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinusActionPerformed(evt);
@@ -164,6 +176,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnKarte.setBackground(new java.awt.Color(0, 204, 0));
         btnKarte.setText("EC - Karte");
+        btnKarte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKarte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKarteActionPerformed(evt);
@@ -172,6 +185,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnBonDrucken.setBackground(new java.awt.Color(51, 255, 51));
         btnBonDrucken.setText("letzten Bon drucken");
+        btnBonDrucken.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBonDrucken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBonDruckenActionPerformed(evt);
@@ -180,6 +194,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferEins.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferEins.setText("1");
+        btnZifferEins.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferEins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferEinsActionPerformed(evt);
@@ -188,6 +203,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferDrei.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferDrei.setText("3");
+        btnZifferDrei.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferDrei.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferDreiActionPerformed(evt);
@@ -196,6 +212,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferSechs.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferSechs.setText("6");
+        btnZifferSechs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferSechs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferSechsActionPerformed(evt);
@@ -204,6 +221,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferFünf.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferFünf.setText("5");
+        btnZifferFünf.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferFünf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferFünfActionPerformed(evt);
@@ -212,6 +230,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferVier.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferVier.setText("4");
+        btnZifferVier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferVier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferVierActionPerformed(evt);
@@ -220,6 +239,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferZwei.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferZwei.setText("2");
+        btnZifferZwei.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferZwei.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferZweiActionPerformed(evt);
@@ -228,6 +248,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferAcht.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferAcht.setText("8");
+        btnZifferAcht.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferAcht.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferAchtActionPerformed(evt);
@@ -236,6 +257,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferNeun.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferNeun.setText("9");
+        btnZifferNeun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferNeun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferNeunActionPerformed(evt);
@@ -244,6 +266,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferNull.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferNull.setText("0");
+        btnZifferNull.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferNull.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferNullActionPerformed(evt);
@@ -252,6 +275,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferKomma.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferKomma.setText(",");
+        btnZifferKomma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferKomma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferKommaActionPerformed(evt);
@@ -260,6 +284,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnZifferSieben.setBackground(new java.awt.Color(153, 153, 255));
         btnZifferSieben.setText("7");
+        btnZifferSieben.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnZifferSieben.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnZifferSiebenActionPerformed(evt);
@@ -268,6 +293,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnKaufvorgangAbbrechen.setBackground(new java.awt.Color(255, 51, 51));
         btnKaufvorgangAbbrechen.setText("Kaufvorgang abbrechen");
+        btnKaufvorgangAbbrechen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKaufvorgangAbbrechen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKaufvorgangAbbrechenActionPerformed(evt);
@@ -276,6 +302,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnAuskunft.setBackground(new java.awt.Color(51, 255, 51));
         btnAuskunft.setText("Auskunft");
+        btnAuskunft.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAuskunft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAuskunftActionPerformed(evt);
@@ -288,6 +315,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnLogout.setBackground(new java.awt.Color(255, 51, 51));
         btnLogout.setText("Logout");
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
@@ -298,6 +326,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         btnNeuerKaufvorgang.setBackground(new java.awt.Color(0, 204, 0));
         btnNeuerKaufvorgang.setText("Neuer Kaufvorgang");
+        btnNeuerKaufvorgang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNeuerKaufvorgang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNeuerKaufvorgangActionPerformed(evt);
@@ -490,17 +519,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txaAusgabe.setText(dieKasse_Verwaltung.ausgabeHeader() + dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
         txfGesamt.setText(String.format ("%.2f", dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)));
     }
-    private void ansageOeffnen(){
-        String oeffnen = "oeffnenKasse1.mp3";
-        Media me = new Media(new File(oeffnen).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(me);
-        mediaPlayer.play();
+    private void ansageOeffnen() throws FileNotFoundException, JavaLayerException{
+        dieKasse_Verwaltung.ansageOeffnen();
+
     }
-    private void ansageSchliessen(){
-        String schliessen = "schliessenKasse1.mp3";
-        Media me = new Media(new File(schliessen).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(me);
-        mediaPlayer.play();
+    private void ansageSchliessen() throws FileNotFoundException, JavaLayerException{
+        dieKasse_Verwaltung.ansageSchliessen();
     }
     
     
@@ -843,8 +867,24 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinusActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        ansageSchliessen();
+        try {
+            ansageSchliessen();
+            
+            new Login_GUI().setVisible(true);
+            this.dispose();
+        } catch (FileNotFoundException | JavaLayerException ex) {
+            
+        }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //Sound wird abgespielt, wenn dsa Fenster geöffnet wird
+        try {
+            ansageOeffnen();
+        } catch (FileNotFoundException | JavaLayerException ex) {
+            
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
