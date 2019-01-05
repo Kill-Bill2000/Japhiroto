@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -55,6 +56,9 @@ public class Kasse_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dlgWarten = new javax.swing.JDialog();
+        pnlWarten = new javax.swing.JPanel();
+        lblWarten = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaAusgabe = new javax.swing.JTextArea();
         lblArtikelliste = new javax.swing.JLabel();
@@ -92,6 +96,36 @@ public class Kasse_GUI extends javax.swing.JFrame {
         btnNeuerKaufvorgang = new javax.swing.JButton();
         txfMinus = new javax.swing.JTextField();
         lblMinusBetrag = new javax.swing.JLabel();
+
+        lblWarten.setText("bitte warten bis Bezahlvorgang am Terminal beendet ist...");
+
+        javax.swing.GroupLayout pnlWartenLayout = new javax.swing.GroupLayout(pnlWarten);
+        pnlWarten.setLayout(pnlWartenLayout);
+        pnlWartenLayout.setHorizontalGroup(
+            pnlWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlWartenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblWarten)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        pnlWartenLayout.setVerticalGroup(
+            pnlWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWartenLayout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(lblWarten)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout dlgWartenLayout = new javax.swing.GroupLayout(dlgWarten.getContentPane());
+        dlgWarten.getContentPane().setLayout(dlgWartenLayout);
+        dlgWartenLayout.setHorizontalGroup(
+            dlgWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlWarten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        dlgWartenLayout.setVerticalGroup(
+            dlgWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlWarten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kasse");
@@ -749,7 +783,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
     private void btnKarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKarteActionPerformed
-    if(bezahlt){
+       if(bezahlt){
         JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
     }
     else{
@@ -757,10 +791,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
         zufallszahl = (int)(Math.random()*100);
         txfZurueck.setText("0.00");
         gegeben = 0.00;
-        JOptionPane.showInputDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
+        JOptionPane.showMessageDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
+        dlgWarten.setVisible(true);
+        dlgWarten.setSize(400, 100);
         try{
-            Thread.sleep(1000);
-        
+            Thread.sleep(3000);
+            dlgWarten.setVisible(false);
+            
             if (zufallszahl <=20){
                 JOptionPane.showInputDialog(rootPane, "Transaktion fehlgeschlagen! Bitte erneut versuchen.");
             }
@@ -943,6 +980,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnZifferSieben;
     private javax.swing.JButton btnZifferVier;
     private javax.swing.JButton btnZifferZwei;
+    private javax.swing.JDialog dlgWarten;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnzahl;
     private javax.swing.JLabel lblArtikelNr;
@@ -951,7 +989,9 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblGesamt;
     private javax.swing.JLabel lblImpressum;
     private javax.swing.JLabel lblMinusBetrag;
+    private javax.swing.JLabel lblWarten;
     private javax.swing.JLabel lblZurueck;
+    private javax.swing.JPanel pnlWarten;
     private javax.swing.JTextArea txaAusgabe;
     private javax.swing.JTextField txfAnzahl;
     private javax.swing.JTextField txfArtikelNr;
