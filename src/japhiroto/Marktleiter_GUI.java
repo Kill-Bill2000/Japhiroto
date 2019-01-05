@@ -83,7 +83,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblDatumBis = new javax.swing.JLabel();
         ComBoxDatumBis = new javax.swing.JComboBox<>();
         btnShowSales = new javax.swing.JButton();
-        btnProdList = new javax.swing.JButton();
+        btnWarehouseList = new javax.swing.JButton();
         btnOrders = new javax.swing.JButton();
         lblStatusBestellungen = new javax.swing.JLabel();
         txfBestellt = new javax.swing.JTextField();
@@ -157,10 +157,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             }
         });
 
-        btnProdList.setText("Produktliste Anzeigen");
-        btnProdList.addActionListener(new java.awt.event.ActionListener() {
+        btnWarehouseList.setText("Lager Anzeigen");
+        btnWarehouseList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProdListActionPerformed(evt);
+                btnWarehouseListActionPerformed(evt);
             }
         });
 
@@ -309,7 +309,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                                     .addComponent(txfVerschickt)
                                                     .addComponent(txfInBearb)))))
                                     .addComponent(btnOrders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnProdList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnWarehouseList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnShowSales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +338,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                     .addComponent(btnShowSales)
                                     .addComponent(lblDatumauswahl))
                                 .addGap(20, 20, 20)
-                                .addComponent(btnProdList)
+                                .addComponent(btnWarehouseList)
                                 .addGap(20, 20, 20)
                                 .addComponent(btnOrders))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,9 +429,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComBoxDatumBisActionPerformed
 
-    private void btnProdListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdListActionPerformed
+    private void btnWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarehouseListActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProdListActionPerformed
+        new LagerArtikelSuchen().setVisible(true);
+    }//GEN-LAST:event_btnWarehouseListActionPerformed
 
     private void txfVerschicktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfVerschicktActionPerformed
         // TODO add your handling code here:
@@ -448,11 +449,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         // TODO add your handling code here:
         // Lager BestellungenGUI aufrufen
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
                 new LagerBestellungenGUI().setVisible(true);
-            }
-        });           
+//            }
+//        });           
     }//GEN-LAST:event_btnOrdersActionPerformed
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
@@ -563,8 +564,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLoadList;
     private javax.swing.JButton btnOrders;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnProdList;
     private javax.swing.JButton btnShowSales;
+    private javax.swing.JButton btnWarehouseList;
     private java.awt.Canvas cvDrawField;
     private javax.swing.JList<String> jListEmployees;
     private javax.swing.JSeparator jSeparator1;

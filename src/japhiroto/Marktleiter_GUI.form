@@ -118,7 +118,7 @@
                                       </Group>
                                   </Group>
                                   <Component id="btnOrders" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnProdList" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnWarehouseList" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnShowSales" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -157,7 +157,7 @@
                                   <Component id="lblDatumauswahl" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="btnProdList" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnWarehouseList" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="btnOrders" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -385,12 +385,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowSalesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnProdList">
+    <Component class="javax.swing.JButton" name="btnWarehouseList">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Produktliste Anzeigen"/>
+        <Property name="text" type="java.lang.String" value="Lager Anzeigen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdListActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWarehouseListActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOrders">

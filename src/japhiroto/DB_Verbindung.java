@@ -154,7 +154,7 @@ public class DB_Verbindung {
     }
     
     public Mitarbeiter[] getAllEmployeesArray() throws SQLException{
-        //liefert alle Mitarbeiter der DB zurück
+        //returns array with all employees from the database
         
         Mitarbeiter employee;
         Mitarbeiter[] employeeArray;
