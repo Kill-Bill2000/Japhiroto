@@ -169,16 +169,10 @@ public class DB_Verbindung {
         //returns array with all employees from the database
         
         Mitarbeiter employee;
-//        Mitarbeiter[] employeeArray;
         ArrayList<Mitarbeiter> employeeArray;
         
         String comm = String.format("SELECT * FROM Mitarbeiter ");
         ResultSet rs = abfragen(comm);
-        
-//        rs.last();
-//        int emplNumber = rs.getRow();
-//        rs.beforeFirst();
-        int emplNumber = 3;
         
         employeeArray = new ArrayList<>();                   
    
@@ -189,88 +183,14 @@ public class DB_Verbindung {
             employeeArray.add(employee);
 
         }
+//        TESTDATA
 //        employeeArray.add(new Mitarbeiter(1,"anrede11111", "vorname1", "nachname1", "strasse1", 45, 71229, "ort1", 88.5));
 //        employeeArray.add(new Mitarbeiter(2,"anrede22222", "vorname2", "nachname2", "strasse2", 45, 71229, "ort2", 88.5));
 //        employeeArray.add(new Mitarbeiter(3,"anrede33333", "vorname3", "nachname3", "strasse3", 45, 71229, "ort3", 88.5));        
 
         return employeeArray;   
     }   
-    
-    public Mitarbeiter[] getAllEmployeesArray() throws SQLException{
-        //returns array with all employees from the database
         
-        Mitarbeiter employee;
-        Mitarbeiter[] employeeArray;
-        
-        String comm = String.format("SELECT * FROM Mitarbeiter ");
-        ResultSet rs = abfragen(comm);
-        
-//        rs.last();
-//        int emplNumber = rs.getRow();
-//        rs.beforeFirst();
-        int emplNumber = 3;
-        
-        employeeArray = new Mitarbeiter[emplNumber];                   
-   
-//        while (rs.next()) {            
-//            int row = 0;
-//            
-//            employee = new Mitarbeiter(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getDouble(9));
-//
-//            employeeArray[row] = employee;
-//
-//            row = row + 1;
-//            System.out.println(employeeArray[row]);
-//            System.out.println("test" + row);
-//        }
-
-// TEST WITHOUT SQL
-//        int emplNumber = 3;
-//        employeeArray = new Mitarbeiter[emplNumber]; 
-        employeeArray[0] = new Mitarbeiter(1,"anrede1", "vorname1", "nachname1", "strasse1", 45, 71229, "ort1", 88.5);
-        employeeArray[1] = new Mitarbeiter(2,"anrede2", "vorname2", "nachname2", "strasse2", 45, 71229, "ort2", 88.5);
-        employeeArray[2] = new Mitarbeiter(3,"anrede3", "vorname3", "nachname3", "strasse3", 45, 71229, "ort3", 88.5);
-//        System.out.println("test");
-
-        return employeeArray;        
-
-    }
-    
-        //FIRST TRY
-    /*public Mitarbeiter[] getAllEmployeesArray() throws SQLException{
-        //returns array with all employees from the database
-        
-        Mitarbeiter employee;
-        Mitarbeiter[] employeeArray;
-        
-        
-        String count = "SELECT COUNT(mitarbeiterId) FROM `mitarbeiter`";
-        ResultSet rs1 = abfragen(count);
-        rs1.next();
-        int emplNumber = rs1.getInt(1);
-        
-        employeeArray = new Mitarbeiter[emplNumber];
-
-        for (int i = 0; i < emplNumber; i++) {        
-            String comm1 = "SELECT mitarbeiterId FROM Mitarbeiter";
-            ResultSet rs2 = abfragen(comm1);
-            rs2.next();
-            
-            int mitarbeiterId = rs2.getInt(1);
-                             
-            String comm2 = String.format("SELECT * FROM Mitarbeiter WHERE mitarbeiterId = %1$d", mitarbeiterId);
-            ResultSet rs3 = abfragen(comm2);
-
-            rs3.next();
-            employee = new Mitarbeiter(rs3.getInt(1), rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getInt(6), rs3.getInt(7), rs3.getString(8), rs3.getDouble(9));
-
-            employeeArray[i] = employee;
-        }
-
-        return employeeArray;        
-
-    }*/
-    
     public int getNumberOfEmployees() throws SQLException{
         //return the number of employees
         
