@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
@@ -25,6 +26,7 @@ import javazoom.jl.player.Player;
 public class Kasse_Verwaltung {
     
     private DB_Verbindung dieDB_Verbindung;
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     public Kasse_Verwaltung() throws SQLException, IOException{
         dieDB_Verbindung = new DB_Verbindung();
@@ -103,13 +105,16 @@ public class Kasse_Verwaltung {
     }
     
     public String kassenzettelFuss(ArrayList<Artikel> artikelliste, Double gegeben){
-        Double gesamt,rück;
-        String ausgabe;
+        Double gesamt,rueck;
+        String ausgabe, sGegeben,sRueck,sGesamt;
         
         gesamt = gesamtbetragBerechnen(artikelliste);
-        rück = gegeben - gesamt;
-        ausgabe = "============================"+"\n"+"Gesamt:                 "+gesamt+"€"+"\n"+"Gegeben:                "+gegeben+"€"+"\n"+
-                "Zurück:                 "+rück+"€"+"\n"+"\n"+"Vielen Dank für"+"\n"+"Ihren Einkauf!";
+        rueck = gegeben - gesamt;
+        sGegeben = df.format(gegeben);
+        sRueck = df.format(rueck);
+        sGesamt = df.format(gesamt);
+        ausgabe = "=============================="+"\n"+"Gesamt:                  "+sGesamt+"€"+"\n"+"Gegeben:                 "+sGegeben+"€"+"\n"+
+                "Zurück:                  "+sRueck+"€"+"\n"+"\n"+"Vielen Dank für"+"\n"+"Ihren Einkauf!";
         
         return ausgabe;
     }
