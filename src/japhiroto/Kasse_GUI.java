@@ -791,7 +791,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             else{
                 Double zurueck;
 
-                gegeben= Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10;
+                gegeben= Double.parseDouble(txfGegeben.getText());
                 zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
                 txfZurueck.setText(Double.toString(zurueck));
                 bezahlt=true;
