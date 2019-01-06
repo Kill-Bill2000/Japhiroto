@@ -283,8 +283,8 @@ public class DB_Verbindung {
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("artikelName");
-        vk = rs.getDouble("verkaufPreis");
+        artName = rs.getString("bezeichnung");
+        vk = rs.getDouble("preis");
         anz = rs.getInt("bestand");
         
         art = new Artikel(artName, vk, artNr, anz);
@@ -315,8 +315,8 @@ public class DB_Verbindung {
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("artikelName");
-        vk = rs.getDouble("verkaufPreis");
+        artName = rs.getString("bezeichnung");
+        vk = rs.getDouble("preis");
         anz = anzahl;
         
         art = new Artikel(artName, vk, artNr,anz);
@@ -406,7 +406,7 @@ public class DB_Verbindung {
         befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);;
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            artikel.add(new Artikel(rs.getString("artikelName"), rs.getDouble("verkaufPreis"), rs.getString("artikelNummer")));
+            artikel.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getString("artikelNummer")));
         }
         
         return artikel;
