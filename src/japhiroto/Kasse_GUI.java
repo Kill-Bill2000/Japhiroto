@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.IllegalFormatConversionException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -746,17 +747,18 @@ public class Kasse_GUI extends javax.swing.JFrame {
         if(bezahlt == false){  
             try{
                 if(txfAnzahl.getText()== "1"||txfAnzahl.getText().equals("")){
-                 artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));                  
+                    artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));     
+                    ausgabeAktualisieren();
                 }
-                else if(Integer.parseInt(txfAnzahl.getText())<=0||Integer.parseInt(txfAnzahl.getText())>647){
-                    JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
+                else if(Integer.parseInt(txfAnzahl.getText())>0 && Integer.parseInt(txfAnzahl.getText())<647){
+                    artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),Integer.parseInt(txfAnzahl.getText())));
+                    ausgabeAktualisieren();
                 }
                 else{
-                 artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),Integer.parseInt(txfAnzahl.getText())));
+                    JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
                 }
                 txfArtikelNr.setText("");
                 txfAnzahl.setText("");
-                ausgabeAktualisieren();
 
            }
            catch(SQLException e){
@@ -951,7 +953,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
         try{    
             if(bezahlt==false){
-            String sMinusBetrag = txfMinus.getText();
+            String sMinusBetrag = String.format("%.2f",txfMinus.getText());
             double minusBetrag;
             Artikel minusArtikel;
             minusBetrag = Double.parseDouble(sMinusBetrag);
@@ -962,7 +964,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             ausgabeAktualisieren();
         }
         }
-        catch(NumberFormatException e){
+        catch(NumberFormatException | IllegalFormatConversionException e){
             JOptionPane.showMessageDialog(rootPane, "Bitte Minus-Feld beachten! Ggf. auf Komma achten! Richtig: . Falsch: ,","Fehler",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnMinusActionPerformed
