@@ -739,12 +739,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private void btnHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHinzufuegenActionPerformed
         if(bezahlt == false){  
             try{
-                if(Integer.parseInt(txfAnzahl.getText())<=0||Integer.parseInt(txfAnzahl.getText())>647){
-                    JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
-                }
-
-                else if(txfAnzahl.getText()== "1"||txfAnzahl.getText()== null){
+                if(txfAnzahl.getText()== "1"||txfAnzahl.getText().equals("")){
                  artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));                  
+                }
+                else if(Integer.parseInt(txfAnzahl.getText())<=0||Integer.parseInt(txfAnzahl.getText())>647){
+                    JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
                 }
                 else{
                  artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),Integer.parseInt(txfAnzahl.getText())));
@@ -786,7 +785,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
         }
         else{
-            if(txfGegeben.getText()== "" || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
+            if(txfGegeben.getText().equals("") || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
                 JOptionPane.showInputDialog(rootPane, "Bitte Gegeben-Feld überprüfen!");
             }
             else{
