@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -30,6 +31,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private ArrayList<Artikel> artikelliste;
     private boolean bezahlt=false;
     private double gegeben=0;
+    private DecimalFormat df = new DecimalFormat("0.00");
     /**
      * Creates new form Kasse_GUI
      */
@@ -568,9 +570,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         
     private void ausgabeAktualisieren(){
+        double gesamt;
+        String sGesamt;
         txaAusgabe.setText("");
         txaAusgabe.setText(dieKasse_Verwaltung.ausgabeHeader() + dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
-        txfGesamt.setText(String.format ("%.2f", dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)));
+        gesamt = dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
+        sGesamt = df.format(gesamt);
+        txfGesamt.setText(sGesamt);
     }
     private void ansageOeffnen() throws FileNotFoundException, JavaLayerException{
         dieKasse_Verwaltung.ansageOeffnen();
@@ -785,15 +791,19 @@ public class Kasse_GUI extends javax.swing.JFrame {
             JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
         }
         else{
-            if(txfGegeben.getText().equals("") || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
+            if(txfGegeben.getText().equals("") || Double.parseDouble(txfGegeben.getText())  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
                 JOptionPane.showInputDialog(rootPane, "Bitte Gegeben-Feld überprüfen!");
             }
             else{
-                Double zurueck;
-
+                String sGegeben,sZurueck;
+                Double zurueck,gesamt;
+                gesamt = dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
                 gegeben= Double.parseDouble(txfGegeben.getText());
-                zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
-                txfZurueck.setText(Double.toString(zurueck));
+                zurueck =  gegeben - gesamt;
+                sZurueck = df.format(zurueck);
+                sGegeben = df.format(gegeben);
+                txfGegeben.setText(sGegeben);
+                txfZurueck.setText(sZurueck);
                 bezahlt=true;
                 ausgabeAktualisieren();
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
