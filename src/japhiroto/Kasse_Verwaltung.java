@@ -95,7 +95,7 @@ public class Kasse_Verwaltung {
             if(anzahlBuchstaben>16){
                 String teil1 = name.substring(0, 14);
                 String teil2 = name.substring(14);
-                anzahlLeerzeichen = 28 - teil2.length();
+                anzahlLeerzeichen = 27 - teil2.length();
                 for (int j=0; j<=anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
