@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 02. Jan 2019 um 14:54
--- Server-Version: 10.1.37-MariaDB
--- PHP-Version: 7.3.0
+-- Generation Time: Jan 06, 2019 at 06:27 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `japhiroto`
+-- Database: `japhiroto`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `accounts`
+-- Table structure for table `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -37,7 +37,7 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Daten für Tabelle `accounts`
+-- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`, `rolle`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `artikel`
+-- Table structure for table `artikel`
 --
 
 CREATE TABLE `artikel` (
@@ -59,7 +59,7 @@ CREATE TABLE `artikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
--- Daten für Tabelle `artikel`
+-- Dumping data for table `artikel`
 --
 
 INSERT INTO `artikel` (`artikelNr`, `bezeichnung`, `preis`, `bestand`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `artikel` (`artikelNr`, `bezeichnung`, `preis`, `bestand`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `mitarbeiter`
+-- Table structure for table `mitarbeiter`
 --
 
 CREATE TABLE `mitarbeiter` (
@@ -86,55 +86,57 @@ CREATE TABLE `mitarbeiter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Daten für Tabelle `mitarbeiter`
+-- Dumping data for table `mitarbeiter`
 --
 
 INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
-(1, 'Herr', 'Max', 'Mustermann', 'Musterstrasse', 1, 12345, 'Musterstadt', 8.50);
+(1, 'Herr', 'Max', 'Mustermann', 'Musterstrasse', 1, 12345, 'Musterstadt', 8.50),
+(2, 'Frau', 'Maxia', 'Musterfrau', 'Mustergasse', 2, 67890, 'ZweiteMusterstadt', 5.80),
+(3, 'Dive', 'Maxia*innen', 'Musterfrau*innen', 'Mustergasse*innen', 61, 7531459, 'ZweiteMusterstadt*innen', 0.01);
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `accounts`
+-- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`accountId`);
 
 --
--- Indizes für die Tabelle `artikel`
+-- Indexes for table `artikel`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`artikelNr`);
 
 --
--- Indizes für die Tabelle `mitarbeiter`
+-- Indexes for table `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
   ADD PRIMARY KEY (`mitarbeiterId`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `accounts`
+-- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `accountId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `artikel`
+-- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
   MODIFY `artikelNr` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `mitarbeiter`
+-- AUTO_INCREMENT for table `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
-  MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
