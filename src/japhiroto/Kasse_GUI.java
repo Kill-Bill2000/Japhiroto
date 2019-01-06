@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
     private Kasse_Verwaltung dieKasse_Verwaltung;
     private String aktuellesTextfeld = "txfArtikelNr";
-    private ArrayList<Artikel> artikelliste = new ArrayList<Artikel>();
+    private ArrayList<Artikel> artikelliste;
     private boolean bezahlt=false;
     private double gegeben=0;
     /**
@@ -36,7 +37,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         try{
             initComponents();
+            artikelliste = new ArrayList<Artikel>();
             dieKasse_Verwaltung = new Kasse_Verwaltung();
+            Font font = new Font("Monospaced",Font.PLAIN, 11);
+            txaAusgabe.setFont(font);
             
         } catch(SQLException e){
             getToolkit().beep();
@@ -139,7 +143,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
-        txaAusgabe.setEditable(false);
         txaAusgabe.setColumns(20);
         txaAusgabe.setRows(5);
         txaAusgabe.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -457,7 +460,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblArtikelliste)
-                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnStorno, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -466,6 +468,9 @@ public class Kasse_GUI extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblImpressum)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -483,8 +488,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAuskunft, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBonDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnKaufvorgangAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -492,7 +497,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnMinus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnStorno, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(63, Short.MAX_VALUE))
+                        .addContainerGap(38, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -728,7 +733,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                     JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
                 }
 
-                else if(txfAnzahl.getText()== "1"||txfAnzahl.getText()== ""){
+                else if(txfAnzahl.getText()== "1"||txfAnzahl.getText()== null){
                  artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));                  
                 }
                 else{
