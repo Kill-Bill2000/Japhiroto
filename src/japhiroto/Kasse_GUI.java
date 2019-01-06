@@ -935,6 +935,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             if(erfolgreich == true){
                 JOptionPane.showInputDialog(rootPane, "Artikel mit Nr.: "+artikelNr+" erfolgreich entfernt!");
                 ausgabeAktualisieren();
+                txfArtikelNr.setText("");
             }
             else{
                 JOptionPane.showInputDialog(rootPane, "Artikel konnte nicht gefunden werden! Bitte Artikelfeld überprüfen.");
