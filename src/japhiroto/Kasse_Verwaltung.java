@@ -83,7 +83,7 @@ public class Kasse_Verwaltung {
             if(anzahlBuchstaben>16){
                 String teil1 = name.substring(0, 14);
                 String teil2 = name.substring(14);
-                anzahlLeerzeichen = 26 - teil2.length();
+                anzahlLeerzeichen = 27 - teil2.length();
                 for (int j=0; j<=anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
@@ -109,7 +109,7 @@ public class Kasse_Verwaltung {
         
         gesamt = gesamtbetragBerechnen(artikelliste);
         rück = gegeben - gesamt;
-        ausgabe = "============================"+"\n"+"Gesamt:               "+gesamt+"€"+"\n"+"Gegeben:                "+gegeben+"€"+"\n"+
+        ausgabe = "============================"+"\n"+"Gesamt:                 "+gesamt+"€"+"\n"+"Gegeben:                "+gegeben+"€"+"\n"+
                 "Zurück:                 "+rück+"€"+"\n"+"\n"+"Vielen Dank für"+"\n"+"Ihren Einkauf!";
         
         return ausgabe;
