@@ -949,17 +949,21 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStornoActionPerformed
 
     private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
-        if(bezahlt==false){
+        try{    
+            if(bezahlt==false){
             String sMinusBetrag = txfMinus.getText();
             double minusBetrag;
             Artikel minusArtikel;
             minusBetrag = Double.parseDouble(sMinusBetrag);
-            sMinusBetrag = df.format(minusBetrag);
             minusBetrag = minusBetrag - (2*minusBetrag);
-            txfMinus.setText(sMinusBetrag);
+            txfMinus.setText("");
             minusArtikel = new Artikel("Minus",minusBetrag,"0");
             artikelliste.add(minusArtikel);
             ausgabeAktualisieren();
+        }
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(rootPane, "Bitte Minus-Feld beachten! Ggf. auf Komma achten! Richtig: . Falsch: ,","Fehler",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnMinusActionPerformed
 
