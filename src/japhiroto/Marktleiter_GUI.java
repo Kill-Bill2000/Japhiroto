@@ -79,11 +79,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         txfVorname = new javax.swing.JTextField();
         txfNachname = new javax.swing.JTextField();
         lblNachname = new javax.swing.JLabel();
-        ComBoxDatumVon = new javax.swing.JComboBox<>();
+        ComBoxDateUntil = new javax.swing.JComboBox<>();
         lblDatumauswahl = new javax.swing.JLabel();
         lblDatumVon = new javax.swing.JLabel();
         lblDatumBis = new javax.swing.JLabel();
-        ComBoxDatumBis = new javax.swing.JComboBox<>();
+        ComBoxDateFrom = new javax.swing.JComboBox<>();
         btnShowSales = new javax.swing.JButton();
         btnWarehouseList = new javax.swing.JButton();
         btnOrders = new javax.swing.JButton();
@@ -140,7 +140,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblNachname.setText("Nachname");
 
-        ComBoxDatumVon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComBoxDateUntil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblDatumauswahl.setText("Datumauswahl");
 
@@ -148,10 +148,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblDatumBis.setText("Bis:");
 
-        ComBoxDatumBis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        ComBoxDatumBis.addActionListener(new java.awt.event.ActionListener() {
+        ComBoxDateFrom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComBoxDatumBisActionPerformed(evt);
+                ComBoxDateFromActionPerformed(evt);
             }
         });
 
@@ -319,12 +319,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                     .addComponent(btnShowSales, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ComBoxDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblDatumauswahl)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(lblDatumVon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lblDatumBis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ComBoxDatumVon, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(lblUmsatz))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -352,11 +352,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                     .addComponent(lblDatumVon)
                                     .addGap(73, 73, 73))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(ComBoxDatumVon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(20, 20, 20)
-                                            .addComponent(ComBoxDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(3, 3, 3)
                                             .addComponent(lblDatumBis))))))
@@ -436,9 +436,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ComBoxDatumBisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDatumBisActionPerformed
+    private void ComBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateFromActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ComBoxDatumBisActionPerformed
+    }//GEN-LAST:event_ComBoxDateFromActionPerformed
 
     private void btnWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarehouseListActionPerformed
         // TODO add your handling code here:
@@ -568,7 +568,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
     }
     
-    private void drawSales(){  
+    private void drawBasicGraph(){  
         //testline
 //        diagram.drawLine(zeroX, zeroY, sizeX, 0);    
                 
@@ -591,10 +591,65 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         }
 
     }
+    
+        private void drawSales(){  
+        //testline
+//        diagram.drawLine(zeroX, zeroY, sizeX, 0);
+
+        // draw axes  
+        diagram.drawLine(zeroX - 10, zeroY, sizeX - 15, zeroY);
+        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 15);
+        
+//        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+//        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();            
+        String selectedFrom = "15.09.2018";
+        String selectedUntil = "20.09.2018"; 
+        
+        String[] parts1 = selectedFrom.split("\\.");
+        String dayFrom = parts1[0];
+        String monthFrom = parts1[1];
+        String yearFrom = parts1[2];
+        
+        String[] parts2 = selectedUntil.split("\\.");
+        String dayUntil = parts2[0];
+        String monthUntil = parts2[1];
+        String yearUntil = parts2[2];        
+        
+        //TEST:
+//        System.out.println(dayFrom);
+//        System.out.println(monthFrom);
+//        System.out.println(yearFrom);
+//
+//        System.out.println(dayUntil);
+//        System.out.println(monthUntil);
+//        System.out.println(yearUntil);       
+              
+        String differenceDay = Integer.toString(Integer.valueOf(dayUntil) - Integer.valueOf(dayFrom));
+        String differenceMonth = Integer.toString(Integer.valueOf(monthUntil) - Integer.valueOf(monthFrom));        
+        
+        //TEST:
+        System.out.println(differenceDay);
+        System.out.println(differenceMonth);
+
+        
+        // draw scale 
+        // X-axis
+        for (int i = 1; i < sizeX/20 - 2; i++) {
+            diagram.drawLine(zeroX + i*20, zeroY - 5, zeroX + i*20, zeroY + 5);
+            diagram.drawString(""+i, zeroX + i*20 - 3, zeroY + 20);            
+        }
+        
+        // Y-axis
+        for (int i = 1; i < sizeY/20 - 2; i++) {
+            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComBoxDatumBis;
-    private javax.swing.JComboBox<String> ComBoxDatumVon;
+    private javax.swing.JComboBox<String> ComBoxDateFrom;
+    private javax.swing.JComboBox<String> ComBoxDateUntil;
     private javax.swing.JButton btnLoadList;
     private javax.swing.JButton btnOrders;
     private javax.swing.JButton btnPrint;
