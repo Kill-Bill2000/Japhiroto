@@ -85,7 +85,7 @@ public class Kasse_Verwaltung {
     }
     
     public String kassenzettelErstellen(ArrayList<Artikel> artikelliste){
-        String ausgabe="";
+        String ausgabe="Artikel:"+"\n"+"\n";
         for (int i = 0; i < artikelliste.size();i++) {
             String name,leerzeichen="";
             int anzahlBuchstaben;
