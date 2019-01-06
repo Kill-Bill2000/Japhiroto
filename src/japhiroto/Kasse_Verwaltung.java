@@ -104,7 +104,7 @@ public class Kasse_Verwaltung {
                         "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n";
             }
             else{
-                anzahlLeerzeichen = 26 - anzahlBuchstaben;
+                anzahlLeerzeichen = 27 - anzahlBuchstaben;
                 for (int j=0; j<anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
