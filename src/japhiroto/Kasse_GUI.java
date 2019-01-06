@@ -954,8 +954,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
             double minusBetrag;
             Artikel minusArtikel;
             minusBetrag = Double.parseDouble(sMinusBetrag);
-            minusBetrag = minusBetrag - (2*minusBetrag);
             sMinusBetrag = df.format(minusBetrag);
+            minusBetrag = minusBetrag - (2*minusBetrag);
             txfMinus.setText(sMinusBetrag);
             minusArtikel = new Artikel("Minus",minusBetrag,"0");
             artikelliste.add(minusArtikel);
