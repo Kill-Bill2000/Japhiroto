@@ -781,23 +781,28 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAuskunftActionPerformed
 
     private void btnBezahlenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBezahlenActionPerformed
-    if(bezahlt){
-        JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
-    }
-    else{
-        if(txfGegeben.getText()== "" || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
-            JOptionPane.showInputDialog(rootPane, "Bitte Gegebenfeld überprüfen!");
+    try{    
+        if(bezahlt){
+            JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
         }
         else{
-            Double zurueck;
-            
-            gegeben= Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10;
-            zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
-            txfZurueck.setText(Double.toString(zurueck));
-            bezahlt=true;
-            ausgabeAktualisieren();
-            txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
+            if(txfGegeben.getText()== "" || Math.round(Double.parseDouble(txfGegeben.getText()) * 10) / 10  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
+                JOptionPane.showInputDialog(rootPane, "Bitte Gegeben-Feld überprüfen!");
+            }
+            else{
+                Double zurueck;
+
+                gegeben= Math.round(Double.parseDouble(txfGegeben.getText())*10)/ 10;
+                zurueck =  gegeben - dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
+                txfZurueck.setText(Double.toString(zurueck));
+                bezahlt=true;
+                ausgabeAktualisieren();
+                txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
+            }
         }
+    }
+    catch(NumberFormatException e){
+        JOptionPane.showMessageDialog(rootPane, "Bitte Gegeben-Feld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
