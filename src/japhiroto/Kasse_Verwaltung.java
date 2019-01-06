@@ -65,6 +65,11 @@ public class Kasse_Verwaltung {
         rArtikel = dieDB_Verbindung.getArtikelMitAnzahl(artikelNr,anz);
         return rArtikel;
     }
+    public void artikelAbziehen(ArrayList<Artikel> artikelliste) throws SQLException, IOException{
+        for (int i = 0; i < artikelliste.size(); i++) {
+            dieDB_Verbindung.verkaufeArtikel(artikelliste.get(i).getArtikelNummer(), artikelliste.get(i).getAnzahl());
+        }
+    }
     public double gesamtbetragBerechnen(ArrayList<Artikel> artikelliste){
         double gesamtBetrag=0;
         for (int i = 0; i < artikelliste.size();i++) {
