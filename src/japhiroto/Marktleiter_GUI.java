@@ -624,9 +624,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println(monthUntil);
 //        System.out.println(yearUntil);       
               
-        String differenceDay = Integer.toString(Integer.valueOf(dayUntil) - Integer.valueOf(dayFrom));
-        String differenceMonth = Integer.toString(Integer.valueOf(monthUntil) - Integer.valueOf(monthFrom));        
-        
+        int differenceDay = Integer.valueOf(dayUntil) - Integer.valueOf(dayFrom);
+        int differenceMonth = Integer.valueOf(monthUntil) - Integer.valueOf(monthFrom);
+                
         //TEST:
         System.out.println(differenceDay);
         System.out.println(differenceMonth);
