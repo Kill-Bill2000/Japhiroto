@@ -805,6 +805,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txfGegeben.setText(sGegeben);
                 txfZurueck.setText(sZurueck);
                 bezahlt=true;
+                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
                 ausgabeAktualisieren();
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
                 dieKasse_Verwaltung.soundKasse();
@@ -817,10 +818,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
     catch(JavaLayerException | FileNotFoundException ex){
         
     }
+    catch(SQLException | IOException ey){
+        JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
     private void btnKarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKarteActionPerformed
-        
+    try{    
         JOptionPane jop = new JOptionPane();
 	jop.setMessageType(JOptionPane.INFORMATION_MESSAGE);
 	jop.setMessage("Bitte warten bis Bezahlvorgang am Terminal beendet ist...");
@@ -855,12 +859,17 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 JOptionPane.showInputDialog(rootPane, "Transaktion fehlgeschlagen! Bitte erneut versuchen.");
             }
             else{
+                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
                 JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
                 bezahlt=true;
                 txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
             }
         }
+    }
+    catch(SQLException | IOException ey){
+        JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnKarteActionPerformed
 
     private void btnNeuerKaufvorgangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeuerKaufvorgangActionPerformed
