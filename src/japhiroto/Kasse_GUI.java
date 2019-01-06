@@ -954,7 +954,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private void btnMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinusActionPerformed
         try{    
             if(bezahlt==false){
-            String sMinusBetrag = String.format("%.2f",txfMinus.getText());
+            String sMinusBetrag = txfMinus.getText();
             double minusBetrag;
             Artikel minusArtikel;
             minusBetrag = Double.parseDouble(sMinusBetrag);
