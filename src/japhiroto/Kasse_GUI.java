@@ -11,12 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.IllegalFormatConversionException;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -965,7 +960,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             ausgabeAktualisieren();
         }
         }
-        catch(NumberFormatException | IllegalFormatConversionException e){
+        catch(NumberFormatException e){
             JOptionPane.showMessageDialog(rootPane, "Bitte Minus-Feld beachten! Ggf. auf Komma achten! Richtig: . Falsch: ,","Fehler",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnMinusActionPerformed
