@@ -227,7 +227,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         });
 
         btnBonDrucken.setBackground(new java.awt.Color(51, 255, 51));
-        btnBonDrucken.setText("letzten Bon drucken");
+        btnBonDrucken.setText("Bon drucken");
         btnBonDrucken.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBonDrucken.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -807,11 +807,15 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 bezahlt=true;
                 ausgabeAktualisieren();
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
+                dieKasse_Verwaltung.soundKasse();
             }
         }
     }
     catch(NumberFormatException e){
         JOptionPane.showMessageDialog(rootPane, "Bitte Gegeben-Feld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
+    }
+    catch(JavaLayerException | FileNotFoundException ex){
+        
     }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
@@ -828,7 +832,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
     else{
         int zufallszahl;
         zufallszahl = (int)(Math.random()*100);
-        txfZurueck.setText("0.00");
+        txfZurueck.setText("0,00");
+        txfGegeben.setText("0,00");
         gegeben = 0.00;
         //JOptionPane.showMessageDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
 
