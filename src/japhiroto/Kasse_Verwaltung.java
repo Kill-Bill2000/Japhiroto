@@ -59,7 +59,7 @@ public class Kasse_Verwaltung {
     }
     public double gesamtbetragBerechnen(ArrayList<Artikel> artikelliste){
         double gesamtBetrag=0;
-        for (int i = 0; i <= artikelliste.size(); i++) {
+        for (int i = 0; i <= artikelliste.size();i++) {
             
             gesamtBetrag = gesamtBetrag + (artikelliste.get(i).getPreis()*artikelliste.get(i).getAnzahl());
         }
@@ -74,7 +74,7 @@ public class Kasse_Verwaltung {
     
     public String kassenzettelErstellen(ArrayList<Artikel> artikelliste){
         String ausgabe="";
-        for (int i = 0; i <= artikelliste.size(); i++) {
+        for (int i = 0; i < artikelliste.size();i++) {
             String name,leerzeichen="";
             int anzahlBuchstaben;
             int anzahlLeerzeichen;
@@ -82,9 +82,9 @@ public class Kasse_Verwaltung {
             anzahlBuchstaben = name.length();
             if(anzahlBuchstaben>16){
                 String teil1 = name.substring(0, 14);
-                String teil2 = name.substring(15);
+                String teil2 = name.substring(14);
                 anzahlLeerzeichen = 26 - teil2.length();
-                for (i=0; i<anzahlLeerzeichen; i++){
+                for (int j=0; j<=anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
                 ausgabe = ausgabe + teil1+"-"+"\n"+
@@ -93,7 +93,7 @@ public class Kasse_Verwaltung {
             }
             else{
                 anzahlLeerzeichen = 26 - anzahlBuchstaben;
-                for (i=0; i<anzahlLeerzeichen; i++){
+                for (int j=0; j<=anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
                 ausgabe= ausgabe +name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
