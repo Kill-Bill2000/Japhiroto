@@ -31,7 +31,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             verbindung = new DB_Verbindung();
             
             diaArtNrEingeben.setSize(450, 150);
-            artikel = verbindung.getVerwaltung();
+            artikel = new ArtikelVerwaltung();
             
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
             for (int i = 0; i < artikel.anzahlArtikel(); i++) {

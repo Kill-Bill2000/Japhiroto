@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,11 +27,13 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private DB_Verbindung db;
     public LagerBestellungenGUI() {
         initComponents();
-        bestellungenNeuLaden();
         try {
             db = new DB_Verbindung();
+            bestellungenNeuLaden();
         }
         catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
         }
     }
@@ -283,7 +286,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         else {
             diaWareneingang.setVisible(true);
             diaWareneingang.setSize(380, 590);
-            txfWarenBestellNr.setText(String.valueOf(selectZeile));
+            txfWarenBestellNr.setText(bestellungen.get(selectZeile).getBestellNr());
             DefaultTableModel model = (DefaultTableModel) tblWarenArtikel.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
             for (int i = 0; i < bestellungen.get(selectZeile).getAnzahlArtikel(); i++) {
                 model.addRow(new Object[]{bestellungen.get(selectZeile).anzahlArtikel(i), bestellungen.get(selectZeile).bestellterArtikel(i).getName(), 0});
@@ -292,22 +295,37 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnWareneingangActionPerformed
 
     private void btnWarenEingangSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarenEingangSpeichernActionPerformed
-        int bestellung = Integer.valueOf(txfWarenBestellNr.getText());          //Auswahl welches Lager
-        for (int i = 0; i < bestellungen.get(bestellung).getAnzahlArtikel(); i++) {
-            String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
-            int intEingang = Integer.valueOf(strEingang);
-            if (intEingang > 0) {
-                bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
-                String artNr = bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer();
-                try {
-                    db.wareAngekommen(bestellungen.get(bestellung).getBestellNr(), artNr, intEingang);
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
+        String bestNr = txfWarenBestellNr.getText();
+        int bestellung = -1;
+        for (int i = 0; i < bestellungen.size(); i++) {
+            if (bestNr.equals(bestellungen.get(i).getBestellNr())) {
+                bestellung = i;
+                i = bestellungen.size();
+            }
+        }
+        try {
+            for (int i = 0; i < bestellungen.get(bestellung).getAnzahlArtikel(); i++) {
+                String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
+                int intEingang = Integer.valueOf(strEingang);
+                if (intEingang > 0) {
+                    bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
+                    String artNr = bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer();
+                    try {
+                        db.wareAngekommen(bestNr, artNr, intEingang);
+                    }
+                    catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
+                    }
+                    catch (IOException ex) {
+                        JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
+                    }
                 }
             }
         }
+        catch(NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Es gab leider einen Fehler mit der Bestellungsbuchung:\n" + ex.getMessage());
+        }
+        
         warenEingangLeeren();
         bestellungenNeuLaden();
         diaWareneingang.setVisible(false);
