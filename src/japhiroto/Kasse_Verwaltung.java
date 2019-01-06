@@ -59,7 +59,7 @@ public class Kasse_Verwaltung {
     }
     public double gesamtbetragBerechnen(ArrayList<Artikel> artikelliste){
         double gesamtBetrag=0;
-        for (int i = 0; i <= artikelliste.size();i++) {
+        for (int i = 0; i < artikelliste.size();i++) {
             
             gesamtBetrag = gesamtBetrag + (artikelliste.get(i).getPreis()*artikelliste.get(i).getAnzahl());
         }
@@ -93,7 +93,7 @@ public class Kasse_Verwaltung {
             }
             else{
                 anzahlLeerzeichen = 26 - anzahlBuchstaben;
-                for (int j=0; j<=anzahlLeerzeichen; j++){
+                for (int j=0; j<anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
                 ausgabe= ausgabe +name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
