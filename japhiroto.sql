@@ -160,31 +160,6 @@ INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `st
 (3, 'Dive', 'Maxia*innen', 'Musterfrau*innen', 'Mustergasse*innen', 61, 7531459, 'ZweiteMusterstadt*innen', 0.01);
 
 --
--- Table structure for table `mitarbeiter`
---
-
-CREATE TABLE `mitarbeiter` (
-  `mitarbeiterId` int(16) NOT NULL,
-  `anrede` varchar(4) COLLATE latin1_german1_ci DEFAULT NULL,
-  `vorname` varchar(32) COLLATE latin1_german1_ci NOT NULL,
-  `nachname` varchar(32) COLLATE latin1_german1_ci NOT NULL,
-  `strasse` varchar(32) COLLATE latin1_german1_ci DEFAULT NULL,
-  `hausNr` int(8) DEFAULT NULL,
-  `plz` int(5) DEFAULT NULL,
-  `ort` varchar(61) COLLATE latin1_german1_ci DEFAULT NULL,
-  `stundenLohn` double(9,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
-
---
--- Dumping data for table `mitarbeiter`
---
-
-INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
-(1, 'Herr', 'Max', 'Mustermann', 'Musterstrasse', 1, 12345, 'Musterstadt', 8.50),
-(2, 'Frau', 'Maxia', 'Musterfrau', 'Mustergasse', 2, 67890, 'ZweiteMusterstadt', 5.80),
-(3, 'Dive', 'Maxia*innen', 'Musterfrau*innen', 'Mustergasse*innen', 61, 7531459, 'ZweiteMusterstadt*innen', 0.01);
-
---
 -- Indexes for dumped tables
 --
 
