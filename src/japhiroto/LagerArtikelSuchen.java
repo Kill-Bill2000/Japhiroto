@@ -29,24 +29,38 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         try {  
             
             verbindung = new DB_Verbindung();
+            verbindung.verbindungAufbauen();
             
             diaArtNrEingeben.setSize(450, 150);
-            artikel = verbindung.getVerwaltung();
+            artikel = new ArtikelVerwaltung();
             
-            DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
-            for (int i = 0; i < artikel.anzahlArtikel(); i++) {
-                String artNr = artikel.getArtikelListenNummer(i).getArtikelNummer();
-                model.addRow(new Object[]{artNr, artikel.getArtikelFromNummer(artNr).getName(), artikel.getArtikelFromNummer(artNr).getPreis(), artikel.getBestandArtikel(artNr)});
-            }
+            ladeAlleArtikel();
             
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Die Zugangsdaten wurde nicht gefunden..", "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex){
+        }
+        catch (IOException ex){
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(LagerArtikelSuchen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (NullPointerException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Es konnten keine Artikel abgerufen werden.\n Ein unbekannter Fehler ist aufgetreten." + ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void ladeAlleArtikel() throws SQLException {
+        DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();    //Alle Artikel in der Tabelle anzeigen
+        model.setRowCount(0);
+        for (int i = 0; i < artikel.anzahlArtikel(); i++) {
+            String artNr = artikel.getArtikelListenNummer(i).getArtikelNummer();
+            model.addRow(new Object[]{artNr, artikel.getArtikel(artNr).getName(), artikel.getArtikel(artNr).getPreis(), artikel.getBestandArtikel(artNr)});
         }
     }
 
@@ -69,6 +83,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         tblArtikel = new javax.swing.JTable();
         btnNeueSuche = new javax.swing.JButton();
         btnZuruck = new javax.swing.JToggleButton();
+        btnAlleArtikel = new javax.swing.JButton();
 
         lblSucheArtSuche.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblSucheArtSuche.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -169,6 +184,13 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             }
         });
 
+        btnAlleArtikel.setText("alle Artikel");
+        btnAlleArtikel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlleArtikelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,8 +201,10 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
                     .addComponent(lblArtikel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNeueSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNeueSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlleArtikel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnZuruck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -192,7 +216,8 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNeueSuche)
-                    .addComponent(btnZuruck))
+                    .addComponent(btnZuruck)
+                    .addComponent(btnAlleArtikel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addContainerGap())
@@ -202,9 +227,9 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSucheSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSucheSuchenActionPerformed
-        String gesuchteArtNr;//int mit der gesuchenten Artikel Nummer
+        String gesuchteArtNr;//String mit der gesuchenten Artikel Nummer
         ArrayList<Artikel> gesuchte; //ArrayList zum speichern der gefundenen Artikel
-        gesuchte = new ArrayList<Artikel>(); //ArrayList zum speichern der gefundenen Artikel
+        //gesuchte = new ArrayList<Artikel>(); //ArrayList zum speichern der gefundenen Artikel
                                                       
         this.setVisible(true);
         diaArtNrEingeben.setVisible(false);         //Fenster werden geöffnet und geschlossen
@@ -212,23 +237,27 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         gesuchteArtNr = txfSucheArtNr.getText();
             
         try {
-            verbindung.verbindungAufbauen();
             gesuchte = verbindung.getArtikelFromNr(gesuchteArtNr);    //Suche
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
+            model.setRowCount(0); //Tabelle leeren
             for (int i = 0; i < gesuchte.size(); i++) {
                 model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis()});
             }
-            gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
-        } catch (SQLException ex) {
-                        getToolkit().beep();    //Fehler-Ton
+            //gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
+        }
+        catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
                     + "\nDie Zugangsdaten sind nicht gültig.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
-        } catch(NullPointerException ex) {
-                JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
-        } catch (NumberFormatException ex){
+        }
+        catch(NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
+        }
+        catch (NumberFormatException ex){
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten.\nEs dürfen nur Zahlen verwendet werden", "Eingabefehler", JOptionPane.ERROR_MESSAGE);
-        } catch(Exception ex) {
+        }
+        catch(Exception ex) {
             JOptionPane.showMessageDialog(this, "Keine Artikel gefunden: \n" + ex.getMessage());
         }
     }//GEN-LAST:event_btnSucheSuchenActionPerformed
@@ -250,7 +279,23 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     private void btnZuruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZuruckActionPerformed
         this.setVisible(false);
         diaArtNrEingeben.setVisible(false);
+        try {
+            verbindung.verbindungSchliessen();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnZuruckActionPerformed
+
+    private void btnAlleArtikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlleArtikelActionPerformed
+        try {
+            ladeAlleArtikel();
+        }
+        catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
+                    + "\nDie Zugangsdaten sind nicht gültig.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAlleArtikelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,6 +333,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlleArtikel;
     private javax.swing.JButton btnNeueSuche;
     private javax.swing.JButton btnSucheSuchen;
     private javax.swing.JToggleButton btnZuruck;
