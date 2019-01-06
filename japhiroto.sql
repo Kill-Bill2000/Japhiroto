@@ -1,15 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.6.6deb4
 -- https://www.phpmyadmin.net/
 --
+
 -- Host: 127.0.0.1
 -- Generation Time: Jan 06, 2019 at 06:27 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -53,6 +52,7 @@ INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`
 
 CREATE TABLE `artikel` (
   `artikelNr` int(16) NOT NULL,
+  `artikelNummer` char(32) COLLATE utf8_german2_ci NOT NULL,
   `bezeichnung` varchar(64) COLLATE utf8_german2_ci NOT NULL,
   `preis` double(9,2) NOT NULL,
   `bestand` int(16) NOT NULL
@@ -62,10 +62,12 @@ CREATE TABLE `artikel` (
 -- Dumping data for table `artikel`
 --
 
-INSERT INTO `artikel` (`artikelNr`, `bezeichnung`, `preis`, `bestand`) VALUES
-(1, 'Testartikel1', 9.99, 10),
-(2, 'Testartikel2', 4.49, 1),
-(3, 'Testartikel3', 29.99, 59);
+INSERT INTO `artikel` (`artikelNr`, `artikelNummer`, `bezeichnung`, `preis`, `bestand`) VALUES
+(1, '1', 'Testartikel1', 9.99, 10),
+(2, '2', 'Testartikel2', 4.49, 1),
+(3, '3', 'Testartikel3', 29.99, 59),
+(4, '9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2L', 1.99, 10),
+(5, '4006613002932', 'Hello Kitty Adventskalender', 4.99, 25);
 
 -- --------------------------------------------------------
 
@@ -99,16 +101,14 @@ INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `st
 --
 
 --
+-- Indizes für die Tabelle `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`artikelNr`,`artikelNummer`);
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`accountId`);
-
---
--- Indexes for table `artikel`
---
-ALTER TABLE `artikel`
-  ADD PRIMARY KEY (`artikelNr`);
 
 --
 -- Indexes for table `mitarbeiter`
@@ -121,16 +121,15 @@ ALTER TABLE `mitarbeiter`
 --
 
 --
+
+-- AUTO_INCREMENT für Tabelle `artikel`
+--
+ALTER TABLE `artikel`
+  MODIFY `artikelNr` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `accountId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `artikel`
---
-ALTER TABLE `artikel`
-  MODIFY `artikelNr` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `mitarbeiter`
