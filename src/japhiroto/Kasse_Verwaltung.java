@@ -62,8 +62,7 @@ public class Kasse_Verwaltung {
         for (int i = 0; i < artikelliste.size();i++) {
             
             gesamtBetrag = gesamtBetrag + (artikelliste.get(i).getPreis()*artikelliste.get(i).getAnzahl());
-        }
-//        gesamtBetrag = (Math.round(gesamtBetrag)*10)/10;
+        }   
         return gesamtBetrag;
     }
     public String ausgabeHeader(){
