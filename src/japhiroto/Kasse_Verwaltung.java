@@ -39,6 +39,12 @@ public class Kasse_Verwaltung {
         Player player = new Player(in);
         player.play();
     }
+    public void soundKasse() throws JavaLayerException, FileNotFoundException{
+        String soundKasse = "Cash Register Sound Effect.mp3";
+        FileInputStream in = new FileInputStream(soundKasse);
+        Player player = new Player(in);
+        player.play();
+    }
     
     public void ansageSchliessen() throws FileNotFoundException, JavaLayerException{
         String schliessen = "schliessenKasse1.mp3";
