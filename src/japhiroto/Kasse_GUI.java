@@ -497,7 +497,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAuskunft, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnAuskunft, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(30, 30, 30)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBonDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -953,9 +953,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
             String sMinusBetrag = txfMinus.getText();
             double minusBetrag;
             Artikel minusArtikel;
-            sMinusBetrag = String.format("%.2f", sMinusBetrag);
             minusBetrag = Double.parseDouble(sMinusBetrag);
             minusBetrag = minusBetrag - (2*minusBetrag);
+            sMinusBetrag = df.format(minusBetrag);
+            txfMinus.setText(sMinusBetrag);
             minusArtikel = new Artikel("Minus",minusBetrag,"0");
             artikelliste.add(minusArtikel);
             ausgabeAktualisieren();
