@@ -146,6 +146,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        txaAusgabe.setEditable(false);
         txaAusgabe.setColumns(20);
         txaAusgabe.setRows(5);
         txaAusgabe.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
