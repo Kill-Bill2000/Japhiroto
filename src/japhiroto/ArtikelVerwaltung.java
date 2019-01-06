@@ -16,26 +16,17 @@ import java.util.ArrayList;
  */
 public class ArtikelVerwaltung {
     private ArrayList<Artikel> artikelListe;
-    private ArrayList<Integer> bestand;
     private DB_Verbindung db;
     
-    public ArtikelVerwaltung(ArrayList<Artikel> artikel, ArrayList<Integer> bestand) {
-        artikelListe = artikel; //für die Datenbankklasse
-        this.bestand = bestand;
-    }
-    public ArtikelVerwaltung() throws IOException {
+    public ArtikelVerwaltung() throws IOException, SQLException {
         this.db = new DB_Verbindung();
+        db.verbindungAufbauen();
+        ArrayList<Artikel> artList = db.getArtikelListe();
+        artikelListe = artList;
     }
     
-    public Artikel getArtikelFromNummer(String artikelNummer) {
-        Artikel gesuchterArtikel = null;
-        for (int i = 0; i < artikelListe.size(); i++) {
-            if (checkName(artikelListe.get(i).getArtikelNummer(), artikelNummer)) {
-                artikelListe.get(i);
-                i = artikelListe.size();
-            }
-        }
-        return gesuchterArtikel;
+    public Artikel getArtikel(String artikelNummer) throws SQLException {
+        return db.getArtikel(artikelNummer);
     }
     public ArrayList<Artikel> getArtikelListeFromNummer(String artNr) {
         ArrayList<Artikel> gesuchteArtikel = null;
@@ -46,20 +37,10 @@ public class ArtikelVerwaltung {
         }
         return gesuchteArtikel;
     }
-//    public Artikel getArtikelFromName(String name) {
-//        Artikel gesuchterArtikel = null;
-//        for (int i = 0; i < artikelListe.size(); i++) {
-//            String artName = artikelListe.get(i).getName();
-//            if (artName.contains(name) || artName.startsWith(name) || artName.endsWith(name)) {
-//                gesuchterArtikel = artikelListe.get(i);
-//                i = artikelListe.size();
-//            }
-//        }
-//        return gesuchterArtikel;
-//    }
+
     private boolean checkName(String artName, String vergleich) {
         boolean ret;
-        if (artName.contains(vergleich) || artName.startsWith(vergleich) || artName.endsWith(vergleich) || artName == vergleich) {
+        if (artName.contains(vergleich) || artName.startsWith(vergleich) || artName.endsWith(vergleich) || artName.equals(vergleich)) {
             ret = true;
         }
         else {
@@ -71,32 +52,33 @@ public class ArtikelVerwaltung {
     public int anzahlArtikel() {
         return artikelListe.size();
     }
-    public int getBestandArtikel(String artNr) {
-        int a = -1;
+    private int getListenPlatz(String artNr) {
+        int ret = -1;
+        
         for (int i = 0; i < artikelListe.size(); i++) {
-            if (artikelListe.get(i).getArtikelNummer() == artNr) {
-                a = i;
+            String artiNr = artikelListe.get(i).getArtikelNummer();
+            if (artiNr.equals(artNr)) {
+                ret = i;
                 i = artikelListe.size();
             }
         }
-        return bestand.get(a);
+        
+        return ret;
+    }
+    public int getBestandArtikel(String artNr) throws SQLException {
+        return db.getArtikel(artNr).getAnzahl();
     }
     public Artikel getArtikelListenNummer(int nr) {
         return artikelListe.get(nr);
     }
-    public void addArtikel(Artikel a, int b) {
-        artikelListe.add(a);
-        bestand.add(b);
-    }
     public void artikelVerkaufen(String artNr, int anz) throws SQLException, IOException {
         int a = 0;
         for (int i = 0; i < artikelListe.size(); i++) {
-            if (artikelListe.get(i).getArtikelNummer() == artNr) {
+            if (artikelListe.get(i).getArtikelNummer().equals(artNr)) {
                 a = i;
                 i = artikelListe.size();
             }
         }
-        bestand.set(a, anz);
         db.verkaufeArtikel(artNr, anz);
     }
 }

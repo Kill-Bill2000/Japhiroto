@@ -51,11 +51,12 @@ public class Bestellung {
     public String getLieferant() {
         return lieferant;
     }
-    public int anzahlArtikelNr(String nr) {
-        int a = 0;
+    public int anzahlArtikelNr(String artNr) {
+        int a = -1;
         for (int i = 0; i < artikel.size(); i++) {
-            if (artikel.get(i).getArtikelNummer() == nr) {
-                a = i;
+            String artiNr = artikel.get(i).getArtikelNummer();
+            if (artiNr.equals(artNr)) {
+                a = anzahl.get(i);
                 i = artikel.size();
             }
         }

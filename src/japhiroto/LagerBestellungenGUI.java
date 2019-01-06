@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,10 +27,14 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private DB_Verbindung db;
     public LagerBestellungenGUI() {
         initComponents();
-        bestellungenNeuLaden();
         try {
             db = new DB_Verbindung();
-        } catch (IOException ex) {
+            db.verbindungAufbauen();
+            bestellungenNeuLaden();
+        }
+        catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
         }
     }
@@ -37,13 +42,17 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private void bestellungenNeuLaden() {
         try {
             bestellungen = db.getBestellungen();
-        } catch (SQLException ex) {
+            DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();
+            model.setRowCount(0); //Tabelle leeren
+            for (int i = 0; i < bestellungen.size(); i++) {
+                model.addRow(new Object[]{bestellungen.get(i).getBestellNr(), bestellungen.get(i).getLieferant()});
+            }
+        }
+        catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
         }
-        DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < bestellungen.size(); i++) {
-            model.addRow(new Object[]{bestellungen.get(i).getBestellNr(), bestellungen.get(i).getLieferant()});
+        catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Keine Bestellungen vorhanden");
         }
     }
     private void warenEingangLeeren() {
@@ -68,11 +77,12 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         txfWarenBestellNr = new javax.swing.JTextField();
         btnWarenEingangSpeichern = new javax.swing.JButton();
         btnWarenZuruck = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblBestellungen = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBestellungen = new javax.swing.JTable();
         btnWareneingang = new javax.swing.JButton();
         btnNeuLaden = new javax.swing.JButton();
+        btnZuruck = new javax.swing.JButton();
 
         diaWareneingang.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -168,10 +178,15 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bestellungen");
+        lblBestellungen.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblBestellungen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBestellungen.setText("Bestellungen");
 
         tblBestellungen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,6 +233,13 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             }
         });
 
+        btnZuruck.setText("zurück");
+        btnZuruck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZuruckActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,11 +247,13 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBestellungen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnWareneingang, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(175, 175, 175)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnZuruck)
+                        .addGap(32, 32, 32)
                         .addComponent(btnNeuLaden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -237,13 +261,14 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBestellungen, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnWareneingang)
-                    .addComponent(btnNeuLaden))
+                    .addComponent(btnNeuLaden)
+                    .addComponent(btnZuruck))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -262,7 +287,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         else {
             diaWareneingang.setVisible(true);
             diaWareneingang.setSize(380, 590);
-            txfWarenBestellNr.setText(String.valueOf(selectZeile));
+            txfWarenBestellNr.setText(bestellungen.get(selectZeile).getBestellNr());
             DefaultTableModel model = (DefaultTableModel) tblWarenArtikel.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
             for (int i = 0; i < bestellungen.get(selectZeile).getAnzahlArtikel(); i++) {
                 model.addRow(new Object[]{bestellungen.get(selectZeile).anzahlArtikel(i), bestellungen.get(selectZeile).bestellterArtikel(i).getName(), 0});
@@ -271,22 +296,37 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnWareneingangActionPerformed
 
     private void btnWarenEingangSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarenEingangSpeichernActionPerformed
-        int bestellung = Integer.valueOf(txfWarenBestellNr.getText());          //Auswahl welches Lager
-        for (int i = 0; i < bestellungen.get(bestellung).getAnzahlArtikel(); i++) {
-            String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
-            int intEingang = Integer.valueOf(strEingang);
-            if (intEingang > 0) {
-                bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
-                String artNr = bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer();
-                try {
-                    db.wareAngekommen(bestellungen.get(bestellung).getBestellNr(), artNr, intEingang);
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
+        String bestNr = txfWarenBestellNr.getText();
+        int bestellung = -1;
+        for (int i = 0; i < bestellungen.size(); i++) {
+            if (bestNr.equals(bestellungen.get(i).getBestellNr())) {
+                bestellung = i;
+                i = bestellungen.size();
+            }
+        }
+        try {
+            for (int i = 0; i < bestellungen.get(bestellung).getAnzahlArtikel(); i++) {
+                String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
+                int intEingang = Integer.valueOf(strEingang);
+                if (intEingang > 0) {
+                    bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
+                    String artNr = bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer();
+                    try {
+                        db.wareAngekommen(bestNr, artNr, intEingang);
+                    }
+                    catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
+                    }
+                    catch (IOException ex) {
+                        JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
+                    }
                 }
             }
         }
+        catch(NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Es gab leider einen Fehler mit der Bestellungsbuchung:\n" + ex.getMessage());
+        }
+        
         warenEingangLeeren();
         bestellungenNeuLaden();
         diaWareneingang.setVisible(false);
@@ -305,6 +345,20 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         bestellungenNeuLaden();
         diaWareneingang.setVisible(false);
     }//GEN-LAST:event_btnWarenZuruckActionPerformed
+
+    private void btnZuruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZuruckActionPerformed
+        this.setVisible(false);
+        try {
+            db.verbindungSchliessen();
+        } catch (SQLException ex) {
+        getToolkit().beep();    //Fehler-Ton
+        JOptionPane.showMessageDialog(this, "SQL Fehler.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnZuruckActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     
     /**
@@ -347,10 +401,11 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnWarenEingangSpeichern;
     private javax.swing.JButton btnWarenZuruck;
     private javax.swing.JButton btnWareneingang;
+    private javax.swing.JButton btnZuruck;
     private javax.swing.JDialog diaWareneingang;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblBestellungen;
     private javax.swing.JLabel lblWarenBestellNr;
     private javax.swing.JLabel lblWarenWareneingang;
     private javax.swing.JTable tblBestellungen;
