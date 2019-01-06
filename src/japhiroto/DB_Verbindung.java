@@ -19,7 +19,7 @@ public class DB_Verbindung {
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
     
-    public DB_Verbindung() throws FileNotFoundException, IOException, SQLException{
+    public DB_Verbindung() throws FileNotFoundException, IOException{
         dManager = new DataManager();
         einlesen(dateipfad);
         
