@@ -19,10 +19,10 @@ public class DB_Verbindung {
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
     
-    public DB_Verbindung() throws FileNotFoundException, IOException{
+    public DB_Verbindung() throws FileNotFoundException, IOException, SQLException{
         dManager = new DataManager();
         einlesen(dateipfad);
-        
+        verbindungAufbauen();
     }
     
     public DB_Verbindung(String host, String port, String name, String user, String pass) throws IOException{
@@ -278,6 +278,7 @@ public class DB_Verbindung {
         Artikel art;
         String artNr, artName;
         double vk;
+        int anz;
         
         String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
         ResultSet rs = abfragen(befehl);
@@ -286,10 +287,22 @@ public class DB_Verbindung {
         artNr = rs.getString("artikelNummer");
         artName = rs.getString("artikelName");
         vk = rs.getDouble("verkaufPreis");
+        anz = rs.getInt("bestand");
         
-        art = new Artikel(artName, vk, artNr);
+        art = new Artikel(artName, vk, artNr, anz);
         
         return art;
+    }
+    public ArrayList<Artikel> getArtikelListe() throws SQLException, NullPointerException {
+        ArrayList<Artikel> artList = new ArrayList<>();
+        
+        String befehl = String.format("SELECT artikelNummer FROM Artikel");
+        ResultSet rs = abfragen(befehl);
+        while(rs.next()) {
+            artList.add(getArtikel(rs.getString("artikelNummer")));
+        } 
+        
+        return artList;
     }
 
     // Die folgende Methode ist für die Kasse welche zusätlich zu den Artikeleigenschaften noch eine Anzahl dieser Artikel speichert
@@ -371,8 +384,11 @@ public class DB_Verbindung {
             String befehl = String.format("UPDATE bestellteArtikel SET anzahl = '%1$d' WHERE bestellID = '%2$s' AND artikelID = '%3$s'", anz, bestellNummer, artikelNr);
             updaten(befehl);
             int neu = anz + getVerwaltung().getBestandArtikel(artikelNr);
-            befehl = String.format("UPDATE Artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artikelNr);
+            befehl = String.format("UPDATE Artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artikelNr); //Bestand aktualisieren
             updaten(befehl);
+        }
+        if (i == anz) {
+            bestellungVollstaendig(bestellNummer);
         }
     }
     public void verkaufeArtikel(String artNr, int anz) throws SQLException, IOException {
@@ -382,15 +398,14 @@ public class DB_Verbindung {
         updaten(befehl);
     }
     
-    public ArtikelVerwaltung getVerwaltung() throws SQLException, IOException {
+    public ArtikelVerwaltung getVerwaltung() throws SQLException, IOException, NullPointerException {
         ArtikelVerwaltung verw = new ArtikelVerwaltung();
+        ArrayList<Artikel> artList;
         
-        String befehl = "SELECT * FROM Artikel";
-        ResultSet rs = abfragen(befehl);
-        while(rs.next()) {
-            Artikel a = getArtikel(rs.getString("artikelNummer"));
-            int b = rs.getInt("bestand");
-            verw.addArtikel(a, b);
+        artList = getArtikelListe();
+        
+        for (int i = 0; i < artList.size(); i++) {
+            verw.addArtikel(artList.get(i), artList.get(i).getAnzahl());
         }
         
         return verw;

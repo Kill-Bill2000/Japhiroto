@@ -39,14 +39,22 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
                 model.addRow(new Object[]{artNr, artikel.getArtikelFromNummer(artNr).getName(), artikel.getArtikelFromNummer(artNr).getPreis(), artikel.getBestandArtikel(artNr)});
             }
             
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Die Zugangsdaten wurde nicht gefunden..", "Datei nicht gefunden", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex){
+        }
+        catch (IOException ex){
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(LagerArtikelSuchen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Es konnte keine Vebindung zur Datenbank aufgebaut werden.\n Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (NullPointerException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Es konnten keine Artikel abgerufen werden.\n Ein unbekannter Fehler ist aufgetreten." + ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -217,8 +225,8 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
             for (int i = 0; i < gesuchte.size(); i++) {
                 model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis()});
-            }
-            gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
+        }
+            //gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
         } catch (SQLException ex) {
                         getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
