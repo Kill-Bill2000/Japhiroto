@@ -22,7 +22,7 @@ public class DB_Verbindung {
     public DB_Verbindung() throws FileNotFoundException, IOException, SQLException{
         dManager = new DataManager();
         einlesen(dateipfad);
-        verbindungAufbauen();
+        
     }
     
     public DB_Verbindung(String host, String port, String name, String user, String pass) throws IOException{
@@ -298,7 +298,6 @@ public class DB_Verbindung {
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
             artList.add(getArtikel(rs.getString("artikelNummer")));
-            System.out.println(getArtikel(rs.getString("artikelNummer")));
         }
         
         return artList;
@@ -404,7 +403,7 @@ public class DB_Verbindung {
         ArrayList<Artikel> artikel = new ArrayList<>();
         String befehl;
         
-        befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer = '%1$s'", gesuchteArtNr);;
+        befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);;
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
             artikel.add(new Artikel(rs.getString("artikelName"), rs.getDouble("verkaufPreis"), rs.getString("artikelNummer")));

@@ -16,21 +16,16 @@ import java.util.ArrayList;
  */
 public class ArtikelVerwaltung {
     private ArrayList<Artikel> artikelListe;
-    private ArrayList<Integer> bestand;
     private DB_Verbindung db;
     
     public ArtikelVerwaltung() throws IOException, SQLException {
         this.db = new DB_Verbindung();
+        db.verbindungAufbauen();
         ArrayList<Artikel> artList = db.getArtikelListe();
-        
-        for (int i = 0; i < artList.size(); i++) {
-            artikelListe.add(artList.get(i));
-            bestand.add(artList.get(i).getAnzahl());
-        }
-        
+        artikelListe = artList;
     }
     
-    public Artikel getArtikelFromNummer(String artikelNummer) throws SQLException {
+    public Artikel getArtikel(String artikelNummer) throws SQLException {
         return db.getArtikel(artikelNummer);
     }
     public ArrayList<Artikel> getArtikelListeFromNummer(String artNr) {
@@ -84,7 +79,6 @@ public class ArtikelVerwaltung {
                 i = artikelListe.size();
             }
         }
-        bestand.set(a, anz);
         db.verkaufeArtikel(artNr, anz);
     }
 }
