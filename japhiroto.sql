@@ -2,10 +2,11 @@
 -- version 4.6.6deb4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Erstellungszeit: 06. Jan 2019 um 19:26
--- Server-Version: 10.1.23-MariaDB-9+deb9u1
--- PHP-Version: 7.0.33-0+deb9u1
+
+-- Host: 127.0.0.1
+-- Generation Time: Jan 06, 2019 at 06:27 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `test`
+-- Database: `japhiroto`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `artikel`
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `accountId` int(16) NOT NULL,
+  `mitarbeiterId` int(16) NOT NULL,
+  `benutzername` varchar(32) COLLATE latin1_german1_ci NOT NULL,
+  `passwort` varchar(32) COLLATE latin1_german1_ci NOT NULL,
+  `rolle` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`, `rolle`) VALUES
+(1, 1, 'm.mustermann.leiter', 'muster123', 0),
+(2, 1, 'm.mustermann.kasse', 'muster123', 1),
+(3, 1, 'm.mustermann.lager', 'muster123', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `artikel`
 --
 
 CREATE TABLE `artikel` (
@@ -35,7 +59,7 @@ CREATE TABLE `artikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
--- Daten für Tabelle `artikel`
+-- Dumping data for table `artikel`
 --
 
 INSERT INTO `artikel` (`artikelNr`, `artikelNummer`, `bezeichnung`, `preis`, `bestand`) VALUES
@@ -45,8 +69,35 @@ INSERT INTO `artikel` (`artikelNr`, `artikelNummer`, `bezeichnung`, `preis`, `be
 (4, '9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2L', 1.99, 10),
 (5, '4006613002932', 'Hello Kitty Adventskalender', 4.99, 25);
 
+-- --------------------------------------------------------
+
 --
--- Indizes der exportierten Tabellen
+-- Table structure for table `mitarbeiter`
+--
+
+CREATE TABLE `mitarbeiter` (
+  `mitarbeiterId` int(16) NOT NULL,
+  `anrede` varchar(4) COLLATE latin1_german1_ci DEFAULT NULL,
+  `vorname` varchar(32) COLLATE latin1_german1_ci NOT NULL,
+  `nachname` varchar(32) COLLATE latin1_german1_ci NOT NULL,
+  `strasse` varchar(32) COLLATE latin1_german1_ci DEFAULT NULL,
+  `hausNr` int(8) DEFAULT NULL,
+  `plz` int(5) DEFAULT NULL,
+  `ort` varchar(61) COLLATE latin1_german1_ci DEFAULT NULL,
+  `stundenLohn` double(9,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
+
+--
+-- Dumping data for table `mitarbeiter`
+--
+
+INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
+(1, 'Herr', 'Max', 'Mustermann', 'Musterstrasse', 1, 12345, 'Musterstadt', 8.50),
+(2, 'Frau', 'Maxia', 'Musterfrau', 'Mustergasse', 2, 67890, 'ZweiteMusterstadt', 5.80),
+(3, 'Dive', 'Maxia*innen', 'Musterfrau*innen', 'Mustergasse*innen', 61, 7531459, 'ZweiteMusterstadt*innen', 0.01);
+
+--
+-- Indexes for dumped tables
 --
 
 --
@@ -54,16 +105,39 @@ INSERT INTO `artikel` (`artikelNr`, `artikelNummer`, `bezeichnung`, `preis`, `be
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`artikelNr`,`artikelNummer`);
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`accountId`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- Indexes for table `mitarbeiter`
+--
+ALTER TABLE `mitarbeiter`
+  ADD PRIMARY KEY (`mitarbeiterId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
+
 -- AUTO_INCREMENT für Tabelle `artikel`
 --
 ALTER TABLE `artikel`
   MODIFY `artikelNr` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `accountId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `mitarbeiter`
+--
+ALTER TABLE `mitarbeiter`
+  MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
