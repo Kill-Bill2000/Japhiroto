@@ -147,7 +147,7 @@ public class Kasse_Verwaltung {
     }
     public void umsatzAnDBsenden()throws SQLException{
         String sUmsatz;
-        sUmsatz = df.format(umsatz);
+        sUmsatz = Double.toString(umsatz);
         dieDB_Verbindung.setUmsatz(sUmsatz);
     }
     
