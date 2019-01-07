@@ -144,6 +144,11 @@ public class DB_Verbindung {
             salesArray.add(sale);
 
         } 
+        
+        //        TESTDATA
+//        salesArray.add(new Umsatz(1,"10.05.2018",88.5));
+//        salesArray.add(new Umsatz(2,"11.05.2018",100.5));
+//        salesArray.add(new Umsatz(3,"12.05.2018",200.7));       
 
         return salesArray;   
     }   

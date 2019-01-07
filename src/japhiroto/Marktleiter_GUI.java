@@ -13,6 +13,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -84,11 +85,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         txfVorname = new javax.swing.JTextField();
         txfNachname = new javax.swing.JTextField();
         lblNachname = new javax.swing.JLabel();
-        ComBoxDateUntil = new javax.swing.JComboBox<>();
+        ComBoxDateFrom = new javax.swing.JComboBox<>();
         lblDatumauswahl = new javax.swing.JLabel();
         lblDatumVon = new javax.swing.JLabel();
         lblDatumBis = new javax.swing.JLabel();
-        ComBoxDateFrom = new javax.swing.JComboBox<>();
+        ComBoxDateUntil = new javax.swing.JComboBox<>();
         btnShowSales = new javax.swing.JButton();
         btnWarehouseList = new javax.swing.JButton();
         btnOrders = new javax.swing.JButton();
@@ -113,6 +114,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblStundenlohn = new javax.swing.JLabel();
         cvDrawField = new java.awt.Canvas();
         btnLoadList = new javax.swing.JButton();
+        btnLoadDates = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -144,7 +146,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblNachname.setText("Nachname");
 
-        ComBoxDateUntil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComBoxDateFromActionPerformed(evt);
+            }
+        });
 
         lblDatumauswahl.setText("Datumauswahl:");
 
@@ -152,10 +158,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblDatumBis.setText("Bis:");
 
-        ComBoxDateFrom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        ComBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
+        ComBoxDateUntil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComBoxDateFromActionPerformed(evt);
+                ComBoxDateUntilActionPerformed(evt);
             }
         });
 
@@ -240,6 +245,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnLoadDates.setText("Daten Laden");
+        btnLoadDates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadDatesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -298,34 +310,39 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                     .addComponent(lblOrt)
                                     .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnShowSales, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblBestellt)
-                                                .addComponent(lblVerschickt)
-                                                .addComponent(lblInBearb))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txfBestellt)
-                                                .addComponent(txfVerschickt)
-                                                .addComponent(txfInBearb)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblStatusBestellungen)
-                                            .addGap(18, 18, 18)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(btnOrders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnWarehouseList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblDatumauswahl)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lblDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblDatumVon))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(lblBestellt)
+                                                                .addComponent(lblVerschickt)
+                                                                .addComponent(lblInBearb))
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(txfBestellt)
+                                                                .addComponent(txfVerschickt)
+                                                                .addComponent(txfInBearb)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(lblStatusBestellungen)
+                                                            .addGap(18, 18, 18)))
+                                                    .addComponent(lblDatumauswahl)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                            .addComponent(lblDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblDatumVon))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(6, 6, 6))
+                                            .addComponent(btnOrders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnWarehouseList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnShowSales, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnLoadDates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -342,19 +359,21 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                         .addComponent(lblDatumauswahl)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDatumVon))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDatumBis))
-                        .addGap(25, 25, 25)
-                        .addComponent(btnShowSales)
-                        .addGap(25, 25, 25)
-                        .addComponent(btnWarehouseList)
-                        .addGap(25, 25, 25)
-                        .addComponent(btnOrders)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLoadDates)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnShowSales)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnWarehouseList)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnOrders)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblStatusBestellungen)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -425,9 +444,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ComBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateFromActionPerformed
+    private void ComBoxDateUntilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateUntilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ComBoxDateFromActionPerformed
+    }//GEN-LAST:event_ComBoxDateUntilActionPerformed
 
     private void btnWarehouseListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarehouseListActionPerformed
         // TODO add your handling code here:
@@ -514,6 +533,39 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jListEmployeesMouseClicked
 
+    private void btnLoadDatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadDatesActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
+        ComBoxDateFrom.setModel(listFrom);  
+        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
+        ComBoxDateUntil.setModel(listUntil);
+                
+//        ComBoxDateFrom.addItem("10.05.2018"); 
+//        ComBoxDateUntil.addItem("05.06.2018"); 
+       
+        ArrayList<Umsatz> salesArrList= new ArrayList<>();
+        
+        try {             
+            salesArrList = database.getAllSales();
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        for (int i = 0; i < salesArrList.size(); i++) {
+            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel());
+            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel());
+        }           
+    }//GEN-LAST:event_btnLoadDatesActionPerformed
+
+    private void ComBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateFromActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComBoxDateFromActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -591,12 +643,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private void drawSales(){  
 
         
-//        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-//        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
         //input type String
-        String selectedFrom = "30.05.2018";
-        String selectedUntil = "01.12.2018"; 
+//        String selectedFrom = "30.05.2018";
+//        String selectedUntil = "01.12.2018"; 
 
         //String splitting
         String[] parts1 = selectedFrom.split("\\.");
@@ -762,6 +814,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComBoxDateFrom;
     private javax.swing.JComboBox<String> ComBoxDateUntil;
+    private javax.swing.JButton btnLoadDates;
     private javax.swing.JButton btnLoadList;
     private javax.swing.JButton btnOrders;
     private javax.swing.JButton btnShowSales;
