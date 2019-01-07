@@ -605,8 +605,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
 //        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
 //        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString(); 
-        String selectedFrom = "25.09.2018";
-        String selectedUntil = "05.10.2018"; 
+        String selectedFrom = "10.09.2018";
+        String selectedUntil = "20.09.2018"; 
 
         String[] parts1 = selectedFrom.split("\\.");
         int dayFrom = Integer.valueOf(parts1[0]);
@@ -661,14 +661,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         for (int i = 0; i < spacingX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
             
-            int labeling = Integer.valueOf(dayFrom) + i;
-            
-            while (labeling < 30) {                
-                diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            }
-            while (labeling > 30) {
-                diagram.drawString(i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            }                       
+//            int labeling = Integer.valueOf(dayFrom) + i;
+//            
+//            while (labeling < 30) {                
+//                diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//            }
+//            while (labeling > 30) {
+//                diagram.drawString(i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//            }                       
         }
         
         // Y-axis
