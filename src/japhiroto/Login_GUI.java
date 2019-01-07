@@ -499,10 +499,6 @@ public class Login_GUI extends javax.swing.JFrame {
                 login.verbindungAufbauen();
             }
             
-//        //TEST
-//            System.out.format("Verbindung aufgebaut: %s\n", login.verbindungAufgebaut());
-//            System.out.format("Account valide: %b\n", login.accountUeberpruefen(user, pass));
-//        //TEST ENDE
             
             if(login.accountUeberpruefen(user, pass)){
                 rolle = login.rolleAbfragen(user, pass);
@@ -791,7 +787,7 @@ public class Login_GUI extends javax.swing.JFrame {
         boolean portAusg = !txfPort.getText().equals("");
         boolean dbNameAusg = !txfDBName.getText().equals("");
         boolean dbUserAusg = !txfDBUser.getText().equals("");
-        boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
+        //boolean dbPassAusg = !login.passwortToString(txpDBPass.getPassword()).equals("");
         
         //ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg && dbPassAusg; //mit Passwort
         ausg = ip1Ausg && ip2Ausg && ip3Ausg && ip4Ausg && portAusg && dbNameAusg && dbUserAusg;
