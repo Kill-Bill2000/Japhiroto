@@ -758,7 +758,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         if(bezahlt == false){  
             try{
                 if(txfAnzahl.getText()== "1"||txfAnzahl.getText().equals("")){
-                    artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));     
+                    artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),1));     
                     ausgabeAktualisieren();
                 }
                 else if(Integer.parseInt(txfAnzahl.getText())>0 && Integer.parseInt(txfAnzahl.getText())<647){
@@ -790,7 +790,8 @@ public class Kasse_GUI extends javax.swing.JFrame {
             derArtikel= dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText());
             JOptionPane.showInputDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
                     "Artikelname: "+derArtikel.getName()+"\n"+
-                    "Preis: "+derArtikel.getPreis()+"€");
+                    "Preis: "+derArtikel.getPreis()+"€"+
+                    "Bestand: "+derArtikel.getAnzahl());
             txfArtikelNr.setText("");
         }
         catch(SQLException e){
@@ -818,7 +819,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txfGegeben.setText(sGegeben);
                 txfZurueck.setText(sZurueck);
                 bezahlt=true;
-//                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
+                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
                 dieKasse_Verwaltung.umsatzAktualisieren(artikelliste);
                 ausgabeAktualisieren();
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
@@ -832,13 +833,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
     catch(JavaLayerException | FileNotFoundException ex){
         
     }
-//    catch(SQLException | IOException ey){
-//        JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
-//    }
+    catch(SQLException | IOException ey){
+        JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnBezahlenActionPerformed
 
     private void btnKarteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKarteActionPerformed
-//    try{    
+    try{    
         JOptionPane jop = new JOptionPane();
 	jop.setMessageType(JOptionPane.INFORMATION_MESSAGE);
 	jop.setMessage("Bitte warten bis Bezahlvorgang am Terminal beendet ist...");
@@ -871,7 +872,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 JOptionPane.showInputDialog(rootPane, "Transaktion fehlgeschlagen! Bitte erneut versuchen.");
             }
             else{
-//                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
+                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
                 dieKasse_Verwaltung.umsatzAktualisieren(artikelliste);
                 JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
                 bezahlt=true;
@@ -880,10 +881,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
             }
         }
-//    }
-//    catch(SQLException | IOException ey){
-//        JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
-//    }
+    }
+    catch(SQLException | IOException ey){
+        JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnKarteActionPerformed
 
     private void btnNeuerKaufvorgangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeuerKaufvorgangActionPerformed
