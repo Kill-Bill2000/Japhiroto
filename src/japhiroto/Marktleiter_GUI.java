@@ -29,6 +29,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private int zeroY = sizeY;
     
     private DB_Verbindung database;
+    private Login_GUI login;
           
     /**
      * Creates new form Marktleiter_GUI
@@ -49,6 +50,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         zeroX = sizeX - 475;
         zeroY = sizeY - 30;
         
+        login = new Login_GUI();
+        login.setProperties();
         
         try {
             database = new DB_Verbindung();
