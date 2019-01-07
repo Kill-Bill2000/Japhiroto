@@ -1000,6 +1000,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         try {
             ansageSchliessen();
             dieKasse_Verwaltung.umsatzAnDBsenden();
+            dieKasse_Verwaltung.verbindungSchliessen();
             new Login_GUI().setVisible(true);
             this.dispose();
         } catch (FileNotFoundException | JavaLayerException ex) {
