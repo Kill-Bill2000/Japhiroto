@@ -137,9 +137,12 @@ public class DB_Verbindung {
         
         salesArray = new ArrayList<>();                   
    
-        while (rs.next()) {            
+        while (rs.next()) {   
+            
+            String[] partsUntil = rs.getString(2).split(" ");
+            String splittedString = partsUntil[0];      
        
-            sale = new Umsatz(rs.getInt(1), rs.getString(2), rs.getDouble(9));
+            sale = new Umsatz(rs.getInt(1), splittedString, rs.getDouble(3));
 
             salesArray.add(sale);
 
