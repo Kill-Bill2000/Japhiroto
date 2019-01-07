@@ -27,6 +27,7 @@ public class Kasse_Verwaltung {
     
     private DB_Verbindung dieDB_Verbindung;
     private DecimalFormat df = new DecimalFormat("0.00");
+    private double umsatz=0;
 
     public Kasse_Verwaltung() throws SQLException, IOException{
         dieDB_Verbindung = new DB_Verbindung();
@@ -140,7 +141,15 @@ public class Kasse_Verwaltung {
             f1.write(ausgabe);
             f1.close();
         
-    } 
+    }
+    public void umsatzAktualisieren(ArrayList<Artikel> artikelliste){
+        umsatz = umsatz + gesamtbetragBerechnen(artikelliste);
+    }
+    public void umsatzAnDBsenden()throws SQLException{
+        String sUmsatz;
+        sUmsatz = df.format(umsatz);
+        dieDB_Verbindung.setUmsatz(sUmsatz);
+    }
     
     
 }
