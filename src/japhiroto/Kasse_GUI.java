@@ -837,7 +837,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
         zufallszahl = (int)(Math.random()*100);
         txfZurueck.setText("0,00");
         txfGegeben.setText("0,00");
-        gegeben = 0.00;
 
         new Thread(new Runnable() {
 		@Override
@@ -861,6 +860,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 dieKasse_Verwaltung.umsatzAktualisieren(artikelliste);
                 JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
                 bezahlt=true;
+                gegeben = dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
                 txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
             }
