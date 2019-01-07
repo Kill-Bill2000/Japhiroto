@@ -14,18 +14,21 @@ public class Artikel {
     private double verkauftsPreis; //noch mehr kommentar
     private String artikelName;
     private int anzahl=1;//nur für die Kasse relevant
+    private int bestand;
     
-    public Artikel(String name, double preis, String nummer) {
+    public Artikel(String name, double preis, String nummer,int bestand) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
         this.artikelNummer = nummer;
+        this.bestand = bestand;
     }
 
-    public Artikel(String name, double preis, String nummer, int anzahl) {
+    public Artikel(String name, double preis, String nummer,int bestand ,int anzahl) {
         this.artikelName = name;
         this.verkauftsPreis = preis;
         this.artikelNummer = nummer;
         this.anzahl = anzahl;
+        this.bestand = bestand;
     }
     
     public double getPreis() {
@@ -51,4 +54,9 @@ public class Artikel {
     public void setArtikelNummer(String artNr) {
         artikelNummer = artNr;
     }
+
+    public int getBestand() {
+        return bestand;
+    }
+    
 }

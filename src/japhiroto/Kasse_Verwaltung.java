@@ -152,7 +152,7 @@ public class Kasse_Verwaltung {
             f1 = new FileWriter("kassenzettel.txt");
             f1.write(ausgabe);
             f1.close();
-        druckeSeite(artikelliste);
+//        druckeSeite(artikelliste);
         
     }
     public void umsatzAktualisieren(ArrayList<Artikel> artikelliste){
