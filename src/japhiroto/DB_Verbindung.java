@@ -305,7 +305,7 @@ public class DB_Verbindung {
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("bezeichnung");
+        artName = rs.getString("artikelName");
         vk = rs.getDouble("verkaufPreis");
         bst = rs.getInt("bestand");
         
@@ -337,7 +337,7 @@ public class DB_Verbindung {
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("bezeichnung");
+        artName = rs.getString("artikelName");
         vk = rs.getDouble("verkaufPreis");
         bst = rs.getInt("bestand");
         anz = anzahl;
