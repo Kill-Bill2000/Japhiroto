@@ -5,7 +5,14 @@
  */
 package japhiroto;
 
+import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.JobAttributes;
+import java.awt.PageAttributes;
+import java.awt.PrintJob;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +21,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
@@ -144,6 +152,7 @@ public class Kasse_Verwaltung {
             f1 = new FileWriter("kassenzettel.txt");
             f1.write(ausgabe);
             f1.close();
+        druckeSeite(artikelliste);
         
     }
     public void umsatzAktualisieren(ArrayList<Artikel> artikelliste){
@@ -155,5 +164,58 @@ public class Kasse_Verwaltung {
         dieDB_Verbindung.setUmsatz(sUmsatz);
     }
     
+    void druckeSeite( ArrayList<Artikel> artikelliste) {
+
+        JFrame f;
+        f = new JFrame();
+        PageAttributes page = new PageAttributes();
+
+       
+            page.setOrientationRequested(PageAttributes.OrientationRequestedType.LANDSCAPE);
+       
+
+        PrintJob prjob = f.getToolkit().getPrintJob(f, "kassenzettel", new JobAttributes(), page);
+
+        if (null != prjob) {
+            final int iScreenResol = f.getToolkit().getScreenResolution();
+            final int iPageResol = prjob.getPageResolution();
+            final Dimension dimScreenSize = f.getToolkit().getScreenSize();
+            final Dimension dimPageDimension = prjob.getPageDimension();
+            Graphics pg = prjob.getGraphics();
+
+           
+                //merkt sich die Größe
+                int iAddY = 1200;
+                int iRand = (int) Math.round(iPageResol * 2. / 2.54); // 2 cm Rand
+                int iPosX = 20; // Textposition
+                int iPosY = 20 / 2;
+                int iWdth = 369; // innere Breite
+                int iMidY = 1200 / 2;
+                pg.setColor(Color.black);
+                Font font = new Font("Monospaced",Font.PLAIN, 13);
+                pg.setFont(font);
+                
+                //setzt die Schrift und die Schriftgröße
+                    String data = ausgabeHeader()+kassenzettelErstellen(artikelliste)+kassenzettelFuss(artikelliste, umsatz);
+                    
+                        
+                    pg.drawString(data , iPosX, iPosY);
+
+                    //Buffer wird geleert
+                 
+
+                 //wenn man noch gar nix hineingeschrieben hat, wird der Fehlertext gedruckt,
+                //variable abendbar, ob überhaupt gedruckt werden soll
+                    
+                
+
+                //wenn rand true ist, wird ein Rand gezeichnet
+                
+                pg.dispose();
+            }
+            prjob.end();
+        
+    }
+
     
 }
