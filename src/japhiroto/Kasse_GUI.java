@@ -804,6 +804,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txfZurueck.setText(sZurueck);
                 bezahlt=true;
 //                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
+                dieKasse_Verwaltung.umsatzAktualisieren(artikelliste);
                 ausgabeAktualisieren();
                 txaAusgabe.setText(txaAusgabe.getText()+dieKasse_Verwaltung.kassenzettelFuss(artikelliste, gegeben));
                 dieKasse_Verwaltung.soundKasse();
@@ -837,7 +838,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txfZurueck.setText("0,00");
         txfGegeben.setText("0,00");
         gegeben = 0.00;
-        //JOptionPane.showMessageDialog(rootPane, "Bitte warten bis Bezahlvorgang am Terminal beendet ist..."); //Evtl. noch hinzufuegen dass Panel wieder zu geht!
 
         new Thread(new Runnable() {
 		@Override
@@ -858,6 +858,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
             else{
 //                dieKasse_Verwaltung.artikelAbziehen(artikelliste);
+                dieKasse_Verwaltung.umsatzAktualisieren(artikelliste);
                 JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
                 bezahlt=true;
                 txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
@@ -969,11 +970,14 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         try {
             ansageSchliessen();
-            
+            dieKasse_Verwaltung.umsatzAnDBsenden();
             new Login_GUI().setVisible(true);
             this.dispose();
         } catch (FileNotFoundException | JavaLayerException ex) {
             
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(rootPane, "Keine Verbindung zur Datenbank!","Fehler",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
