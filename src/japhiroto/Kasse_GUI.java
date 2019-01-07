@@ -100,6 +100,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         btnNeuerKaufvorgang = new javax.swing.JButton();
         txfMinus = new javax.swing.JTextField();
         lblMinusBetrag = new javax.swing.JLabel();
+        btnZifferLoeschen = new javax.swing.JButton();
 
         dlgWarten.setTitle("bitte warten");
 
@@ -377,6 +378,15 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         lblMinusBetrag.setText("Minus- Betrag:");
 
+        btnZifferLoeschen.setBackground(new java.awt.Color(153, 153, 255));
+        btnZifferLoeschen.setText("C");
+        btnZifferLoeschen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnZifferLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZifferLoeschenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -401,29 +411,21 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnZifferEins, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnZifferSieben, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnZifferZwei, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnZifferAcht, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnZifferDrei, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btnZifferNeun, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(btnZifferSieben, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(btnZifferAcht, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(btnZifferNeun, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(btnZifferVier, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(btnZifferFünf, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(btnZifferSechs, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                                                .addComponent(lblMinusBetrag)))
+                                                .addComponent(btnZifferVier, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnZifferFünf, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnZifferSechs, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                        .addComponent(lblMinusBetrag)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txfMinus, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -443,7 +445,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                             .addComponent(btnAuskunft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(btnKarte, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))))))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnZifferEins, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnZifferZwei, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnZifferDrei, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(btnZifferLoeschen, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(btnZifferNull, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,15 +498,16 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(194, 194, 194)
-                                .addComponent(btnKarte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(134, 134, 134))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAuskunft, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(194, 194, 194)
+                                    .addComponent(btnKarte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(104, 104, 104))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnAuskunft, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBonDrucken, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnKaufvorgangAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -532,6 +544,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnZifferEins, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnZifferZwei, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnZifferLoeschen, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnZifferDrei, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -990,6 +1003,48 @@ public class Kasse_GUI extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnZifferLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferLoeschenActionPerformed
+       try{  
+        // Nach Ausgewähtem Textfeld suchen
+           if(aktuellesTextfeld == "txfArtikelNr"){
+               String text;
+               CharSequence shortedText;
+
+               text = txfArtikelNr.getText();
+               shortedText = text.subSequence(0, text.length()-1);
+               StringBuilder sb = new StringBuilder(shortedText.length()); 
+               sb.append(shortedText);
+               text = sb.toString();
+               txfArtikelNr.setText(text);
+           }
+           else if(aktuellesTextfeld == "txfAnzahl"){
+               String text;
+               CharSequence shortedText;
+
+               text = txfAnzahl.getText();
+               shortedText = text.subSequence(0, text.length()-1);
+               StringBuilder sb = new StringBuilder(shortedText.length()); 
+               sb.append(shortedText);
+               text = sb.toString();
+               txfAnzahl.setText(text);
+           }
+           else if(aktuellesTextfeld == "txfGegeben"){
+               String text;
+               CharSequence shortedText;
+
+               text = txfGegeben.getText();
+               shortedText = text.subSequence(0, text.length()-1);
+               StringBuilder sb = new StringBuilder(shortedText.length()); 
+               sb.append(shortedText);
+               text = sb.toString();
+               txfGegeben.setText(text);
+           }
+       }
+       catch(StringIndexOutOfBoundsException e){
+           
+       }
+    }//GEN-LAST:event_btnZifferLoeschenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1041,6 +1096,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnZifferEins;
     private javax.swing.JButton btnZifferFünf;
     private javax.swing.JButton btnZifferKomma;
+    private javax.swing.JButton btnZifferLoeschen;
     private javax.swing.JButton btnZifferNeun;
     private javax.swing.JButton btnZifferNull;
     private javax.swing.JButton btnZifferSechs;
