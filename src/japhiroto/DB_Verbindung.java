@@ -7,6 +7,7 @@ package japhiroto;
 
 import java.io.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,8 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
+    private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:MM");
+
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
         dManager = new DataManager();
@@ -107,6 +110,25 @@ public class DB_Verbindung {
         
         stmt.close();
     }
+      
+//    Setzt den Umsatz der Kasse in die DB
+    public void setUmsatz(String umsatz) throws SQLException{
+        int zaehler;
+        String befehl,zeitstempel;
+        ResultSet rs;
+        
+        befehl= "SELECT MAX(umsatzNr) FROM umsatz";
+        rs = abfragen(befehl);
+        rs.next();
+        zaehler = rs.getInt(1);
+        zaehler++;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        zeitstempel = sdf.format(timestamp);
+        befehl= "INSERT INTO `umsatz` (`umsatzNr`,`zeitstempel`, `umsatz`) VALUES ('"+Integer.toString(zaehler)+"','"+timestamp+"','"+umsatz+"')";
+        updaten(befehl);
+        
+    }
+    
         
     public void mitarbeiterAnlegen(Mitarbeiter marb) throws SQLException{
         //der übergebene Mitabeiter wird der DB hinzugefügt
@@ -283,8 +305,8 @@ public class DB_Verbindung {
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("artikelName");
-        vk = rs.getDouble("verkaufPreis");
+        artName = rs.getString("bezeichnung");
+        vk = rs.getDouble("preis");
         anz = rs.getInt("bestand");
         
         art = new Artikel(artName, vk, artNr, anz);
@@ -315,8 +337,8 @@ public class DB_Verbindung {
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("artikelName");
-        vk = rs.getDouble("verkaufPreis");
+        artName = rs.getString("bezeichnung");
+        vk = rs.getDouble("preis");
         anz = anzahl;
         
         art = new Artikel(artName, vk, artNr,anz);
@@ -382,7 +404,9 @@ public class DB_Verbindung {
     public void verkaufeArtikel(String artNr, int anz) throws SQLException, IOException {
         int alt = getArtikel(artNr).getAnzahl();
         anz = alt - anz;
-        String befehl = String.format("UPDATE artikel SET bestnad = '%1$s' WHERE artikelNummer = '%2$s'", anz, artNr);
+
+        String befehl = String.format("UPDATE artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artNr);
+
         updaten(befehl);
     }
     
@@ -406,7 +430,7 @@ public class DB_Verbindung {
         befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);;
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            artikel.add(new Artikel(rs.getString("artikelName"), rs.getDouble("verkaufPreis"), rs.getString("artikelNummer")));
+            artikel.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getString("artikelNummer")));
         }
         
         return artikel;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Jan 2019 um 17:35
+-- Erstellungszeit: 05. Jan 2019 um 19:29
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 7.3.0
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `japhiroto`
 --
+CREATE DATABASE IF NOT EXISTS `japhiroto` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `japhiroto`;
 
 -- --------------------------------------------------------
 
@@ -64,6 +66,30 @@ CREATE TABLE `artikel` (
 
 INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
 ('9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2L', 1.99, 10);
+INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
+('457842','Coca Cola 1L',0.65,25);
+INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
+('789456','Jack Daniels Whiskey 0,75L',19.95,8);
+INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
+('531874','Nutella 2,5KG',14.99,100);
+
+-- --------------------------------------------------------
+--
+-- Tabellenstruktur für Tabelle `umsatz`
+--
+
+CREATE TABLE `umsatz` (
+  `umsatzNr` int NOT NULL,
+  `zeitstempel` timestamp NOT NULL,
+  `umsatz` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `artikel`
+--
+
+INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
+('0','2019-01-07 01:05:00','1.00');
 
 -- --------------------------------------------------------
 
