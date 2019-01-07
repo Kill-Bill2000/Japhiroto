@@ -134,7 +134,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             .addComponent(pnlWarten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Kasse");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -997,12 +997,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //Sound wird abgespielt, wenn dsa Fenster geöffnet wird
-//        try {
-//            ansageOeffnen();
-//        } catch (FileNotFoundException | JavaLayerException ex) {
-//            
-//        }
+//        Sound wird abgespielt, wenn dsa Fenster geöffnet wird
+        try {
+            ansageOeffnen();
+        } catch (FileNotFoundException | JavaLayerException ex) {
+            
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnZifferLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferLoeschenActionPerformed
