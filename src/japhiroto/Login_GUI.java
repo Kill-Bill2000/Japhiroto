@@ -259,6 +259,7 @@ public class Login_GUI extends javax.swing.JFrame {
         btgHostModus.add(rbtIP);
         rbtIP.setSelected(true);
         rbtIP.setText("IP");
+        rbtIP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbtIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtIPActionPerformed(evt);
@@ -267,6 +268,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
         btgHostModus.add(rbtURL);
         rbtURL.setText("URL");
+        rbtURL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbtURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtURLActionPerformed(evt);
@@ -362,7 +364,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
         lblErweitert.setForeground(new java.awt.Color(0, 0, 255));
         lblErweitert.setText("Erweitert ▼");
-        lblErweitert.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblErweitert.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblErweitert.setMaximumSize(new java.awt.Dimension(70, 16));
         lblErweitert.setPreferredSize(new java.awt.Dimension(70, 16));
         lblErweitert.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -378,7 +380,7 @@ public class Login_GUI extends javax.swing.JFrame {
         });
 
         btnAnmelden.setText("Anmelden");
-        btnAnmelden.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAnmelden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAnmelden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnmeldenActionPerformed(evt);
