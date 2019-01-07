@@ -766,21 +766,21 @@ public class Kasse_GUI extends javax.swing.JFrame {
                     ausgabeAktualisieren();
                 }
                 else{
-                    JOptionPane.showInputDialog(rootPane, "Bitte Anzahl überprüfen. Anzahl muss zwischen 1 und 646 liegen!");
+                    JOptionPane.showMessageDialog(rootPane, "Bitte im Anzahl-Feld Werte zwischen 1 und 647 eintragen", "Fehler Anzahl" , JOptionPane.INFORMATION_MESSAGE);
                 }
                 txfArtikelNr.setText("");
                 txfAnzahl.setText("");
 
            }
            catch(SQLException e){
-               JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
+               JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen", "Fehler" , JOptionPane.ERROR_MESSAGE);
            }
             catch(NumberFormatException e){
-                JOptionPane.showInputDialog(rootPane, "Bitte Anzahlfeld überprüfen!");
+                JOptionPane.showMessageDialog(rootPane, "Bitte Anzahlfeld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
             }
         }
         else{
-            JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen! Ein Hinzufügen ist nicht mehr möglich.");
+            JOptionPane.showMessageDialog(rootPane, "Der Bezahlvorgang ist bereits abgeschlossen! Ein Hinzufügen ist erst in einem neuen Kaufvorgang möglich.", "Bezahlvorgang abgeschlossen" , JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnHinzufuegenActionPerformed
 
@@ -795,18 +795,18 @@ public class Kasse_GUI extends javax.swing.JFrame {
             txfArtikelNr.setText("");
         }
         catch(SQLException e){
-            JOptionPane.showInputDialog(rootPane,"Artikel nicht gefunden! Bitte Eingaben prüfen!");
+            JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen", "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAuskunftActionPerformed
 
     private void btnBezahlenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBezahlenActionPerformed
     try{    
         if(bezahlt){
-            JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
+            JOptionPane.showMessageDialog(rootPane, "Der Bezahlvorgang ist bereits abgeschlossen! Bezahlen ist erst in einem neuen Kaufvorgang möglich.", "Bezahlvorgang abgeschlossen" , JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             if(txfGegeben.getText().equals("") || Double.parseDouble(txfGegeben.getText())  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
-                JOptionPane.showInputDialog(rootPane, "Bitte Gegeben-Feld überprüfen!");
+                JOptionPane.showMessageDialog(rootPane, "Bitte Gegeben-Feld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
             }
             else{
                 String sGegeben,sZurueck;
@@ -846,7 +846,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 	JDialog dialog = jop.createDialog(this, "Bitte warten");
              
         if(bezahlt){
-        JOptionPane.showInputDialog(rootPane, "Bezahlvorgang bereits abgeschlossen!");
+        JOptionPane.showMessageDialog(rootPane, "Der Bezahlvorgang ist bereits abgeschlossen! Bezahlen ist erst in einem neuen Kaufvorgang möglich.", "Bezahlvorgang abgeschlossen" , JOptionPane.INFORMATION_MESSAGE);
     }
     else{
         int zufallszahl;
@@ -869,12 +869,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
             
         
             if (zufallszahl <=20){
-                JOptionPane.showInputDialog(rootPane, "Transaktion fehlgeschlagen! Bitte erneut versuchen.");
+                JOptionPane.showMessageDialog(rootPane, "Die Transaktion ist fehlgeschlagen! Bitte versuchen Sie es erneut oder bezahlen Sie BAR.", "Fehler" , JOptionPane.ERROR_MESSAGE);
             }
             else{
                 dieKasse_Verwaltung.artikelAbziehen(artikelliste);
                 dieKasse_Verwaltung.umsatzAktualisieren(artikelliste);
-                JOptionPane.showInputDialog(rootPane, "Transaktion erfolgreich! Bezahlvorgang abgeschlossen.");
+                JOptionPane.showMessageDialog(rootPane, "Die Transaktion wurde erfolgreich abgeschlossen.", "Bezahlvorgang abgeschlossen" , JOptionPane.INFORMATION_MESSAGE);
                 bezahlt=true;
                 gegeben = dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste);
                 txaAusgabe.setText(dieKasse_Verwaltung.kassenzettelErstellen(artikelliste));
@@ -900,7 +900,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             gegeben = 0;
         }
         else{
-            JOptionPane.showInputDialog(rootPane, "Zuerst Bezahlvorgang abschließen oder abbrechen.");
+            JOptionPane.showMessageDialog(rootPane, "Bitte zuerst Bezahlvorgang abschliesen! Falls dies nicht möglich, Bezahlvorgang abbrechen.", "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnNeuerKaufvorgangActionPerformed
 
@@ -930,11 +930,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
             dieKasse_Verwaltung.kassenzettelErzeugen(artikelliste, gegeben);
         }
         catch(IOException e){
-            JOptionPane.showInputDialog(rootPane, "Kassenzettel konnte nicht erstellt werden! Bitte wenden sie sich an Ihren Systemadministrator!");
+            JOptionPane.showMessageDialog(rootPane, "Der Kassenzettel konnte nicht erstellt werden! Bitte wenden Sie sich an Ihren Systemadministrator", "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }
     else{
-        JOptionPane.showInputDialog(rootPane, "Zuerst Bezahlvorgang abschließen um Bon zu drucken!");
+        JOptionPane.showMessageDialog(rootPane, "Bitte zuerst den Bezahlvorgang abschließen um den kassenzettel zu drucken.", "Bezahlvorgang abschließen" , JOptionPane.INFORMATION_MESSAGE);
     }
     }//GEN-LAST:event_btnBonDruckenActionPerformed
 
@@ -950,17 +950,17 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 }
             }
             if(erfolgreich == true){
-                JOptionPane.showInputDialog(rootPane, "Artikel mit Nr.: "+artikelNr+" erfolgreich entfernt!");
+                JOptionPane.showMessageDialog(rootPane, "Artikel mit Nr.: "+artikelNr+" erfolgreich entfernt!","Storno erfolgreich",JOptionPane.INFORMATION_MESSAGE);
                 ausgabeAktualisieren();
                 txfArtikelNr.setText("");
             }
             else{
-                JOptionPane.showInputDialog(rootPane, "Artikel konnte nicht gefunden werden! Bitte Artikelfeld überprüfen.");
+                JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen", "Fehler" , JOptionPane.ERROR_MESSAGE);
                 ausgabeAktualisieren();
             }
         }
         else{
-            JOptionPane.showInputDialog(rootPane, "Storno nach Bezahlvorgang nicht mehr möglich! Bitte an Manager werden.");
+            JOptionPane.showMessageDialog(rootPane, "Nach Abschluss der Zahlung ist ein Storno nicht mehr möglich! Bitte an Manager wenden.", "Bezahlvorgang abgeschlossen" , JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnStornoActionPerformed
 
