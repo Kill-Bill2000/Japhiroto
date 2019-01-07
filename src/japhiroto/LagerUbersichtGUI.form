@@ -39,6 +39,7 @@
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Component id="lblLagerBestellungen" min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="btnArtikelHinzufuegen" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -58,7 +59,9 @@
                   <Component id="lblLagerBestellungen" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLagerArtikelSuchen" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnArtikelHinzufuegen" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,6 +95,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lblLagerBestellungenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnArtikelHinzufuegen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Artikel hinzuf&#xfc;gen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnArtikelHinzufuegenActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
