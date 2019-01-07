@@ -305,8 +305,7 @@ public class Login_GUI extends javax.swing.JFrame {
                                         .addComponent(lblPunkt3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txfIP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblHost))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblHost)))
                             .addGroup(pnlErweitertLayout.createSequentialGroup()
                                 .addGroup(pnlErweitertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDBName)
@@ -363,7 +362,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
         lblErweitert.setForeground(new java.awt.Color(0, 0, 255));
         lblErweitert.setText("Erweitert ▼");
-        lblErweitert.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblErweitert.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblErweitert.setMaximumSize(new java.awt.Dimension(70, 16));
         lblErweitert.setPreferredSize(new java.awt.Dimension(70, 16));
         lblErweitert.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -379,7 +378,7 @@ public class Login_GUI extends javax.swing.JFrame {
         });
 
         btnAnmelden.setText("Anmelden");
-        btnAnmelden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnmelden.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAnmelden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnmeldenActionPerformed(evt);
@@ -434,11 +433,17 @@ public class Login_GUI extends javax.swing.JFrame {
     private Login login;
     private final String dateipfad = "zugangsdaten_db";
     
-    private void initGUI(){   
+    private void setProperties(){
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
+        //IconImage setzen
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+    }
+    
+    private void initGUI(){   
+        setProperties();
         //"ausgelagerter" Konstruktor: ausgelagerte Befehle, die im Konstruktor ausgeführt werden sollen
         this.height = 290;
         pnlErweitert.setVisible(false);     //'Erweitert' ist nicht sichtbar, die Größe des Fensters wird entsprechend verkleinert
@@ -457,9 +462,6 @@ public class Login_GUI extends javax.swing.JFrame {
         //'•' als Platzhalter für Passwortfelder
         txpPasswort.setEchoChar('•');
         txpDBPass.setEchoChar('•');
-        
-        //IconImage setzen
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz.png")));
         
         //Filter für maximale Anzahl an Zeichen, die eingegeben werden können
         txfBenutzername.setDocument(new JTextFieldLimit(32));
