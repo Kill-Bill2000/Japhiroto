@@ -7,6 +7,7 @@ package japhiroto;
 
 import java.io.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,8 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
         dManager = new DataManager();
@@ -107,6 +110,25 @@ public class DB_Verbindung {
         
         stmt.close();
     }
+      
+//    Setzt den Umsatz der Kasse in die DB
+    public void setUmsatz(String umsatz) throws SQLException{
+        int zaehler;
+        String befehl,zeitstempel;
+        ResultSet rs;
+        
+        befehl= "SELECT MAX(umsatzNr) FROM umsatz";
+        rs = abfragen(befehl);
+        rs.next();
+        zaehler = rs.getInt(1);
+        zaehler++;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        zeitstempel = sdf.format(timestamp);
+        befehl= "INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES +"
+                + "('"+zaehler+"','"+zeitstempel+"','"+umsatz+"')";
+        
+    }
+    
         
     public void mitarbeiterAnlegen(Mitarbeiter marb) throws SQLException{
         //der übergebene Mitabeiter wird der DB hinzugefügt
