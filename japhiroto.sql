@@ -74,6 +74,7 @@ INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`
 ('531874', 'Nutella 2,5 kg', 14.99, 90),
 ('789456', 'Jack Daniels Whiskey 0,75l', 19.95, 8),
 ('9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2l', 1.99, 10),
+('4006613002932', 'Hello Kitty Adventskalender', '4.99', 34),
 ('9531852', 'Zahnpasta, Geschmack Bacon', 10.79, 7);
 
 -- --------------------------------------------------------

@@ -74,7 +74,8 @@ public class ArtikelVerwaltung {
     public void artikelVerkaufen(String artNr, int anz) throws SQLException, IOException {
         int a = 0;
         for (int i = 0; i < artikelListe.size(); i++) {
-            if (artikelListe.get(i).getArtikelNummer().equals(artNr)) {
+            String artiNr = artikelListe.get(i).getArtikelNummer();
+            if (artiNr.equals(artNr)) {
                 a = i;
                 i = artikelListe.size();
             }
