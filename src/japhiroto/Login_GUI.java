@@ -509,16 +509,19 @@ public class Login_GUI extends javax.swing.JFrame {
                 switch (rolle) {
                     case 0:
                         //Supermarktleiter GUI aufrufen und Login GUI schließen
+                        login.verbindungSchliessen();
                         new Marktleiter_GUI().setVisible(true);
                         this.dispose();
                         break;
                     case 1:
                         //Kassierer GUI aufrufen und Login GUI schließen
+                        login.verbindungSchliessen();
                         new Kasse_GUI().setVisible(true);
                         this.dispose();
                         break;
                     case 2:
                         //Lagerist GUI aufrufen und Login GUI schließen
+                        login.verbindungSchliessen();
                         new LagerUbersichtGUI().setVisible(true);
                         this.dispose();
                         break;
