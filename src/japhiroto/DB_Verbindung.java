@@ -7,7 +7,6 @@ package japhiroto;
 
 import java.io.*;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +18,6 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
-    private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:MM");
 
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
@@ -114,7 +112,7 @@ public class DB_Verbindung {
 //    Setzt den Umsatz der Kasse in die DB
     public void setUmsatz(String umsatz) throws SQLException{
         int zaehler;
-        String befehl,zeitstempel;
+        String befehl;
         ResultSet rs;
         
         befehl= "SELECT MAX(umsatzNr) FROM umsatz";
@@ -123,7 +121,6 @@ public class DB_Verbindung {
         zaehler = rs.getInt(1);
         zaehler++;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        zeitstempel = sdf.format(timestamp);
         befehl= "INSERT INTO `umsatz` (`umsatzNr`,`zeitstempel`, `umsatz`) VALUES ('"+Integer.toString(zaehler)+"','"+timestamp+"','"+umsatz+"')";
         updaten(befehl);
         
