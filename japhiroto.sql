@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 05. Jan 2019 um 19:29
+-- Erstellungszeit: 07. Jan 2019 um 21:33
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 7.3.0
 
@@ -65,31 +65,16 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
-('9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2L', 1.99, 10);
-INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
-('457842','Coca Cola 1L',0.65,25);
-INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
-('789456','Jack Daniels Whiskey 0,75L',19.95,8);
-INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
-('531874','Nutella 2,5KG',14.99,100);
-
--- --------------------------------------------------------
---
--- Tabellenstruktur für Tabelle `umsatz`
---
-
-CREATE TABLE `umsatz` (
-  `umsatzNr` int NOT NULL,
-  `zeitstempel` timestamp NOT NULL,
-  `umsatz` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `artikel`
---
-
-INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
-('0','2019-01-07 01:05:00','1.00');
+('0711', 'Stuttgarter-Luft Dose 250ml', 99.49, 2),
+('1', 'Pizzakissen rund 40cm', 15.19, 23),
+('100238', 'Pupsspray Dose XL', 14.99, 18),
+('2', 'Gurkenfinger Typ Essiggurke', 2.49, 5),
+('457842', 'Coca Cola 1l', 0.65, 22),
+('5312483', 'Waschmaschinen Impressionen Film', 8.49, 4),
+('531874', 'Nutella 2,5 kg', 14.99, 90),
+('789456', 'Jack Daniels Whiskey 0,75l', 19.95, 8),
+('9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2l', 1.99, 10),
+('9531852', 'Zahnpasta, Geschmack Bacon', 10.79, 7);
 
 -- --------------------------------------------------------
 
@@ -142,6 +127,26 @@ INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `st
 (2, 'Frau', 'Maxia', 'Musterfrau', 'Mustergasse', 2, 67890, 'ZweiteMusterstadt', 5.80),
 (3, 'Dive', 'Maxia*innen', 'Musterfrau*innen', 'Mustergasse*innen', 61, 7531459, 'ZweiteMusterstadt*innen', 0.01);
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `umsatz`
+--
+
+CREATE TABLE `umsatz` (
+  `umsatzNr` int(11) NOT NULL,
+  `zeitstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `umsatz` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `umsatz`
+--
+
+INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
+(0, '2019-01-07 01:05:00', 1),
+(1, '2019-01-07 20:05:32', 0);
+
 --
 -- Indizes der exportierten Tabellen
 --
@@ -190,7 +195,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT für Tabelle `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
-  MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

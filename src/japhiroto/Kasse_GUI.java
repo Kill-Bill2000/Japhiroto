@@ -5,7 +5,9 @@
  */
 package japhiroto;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,6 +37,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         try{
             initComponents();
+            setProperties();
             artikelliste = new ArrayList<Artikel>();
             dieKasse_Verwaltung = new Kasse_Verwaltung();
             Font font = new Font("Monospaced",Font.PLAIN, 11);
@@ -50,6 +53,15 @@ public class Kasse_GUI extends javax.swing.JFrame {
         
     }
 
+    private void setProperties(){
+        //Position in der Mitte des Bildschirms
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
+        
+        //IconImage setzen
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,9 +72,6 @@ public class Kasse_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dlgWarten = new javax.swing.JDialog();
-        pnlWarten = new javax.swing.JPanel();
-        lblWarten = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaAusgabe = new javax.swing.JTextArea();
         lblArtikelliste = new javax.swing.JLabel();
@@ -101,41 +110,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
         txfMinus = new javax.swing.JTextField();
         lblMinusBetrag = new javax.swing.JLabel();
         btnZifferLoeschen = new javax.swing.JButton();
-
-        dlgWarten.setTitle("bitte warten");
-
-        lblWarten.setText("bitte warten bis Bezahlvorgang am Terminal beendet ist...");
-
-        javax.swing.GroupLayout pnlWartenLayout = new javax.swing.GroupLayout(pnlWarten);
-        pnlWarten.setLayout(pnlWartenLayout);
-        pnlWartenLayout.setHorizontalGroup(
-            pnlWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWartenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblWarten)
-                .addContainerGap(312, Short.MAX_VALUE))
-        );
-        pnlWartenLayout.setVerticalGroup(
-            pnlWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWartenLayout.createSequentialGroup()
-                .addContainerGap(315, Short.MAX_VALUE)
-                .addComponent(lblWarten)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout dlgWartenLayout = new javax.swing.GroupLayout(dlgWarten.getContentPane());
-        dlgWarten.getContentPane().setLayout(dlgWartenLayout);
-        dlgWartenLayout.setHorizontalGroup(
-            dlgWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlWarten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        dlgWartenLayout.setVerticalGroup(
-            dlgWartenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlWarten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        lblEuroGes = new javax.swing.JLabel();
+        lblEuroGeg = new javax.swing.JLabel();
+        lblEuroZur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Kasse");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -387,6 +368,12 @@ public class Kasse_GUI extends javax.swing.JFrame {
             }
         });
 
+        lblEuroGes.setText("€");
+
+        lblEuroGeg.setText("€");
+
+        lblEuroZur.setText("€");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -436,7 +423,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
                                                 .addComponent(txfAnzahl, javax.swing.GroupLayout.Alignment.LEADING))
                                             .addComponent(txfZurueck, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txfGesamt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(89, 89, 89)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(lblEuroGeg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(lblEuroGes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(lblEuroZur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(130, 130, 130)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(btnHinzufuegen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnBezahlen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -532,16 +525,19 @@ public class Kasse_GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txfGesamt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGesamt))
+                            .addComponent(lblGesamt)
+                            .addComponent(lblEuroGes))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblGegeben)
-                            .addComponent(txfGegeben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txfGegeben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEuroGeg))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txfZurueck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBezahlen, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblZurueck))
+                            .addComponent(lblZurueck)
+                            .addComponent(lblEuroZur))
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnZifferEins, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -743,13 +739,13 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
     private void btnZifferKommaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferKommaActionPerformed
         // Nach Ausgewähtem Textfeld suchen
-        if(aktuellesTextfeld == "txfArtikelNr"){
+        if("txfArtikelNr".equals(aktuellesTextfeld)){
             txfArtikelNr.setText(txfArtikelNr.getText()+ ".");
         }
-        else if(aktuellesTextfeld == "txfAnzahl"){
+        else if("txfAnzahl".equals(aktuellesTextfeld)){
             txfAnzahl.setText(txfAnzahl.getText()+".");
         }
-        else if(aktuellesTextfeld == "txfGegeben"){
+        else if("txfGegeben".equals(aktuellesTextfeld)){
             txfGegeben.setText(txfGegeben.getText()+".");
         }
     }//GEN-LAST:event_btnZifferKommaActionPerformed
@@ -757,7 +753,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private void btnHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHinzufuegenActionPerformed
         if(bezahlt == false){  
             try{
-                if(txfAnzahl.getText()== "1"||txfAnzahl.getText().equals("")){
+                if("1".equals(txfAnzahl.getText())||txfAnzahl.getText().equals("")){
                     artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));     
                     ausgabeAktualisieren();
                 }
@@ -766,6 +762,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                     ausgabeAktualisieren();
                 }
                 else{
+                    getToolkit().beep();
                     JOptionPane.showMessageDialog(rootPane, "Bitte im Anzahl-Feld Werte zwischen 1 und 647 eintragen", "Fehler Anzahl" , JOptionPane.INFORMATION_MESSAGE);
                 }
                 txfArtikelNr.setText("");
@@ -773,9 +770,11 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
            }
            catch(SQLException e){
+               getToolkit().beep();
                JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen"+e.getMessage(), "Fehler" , JOptionPane.ERROR_MESSAGE);
            }
             catch(NumberFormatException e){
+               getToolkit().beep();
                 JOptionPane.showMessageDialog(rootPane, "Bitte Anzahlfeld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -795,6 +794,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             txfArtikelNr.setText("");
         }
         catch(SQLException e){
+            getToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen"+e.getMessage(), "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAuskunftActionPerformed
@@ -806,6 +806,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         }
         else{
             if(txfGegeben.getText().equals("") || Double.parseDouble(txfGegeben.getText())  < dieKasse_Verwaltung.gesamtbetragBerechnen(artikelliste)){
+                getToolkit().beep();
                 JOptionPane.showMessageDialog(rootPane, "Bitte Gegeben-Feld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
             }
             else{
@@ -828,12 +829,15 @@ public class Kasse_GUI extends javax.swing.JFrame {
         }
     }
     catch(NumberFormatException e){
+        getToolkit().beep();
         JOptionPane.showMessageDialog(rootPane, "Bitte Gegeben-Feld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
     }
     catch(JavaLayerException | FileNotFoundException ex){
-        
+        getToolkit().beep();
+        JOptionPane.showMessageDialog(rootPane, "Ein Fehler ist aufgetreten!", "Fehler" , JOptionPane.ERROR_MESSAGE);
     }
     catch(SQLException | IOException ey){
+        getToolkit().beep();
         JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnBezahlenActionPerformed
@@ -869,6 +873,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             
         
             if (zufallszahl <=20){
+                getToolkit().beep();
                 JOptionPane.showMessageDialog(rootPane, "Die Transaktion ist fehlgeschlagen! Bitte versuchen Sie es erneut oder bezahlen Sie BAR.", "Fehler" , JOptionPane.ERROR_MESSAGE);
             }
             else{
@@ -883,6 +888,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         }
     }
     catch(SQLException | IOException ey){
+        getToolkit().beep();
         JOptionPane.showMessageDialog(rootPane,"Fehler in der Verbindung zur Datenbank! Bitte wenden sie sich an den Systemadministrator.","Fehler", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnKarteActionPerformed
@@ -900,27 +906,34 @@ public class Kasse_GUI extends javax.swing.JFrame {
             gegeben = 0;
         }
         else{
-            JOptionPane.showMessageDialog(rootPane, "Bitte zuerst Bezahlvorgang abschliesen! Falls dies nicht möglich, Bezahlvorgang abbrechen.", "Fehler" , JOptionPane.ERROR_MESSAGE);
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Bitte zuerst Bezahlvorgang abschließen! Falls dies nicht möglich, Bezahlvorgang abbrechen.", "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnNeuerKaufvorgangActionPerformed
 
     private void btnKaufvorgangAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKaufvorgangAbbrechenActionPerformed
-        int antwort = JOptionPane.showConfirmDialog(null, "Abbruch", "Wollen Sie wirklich abbbrechen?", JOptionPane.YES_NO_CANCEL_OPTION);
+        if(!bezahlt){
+        
+            int antwort = JOptionPane.showConfirmDialog(null, "Abbruch", "Wollen Sie wirklich abbbrechen?", JOptionPane.YES_NO_CANCEL_OPTION);
 
-        switch (antwort) {
-            case JOptionPane.OK_OPTION:
-                txaAusgabe.setText("");
-                txfAnzahl.setText("");
-                txfArtikelNr.setText("");
-                txfGegeben.setText("");
-                txfGesamt.setText("");
-                txfZurueck.setText("");
-                artikelliste.clear();
-                bezahlt = false;
-                gegeben=0;
-                break;
-            default:
-                break;
+            switch (antwort) {
+                case JOptionPane.OK_OPTION:
+                    txaAusgabe.setText("");
+                    txfAnzahl.setText("");
+                    txfArtikelNr.setText("");
+                    txfGegeben.setText("");
+                    txfGesamt.setText("");
+                    txfZurueck.setText("");
+                    artikelliste.clear();
+                    bezahlt = false;
+                    gegeben=0;
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Zahlvorgang ist bereits beendet. \nAbbruch nicht möglich", "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnKaufvorgangAbbrechenActionPerformed
 
@@ -930,6 +943,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             dieKasse_Verwaltung.kassenzettelErzeugen(artikelliste, gegeben);
         }
         catch(IOException e){
+            getToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "Der Kassenzettel konnte nicht erstellt werden! Bitte wenden Sie sich an Ihren Systemadministrator", "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -955,6 +969,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                 txfArtikelNr.setText("");
             }
             else{
+                getToolkit().beep();
                 JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen", "Fehler" , JOptionPane.ERROR_MESSAGE);
                 ausgabeAktualisieren();
             }
@@ -979,6 +994,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         }
         }
         catch(NumberFormatException e){
+            getToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "Bitte Minus-Feld beachten! Ggf. auf Komma achten! Richtig: . Falsch: ,","Fehler",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnMinusActionPerformed
@@ -987,12 +1003,14 @@ public class Kasse_GUI extends javax.swing.JFrame {
         try {
             ansageSchliessen();
             dieKasse_Verwaltung.umsatzAnDBsenden();
+            dieKasse_Verwaltung.verbindungSchliessen();
             new Login_GUI().setVisible(true);
             this.dispose();
         } catch (FileNotFoundException | JavaLayerException ex) {
             
         }
         catch(SQLException e){
+            getToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "Keine Verbindung zur Datenbank!","Fehler",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -1009,7 +1027,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private void btnZifferLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZifferLoeschenActionPerformed
        try{  
         // Nach Ausgewähtem Textfeld suchen
-           if(aktuellesTextfeld == "txfArtikelNr"){
+           if("txfArtikelNr".equals(aktuellesTextfeld)){
                String text;
                CharSequence shortedText;
 
@@ -1020,7 +1038,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                text = sb.toString();
                txfArtikelNr.setText(text);
            }
-           else if(aktuellesTextfeld == "txfAnzahl"){
+           else if("txfAnzahl".equals(aktuellesTextfeld)){
                String text;
                CharSequence shortedText;
 
@@ -1031,7 +1049,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
                text = sb.toString();
                txfAnzahl.setText(text);
            }
-           else if(aktuellesTextfeld == "txfGegeben"){
+           else if("txfGegeben".equals(aktuellesTextfeld)){
                String text;
                CharSequence shortedText;
 
@@ -1106,18 +1124,18 @@ public class Kasse_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnZifferSieben;
     private javax.swing.JButton btnZifferVier;
     private javax.swing.JButton btnZifferZwei;
-    private javax.swing.JDialog dlgWarten;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnzahl;
     private javax.swing.JLabel lblArtikelNr;
     private javax.swing.JLabel lblArtikelliste;
+    private javax.swing.JLabel lblEuroGeg;
+    private javax.swing.JLabel lblEuroGes;
+    private javax.swing.JLabel lblEuroZur;
     private javax.swing.JLabel lblGegeben;
     private javax.swing.JLabel lblGesamt;
     private javax.swing.JLabel lblImpressum;
     private javax.swing.JLabel lblMinusBetrag;
-    private javax.swing.JLabel lblWarten;
     private javax.swing.JLabel lblZurueck;
-    private javax.swing.JPanel pnlWarten;
     private javax.swing.JTextArea txaAusgabe;
     private javax.swing.JTextField txfAnzahl;
     private javax.swing.JTextField txfArtikelNr;

@@ -400,7 +400,7 @@ public class DB_Verbindung {
         }
     }
     public void verkaufeArtikel(String artNr, int anz) throws SQLException, IOException {
-        int alt = getArtikel(artNr).getAnzahl();
+        int alt = getArtikel(artNr).getBestand();
         anz = alt - anz;
 
         String befehl = String.format("UPDATE artikel SET bestand = '%1$d' WHERE artikelNummer = '%2$s'", anz, artNr);
