@@ -194,11 +194,11 @@ public class LagerHinzufuegenGUI extends javax.swing.JFrame {
             
             art = new Artikel(txfName.getText(), preis, txfNummer.getText(), Integer.parseInt(txfBestand.getText()));
             
-            System.out.println(verwaltung.verbindungAufbauen());
+            verwaltung.verbindungAufbauen();
             
             verwaltung.artikelHinzufuegen(art);
 
-            System.out.println(verwaltung.verbindungSchliessen());
+            verwaltung.verbindungSchliessen();
             
             JOptionPane.showMessageDialog(this, "Der Artikel wurde hinzugefügt.", "Artikel hinzugefügt", JOptionPane.INFORMATION_MESSAGE);
             

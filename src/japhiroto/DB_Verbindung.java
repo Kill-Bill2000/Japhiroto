@@ -1,4 +1,4 @@
-*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -436,16 +436,9 @@ public class DB_Verbindung {
         return artikel;
     }
     
-    public void artikelHinzufuegen(Artikel art){
-        try {
-            Statement st = con.createStatement();
-            st.executeUpdate("INSERT INTO artikel VALUES ('9','9',1.1,2)");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DB_Verbindung.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+    public void artikelHinzufuegen(Artikel art) throws SQLException{
+        String befehl = String.format("INSERT INTO artikel VALUES ('%1$s', '%2$s', '%3$s', '%4$s')", art.getArtikelNummer(), art.getName(), art.getPreis(), art.getAnzahl());
+        updaten(befehl);
     }
     
 }

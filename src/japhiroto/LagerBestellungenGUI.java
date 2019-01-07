@@ -5,6 +5,8 @@
  */
 package japhiroto;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,6 +29,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private DB_Verbindung db;
     public LagerBestellungenGUI() {
         initComponents();
+        setProperties();
         try {
             db = new DB_Verbindung();
             db.verbindungAufbauen();
@@ -37,6 +40,14 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex.getMessage());
         }
+    }
+    private void setProperties(){
+        //Position in der Mitte des Bildschirms
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
+        
+        //IconImage setzen
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
     }
 
     private void bestellungenNeuLaden() {
