@@ -126,6 +126,7 @@ public class DB_Verbindung {
         zeitstempel = sdf.format(timestamp);
         befehl= "INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES +"
                 + "('"+zaehler+"','"+zeitstempel+"','"+umsatz+"')";
+        updaten(befehl);
         
     }
     
