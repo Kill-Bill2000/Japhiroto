@@ -446,6 +446,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
+        drawAxes();
         drawSales();
     }//GEN-LAST:event_btnShowSalesActionPerformed
 
@@ -574,13 +575,18 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     }
     
-    private void drawSales(){  
+    private void drawAxes(){
         //testline
 //        diagram.drawLine(zeroX, zeroY, sizeX, 0);
 
         // draw axes  
         diagram.drawLine(zeroX - 5, zeroY, sizeX - 15, zeroY);
-        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25);
+        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25); 
+        
+    }
+    
+    private void drawSales(){  
+
         
 //        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
 //        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
