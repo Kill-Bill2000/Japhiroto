@@ -77,6 +77,12 @@ public class Kasse_Verwaltung {
     }
     public void artikelAbziehen(ArrayList<Artikel> artikelliste) throws SQLException, IOException{
         for (int i = 0; i < artikelliste.size(); i++) {
+            if(artikelliste.get(i).getArtikelNummer().equals(0)){
+                artikelliste.remove(i);
+            }
+        }
+        
+        for (int i = 0; i < artikelliste.size(); i++) {
             dieDB_Verbindung.verkaufeArtikel(artikelliste.get(i).getArtikelNummer(), artikelliste.get(i).getAnzahl());
         }
     }
