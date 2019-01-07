@@ -298,7 +298,7 @@ public class DB_Verbindung {
         Artikel art;
         String artNr, artName;
         double vk;
-        int anz;
+        int bst;
         
         String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
         ResultSet rs = abfragen(befehl);
@@ -306,10 +306,10 @@ public class DB_Verbindung {
         
         artNr = rs.getString("artikelNummer");
         artName = rs.getString("bezeichnung");
-        vk = rs.getDouble("preis");
-        anz = rs.getInt("bestand");
+        vk = rs.getDouble("verkaufPreis");
+        bst = rs.getInt("bestand");
         
-        art = new Artikel(artName, vk, artNr, anz);
+        art = new Artikel(artName, vk, artNr, bst);
         
         return art;
     }
@@ -330,7 +330,7 @@ public class DB_Verbindung {
         Artikel art;
         String artNr, artName; 
         double vk;
-        int anz;
+        int anz,bst;
         
         String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
         ResultSet rs = abfragen(befehl);
@@ -338,10 +338,11 @@ public class DB_Verbindung {
         
         artNr = rs.getString("artikelNummer");
         artName = rs.getString("bezeichnung");
-        vk = rs.getDouble("preis");
+        vk = rs.getDouble("verkaufPreis");
+        bst = rs.getInt("bestand");
         anz = anzahl;
         
-        art = new Artikel(artName, vk, artNr,anz);
+        art = new Artikel(artName, vk, artNr,bst,anz);
         
         return art;
     }
@@ -430,7 +431,7 @@ public class DB_Verbindung {
         befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);;
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            artikel.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getString("artikelNummer")));
+            artikel.add(new Artikel(rs.getString("bezeichnung"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
         }
         
         return artikel;
