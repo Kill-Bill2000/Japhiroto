@@ -8,6 +8,9 @@ package japhiroto;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -592,18 +595,103 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     }
     
-        private void drawSales(){  
+    private void drawSales(){  
         //testline
 //        diagram.drawLine(zeroX, zeroY, sizeX, 0);
 
         // draw axes  
-        diagram.drawLine(zeroX - 10, zeroY, sizeX - 15, zeroY);
-        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 15);
+        diagram.drawLine(zeroX - 5, zeroY, sizeX - 15, zeroY);
+        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25);
+        
+//        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+//        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString(); 
+        String selectedFrom = "10.09.2018";
+        String selectedUntil = "20.09.2018"; 
+
+        String[] parts1 = selectedFrom.split("\\.");
+        int dayFrom = Integer.valueOf(parts1[0]);
+        int monthFrom = Integer.valueOf(parts1[1]);
+        int yearFrom = Integer.valueOf(parts1[2]);
+        
+        String[] parts2 = selectedUntil.split("\\.");
+        int dayUntil = Integer.valueOf(parts2[0]);
+        int monthUntil = Integer.valueOf(parts2[1]);
+        int yearUntil = Integer.valueOf(parts2[2]);      
+        
+        LocalDateTime dateFrom = LocalDateTime.of(yearFrom, monthFrom, dayFrom, 0, 0);
+        LocalDateTime dateUntil = LocalDateTime.of(yearUntil, monthUntil, dayUntil, 0, 0);
+        
+        Duration duration = Duration.between(dateFrom, dateUntil);
+        long days = duration.toDays();
+        String stringDifferenceDay = Long.toString(days);
+        int differenceDay = Integer.valueOf(stringDifferenceDay)+1;
+              
+        int differenceMonth = 1;  
+        
+        //TEST:
+        System.out.println("differenceDay " + differenceDay);
+        System.out.println("differenceMonth " + differenceMonth);
+        
+        int scaleX = 1;
+        
+        if (dayFrom + differenceDay < 30) {
+            scaleX = differenceDay;
+        }
+//        
+        if (dayFrom + differenceDay > 30) {
+            scaleX = differenceMonth;
+            System.out.println("hurensohn ");
+        }
+        
+        
+        // draw scale 
+        // X-axis
+        
+        int lengthX = sizeX - zeroX; 
+        int spacingX = sizeX / scaleX;
+
+
+        //TEST:
+        System.out.println("sizeX " + sizeX);
+        System.out.println("zeroX " + zeroX);
+        System.out.println("lengthX " + lengthX);
+        System.out.println("scaleX " + scaleX);
+        System.out.println("spacingX " + spacingX);
+        
+        for (int i = 0; i < spacingX + 1; i++) {
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
+            
+//            int labeling = Integer.valueOf(dayFrom) + i;
+//            
+//            while (labeling < 30) {                
+//                diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//            }
+//            while (labeling > 30) {
+//                diagram.drawString(i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//            }                       
+        }
+        
+        // Y-axis
+        for (int i = 1; i < sizeY/20 - 2; i++) {
+            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+        }
+
+    }
+    
+    
+    private void drawSalesStringDate(){  
+        //testline
+//        diagram.drawLine(zeroX, zeroY, sizeX, 0);
+
+        // draw axes  
+        diagram.drawLine(zeroX - 5, zeroY, sizeX - 15, zeroY);
+        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25);
         
 //        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
 //        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();            
         String selectedFrom = "15.09.2018";
-        String selectedUntil = "20.09.2018"; 
+        String selectedUntil = "30.09.2018"; 
         
         String[] parts1 = selectedFrom.split("\\.");
         String dayFrom = parts1[0];
@@ -628,15 +716,36 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int differenceMonth = Integer.valueOf(monthUntil) - Integer.valueOf(monthFrom);
                 
         //TEST:
-        System.out.println(differenceDay);
-        System.out.println(differenceMonth);
-
+        System.out.println("differenceDay " + differenceDay);
+        System.out.println("differenceMonth " + differenceMonth);
+        
+        int scaleX = 1;
+        
+        if (differenceDay < 30) {
+            scaleX = differenceDay;
+        }
+//        
+        if (differenceDay > 30) {
+            scaleX = differenceMonth;
+        }
         
         // draw scale 
         // X-axis
-        for (int i = 1; i < sizeX/20 - 2; i++) {
-            diagram.drawLine(zeroX + i*20, zeroY - 5, zeroX + i*20, zeroY + 5);
-            diagram.drawString(""+i, zeroX + i*20 - 3, zeroY + 20);            
+        
+        int lengthX = sizeX - zeroX; 
+        int spacingX = sizeX / scaleX;
+//        int NumberLinexX = lengthX / spacingX;
+        
+        System.out.println("sizeX " + sizeX);
+        System.out.println("zeroX " + zeroX);
+        System.out.println("lengthX " + lengthX);
+        System.out.println("scaleX " + scaleX);
+        System.out.println("spacingX " + spacingX);
+//        System.out.println("NumberLinexX " + NumberLinexX);
+        
+        for (int i = 0; i < spacingX + 1; i++) {
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
+            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);            
         }
         
         // Y-axis
