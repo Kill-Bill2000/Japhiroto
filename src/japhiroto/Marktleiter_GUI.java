@@ -8,9 +8,8 @@ package japhiroto;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -604,10 +603,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25);
         
 //        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-//        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString(); 
-        String selectedFrom = "10.09.2018";
-        String selectedUntil = "20.09.2018"; 
+//        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
+        //input type String
+        String selectedFrom = "01.09.2018";
+        String selectedUntil = "30.09.2018"; 
+
+        //String splitting
         String[] parts1 = selectedFrom.split("\\.");
         int dayFrom = Integer.valueOf(parts1[0]);
         int monthFrom = Integer.valueOf(parts1[1]);
@@ -618,16 +620,15 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int monthUntil = Integer.valueOf(parts2[1]);
         int yearUntil = Integer.valueOf(parts2[2]);      
         
-        LocalDateTime dateFrom = LocalDateTime.of(yearFrom, monthFrom, dayFrom, 0, 0);
-        LocalDateTime dateUntil = LocalDateTime.of(yearUntil, monthUntil, dayUntil, 0, 0);
+        //conversion String to LocalDate
+        LocalDate dateFrom = LocalDate.of(yearFrom, monthFrom, dayFrom);
+        LocalDate dateUntil = LocalDate.of(yearUntil, monthUntil, dayUntil);
         
-        Duration duration = Duration.between(dateFrom, dateUntil);
-        long days = duration.toDays();
-        String stringDifferenceDay = Long.toString(days);
-        int differenceDay = Integer.valueOf(stringDifferenceDay)+1;
-              
-        int differenceMonth = 1;  
-        
+        //getting duration between selected dates#
+        Period duration = Period.between(dateFrom, dateUntil);
+        int differenceDay = duration.getDays();
+        int differenceMonth = duration.getMonths();              
+  
         //TEST:
         System.out.println("differenceDay " + differenceDay);
         System.out.println("differenceMonth " + differenceMonth);
@@ -636,21 +637,16 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         if (dayFrom + differenceDay < 30) {
             scaleX = differenceDay;
-        }
-//        
+        }        
         if (dayFrom + differenceDay > 30) {
             scaleX = differenceMonth;
-            System.out.println("hurensohn ");
         }
-        
         
         // draw scale 
         // X-axis
         
         int lengthX = sizeX - zeroX; 
         int spacingX = sizeX / scaleX;
-
-
         //TEST:
         System.out.println("sizeX " + sizeX);
         System.out.println("zeroX " + zeroX);
@@ -660,7 +656,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         for (int i = 0; i < spacingX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-            
+            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
 //            int labeling = Integer.valueOf(dayFrom) + i;
 //            
 //            while (labeling < 30) {                
