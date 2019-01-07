@@ -5,6 +5,8 @@
  */
 package japhiroto;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,7 +27,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     
     public LagerArtikelSuchen() {
         initComponents();
-        
+        setProperties();
         try {  
             
             verbindung = new DB_Verbindung();
@@ -53,6 +55,14 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Es konnten keine Artikel abgerufen werden.\n Ein unbekannter Fehler ist aufgetreten." + ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    private void setProperties(){
+        //Position in der Mitte des Bildschirms
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
+        
+        //IconImage setzen
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
     }
     
     private void ladeAlleArtikel() throws SQLException {
