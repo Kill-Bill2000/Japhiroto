@@ -216,6 +216,11 @@ public class Kasse_Verwaltung {
             prjob.end();
         
     }
+    
+    public boolean verbindungSchliessen() throws SQLException{
+        //schließt die Verbindung und liefert den boolean der Methode zurück
+        return dieDB_Verbindung.verbindungSchliessen();
+    }
 
     
 }
