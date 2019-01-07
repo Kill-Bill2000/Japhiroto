@@ -5,7 +5,9 @@
  */
 package japhiroto;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,6 +37,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         try{
             initComponents();
+            setProperties();
             artikelliste = new ArrayList<Artikel>();
             dieKasse_Verwaltung = new Kasse_Verwaltung();
             Font font = new Font("Monospaced",Font.PLAIN, 11);
@@ -50,6 +53,15 @@ public class Kasse_GUI extends javax.swing.JFrame {
         
     }
 
+    private void setProperties(){
+        //Position in der Mitte des Bildschirms
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
+        
+        //IconImage setzen
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,6 +148,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Kasse");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
