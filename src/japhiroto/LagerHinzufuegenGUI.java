@@ -185,22 +185,22 @@ public class LagerHinzufuegenGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnZurueckActionPerformed
 
     private void btnHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHinzufuegenActionPerformed
-        Artikel artikel;
+        Artikel art;
         Double preis;
         
         try {
+            
             preis = Double.parseDouble(txfPreisEuro.getText()) + Double.parseDouble(txfPreisCent.getText()) / 100.0;
-            artikel = new Artikel(txfName.getText(), preis, txfNummer.getText(), Integer.parseInt(txfBestand.getText()));
             
+            art = new Artikel(txfName.getText(), preis, txfNummer.getText(), Integer.parseInt(txfBestand.getText()));
             
-            verwaltung.verbindungAufbauen();
+            System.out.println(verwaltung.verbindungAufbauen());
             
+            verwaltung.artikelHinzufuegen(art);
+
+            System.out.println(verwaltung.verbindungSchliessen());
             
-            verwaltung.artikelHinzufuegen(artikel);
-            
-            verwaltung.verbindungSchliessen();
-            
-            
+            JOptionPane.showMessageDialog(this, "Der Artikel wurde hinzugefügt.", "Artikel hinzugefügt", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (SQLException ex) {
             getToolkit().beep();
@@ -216,7 +216,7 @@ public class LagerHinzufuegenGUI extends javax.swing.JFrame {
         txfPreisEuro.setText("");
         txfPreisCent.setText("");
         txfBestand.setText("");
-        JOptionPane.showMessageDialog(this, "Der Artikel wurde hinzugefügt.", "Artikel hinzugefügt", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_btnHinzufuegenActionPerformed
 
     private void setProperties(){

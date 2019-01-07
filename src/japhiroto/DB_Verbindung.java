@@ -8,6 +8,8 @@ package japhiroto;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -434,9 +436,16 @@ public class DB_Verbindung {
         return artikel;
     }
     
-    public void artikelHinzufuegen(Artikel art) throws SQLException{
-
-
+    public void artikelHinzufuegen(Artikel art){
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate("INSERT INTO artikel VALUES ('9','9',1.1,2)");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DB_Verbindung.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
     
 }
