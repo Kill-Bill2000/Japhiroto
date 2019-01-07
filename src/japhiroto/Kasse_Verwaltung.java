@@ -5,6 +5,7 @@
  */
 package japhiroto;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -81,7 +82,10 @@ public class Kasse_Verwaltung {
     }
     public String ausgabeHeader(){
         String text;
-        text = "Artikel:"+"\n"+"\n"; //Header noch schön gestalten
+        text = "  IT-Schule Stuttgart Testladen24\n"+
+                "      Breitwießenstraße 20-22\n"+
+                "          70565 Stuttgart\n"+
+                "   Tel.: +49 (0) 711 216 89 –053\n\n\n"; 
         return text;
     }
     
