@@ -592,8 +592,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
         //input type String
-        String selectedFrom = "20.09.2018";
-        String selectedUntil = "30.10.2018"; 
+        String selectedFrom = "15.09.2018";
+        String selectedUntil = "10.10.2018"; 
 
         //String splitting
         String[] parts1 = selectedFrom.split("\\.");
@@ -622,12 +622,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int scaleX = 1;
         
         if (differenceMonth == 0) {
-            scaleX = differenceDay;
             System.out.println("using differenceDay " + differenceDay);
+            scaleX = differenceDay + 1; //+1 to show enought values in graph           
         }        
         if (differenceMonth >= 1) {
-            scaleX = differenceMonth;
-            System.out.println("using differenceMonth " + differenceDay);
+            System.out.println("using differenceMonth " + differenceMonth);
+            scaleX = differenceMonth + 1; //+1 to show enought values in graph              
         }
         
         // draw scale 
@@ -644,15 +644,16 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         for (int i = 0; i < spacingX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-//            int labeling = Integer.valueOf(dayFrom) + i;
-//            
-//            while (labeling < 30) {                
-//                diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-//            }
-//            while (labeling > 30) {
-//                diagram.drawString(i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-//            }                       
+//            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            int labeling = Integer.valueOf(dayFrom) + i;
+            int j = 1;
+            if (labeling <= 30) {                
+                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            }
+            if (labeling > 30) {                
+                diagram.drawString(j + ".", zeroX + i*spacingX - 5, zeroY + 20);                          
+            }
+            j = j + 1;                     
         }
         
         // Y-axis
