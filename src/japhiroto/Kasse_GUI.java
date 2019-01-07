@@ -788,10 +788,10 @@ public class Kasse_GUI extends javax.swing.JFrame {
         Artikel derArtikel;
         try{
             derArtikel= dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText());
-            JOptionPane.showInputDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
+            JOptionPane.showMessageDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
                     "Artikelname: "+derArtikel.getName()+"\n"+
-                    "Preis: "+derArtikel.getPreis()+"€"+
-                    "Bestand: "+derArtikel.getBestand());
+                    "Preis: "+derArtikel.getPreis()+"€\n"+
+                    "Bestand: "+derArtikel.getBestand(),"Artikelinformation",JOptionPane.INFORMATION_MESSAGE);
             txfArtikelNr.setText("");
         }
         catch(SQLException e){
