@@ -19,7 +19,7 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:MM");
 
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
@@ -124,8 +124,7 @@ public class DB_Verbindung {
         zaehler++;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         zeitstempel = sdf.format(timestamp);
-        befehl= "INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES +"
-                + "('"+zaehler+"','"+zeitstempel+"','"+umsatz+"')";
+        befehl= "INSERT INTO `umsatz` (`umsatzNr`,`zeitstempel`, `umsatz`) VALUES ('"+Integer.toString(zaehler)+"','"+timestamp+"','"+umsatz+"')";
         updaten(befehl);
         
     }
