@@ -7,7 +7,6 @@ package japhiroto;
 
 import java.io.*;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +18,6 @@ public class DB_Verbindung {
     private String url, dbHost, dbPort, dbName, dbUser, dbPass;
     private DataManager dManager;
     private final String dateipfad = "zugangsdaten_db";
-    private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:MM");
 
     
     public DB_Verbindung() throws FileNotFoundException, IOException{
@@ -114,7 +112,7 @@ public class DB_Verbindung {
 //    Setzt den Umsatz der Kasse in die DB
     public void setUmsatz(String umsatz) throws SQLException{
         int zaehler;
-        String befehl,zeitstempel;
+        String befehl;
         ResultSet rs;
         
         befehl= "SELECT MAX(umsatzNr) FROM umsatz";
@@ -123,7 +121,6 @@ public class DB_Verbindung {
         zaehler = rs.getInt(1);
         zaehler++;
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        zeitstempel = sdf.format(timestamp);
         befehl= "INSERT INTO `umsatz` (`umsatzNr`,`zeitstempel`, `umsatz`) VALUES ('"+Integer.toString(zaehler)+"','"+timestamp+"','"+umsatz+"')";
         updaten(befehl);
         
@@ -298,18 +295,18 @@ public class DB_Verbindung {
         Artikel art;
         String artNr, artName;
         double vk;
-        int anz;
+        int bst;
         
         String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
         ResultSet rs = abfragen(befehl);
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("bezeichnung");
-        vk = rs.getDouble("preis");
-        anz = rs.getInt("bestand");
+        artName = rs.getString("artikelName");
+        vk = rs.getDouble("verkaufPreis");
+        bst = rs.getInt("bestand");
         
-        art = new Artikel(artName, vk, artNr, anz);
+        art = new Artikel(artName, vk, artNr, bst);
         
         return art;
     }
@@ -330,18 +327,19 @@ public class DB_Verbindung {
         Artikel art;
         String artNr, artName; 
         double vk;
-        int anz;
+        int anz,bst;
         
         String befehl = String.format("SELECT * FROM Artikel WHERE artikelNummer = '%1$s'", artikelNummer);
         ResultSet rs = abfragen(befehl);
         rs.next();
         
         artNr = rs.getString("artikelNummer");
-        artName = rs.getString("bezeichnung");
-        vk = rs.getDouble("preis");
+        artName = rs.getString("artikelName");
+        vk = rs.getDouble("verkaufPreis");
+        bst = rs.getInt("bestand");
         anz = anzahl;
         
-        art = new Artikel(artName, vk, artNr,anz);
+        art = new Artikel(artName, vk, artNr,bst,anz);
         
         return art;
     }
@@ -430,7 +428,7 @@ public class DB_Verbindung {
         befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);;
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            artikel.add(new Artikel(rs.getString("bezeichnung"), rs.getDouble("preis"), rs.getString("artikelNummer")));
+            artikel.add(new Artikel(rs.getString("bezeichnung"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
         }
         
         return artikel;

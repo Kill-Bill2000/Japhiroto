@@ -758,7 +758,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
         if(bezahlt == false){  
             try{
                 if(txfAnzahl.getText()== "1"||txfAnzahl.getText().equals("")){
-                    artikelliste.add(dieKasse_Verwaltung.artikelSuchenMitAnzahl(txfArtikelNr.getText(),1));     
+                    artikelliste.add(dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText()));     
                     ausgabeAktualisieren();
                 }
                 else if(Integer.parseInt(txfAnzahl.getText())>0 && Integer.parseInt(txfAnzahl.getText())<647){
@@ -773,7 +773,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
 
            }
            catch(SQLException e){
-               JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen", "Fehler" , JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen"+e.getMessage(), "Fehler" , JOptionPane.ERROR_MESSAGE);
            }
             catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(rootPane, "Bitte Anzahlfeld überprüfen!", "Fehler" , JOptionPane.ERROR_MESSAGE);
@@ -788,14 +788,14 @@ public class Kasse_GUI extends javax.swing.JFrame {
         Artikel derArtikel;
         try{
             derArtikel= dieKasse_Verwaltung.artikelSuchen(txfArtikelNr.getText());
-            JOptionPane.showInputDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
+            JOptionPane.showMessageDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
                     "Artikelname: "+derArtikel.getName()+"\n"+
-                    "Preis: "+derArtikel.getPreis()+"€"+
-                    "Bestand: "+derArtikel.getAnzahl());
+                    "Preis: "+derArtikel.getPreis()+"€\n"+
+                    "Bestand: "+derArtikel.getBestand(),"Artikelinformation",JOptionPane.INFORMATION_MESSAGE);
             txfArtikelNr.setText("");
         }
         catch(SQLException e){
-            JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen", "Fehler" , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Artikel wurde nicht gefunden! Bitte Nummer überprüfen"+e.getMessage(), "Fehler" , JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAuskunftActionPerformed
 
@@ -973,7 +973,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             minusBetrag = Double.parseDouble(sMinusBetrag);
             minusBetrag = minusBetrag - (2*minusBetrag);
             txfMinus.setText("");
-            minusArtikel = new Artikel("Minus",minusBetrag,"0");
+            minusArtikel = new Artikel("Minus",minusBetrag,"0",1);
             artikelliste.add(minusArtikel);
             ausgabeAktualisieren();
         }
