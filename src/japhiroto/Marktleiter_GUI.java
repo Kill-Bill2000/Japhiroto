@@ -606,8 +606,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
         //input type String
-        String selectedFrom = "01.09.2018";
-        String selectedUntil = "30.09.2018"; 
+        String selectedFrom = "20.09.2018";
+        String selectedUntil = "30.10.2018"; 
 
         //String splitting
         String[] parts1 = selectedFrom.split("\\.");
@@ -635,11 +635,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         int scaleX = 1;
         
-        if (dayFrom + differenceDay < 30) {
+        if (differenceMonth == 0) {
             scaleX = differenceDay;
+            System.out.println("using differenceDay " + differenceDay);
         }        
-        if (dayFrom + differenceDay > 30) {
+        if (differenceMonth >= 1) {
             scaleX = differenceMonth;
+            System.out.println("using differenceMonth " + differenceDay);
         }
         
         // draw scale 
