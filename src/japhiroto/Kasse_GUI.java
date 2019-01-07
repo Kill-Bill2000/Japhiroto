@@ -791,7 +791,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             JOptionPane.showInputDialog(rootPane,"Artikelauskunft:"+"\n"+"Artikelnummer: "+derArtikel.getArtikelNummer()+"\n"+
                     "Artikelname: "+derArtikel.getName()+"\n"+
                     "Preis: "+derArtikel.getPreis()+"€"+
-                    "Bestand: "+derArtikel.getAnzahl());
+                    "Bestand: "+derArtikel.getBestand());
             txfArtikelNr.setText("");
         }
         catch(SQLException e){
@@ -973,7 +973,7 @@ public class Kasse_GUI extends javax.swing.JFrame {
             minusBetrag = Double.parseDouble(sMinusBetrag);
             minusBetrag = minusBetrag - (2*minusBetrag);
             txfMinus.setText("");
-            minusArtikel = new Artikel("Minus",minusBetrag,"0");
+            minusArtikel = new Artikel("Minus",minusBetrag,"0",1);
             artikelliste.add(minusArtikel);
             ausgabeAktualisieren();
         }
