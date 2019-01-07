@@ -592,8 +592,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
         //input type String
-        String selectedFrom = "15.09.2018";
-        String selectedUntil = "10.10.2018"; 
+        String selectedFrom = "30.05.2018";
+        String selectedUntil = "01.12.2018"; 
 
         //String splitting
         String[] parts1 = selectedFrom.split("\\.");
@@ -618,42 +618,57 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         //TEST:
         System.out.println("differenceDay " + differenceDay);
         System.out.println("differenceMonth " + differenceMonth);
+        //TESTEND
         
         int scaleX = 1;
+        int usedValue = 0;
         
         if (differenceMonth == 0) {
             System.out.println("using differenceDay " + differenceDay);
-            scaleX = differenceDay + 1; //+1 to show enought values in graph           
+            scaleX = differenceDay; //+1 to show enought values in graph  
+            usedValue = dayFrom;
         }        
         if (differenceMonth >= 1) {
             System.out.println("using differenceMonth " + differenceMonth);
-            scaleX = differenceMonth + 1; //+1 to show enought values in graph              
+            scaleX = differenceMonth; //+1 to show enought values in graph 
+            usedValue = monthFrom;
         }
         
         // draw scale 
         // X-axis
         
-        int lengthX = sizeX - zeroX; 
-        int spacingX = sizeX / scaleX;
+        int lengthX = sizeX - zeroX - 15; 
+        int spacingX = lengthX / scaleX;
         //TEST:
         System.out.println("sizeX " + sizeX);
         System.out.println("zeroX " + zeroX);
         System.out.println("lengthX " + lengthX);
         System.out.println("scaleX " + scaleX);
         System.out.println("spacingX " + spacingX);
+        //TESTEND
         
-        for (int i = 0; i < spacingX + 1; i++) {
+        
+        //works when using days (period < 1 Month)
+        int countOver30 = 1;
+        
+        for (int i = 0; i < scaleX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
 //            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            int labeling = Integer.valueOf(dayFrom) + i;
-            int j = 1;
-            if (labeling <= 30) {                
+            int labeling = Integer.valueOf(usedValue) + i;
+            
+            //changes the font size to smaller numbers in order to fit more 
+            if (scaleX > 20) {
+                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
+            }
+            
+            if (labeling <= 30) {               
                 diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            }
+            }            
             if (labeling > 30) {                
-                diagram.drawString(j + ".", zeroX + i*spacingX - 5, zeroY + 20);                          
-            }
-            j = j + 1;                     
+                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
+                countOver30 = countOver30 +1;
+                System.out.println("countOver30 " + countOver30);
+            }                 
         }
         
         // Y-axis
