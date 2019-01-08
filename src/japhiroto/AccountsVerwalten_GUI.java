@@ -20,15 +20,15 @@ import javax.swing.JOptionPane;
  *
  * @author robin
  */
-public class AccountErstellen_GUI extends javax.swing.JFrame {
+public class AccountsVerwalten_GUI extends javax.swing.JFrame {
 
     private DB_Verbindung verb;
     private ArrayList<Integer> mitarbeiterIds;
-    
+    private ArrayList<Account> accountsArrList;
     /**
      * Creates new form AccountVerwaltungGUI
      */
-    public AccountErstellen_GUI() {
+    public AccountsVerwalten_GUI() {
         initComponents();
         setProperties();
         
@@ -39,7 +39,8 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
         try {
             verb = new DB_Verbindung();
             verb.verbindungAufbauen();
-            fillCbb();
+            fillCbbMitarbeiter();
+            fillCbbAcc();
         } catch (IOException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
@@ -72,11 +73,25 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
         btnErstellen = new javax.swing.JButton();
         txpPasswort = new javax.swing.JPasswordField();
         txpPasswortErneut = new javax.swing.JPasswordField();
+        sep1 = new javax.swing.JSeparator();
+        lblNenutzerAns = new javax.swing.JLabel();
+        cbbBenutzerAns = new javax.swing.JComboBox<>();
+        lblPwAns = new javax.swing.JLabel();
+        txfPasswortAns = new javax.swing.JTextField();
+        lblRolleAns = new javax.swing.JLabel();
+        lblMitarbeiterAns = new javax.swing.JLabel();
+        txfRolleAns = new javax.swing.JTextField();
+        txfMitarbeiterAns = new javax.swing.JTextField();
+        lblAccountAns = new javax.swing.JLabel();
+        txfAccountIdAns = new javax.swing.JTextField();
+        lblErstellen = new javax.swing.JLabel();
+        lblAnsehen = new javax.swing.JLabel();
+        btnLaden = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblUeberschrift.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblUeberschrift.setText("Account erstellen");
+        lblUeberschrift.setText("Accounts verwalten");
 
         btnBack.setText("zurück");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -106,58 +121,141 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
             }
         });
 
+        lblNenutzerAns.setText("Benutzername:");
+
+        cbbBenutzerAns.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "bitte wählen" }));
+        cbbBenutzerAns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbBenutzerAnsActionPerformed(evt);
+            }
+        });
+
+        lblPwAns.setText("Passwort:");
+
+        txfPasswortAns.setEditable(false);
+
+        lblRolleAns.setText("Rolle:");
+
+        lblMitarbeiterAns.setText("Mitarbeiter:");
+
+        txfRolleAns.setEditable(false);
+
+        txfMitarbeiterAns.setEditable(false);
+
+        lblAccountAns.setText("Account ID:");
+
+        txfAccountIdAns.setEditable(false);
+
+        lblErstellen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblErstellen.setText("Account erstellen");
+
+        lblAnsehen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblAnsehen.setText("Account ansehen");
+
+        btnLaden.setText("neu laden");
+        btnLaden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLadenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sep1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(125, 125, 125)
+                                .addComponent(lblUeberschrift))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblBenutzer)
+                                                .addGap(49, 49, 49))
+                                            .addComponent(lblPw, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblMitarbeiter, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txfBenutzername, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txpPasswort)
+                                            .addComponent(cbbMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblPwErneut)
+                                            .addComponent(lblRolle))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbbRolle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txpPasswortErneut, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(btnErstellen, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 26, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblBenutzer)
-                                        .addGap(49, 49, 49))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblPw, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblMitarbeiter, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txfBenutzername, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txpPasswort)
-                                    .addComponent(cbbMitarbeiter, 0, 198, Short.MAX_VALUE)))
+                                .addComponent(btnLaden)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBack))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPwErneut)
-                                    .addComponent(lblRolle))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbbRolle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txpPasswortErneut, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(btnErstellen, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblUeberschrift)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addContainerGap())))
+                                    .addComponent(lblNenutzerAns)
+                                    .addComponent(lblPwAns)
+                                    .addComponent(lblRolleAns)
+                                    .addComponent(lblAccountAns)
+                                    .addComponent(lblMitarbeiterAns)
+                                    .addComponent(lblErstellen)
+                                    .addComponent(lblAnsehen))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txfPasswortAns, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txfRolleAns, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txfMitarbeiterAns, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txfAccountIdAns, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbbBenutzerAns, 0, 210, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblUeberschrift)
-                .addGap(28, 28, 28)
+                .addGap(7, 7, 7)
+                .addComponent(lblAnsehen)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNenutzerAns)
+                    .addComponent(cbbBenutzerAns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPwAns)
+                    .addComponent(txfPasswortAns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRolleAns)
+                    .addComponent(txfRolleAns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMitarbeiterAns)
+                    .addComponent(txfMitarbeiterAns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfAccountIdAns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAccountAns))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblErstellen)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbbMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMitarbeiter))
@@ -179,15 +277,17 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
                     .addComponent(cbbRolle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnErstellen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(btnBack)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnLaden))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fillCbb(){
+    private void fillCbbMitarbeiter(){
         ArrayList<Mitarbeiter> employeesArrList;  
         mitarbeiterIds = new ArrayList<>();
         try {
@@ -201,6 +301,26 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
             for (int i = 0; i < employeesArrList.size(); i++) {
                 cbbMitarbeiter.addItem(employeesArrList.get(i).getVorname() + " " + employeesArrList.get(i).getNachname());
                 mitarbeiterIds.add(employeesArrList.get(i).getMitarbeiterId());
+            }
+            
+        } catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void fillCbbAcc(){
+ 
+        try {
+            
+            for (int i = 1; i < cbbBenutzerAns.getItemCount(); i++) {
+              cbbBenutzerAns.removeItemAt(i);  
+            }
+            
+            accountsArrList = verb.getAllAccountsArrayList();
+            
+            for (int i = 0; i < accountsArrList.size(); i++) {
+                cbbBenutzerAns.addItem(accountsArrList.get(i).getBenutzername());
             }
             
         } catch (SQLException ex) {
@@ -251,6 +371,39 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnErstellenActionPerformed
 
+    private void cbbBenutzerAnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbBenutzerAnsActionPerformed
+        try {
+            Mitarbeiter marb = new Mitarbeiter();
+            int index = cbbBenutzerAns.getSelectedIndex() - 1;
+            
+            txfPasswortAns.setText(accountsArrList.get(index).getPasswort());
+            txfAccountIdAns.setText(Integer.toString(accountsArrList.get(index).getAccountId()));
+            
+            switch(accountsArrList.get(index).getRolle()){
+                case 1:
+                    txfRolleAns.setText("Kasse");
+                    break;
+                case 2:
+                    txfRolleAns.setText("Lager");
+                    break;
+                default:
+                    txfRolleAns.setText("Marktleiter");
+            }
+           
+            marb = verb.mitarbeiterAbfragen(accountsArrList.get(index).getMitarbeiterId());
+            txfMitarbeiterAns.setText(marb.getVorname() + " " + marb.getNachname());
+        } catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_cbbBenutzerAnsActionPerformed
+
+    private void btnLadenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLadenActionPerformed
+        fillCbbAcc();
+        fillCbbMitarbeiter();
+    }//GEN-LAST:event_btnLadenActionPerformed
+
     private void setProperties(){
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -279,21 +432,23 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AccountErstellen_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountsVerwalten_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AccountErstellen_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountsVerwalten_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AccountErstellen_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountsVerwalten_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AccountErstellen_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountsVerwalten_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AccountErstellen_GUI().setVisible(true);
+                new AccountsVerwalten_GUI().setVisible(true);
             }
         });
     }
@@ -301,17 +456,29 @@ public class AccountErstellen_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnErstellen;
-    private javax.swing.JButton btnZurueck;
-    private javax.swing.JButton btnZurueck1;
+    private javax.swing.JButton btnLaden;
+    private javax.swing.JComboBox<String> cbbBenutzerAns;
     private javax.swing.JComboBox<String> cbbMitarbeiter;
     private javax.swing.JComboBox<String> cbbRolle;
+    private javax.swing.JLabel lblAccountAns;
+    private javax.swing.JLabel lblAnsehen;
     private javax.swing.JLabel lblBenutzer;
+    private javax.swing.JLabel lblErstellen;
     private javax.swing.JLabel lblMitarbeiter;
+    private javax.swing.JLabel lblMitarbeiterAns;
+    private javax.swing.JLabel lblNenutzerAns;
     private javax.swing.JLabel lblPw;
+    private javax.swing.JLabel lblPwAns;
     private javax.swing.JLabel lblPwErneut;
     private javax.swing.JLabel lblRolle;
+    private javax.swing.JLabel lblRolleAns;
     private javax.swing.JLabel lblUeberschrift;
+    private javax.swing.JSeparator sep1;
+    private javax.swing.JTextField txfAccountIdAns;
     private javax.swing.JTextField txfBenutzername;
+    private javax.swing.JTextField txfMitarbeiterAns;
+    private javax.swing.JTextField txfPasswortAns;
+    private javax.swing.JTextField txfRolleAns;
     private javax.swing.JPasswordField txpPasswort;
     private javax.swing.JPasswordField txpPasswortErneut;
     // End of variables declaration//GEN-END:variables

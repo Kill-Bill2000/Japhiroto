@@ -217,6 +217,26 @@ public class DB_Verbindung {
         return employee;
     } 
         
+    public ArrayList<Account> getAllAccountsArrayList() throws SQLException{
+        Account acc;
+        ArrayList <Account> accList;
+        
+        accList = new ArrayList<>();
+        String comm = String.format("SELECT * FROM accounts");
+        ResultSet rs = abfragen(comm);
+        
+        
+        while (rs.next()) {            
+       
+            acc = new Account(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+
+            accList.add(acc);
+
+        }
+        
+        return accList;
+    }
+    
     public ArrayList<Mitarbeiter> getAllEmployeesArrayList() throws SQLException{
         //returns array with all employees from the database
         

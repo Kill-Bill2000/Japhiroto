@@ -273,7 +273,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Account Erstellen");
+        jButton1.setText("Accounts Verwalten");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -615,7 +615,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMitarbeiterAnlegenActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AccountErstellen_GUI().setVisible(true);
+        new AccountsVerwalten_GUI().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
