@@ -659,6 +659,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
     }
     
+    
+    
     private int drawSelectedDates(){  
       
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
@@ -887,8 +889,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
         }
         
-        int spacingX = drawSelectedDates();    
+        int spacingX = drawSelectedDates(); 
 
+        for (int i = 0; i < scaleY; i++) {
+            diagram.drawString("X", zeroX + i*spacingX, zeroY - spacingY * i);
+        }
         
         return spacingY;
     }
