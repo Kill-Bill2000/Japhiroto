@@ -844,10 +844,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             System.out.println("sortedSales = " + sortedSales.get(i));
         }
         
-        
-        
         sortedSales.sort(Comparator.naturalOrder());
 
+        for (int i = 0; i <= differenceDay; i++) {
+            System.out.println("sortedSales = " + sortedSales.get(i));
+        }
+        
 //        System.out.println("difference " + scaleY);
          
         for (int i = 0; i < scaleY; i++) {
