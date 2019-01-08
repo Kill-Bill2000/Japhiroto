@@ -25,14 +25,12 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     /**
      * Creates new form LagerBestellungenGUI
      */
-    private ArrayList<Bestellung> bestellungen;
-    private DB_Verbindung db;
+    private BestellungVerwalten bestellungen;
     public LagerBestellungenGUI() {
         initComponents();
         setProperties();
         try {
-            db = new DB_Verbindung();
-            db.verbindungAufbauen();
+            bestellungen = new BestellungVerwalten();
             bestellungenNeuLaden();
         }
         catch (IOException ex) {
@@ -52,11 +50,11 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
 
     private void bestellungenNeuLaden() {
         try {
-            bestellungen = db.getBestellungen();
+            ArrayList<Bestellung> bestellung = bestellungen.getBestellungen();
             DefaultTableModel model = (DefaultTableModel) tblBestellungen.getModel();
             model.setRowCount(0); //Tabelle leeren
-            for (int i = 0; i < bestellungen.size(); i++) {
-                model.addRow(new Object[]{bestellungen.get(i).getBestellNr(), bestellungen.get(i).getLieferant()});
+            for (int i = 0; i < bestellung.size(); i++) {
+                model.addRow(new Object[]{bestellung.get(i).getBestellNr(), bestellung.get(i).getLieferant()});
             }
         }
         catch (SQLException ex) {
@@ -291,56 +289,68 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tblBestellungenPropertyChange
 
     private void btnWareneingangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWareneingangActionPerformed
-        int selectZeile = tblBestellungen.getSelectedRow();
-        if (selectZeile == -1) {
-            JOptionPane.showMessageDialog(this, "keine Bestellung ausgewählt!");
-        }
-        else {
-            diaWareneingang.setVisible(true);
-            diaWareneingang.setSize(380, 590);
-            txfWarenBestellNr.setText(bestellungen.get(selectZeile).getBestellNr());
-            DefaultTableModel model = (DefaultTableModel) tblWarenArtikel.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
-            for (int i = 0; i < bestellungen.get(selectZeile).getAnzahlArtikel(); i++) {
-                model.addRow(new Object[]{bestellungen.get(selectZeile).anzahlArtikel(i), bestellungen.get(selectZeile).bestellterArtikel(i).getName(), 0});
+        try {
+            ArrayList<Bestellung> bestellung = bestellungen.getBestellungen();
+            int selectZeile = tblBestellungen.getSelectedRow();
+            if (selectZeile == -1) {
+                JOptionPane.showMessageDialog(this, "keine Bestellung ausgewählt!");
             }
+            else {
+                diaWareneingang.setVisible(true);
+                diaWareneingang.setSize(380, 590);
+                txfWarenBestellNr.setText(bestellung.get(selectZeile).getBestellNr());
+                DefaultTableModel model = (DefaultTableModel) tblWarenArtikel.getModel();       //aktuelle Bestellungen in Tabelle anzeigen
+                for (int i = 0; i < bestellung.get(selectZeile).getAnzahlArtikel(); i++) {
+                    model.addRow(new Object[]{bestellung.get(selectZeile).anzahlArtikel(i), bestellung.get(selectZeile).bestellterArtikel(i).getName(), 0});
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!");
         }
     }//GEN-LAST:event_btnWareneingangActionPerformed
 
     private void btnWarenEingangSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWarenEingangSpeichernActionPerformed
-        String bestNr = txfWarenBestellNr.getText();
-        int bestellung = -1;
-        for (int i = 0; i < bestellungen.size(); i++) {
-            if (bestNr.equals(bestellungen.get(i).getBestellNr())) {
-                bestellung = i;
-                i = bestellungen.size();
+        try {                                                         
+            ArrayList<Bestellung> bestell;
+            bestell = bestellungen.getBestellungen();
+            String bestNr = txfWarenBestellNr.getText();
+            int bestellung = -1;
+            for (int i = 0; i < bestell.size(); i++) {
+                if (bestNr.equals(bestell.get(i).getBestellNr())) {
+                    bestellung = i;
+                    i = bestell.size();
+                }
             }
-        }
-        try {
-            for (int i = 0; i < bestellungen.get(bestellung).getAnzahlArtikel(); i++) {
-                String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
-                int intEingang = Integer.valueOf(strEingang);
-                if (intEingang > 0) {
-                    bestellungen.get(bestellung).artikelAngekommen(i, intEingang);
-                    String artNr = bestellungen.get(bestellung).bestellterArtikel(i).getArtikelNummer();
-                    try {
-                        db.wareAngekommen(bestNr, artNr, intEingang);
-                    }
-                    catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
-                    }
-                    catch (IOException ex) {
-                        JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
+            try {
+                for (int i = 0; i < bestell.get(bestellung).getAnzahlArtikel(); i++) {
+                    String strEingang = tblWarenArtikel.getModel().getValueAt(i, 2).toString();
+                    int intEingang = Integer.valueOf(strEingang);
+                    if (intEingang > 0) {
+                        bestell.get(bestellung).artikelAngekommen(i, intEingang);
+                        String artNr = bestell.get(bestellung).bestellterArtikel(i).getArtikelNummer();
+                        try {
+                            bestellungen.wareAngekommen(bestNr, artNr, intEingang);
+                        }
+                        catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(this, "SQL Fehler: " + ex);
+                        }
+                        catch (IOException ex) {
+                            JOptionPane.showMessageDialog(this, "IO Fehler: " + ex);
+                        }
                     }
                 }
             }
+            catch(NullPointerException ex) {
+                JOptionPane.showMessageDialog(this, "Es gab leider einen Fehler mit der Bestellungsbuchung:\n" + ex.getMessage());
+            }
+            
+            warenEingangLeeren();
+            bestellungenNeuLaden();
+            diaWareneingang.setVisible(false);
         }
-        catch(NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Es gab leider einen Fehler mit der Bestellungsbuchung:\n" + ex.getMessage());
+        catch(SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!");
         }
-        
-        warenEingangLeeren();
-        bestellungenNeuLaden();
-        diaWareneingang.setVisible(false);
     }//GEN-LAST:event_btnWarenEingangSpeichernActionPerformed
 
     private void diaWareneingangWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_diaWareneingangWindowClosed
@@ -360,7 +370,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
     private void btnZuruckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZuruckActionPerformed
         this.setVisible(false);
         try {
-            db.verbindungSchliessen();
+            bestellungen.verbindungSchliessen();
         } catch (SQLException ex) {
         getToolkit().beep();    //Fehler-Ton
         JOptionPane.showMessageDialog(this, "SQL Fehler.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
