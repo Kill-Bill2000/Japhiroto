@@ -486,7 +486,6 @@ public class DB_Verbindung {
             aktuell = artikel.get(i);
             
             bef = String.format("INSERT INTO bestellteartikel VALUES ('%1$s', '%2$s', '%3$s')", bestellNr, aktuell.getArtikelNummer(), aktuell.getAnzahl());
-            System.out.println(bef);
             updaten(bef);
         }
     }

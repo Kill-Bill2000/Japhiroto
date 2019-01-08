@@ -408,7 +408,12 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnZuruckActionPerformed
 
     private void btnArtikelLoschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtikelLoschenActionPerformed
-        // TODO add your handling code here:
+        int select;
+        
+        select = tblArtikel.getSelectedRow();
+        
+        artikel.remove(select);
+        bestellungAktualisieren();
     }//GEN-LAST:event_btnArtikelLoschenActionPerformed
 
     /**
