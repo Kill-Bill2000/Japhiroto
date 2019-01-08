@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -163,7 +164,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblNachname.setText("Nachname");
 
-        ComBoxDateFrom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComBoxDateFrom.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComBoxDateFromActionPerformed(evt);
@@ -176,7 +177,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblDatumBis.setText("Bis:");
 
-        ComBoxDateUntil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComBoxDateUntil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComBoxDateUntil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComBoxDateUntilActionPerformed(evt);
@@ -184,7 +185,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnShowSales.setText("Umsatz Anzeigen");
-        btnShowSales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnShowSales.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnShowSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowSalesActionPerformed(evt);
@@ -192,7 +193,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnWarehouseList.setText("Lager Anzeigen");
-        btnWarehouseList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnWarehouseList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnWarehouseList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnWarehouseListActionPerformed(evt);
@@ -200,7 +201,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnOrders.setText("Bestellungen Anzeigen");
-        btnOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdersActionPerformed(evt);
@@ -246,7 +247,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         cvDrawField.setBackground(new java.awt.Color(255, 255, 255));
 
         btnLoadList.setText("Liste Laden");
-        btnLoadList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLoadList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLoadList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadListActionPerformed(evt);
@@ -254,7 +255,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnLoadDates.setText("Daten Laden");
-        btnLoadDates.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLoadDates.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLoadDates.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadDatesActionPerformed(evt);
@@ -262,7 +263,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnMitarbeiterAnlegen.setText("neuen Mitarbeiter anlegen");
-        btnMitarbeiterAnlegen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMitarbeiterAnlegen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMitarbeiterAnlegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMitarbeiterAnlegenActionPerformed(evt);
@@ -270,7 +271,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         jButton1.setText("Accounts verwalten");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -418,9 +419,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMitarbeiter)
-                    .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(lblMitarbeiter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLoadList)
@@ -772,14 +773,15 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         for (int i = 0; i < scaleX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
             
-            int usedValuesOnX = datesArrList.get(i).getZeitstempel().getDayOfMonth();
-            diagram.drawString(usedValuesOnX + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            usedValuesOnXArr.add(usedValuesOnX);            
+            int usedValuesOnX = zeroX + i*spacingX - 5;
+            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", usedValuesOnX, zeroY + 20);
+            usedValuesOnXArr.add(usedValuesOnX);
+            System.out.println("usedValuesOnX = " + usedValuesOnX);
         }
         return usedValuesOnXArr;
     }
         
-    private ArrayList<Double> drawSelectedSales(){  
+    private ArrayList<Integer> drawSelectedSales(){  
 
 //        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
 //        ComBoxDateFrom.setModel(listFrom);  
@@ -832,22 +834,25 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         //works when using days (period < 1 Month)
               
         // Y-axis
-
+        ArrayList<Integer> usedValuesOnYArr= new ArrayList<>(); 
         List<Double> sortedSales = new ArrayList();
         for (int i = 0; i < scaleY; i++) {
             sortedSales.add(i, salesArrList.get(i).getUmsatz());
+            int usedValuesOnY = zeroY - spacingY * i;
+            usedValuesOnYArr.add(usedValuesOnY);
+            System.out.println("usedValuesOnY = " + usedValuesOnY);
         }
         
         sortedSales.sort(Comparator.naturalOrder());
 
 //        System.out.println("difference " + scaleY);
-        ArrayList<Double> usedValuesOnYArr= new ArrayList<>(); 
+ 
         
         for (int i = 0; i < scaleY; i++) {
             diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);
-            Double usedValuesOnY = sortedSales.get(i);
+            
             diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
-            usedValuesOnYArr.add(usedValuesOnY);
+
         } 
         
         // SETTING THE VALUES
@@ -855,7 +860,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();     
         int startIndex = ComBoxDateFrom.getSelectedIndex();
         int endIndex = ComBoxDateUntil.getSelectedIndex();
-         int loopLength = 0;
+        int loopLength = 0;
         
 //        if (!(usedValuesOnXArr.size() == usedValuesOnYArr.size())) {
 //            JOptionPane.showMessageDialog(this, "Leider ist ein fehler aufgetreten", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
@@ -867,13 +872,18 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         if (usedValuesOnXArr.size() < usedValuesOnYArr.size()) {
             loopLength = usedValuesOnYArr.size();
         }
+        
+//        Collections.reverse(usedValuesOnXArr);
+        
+        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
         for (int i = 0; i < loopLength; i++) {
             
             System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
             System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
-            
-            int posX = zeroX + usedValuesOnXArr.size();
-            int posY = zeroY - usedValuesOnYArr.size();
+//            
+            int posX = usedValuesOnXArr.get(i);
+            int posY = usedValuesOnYArr.get(i);
             
             System.out.println("posX " + posX);
             System.out.println("posY " + posY);
@@ -883,7 +893,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //                posY = zeroY - spacingY * j + 5;                                   
                 
               
-             diagram.drawString("X", posX, posY);
+             diagram.drawString("X", posX+2, posY + 5);
              
         }
         
