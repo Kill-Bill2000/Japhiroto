@@ -659,6 +659,40 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
     }
     
+    private LocalDateTime dateTimeCustom(String selectedFrom){
+
+        //input type String
+//        String selectedFrom = "2018-05-01";
+//        String selectedUntil = "2018-11-05"; 
+
+        //String splitting
+        
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
+        String FromTime = partsDateTimeFrom[1];
+        
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
+        int yearFrom = Integer.valueOf(partsFrom[0]);        
+        int monthFrom = Integer.valueOf(partsFrom[1]);
+        int dayFrom = Integer.valueOf(partsFrom[2]);
+        
+        String[] TimePartsFrom = FromTime.split("\\:");
+        int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
+        int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+
+        return LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
+    }
+    
     private LocalDateTime dateTimeFrom(){
               
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
@@ -726,7 +760,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
     }
     
-        private  LocalDate dateFrom(){
+    private  LocalDate dateFrom(){
               
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
         String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
@@ -763,6 +797,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private LocalDate dateUntil(){
               
         String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        
       
 //                                                                                System.out.println("Date " + FromDate);
 //                                                                                System.out.println("Time " + FromTime);
@@ -966,15 +1001,27 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
         }
         
+        // SETTING THE VALUES
+            
+        int startIndex = ComBoxDateFrom.getSelectedIndex();
+        String activeItem = ComBoxDateUntil.getItemAt(1);    
+        dateTimeCustom(activeItem).getDayOfMonth();
+        
+        int endIndex = ComBoxDateUntil.getSelectedIndex();
+        
         int spacingX = drawSelectedDates(); 
-
+        
+        
+        
         for (int i = 0; i < scaleY; i++) {
             diagram.drawString("X", zeroX + i*spacingX, zeroY - spacingY * i);
         }
         
+        
+        
         return spacingY;
     }
- 
+    
     private LocalDateTime allDates(){
               
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
