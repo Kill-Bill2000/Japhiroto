@@ -85,12 +85,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="lblMitarbeiter" min="-2" pref="259" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="139" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnMitarbeiterAnlegen" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -102,51 +100,56 @@
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfStrasse" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblHausNr" max="32767" attributes="0"/>
-                                          <Component id="txfHausNr" min="-2" pref="48" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfVorname" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txfNachname" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfStrasse" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblStundenlohn" max="32767" attributes="0"/>
-                                          <Component id="txfStundenlohn" min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblHausNr" max="32767" attributes="0"/>
+                                                  <Component id="txfHausNr" min="-2" pref="48" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfVorname" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txfNachname" min="-2" pref="99" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblStundenlohn" max="32767" attributes="0"/>
+                                                  <Component id="txfStundenlohn" min="-2" pref="71" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfOrt" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfOrt" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                                  <Component id="btnMitarbeiterAnlegen" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -209,8 +212,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblMitarbeiter" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMitarbeiterAnlegen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -218,7 +220,7 @@
                   <Component id="lblAuswahl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="scrlPanAuswahl" min="-2" pref="139" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -272,6 +274,8 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnMitarbeiterAnlegen" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="16" max="32767" attributes="0"/>
@@ -360,6 +364,9 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComBoxDateFromActionPerformed"/>
@@ -388,6 +395,9 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComBoxDateUntilActionPerformed"/>
@@ -399,6 +409,9 @@
     <Component class="javax.swing.JButton" name="btnShowSales">
       <Properties>
         <Property name="text" type="java.lang.String" value="Umsatz Anzeigen"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowSalesActionPerformed"/>
@@ -407,6 +420,9 @@
     <Component class="javax.swing.JButton" name="btnWarehouseList">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lager Anzeigen"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWarehouseListActionPerformed"/>
@@ -415,6 +431,9 @@
     <Component class="javax.swing.JButton" name="btnOrders">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bestellungen Anzeigen"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdersActionPerformed"/>
@@ -534,6 +553,9 @@
     <Component class="javax.swing.JButton" name="btnLoadList">
       <Properties>
         <Property name="text" type="java.lang.String" value="Liste Laden"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadListActionPerformed"/>
@@ -542,6 +564,9 @@
     <Component class="javax.swing.JButton" name="btnLoadDates">
       <Properties>
         <Property name="text" type="java.lang.String" value="Daten Laden"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadDatesActionPerformed"/>
@@ -550,6 +575,9 @@
     <Component class="javax.swing.JButton" name="btnMitarbeiterAnlegen">
       <Properties>
         <Property name="text" type="java.lang.String" value="neuen Mitarbeiter anlegen"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMitarbeiterAnlegenActionPerformed"/>
@@ -557,7 +585,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Accounts Verwalten"/>
+        <Property name="text" type="java.lang.String" value="Accounts verwalten"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Handcursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
