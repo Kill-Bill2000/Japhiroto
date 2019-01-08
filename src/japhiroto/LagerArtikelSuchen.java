@@ -57,7 +57,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
         //IconImage setzen
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
     }
     
     private void ladeAlleArtikel() throws SQLException {
@@ -271,7 +271,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
     private void btnNeueSucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeueSucheActionPerformed
         diaArtNrEingeben.setVisible(true);
         diaArtNrEingeben.setLocation(this.getLocation());
-        diaArtNrEingeben.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        //diaArtNrEingeben.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
         diaArtNrEingeben.setTitle("Artikelsuche");
     }//GEN-LAST:event_btnNeueSucheActionPerformed
 

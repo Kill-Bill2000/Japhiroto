@@ -49,7 +49,7 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
         diaArtikelHinzufugen.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
         //IconImage setzen
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
     }
     
     private void gesuchteLeeren() {
@@ -313,7 +313,7 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
     private void btnArtikelHinzufugenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtikelHinzufugenActionPerformed
         diaArtikelHinzufugen.setVisible(true);
         diaArtikelHinzufugen.setLocation(this.getLocation());
-        diaArtikelHinzufugen.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        //diaArtikelHinzufugen.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
         diaArtikelHinzufugen.setTitle("Artikel hinzufügen");
     }//GEN-LAST:event_btnArtikelHinzufugenActionPerformed
 

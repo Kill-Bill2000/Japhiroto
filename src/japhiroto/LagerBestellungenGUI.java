@@ -45,7 +45,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
         //IconImage setzen
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
     }
 
     private void bestellungenNeuLaden() {
@@ -299,7 +299,7 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             else {
                 diaWareneingang.setVisible(true);
                 diaWareneingang.setLocation(this.getLocation());
-                diaWareneingang.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+                //diaWareneingang.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
                 diaWareneingang.setTitle("Wareneingang");
                 diaWareneingang.setSize(380, 590);
                 txfWarenBestellNr.setText(bestellung.get(selectZeile).getBestellNr());

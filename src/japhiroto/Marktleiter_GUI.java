@@ -79,7 +79,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
         
         //IconImage setzen
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
     }
     /**
      * This method is called from within the constructor to initialize the form.
