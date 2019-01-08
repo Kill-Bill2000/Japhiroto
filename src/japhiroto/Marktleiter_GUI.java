@@ -480,6 +480,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
+//        cvDrawField.repaint();
         drawAxes();
         drawSelectedDates();
         drawSales();
@@ -672,8 +673,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         String FromDate = partsDateTimeFrom[0];        
         String FromTime = partsDateTimeFrom[1];
         
-                                                                                System.out.println("Date " + FromDate);
-                                                                                System.out.println("Time " + FromTime);
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
         
         String[] partsFrom = FromDate.split("\\-");
         int yearFrom = Integer.valueOf(partsFrom[0]);        
@@ -684,20 +685,20 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
         int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
         
-                                                                                System.out.println("yearFrom " + yearFrom);
-                                                                                System.out.println("monthFrom " + monthFrom);
-                                                                                System.out.println("dayFrom " + dayFrom);
-                                                                                System.out.println("hourFrom " + hourFrom);
-                                                                                System.out.println("minuteFrom " + minuteFrom);
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
                                                                                 
-                                                                                System.out.println("Switching to until ");
+//                                                                                System.out.println("Switching to until ");
         //Splitting the until combobox        
         String[] partsDateTimeUntil = selectedUntil.split(" ");
         String UntilDate = partsDateTimeUntil[0];        
         String UntilTime = partsDateTimeUntil[1];
         
-                                                                                System.out.println("Date " + UntilDate);
-                                                                                System.out.println("Time " + UntilTime);
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
                                                                                 
         String[] partsUntil = UntilDate.split("\\-");
         int yearUntil = Integer.valueOf(partsUntil[0]);      
@@ -708,11 +709,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int hourUntil = Integer.valueOf(TimePartsFrom[0]);        
         int minuteUntil = Integer.valueOf(TimePartsFrom[1]);
 
-                                                                                System.out.println("yearFrom " + yearFrom);
-                                                                                System.out.println("monthFrom " + monthFrom);
-                                                                                System.out.println("dayFrom " + dayFrom);
-                                                                                System.out.println("hourUntil " + hourUntil);
-                                                                                System.out.println("minuteUntil " + minuteUntil);
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
 
         //conversion String to LocalDate
         LocalDateTime dateTimeFrom = LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
@@ -823,7 +824,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        ComBoxDateFrom.addItem("10.05.2018"); 
 //        ComBoxDateUntil.addItem("05.06.2018"); 
        
-        ArrayList<Umsatz> salesArrList= new ArrayList<>();
+        ArrayList<Umsatz> salesArrList= new ArrayList<>();  
         
         try {             
             salesArrList = database.getAllSales();
@@ -839,15 +840,18 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
 //            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
 //        }   
-              
+               
         Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
         Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
+        
+        int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
+        int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
         
         System.out.println("selectedFrom " + selectedFrom);
         System.out.println("selectedUntil " + selectedUntil);
         Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
-        int scaleY = 3;
+        int scaleY = selectedUntilIndex - selectedFromIndex;
         
         int lengthY = zeroY - 15; 
         int spacingY = lengthY / scaleY;
