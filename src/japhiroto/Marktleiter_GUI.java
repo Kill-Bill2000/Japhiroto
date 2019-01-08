@@ -703,10 +703,17 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     }
     
     private ArrayList<Integer> drawSelectedDates(){  
+        String selectedFrom = null;
+        String selectedUntil = null;
         
-        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-
+        try {
+            selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+            selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+            
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Bitte zuerst die Daten Laden", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+    
         LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
         LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
                
@@ -861,7 +868,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //                posY = zeroY - spacingY * j + 5;                                   
                 
               
-             diagram.drawString("X", posX+2, posY + 5);
+             diagram.drawString("•", posX+2, posY + 5);
              
         }
         
