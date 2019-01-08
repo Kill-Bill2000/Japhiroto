@@ -5,7 +5,6 @@
  */
 package japhiroto;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,13 +27,11 @@ public class ArtikelVerwaltung {
     public Artikel getArtikel(String artikelNummer) throws SQLException {
         return db.getArtikel(artikelNummer);
     }
-    public ArrayList<Artikel> getArtikelListeFromNummer(String artNr) {
-        ArrayList<Artikel> gesuchteArtikel = null;
-        for (int i = 0; i < artikelListe.size(); i++) {
-            if (checkName(artikelListe.get(i).getArtikelNummer(), artNr)) {
-                gesuchteArtikel.add(artikelListe.get(i));
-            }
-        }
+    public ArrayList<Artikel> getArtikelListeFromNummer(String artNr) throws SQLException {
+        ArrayList<Artikel> gesuchteArtikel;
+        
+        gesuchteArtikel = db.getArtikelFromNr(artNr);
+        
         return gesuchteArtikel;
     }
 
@@ -52,21 +49,8 @@ public class ArtikelVerwaltung {
     public int anzahlArtikel() {
         return artikelListe.size();
     }
-    private int getListenPlatz(String artNr) {
-        int ret = -1;
-        
-        for (int i = 0; i < artikelListe.size(); i++) {
-            String artiNr = artikelListe.get(i).getArtikelNummer();
-            if (artiNr.equals(artNr)) {
-                ret = i;
-                i = artikelListe.size();
-            }
-        }
-        
-        return ret;
-    }
     public int getBestandArtikel(String artNr) throws SQLException {
-        return db.getArtikel(artNr).getAnzahl();
+        return db.getArtikel(artNr).getBestand();
     }
     public Artikel getArtikelListenNummer(int nr) {
         return artikelListe.get(nr);

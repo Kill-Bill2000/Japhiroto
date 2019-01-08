@@ -13,7 +13,7 @@ public class Artikel {
     private String artikelNummer;
     private double verkauftsPreis; //noch mehr kommentar
     private String artikelName;
-    private int anzahl=1;//nur für die Kasse relevant
+    private int anzahl = 1;//nur für die Kasse relevant
     private int bestand;
     
     public Artikel(String name, double preis, String nummer,int bestand) {
@@ -57,6 +57,9 @@ public class Artikel {
 
     public int getBestand() {
         return bestand;
+    }
+    public void setAnzahl(int anz) {
+        anzahl = anz;
     }
     
 }
