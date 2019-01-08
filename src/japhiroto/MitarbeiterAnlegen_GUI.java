@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
 
-    private DB_Verbindung verb;
+    private MitarbeiterAnlegen mitarbAnlegen;
     
     /**
      * Creates new form MitarbeiterAnlegen_GUI
@@ -29,8 +29,7 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
         setProperties();
         
         try {
-            verb = new DB_Verbindung();
-            verb.verbindungAufbauen();
+            mitarbAnlegen = new MitarbeiterAnlegen();
         } catch (IOException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
@@ -221,7 +220,7 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
 
     private void btnZurueckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZurueckActionPerformed
         try {
-            verb.verbindungSchliessen();
+            mitarbAnlegen.verbindungSchliessen();
         } catch (SQLException ex) {
             Logger.getLogger(MitarbeiterAnlegen_GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -256,7 +255,7 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
             marb.setOrt(txfOrt.getText());
             marb.setStundenLohn(lohn);
             
-            verb.mitarbeiterAnlegen(marb);
+            mitarbAnlegen.mitarbeiterAnlegen(marb);
             
             JOptionPane.showMessageDialog(this, "Mitarbeiter erfolgreich hinzugefügt.", "Erfolg", JOptionPane.INFORMATION_MESSAGE);
             
