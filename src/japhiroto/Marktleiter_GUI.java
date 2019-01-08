@@ -847,7 +847,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         System.out.println("selectedUntil " + selectedUntil);
         Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
-        int scaleY = 5;
+        int scaleY = 3;
         
         int lengthY = zeroY - 15; 
         int spacingY = lengthY / scaleY;
@@ -864,12 +864,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
               
         // Y-axis
 
-//                        List<Double> sortedSales = new ArrayList();
-//        for (int i = 0; i < scaleY; i++) {
-//            sortedSales.add(i, salesArrList.get(i).getUmsatz());
-//        }
-//        
-//        sortedSales.sort(Comparator.naturalOrder());
+        List<Double> sortedSales = new ArrayList();
+        for (int i = 0; i < scaleY; i++) {
+            sortedSales.add(i, salesArrList.get(i).getUmsatz());
+        }
+        
+        sortedSales.sort(Comparator.naturalOrder());
 
         System.out.println("difference " + scaleY);
         
@@ -878,7 +878,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         } 
         
         for (int i = 0; i < scaleY; i++) {
-            diagram.drawString(salesArrList.get(i).getUmsatz()+"", zeroX - 30, zeroY - spacingY * i);
+            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
         }
         
         
