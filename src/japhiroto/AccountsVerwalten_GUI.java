@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class AccountsVerwalten_GUI extends javax.swing.JFrame {
 
-    private DB_Verbindung verb;
+    private AccountsVerwalten verw;
     private ArrayList<Integer> mitarbeiterIds;
     private ArrayList<Account> accountsArrList;
     /**
@@ -37,8 +37,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
         txpPasswortErneut.setEchoChar('•');
         
         try {
-            verb = new DB_Verbindung();
-            verb.verbindungAufbauen();
+            verw = new AccountsVerwalten();
             fillCbbMitarbeiter();
             fillCbbAcc();
         } catch (IOException ex) {
@@ -296,7 +295,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
               cbbMitarbeiter.removeItemAt(i);  
             }
             
-            employeesArrList = verb.getAllEmployeesArrayList();
+            employeesArrList = verw.getAllEmployeesArrayList();
             
             for (int i = 0; i < employeesArrList.size(); i++) {
                 cbbMitarbeiter.addItem(employeesArrList.get(i).getVorname() + " " + employeesArrList.get(i).getNachname());
@@ -317,7 +316,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
               cbbBenutzerAns.removeItemAt(i);  
             }
             
-            accountsArrList = verb.getAllAccountsArrayList();
+            accountsArrList = verw.getAllAccountsArrayList();
             
             for (int i = 0; i < accountsArrList.size(); i++) {
                 cbbBenutzerAns.addItem(accountsArrList.get(i).getBenutzername());
@@ -331,7 +330,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         try {
-            verb.verbindungSchliessen();
+            verw.verbindungSchliessen();
             
         } catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
@@ -354,7 +353,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
 
                 acc.setMitarbeiterId(mitarbeiterIds.get(cbbMitarbeiter.getSelectedIndex() - 1));
             
-                verb.accountAnlegen(acc);  
+                verw.accountAnlegen(acc);  
                 
                 JOptionPane.showMessageDialog(this, "Account erstellt.", "Erfolgreich", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -390,7 +389,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
                     txfRolleAns.setText("Marktleiter");
             }
            
-            marb = verb.mitarbeiterAbfragen(accountsArrList.get(index).getMitarbeiterId());
+            marb = verw.mitarbeiterAbfragen(accountsArrList.get(index).getMitarbeiterId());
             txfMitarbeiterAns.setText(marb.getVorname() + " " + marb.getNachname());
         } catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
