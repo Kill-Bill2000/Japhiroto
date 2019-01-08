@@ -56,7 +56,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // zeroX = 25;
         // zeroY = 370;
                
-        zeroX = sizeX - 475;
+        zeroX = sizeX - 450;
         zeroY = sizeY - 30;
         
         
@@ -320,7 +320,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)))
                                 .addComponent(lblInBearb, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,9 +801,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("selectedUntil " + selectedUntil);
 //        Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
-        int scaleY = differenceDay;
+        int scaleY = differenceDay+1;
         
-        int lengthY = zeroY - 15; 
+        int lengthY = zeroY - 10; 
         int spacingY = lengthY / scaleY;
         //TEST:
 //        System.out.println("sizeY " + sizeY);
