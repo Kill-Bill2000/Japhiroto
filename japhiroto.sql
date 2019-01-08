@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 07. Jan 2019 um 21:33
--- Server-Version: 10.1.37-MariaDB
--- PHP-Version: 7.3.0
+-- Generation Time: Jan 08, 2019 at 11:09 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,15 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `japhiroto`
+-- Database: `japhiroto`
 --
-CREATE DATABASE IF NOT EXISTS `japhiroto` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `japhiroto`;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `accounts`
+-- Table structure for table `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -39,7 +37,7 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Daten für Tabelle `accounts`
+-- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`, `rolle`) VALUES
@@ -50,7 +48,7 @@ INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `artikel`
+-- Table structure for table `artikel`
 --
 
 CREATE TABLE `artikel` (
@@ -61,7 +59,7 @@ CREATE TABLE `artikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `artikel`
+-- Dumping data for table `artikel`
 --
 
 INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
@@ -69,18 +67,18 @@ INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`
 ('1', 'Pizzakissen rund 40cm', 15.19, 23),
 ('100238', 'Pupsspray Dose XL', 14.99, 18),
 ('2', 'Gurkenfinger Typ Essiggurke', 2.49, 5),
+('4006613002932', 'Hello Kitty Adventskalender', 4.99, 34),
 ('457842', 'Coca Cola 1l', 0.65, 22),
 ('5312483', 'Waschmaschinen Impressionen Film', 8.49, 4),
 ('531874', 'Nutella 2,5 kg', 14.99, 90),
 ('789456', 'Jack Daniels Whiskey 0,75l', 19.95, 8),
 ('9006900014773', 'Pfanner Roter Tee Zitrone Granatapfel 2l', 1.99, 10),
-('4006613002932', 'Hello Kitty Adventskalender', '4.99', 34),
 ('9531852', 'Zahnpasta, Geschmack Bacon', 10.79, 7);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `bestellteartikel`
+-- Table structure for table `bestellteartikel`
 --
 
 CREATE TABLE `bestellteartikel` (
@@ -92,7 +90,7 @@ CREATE TABLE `bestellteartikel` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `bestellung`
+-- Table structure for table `bestellung`
 --
 
 CREATE TABLE `bestellung` (
@@ -104,7 +102,7 @@ CREATE TABLE `bestellung` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `mitarbeiter`
+-- Table structure for table `mitarbeiter`
 --
 
 CREATE TABLE `mitarbeiter` (
@@ -120,18 +118,17 @@ CREATE TABLE `mitarbeiter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Daten für Tabelle `mitarbeiter`
+-- Dumping data for table `mitarbeiter`
 --
 
 INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
 (1, 'Herr', 'Max', 'Mustermann', 'Musterstrasse', 1, 12345, 'Musterstadt', 8.50),
-(2, 'Frau', 'Maxia', 'Musterfrau', 'Mustergasse', 2, 67890, 'ZweiteMusterstadt', 5.80),
-(3, 'Dive', 'Maxia*innen', 'Musterfrau*innen', 'Mustergasse*innen', 61, 7531459, 'ZweiteMusterstadt*innen', 0.01);
+(2, 'Frau', 'Maxia', 'Musterfrau', 'Mustergasse', 2, 67890, 'ZweiteMusterstadt', 5.80);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `umsatz`
+-- Table structure for table `umsatz`
 --
 
 CREATE TABLE `umsatz` (
@@ -141,59 +138,76 @@ CREATE TABLE `umsatz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `umsatz`
+-- Dumping data for table `umsatz`
 --
 
 INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
-(0, '2019-01-07 01:05:00', 1),
-(1, '2019-01-07 20:05:32', 0);
+(0, '2019-01-08 22:05:55', 0.8),
+(1, '2019-01-08 22:06:04', 1),
+(2, '2019-01-08 23:00:00', 10),
+(3, '2019-01-09 23:00:00', 20),
+(4, '2019-01-10 23:00:00', 30),
+(5, '2019-01-11 23:00:00', 40),
+(6, '2019-01-09 23:00:00', 20),
+(7, '2019-01-10 23:00:00', 30),
+(8, '2019-01-11 23:00:00', 40),
+(9, '2019-01-12 23:00:00', 50),
+(10, '2019-01-13 23:00:00', 60),
+(11, '2019-01-14 23:00:00', 70),
+(12, '2019-01-15 23:00:00', 80);
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `accounts`
+-- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`accountId`);
 
 --
--- Indizes für die Tabelle `artikel`
+-- Indexes for table `artikel`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`artikelNummer`);
 
 --
--- Indizes für die Tabelle `bestellteartikel`
+-- Indexes for table `bestellteartikel`
 --
 ALTER TABLE `bestellteartikel`
   ADD PRIMARY KEY (`bestellID`,`artikelID`);
 
 --
--- Indizes für die Tabelle `bestellung`
+-- Indexes for table `bestellung`
 --
 ALTER TABLE `bestellung`
   ADD PRIMARY KEY (`bestellNummer`);
 
 --
--- Indizes für die Tabelle `mitarbeiter`
+-- Indexes for table `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
   ADD PRIMARY KEY (`mitarbeiterId`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- Indexes for table `umsatz`
+--
+ALTER TABLE `umsatz`
+  ADD PRIMARY KEY (`umsatzNr`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `accounts`
+-- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `accountId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `mitarbeiter`
+-- AUTO_INCREMENT for table `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
   MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

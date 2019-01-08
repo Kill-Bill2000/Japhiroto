@@ -881,7 +881,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            System.out.println("posX " + posX);
 //            System.out.println("posY " + posY);
             
-            diagram.drawString("•", posX+2, posY + 5);             
+            diagram.drawString("•", posX+2, posY + 5);
         }
         
         return usedValuesOnYArr;
