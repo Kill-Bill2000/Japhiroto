@@ -696,8 +696,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int differenceMonth = period.getMonths();            
   
         //TEST:
-        System.out.println("differenceDay " + differenceDay);
-        System.out.println("differenceMonth " + differenceMonth);
+//        System.out.println("differenceDay " + differenceDay);
+//        System.out.println("differenceMonth " + differenceMonth);
         //TESTEND
         
         int monthFrom = dateTimeFrom.getMonth().getValue();
@@ -716,25 +716,25 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
                     }
                     if (differenceMinute >= 1){
-                        System.out.println("using differenceMinute " + differenceMinute);
+//                        System.out.println("using differenceMinute " + differenceMinute);
                         scaleX = differenceMinute; //+1 to show enought values in graph  
                         usedValue = minuteFrom;
                     } 
                 }
                 if (differenceHour >= 1){
-                    System.out.println("using differenceHour " + differenceHour);
+//                    System.out.println("using differenceHour " + differenceHour);
                     scaleX = differenceHour; //+1 to show enought values in graph  
                     usedValue = hourFrom;
                 } 
             }
             if (differenceDay >= 1){
-                System.out.println("using differenceDay " + differenceDay);
+//                System.out.println("using differenceDay " + differenceDay);
                 scaleX = differenceDay; //+1 to show enought values in graph  
                 usedValue = dayFrom;
             }
         }        
         if (differenceMonth >= 1) {
-            System.out.println("using differenceMonth " + differenceMonth);
+//            System.out.println("using differenceMonth " + differenceMonth);
             scaleX = differenceMonth; //+1 to show enought values in graph 
             usedValue = monthFrom;
         }
@@ -772,7 +772,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             if (labeling > 30) {                
                 diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
                 countOver30 = countOver30 +1;
-                System.out.println("countOver30 " + countOver30);
+//                System.out.println("countOver30 " + countOver30);
             }                 
         }
         
@@ -811,14 +811,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
 //        }   
                
-        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
-        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
+//        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
+//        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
         
         int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
         int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
         
-        System.out.println("selectedFrom " + selectedFrom);
-        System.out.println("selectedUntil " + selectedUntil);
+//        System.out.println("selectedFrom " + selectedFrom);
+//        System.out.println("selectedUntil " + selectedUntil);
 //        Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
         int scaleY = selectedUntilIndex - selectedFromIndex;
@@ -826,11 +826,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int lengthY = zeroY - 15; 
         int spacingY = lengthY / scaleY;
         //TEST:
-        System.out.println("sizeY " + sizeY);
-        System.out.println("zeroY " + zeroY);
-        System.out.println("lengthY " + lengthY);
-        System.out.println("scaleY " + scaleY);
-        System.out.println("spacingY " + spacingY);
+//        System.out.println("sizeY " + sizeY);
+//        System.out.println("zeroY " + zeroY);
+//        System.out.println("lengthY " + lengthY);
+//        System.out.println("scaleY " + scaleY);
+//        System.out.println("spacingY " + spacingY);
 //        //TESTEND
         
         
@@ -845,7 +845,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         sortedSales.sort(Comparator.naturalOrder());
 
-        System.out.println("difference " + scaleY);
+//        System.out.println("difference " + scaleY);
         
         for (int i = 0; i < scaleY; i++) {
             diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);            
@@ -863,12 +863,19 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         
         for (int i = startIndex; i < endIndex; i++) {
-            String selectedItem = ComBoxDateUntil.getItemAt(i);    
-            int day = convertStringIntoLocalDateTime(selectedItem).getDayOfMonth();
             
+            int posX = 0;
+            int posY = 0;
             for (int j = 0; j < scaleY; j++) {
-                diagram.drawString("X", zeroX + j*day, zeroY - spacingY * j);
+                String selectedItem = ComBoxDateUntil.getItemAt(i);    
+                int day = convertStringIntoLocalDateTime(selectedItem).getDayOfMonth();
+                posX = zeroX + spacingX*day - 3;  
+                posY = zeroY - spacingY * j + 5;
+                                    
+                
+               
             }
+             diagram.drawString("X", posX, posY);
         }
         
         return spacingY;
@@ -877,6 +884,115 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     //////////// UNUSED  ////////////    
     //////////// METHODS ////////////
     //////////// BELOW   ////////////
+    
+    private int drawAllSelectedDates(){  
+        
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        
+        LocalDateTime dateTimeFrom = convertStringIntoLocalDateTime(selectedFrom);
+        LocalDateTime dateTimeUntil = convertStringIntoLocalDateTime(selectedUntil);
+
+        LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
+        LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
+        
+        //getting duration between selected dates#
+        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
+        int differenceHour = (int) duration.toHours();
+        int differenceMinute = (int) duration.toMinutes();
+        
+        Period period = Period.between(dateFrom, dateUntil);
+        int differenceDay = period.getDays();
+        int differenceMonth = period.getMonths();            
+  
+        //TEST:
+//        System.out.println("differenceDay " + differenceDay);
+//        System.out.println("differenceMonth " + differenceMonth);
+        //TESTEND
+        
+        int monthFrom = dateTimeFrom.getMonth().getValue();
+        int dayFrom = dateTimeFrom.getDayOfMonth();
+        int hourFrom = dateTimeFrom.getHour();
+        int minuteFrom = dateTimeFrom.getMinute();
+                
+                
+        int scaleX = 1;
+        int usedValue = 0;
+        
+        if (differenceMonth == 0) {
+            if (differenceDay == 0){
+                if (differenceHour == 0){
+                    if (differenceMinute == 0){
+                        JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    if (differenceMinute >= 1){
+//                        System.out.println("using differenceMinute " + differenceMinute);
+                        scaleX = differenceMinute; //+1 to show enought values in graph  
+                        usedValue = minuteFrom;
+                    } 
+                }
+                if (differenceHour >= 1){
+//                    System.out.println("using differenceHour " + differenceHour);
+                    scaleX = differenceHour; //+1 to show enought values in graph  
+                    usedValue = hourFrom;
+                } 
+            }
+            if (differenceDay >= 1){
+//                System.out.println("using differenceDay " + differenceDay);
+                scaleX = differenceDay; //+1 to show enought values in graph  
+                usedValue = dayFrom;
+            }
+        }        
+        if (differenceMonth >= 1) {
+//            System.out.println("using differenceMonth " + differenceMonth);
+            scaleX = differenceMonth; //+1 to show enought values in graph 
+            usedValue = monthFrom;
+        }
+        
+        // draw scale 
+        // X-axis
+        
+        int lengthX = sizeX - zeroX - 15; 
+        int spacingX = lengthX / scaleX;
+        //TEST:
+//        System.out.println("sizeX " + sizeX);
+//        System.out.println("zeroX " + zeroX);
+//        System.out.println("lengthX " + lengthX);
+//        System.out.println("scaleX " + scaleX);
+//        System.out.println("spacingX " + spacingX);
+//        //TESTEND
+        
+        
+        //works when using days (period < 1 Month)
+        int countOver30 = 1;
+        
+        for (int i = 0; i < scaleX + 1; i++) {
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
+//            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            int labeling = Integer.valueOf(usedValue) + i;
+            
+            //changes the font size to smaller numbers in order to fit more 
+            if (scaleX > 20) {
+                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
+            }
+            
+            if (labeling <= 30) {               
+                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            }            
+            if (labeling > 30) {                
+                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
+                countOver30 = countOver30 +1;
+//                System.out.println("countOver30 " + countOver30);
+            }                 
+        }
+        
+        // Y-axis
+//        for (int i = 1; i < sizeY/20 - 2; i++) {
+//            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+//            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+//        }
+        return spacingX;
+    }
     
     private void drawBasicGraph(){  
         //testline
