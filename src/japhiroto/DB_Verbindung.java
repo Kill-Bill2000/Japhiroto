@@ -393,7 +393,7 @@ public class DB_Verbindung {
         if (i >= anz) {
             String befehl = String.format("UPDATE bestellteArtikel SET anzahl = '%1$s' WHERE bestellID = '%2$s' AND artikelID = '%3$s'", i - anz, bestellNummer, artikelNr);
             updaten(befehl);
-            int neu = anz + getArtikel(artikelNr).getAnzahl();
+            int neu = anz + getArtikel(artikelNr).getBestand();
             befehl = String.format("UPDATE Artikel SET bestand = '%1$s' WHERE artikelNummer = '%2$s'", neu, artikelNr); //Bestand aktualisieren
             updaten(befehl);
         }
