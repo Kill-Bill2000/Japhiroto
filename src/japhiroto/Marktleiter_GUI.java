@@ -11,8 +11,11 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -562,11 +565,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        System.out.println(salesDatesArrList.get(1).getZeitstempel());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.GERMANY);
         
         for (int i = 0; i < salesDatesArrList.size(); i++) {
-            ComBoxDateFrom.addItem(salesDatesArrList.get(i).getZeitstempel().toString());
-            ComBoxDateUntil.addItem(salesDatesArrList.get(i).getZeitstempel().toString());
+            ComBoxDateFrom.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
+            ComBoxDateUntil.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
         }           
     }//GEN-LAST:event_btnLoadDatesActionPerformed
 
