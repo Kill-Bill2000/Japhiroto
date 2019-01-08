@@ -423,7 +423,7 @@ public class DB_Verbindung {
         if (i >= anz) {
             String befehl = String.format("UPDATE bestellteArtikel SET anzahl = '%1$s' WHERE bestellID = '%2$s' AND artikelID = '%3$s'", i - anz, bestellNummer, artikelNr);
             updaten(befehl);
-            int neu = anz + getArtikel(artikelNr).getAnzahl();
+            int neu = anz + getArtikel(artikelNr).getBestand();
             befehl = String.format("UPDATE Artikel SET bestand = '%1$s' WHERE artikelNummer = '%2$s'", neu, artikelNr); //Bestand aktualisieren
             updaten(befehl);
         }
@@ -460,7 +460,7 @@ public class DB_Verbindung {
         befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            artikel.add(new Artikel(rs.getString("bezeichnung"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
+            artikel.add(new Artikel(rs.getString("artikelName"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
         }
         
         return artikel;
@@ -469,6 +469,26 @@ public class DB_Verbindung {
     public void artikelHinzufuegen(Artikel art) throws SQLException{
         String befehl = String.format("INSERT INTO artikel VALUES ('%1$s', '%2$s', '%3$s', '%4$s')", art.getArtikelNummer(), art.getName(), art.getPreis(), art.getAnzahl());
         updaten(befehl);
+    }
+
+    public void artikelBestellen(String bestellNr, String lieferant) throws SQLException {
+        String befehl;
+        
+        befehl = String.format("INSERT INTO bestellung VALUES ('%1$s', '%2$s', 0)", bestellNr, lieferant);
+        
+        updaten(befehl);
+    }
+    public void artikelBestellenSQL(ArrayList<Artikel> artikel, String bestellNr) throws SQLException {
+        for (int i = 0; i < artikel.size(); i++) {
+            Artikel aktuell;
+            String bef;
+            
+            aktuell = artikel.get(i);
+            
+            bef = String.format("INSERT INTO bestellteartikel VALUES ('%1$s', '%2$s', '%3$s')", bestellNr, aktuell.getArtikelNummer(), aktuell.getAnzahl());
+            System.out.println(bef);
+            updaten(bef);
+        }
     }
     
 }

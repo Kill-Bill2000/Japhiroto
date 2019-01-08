@@ -23,16 +23,11 @@ import javax.swing.table.DefaultTableModel;
 public class LagerArtikelSuchen extends javax.swing.JFrame {
 
     private ArtikelVerwaltung artikel;
-    private DB_Verbindung verbindung;
     
     public LagerArtikelSuchen() {
         initComponents();
         setProperties();
-        try {  
-            
-            verbindung = new DB_Verbindung();
-            verbindung.verbindungAufbauen();
-            
+        try {
             diaArtNrEingeben.setSize(450, 150);
             artikel = new ArtikelVerwaltung();
             
@@ -247,7 +242,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         gesuchteArtNr = txfSucheArtNr.getText();
             
         try {
-            gesuchte = verbindung.getArtikelFromNr(gesuchteArtNr);    //Suche
+            gesuchte = artikel.sucheArtikel(gesuchteArtNr);    //Suche
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
             model.setRowCount(0); //Tabelle leeren
             for (int i = 0; i < gesuchte.size(); i++) {
@@ -258,7 +253,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
-                    + "\nDie Zugangsdaten sind nicht gültig.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+                    + "\nDie Zugangsdaten sind nicht gültig. " + ex.getMessage(), "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         }
         catch(NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");
@@ -290,7 +285,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         this.setVisible(false);
         diaArtNrEingeben.setVisible(false);
         try {
-            verbindung.verbindungSchliessen();
+            artikel.verbindungSchliessen();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "SQL Fehler.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         }
