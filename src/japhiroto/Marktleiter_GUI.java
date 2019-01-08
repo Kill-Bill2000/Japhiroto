@@ -56,7 +56,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // zeroX = 25;
         // zeroY = 370;
                
-        zeroX = sizeX - 475;
+        zeroX = sizeX - 450;
         zeroY = sizeY - 30;
         
         
@@ -211,12 +211,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         lblStatusBestellungen.setText("Status offener Bestellungen:");
 
         txfBestellt.setEditable(false);
-        txfBestellt.setText("Anzahl");
 
         lblBestellt.setText("Bestellt insgesamt:");
 
         txfInBearb.setEditable(false);
-        txfInBearb.setText("Anzahl");
 
         lblInBearb.setText("In Bearbeitung:");
 
@@ -322,15 +320,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)))
                                 .addComponent(lblInBearb, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lblMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
@@ -339,43 +333,46 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                         .addComponent(btnLoadList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblID)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(lblAnrede))
+                                        .addComponent(lblStarsse)
+                                        .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblID)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblAnrede))
-                                            .addComponent(lblStarsse)
-                                            .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblPLZ)
+                                            .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblVorname)
+                                    .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNachname)
+                                            .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblPLZ)
-                                                    .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(lblVorname)
-                                            .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblNachname)
-                                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(lblStundenlohn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(lblOrt)
-                                            .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(btnMitarbeiterAnlegen))))
+                                            .addComponent(lblStundenlohn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblOrt)
+                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnMitarbeiterAnlegen))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addComponent(jSeparator1)
         );
@@ -416,18 +413,19 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                             .addComponent(txfInBearb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9))
                     .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMitarbeiter)
                     .addComponent(jButton1)
-                    .addComponent(lblMitarbeiter))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnMitarbeiterAnlegen))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLoadList)
                     .addComponent(lblAuswahl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,10 +465,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txfPLZ, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMitarbeiterAnlegen)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                                    .addComponent(txfPLZ, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -599,7 +595,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             ComBoxDateFrom.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
             ComBoxDateUntil.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
         }
-        System.out.println(salesDatesArrList.get(1).getZeitstempel().format(formatter)); 
+//        System.out.println(salesDatesArrList.get(1).getZeitstempel().format(formatter)); 
     }//GEN-LAST:event_btnLoadDatesActionPerformed
 
     private void ComBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateFromActionPerformed
@@ -707,13 +703,24 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     }
     
     private ArrayList<Integer> drawSelectedDates(){  
+        String selectedFrom = null;
+        String selectedUntil = null;
         
-        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-
+        try {
+            selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+            selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+            
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Bitte zuerst die Daten Laden", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
         LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
-               
+        
+        if (dateFrom.isAfter(dateUntil)) {
+            JOptionPane.showMessageDialog(this, "Datum im Feld `Von` darf nicht nach dem Datum im Feld `Bis` liegen", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+       
         Period period = Period.between(dateFrom, dateUntil);
         int differenceDay = period.getDays();
         int differenceMonth = period.getMonths();            
@@ -723,9 +730,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("differenceMonth " + differenceMonth);
         //TESTEND
 //      
-
-        int dayFrom = dateFrom.getDayOfMonth();
-
         int scaleX = 1;
         
         if (differenceMonth == 0) {
@@ -771,26 +775,22 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         ArrayList<Integer> usedValuesOnXArr= new ArrayList<>(); 
         
         for (int i = 0; i < scaleX + 1; i++) {
-            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-            
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);        
+            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", zeroX + i*spacingX - 5, zeroY + 20);
+        }
+        
+//        System.out.println("differenceDayX = " + differenceDay);
+        
+        for (int i = 0; i <= differenceDay; i++) {
             int usedValuesOnX = zeroX + i*spacingX - 5;
-            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", usedValuesOnX, zeroY + 20);
             usedValuesOnXArr.add(usedValuesOnX);
-            System.out.println("usedValuesOnX = " + usedValuesOnX);
+//            System.out.println("usedValuesOnX = " + usedValuesOnX);
         }
         return usedValuesOnXArr;
     }
         
     private ArrayList<Integer> drawSelectedSales(){  
-
-//        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
-//        ComBoxDateFrom.setModel(listFrom);  
-//        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
-//        ComBoxDateUntil.setModel(listUntil);
-//                
-//        ComBoxDateFrom.addItem("10.05.2018"); 
-//        ComBoxDateUntil.addItem("05.06.2018"); 
-       
+      
         ArrayList<Umsatz> salesArrList= new ArrayList<>();  
         
         try {             
@@ -802,25 +802,23 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-//        for (int i = 0; i < salesArrList.size(); i++) {
-//            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
-//            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
-//        }   
+
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+
+        LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
+        LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
                
-//        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
-//        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
-        
-        int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
-        int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
+        Period period = Period.between(dateFrom, dateUntil);
+        int differenceDay = period.getDays();
         
 //        System.out.println("selectedFrom " + selectedFrom);
 //        System.out.println("selectedUntil " + selectedUntil);
 //        Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
-        int scaleY = selectedUntilIndex - selectedFromIndex;
+        int scaleY = differenceDay+1;
         
-        int lengthY = zeroY - 15; 
+        int lengthY = zeroY - 10; 
         int spacingY = lengthY / scaleY;
         //TEST:
 //        System.out.println("sizeY " + sizeY);
@@ -836,65 +834,65 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // Y-axis
         ArrayList<Integer> usedValuesOnYArr= new ArrayList<>(); 
         List<Double> sortedSales = new ArrayList();
+        
+//        System.out.println("differenceDay = " + differenceDay);
+        
         for (int i = 0; i < scaleY; i++) {
-            sortedSales.add(i, salesArrList.get(i).getUmsatz());
+            sortedSales.add(i, salesArrList.get(i).getUmsatz());            
+        }
+        
+        for (int i = 0; i <= differenceDay; i++) {
             int usedValuesOnY = zeroY - spacingY * i;
             usedValuesOnYArr.add(usedValuesOnY);
-            System.out.println("usedValuesOnY = " + usedValuesOnY);
+//            System.out.println("usedValuesOnY = " + usedValuesOnY);
+//            System.out.println("sortedSales = " + sortedSales.get(i));
         }
         
         sortedSales.sort(Comparator.naturalOrder());
 
-//        System.out.println("difference " + scaleY);
- 
+        for (int i = 0; i <= differenceDay; i++) {
+//            System.out.println("sortedSales = " + sortedSales.get(i));
+        }
         
+//        System.out.println("difference " + scaleY);
+         
         for (int i = 0; i < scaleY; i++) {
             diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);
-            
-            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
-
+            diagram.drawString(sortedSales.get(i)+"", zeroX - 40, zeroY - spacingY * i + 5);
         } 
         
         // SETTING THE VALUES
         
-        ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();     
-        int startIndex = ComBoxDateFrom.getSelectedIndex();
-        int endIndex = ComBoxDateUntil.getSelectedIndex();
-        int loopLength = 0;
+//        System.out.println("Calling drawSelectedDates()");
+        ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();   
         
-//        if (!(usedValuesOnXArr.size() == usedValuesOnYArr.size())) {
-//            JOptionPane.showMessageDialog(this, "Leider ist ein fehler aufgetreten", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-//        }
-        
-        if (usedValuesOnXArr.size() > usedValuesOnYArr.size()) {
-            loopLength = usedValuesOnXArr.size();
-        }
-        if (usedValuesOnXArr.size() < usedValuesOnYArr.size()) {
-            loopLength = usedValuesOnYArr.size();
-        }
-        
+//        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+//        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+               
 //        Collections.reverse(usedValuesOnXArr);
         
-        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
-        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
-        for (int i = 0; i < loopLength; i++) {
+//        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+//        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+        
+        for (int i = 0; i <= differenceDay; i++) {
             
-            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
-            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
-//            
-            int posX = usedValuesOnXArr.get(i);
-            int posY = usedValuesOnYArr.get(i);
+//            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
+//            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
             
-            System.out.println("posX " + posX);
-            System.out.println("posY " + posY);
-//                String selectedItem = ComBoxDateUntil.getItemAt(i);    
-//                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
-//                posX = zeroX + spacingX.get(i)*day - 3;  
-//                posY = zeroY - spacingY * j + 5;                                   
-                
-              
-             diagram.drawString("X", posX+2, posY + 5);
-             
+            int posX = 0;
+            int posY = 0;
+            
+            try {
+                posX = usedValuesOnXArr.get(i);
+                posY = usedValuesOnYArr.get(i);
+            } catch (Exception e) {
+            }
+    
+            
+//            System.out.println("posX " + posX);
+//            System.out.println("posY " + posY);
+            
+            diagram.drawString("•", posX+2, posY + 5);
         }
         
         return usedValuesOnYArr;
