@@ -481,7 +481,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         drawAxes();
         drawSelectedDates();
-//        drawSales();
+        drawSales();
     }//GEN-LAST:event_btnShowSalesActionPerformed
 
     private void btnLoadListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadListActionPerformed
@@ -805,10 +805,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         }
         
         // Y-axis
-        for (int i = 1; i < sizeY/20 - 2; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
-        }
+//        for (int i = 1; i < sizeY/20 - 2; i++) {
+//            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+//            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+//        }
 
     }
     
@@ -839,60 +839,17 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
 //        }   
               
-        String selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).toString();
-        String selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).toString();
+        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
+        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
         
         System.out.println("selectedFrom " + selectedFrom);
         System.out.println("selectedUntil " + selectedUntil);
         
-        //input type String
-//        String selectedFrom = "2018-05-01";
-//        String selectedUntil = "2018-11-05"; 
-
-        //String splitting
-        String[] partsFrom = selectedFrom.split("\\-");
-        int yearFrom = Integer.valueOf(partsFrom[0]);        
-        int monthFrom = Integer.valueOf(partsFrom[1]);
-        int dayFrom = Integer.valueOf(partsFrom[2]);
-        
-        String[] partsUntil = selectedUntil.split("\\-");
-        int yearUntil = Integer.valueOf(partsUntil[0]);      
-        int monthUntil = Integer.valueOf(partsUntil[1]);
-        int dayUntil = Integer.valueOf(partsUntil[2]);        
-        
-        //conversion String to LocalDate
-        LocalDate dateFrom = LocalDate.of(yearFrom, monthFrom, dayFrom);
-        LocalDate dateUntil = LocalDate.of(yearUntil, monthUntil, dayUntil);
-        
-        //getting duration between selected dates#
-        Period duration = Period.between(dateFrom, dateUntil);
-        int differenceDay = duration.getDays();
-        int differenceMonth = duration.getMonths();              
-  
-        //TEST:
-        System.out.println("differenceDay " + differenceDay);
-        System.out.println("differenceMonth " + differenceMonth);
-        //TESTEND
-        
-        int scaleX = 1;
+        int scaleY = 1;
         int usedValue = 0;
         
-        if (differenceMonth == 0) {
-            System.out.println("using differenceDay " + differenceDay);
-            scaleX = differenceDay; //+1 to show enought values in graph  
-            usedValue = dayFrom;
-        }        
-        if (differenceMonth >= 1) {
-            System.out.println("using differenceMonth " + differenceMonth);
-            scaleX = differenceMonth; //+1 to show enought values in graph 
-            usedValue = monthFrom;
-        }
-        
-        // draw scale 
-        // X-axis
-        
-        int lengthX = sizeX - zeroX - 15; 
-        int spacingX = lengthX / scaleX;
+        int lengthY = sizeY - zeroY - 15; 
+        int spacingX = lengthY / scaleY;
         //TEST:
 //        System.out.println("sizeX " + sizeX);
 //        System.out.println("zeroX " + zeroX);
@@ -904,31 +861,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         //works when using days (period < 1 Month)
         int countOver30 = 1;
-        
-        for (int i = 0; i < scaleX + 1; i++) {
-            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-//            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            int labeling = Integer.valueOf(usedValue) + i;
-            
-            //changes the font size to smaller numbers in order to fit more 
-            if (scaleX > 20) {
-                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
-            }
-            
-            if (labeling <= 30) {               
-                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            }            
-            if (labeling > 30) {                
-                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
-                countOver30 = countOver30 +1;
-                System.out.println("countOver30 " + countOver30);
-            }                 
-        }
-        
+              
         // Y-axis
         for (int i = 1; i < sizeY/20 - 2; i++) {
             diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+            diagram.drawString(""+i, zeroX - 30, zeroY - i*20 + 5);
         }
 
     }
