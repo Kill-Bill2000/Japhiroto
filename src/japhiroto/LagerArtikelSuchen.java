@@ -247,7 +247,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tblArtikel.getModel();
             model.setRowCount(0); //Tabelle leeren
             for (int i = 0; i < gesuchte.size(); i++) {
-                model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis()});
+                model.addRow(new Object[]{gesuchte.get(i).getArtikelNummer(), gesuchte.get(i).getName(), gesuchte.get(i).getPreis(), gesuchte.get(i).getBestand()});
             }
             //gesuchte = artikel.getArtikelListeFromNummer(gesuchteArtNr);    //Suche
         }
