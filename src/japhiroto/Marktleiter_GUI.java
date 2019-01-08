@@ -679,18 +679,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
         String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-        
-//        LocalDateTime dateTimeFrom = convertStringIntoLocalDateTime(selectedFrom);
-//        LocalDateTime dateTimeUntil = convertStringIntoLocalDateTime(selectedUntil);
 
         LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
         LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
-        
-        //getting duration between selected dates#
-//        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
-//        int differenceHour = (int) duration.toHours();
-//        int differenceMinute = (int) duration.toMinutes();
-        
+               
         Period period = Period.between(dateFrom, dateUntil);
         int differenceDay = period.getDays();
         int differenceMonth = period.getMonths();            
@@ -700,15 +692,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("differenceMonth " + differenceMonth);
         //TESTEND
 //      
-        int yearFrom = dateFrom.getYear();
-        int monthFrom = dateFrom.getMonth().getValue();
+
         int dayFrom = dateFrom.getDayOfMonth();
-//        int hourFrom = dateTimeFrom.getHour();
-//        int minuteFrom = dateTimeFrom.getMinute();
-                
-                
+
         int scaleX = 1;
-        int usedValue = 0;
         
         if (differenceMonth == 0) {
             if (differenceDay == 0){
@@ -718,7 +705,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             if (differenceDay >= 1){
 //                System.out.println("using differenceDay " + differenceDay);
                 scaleX = differenceDay; //+1 to show enought values in graph  
-                usedValue = dayFrom;
             }
         }        
         if (differenceMonth >= 1) {
@@ -750,9 +736,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-//        int countOver30 = 1;
-        
         
         for (int i = 0; i < scaleX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
