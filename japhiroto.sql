@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2019 at 11:09 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Erstellungszeit: 08. Jan 2019 um 23:38
+-- Server-Version: 10.1.37-MariaDB
+-- PHP-Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `japhiroto`
+-- Datenbank: `japhiroto`
 --
+CREATE DATABASE IF NOT EXISTS `japhiroto` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `japhiroto`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accounts`
+-- Tabellenstruktur für Tabelle `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -37,7 +39,7 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Dumping data for table `accounts`
+-- Daten für Tabelle `accounts`
 --
 
 INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`, `rolle`) VALUES
@@ -48,7 +50,7 @@ INSERT INTO `accounts` (`accountId`, `mitarbeiterId`, `benutzername`, `passwort`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artikel`
+-- Tabellenstruktur für Tabelle `artikel`
 --
 
 CREATE TABLE `artikel` (
@@ -59,7 +61,7 @@ CREATE TABLE `artikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `artikel`
+-- Daten für Tabelle `artikel`
 --
 
 INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`) VALUES
@@ -78,7 +80,7 @@ INSERT INTO `artikel` (`artikelNummer`, `artikelName`, `verkaufPreis`, `bestand`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bestellteartikel`
+-- Tabellenstruktur für Tabelle `bestellteartikel`
 --
 
 CREATE TABLE `bestellteartikel` (
@@ -87,10 +89,19 @@ CREATE TABLE `bestellteartikel` (
   `anzahl` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `bestellteartikel`
+--
+
+INSERT INTO `bestellteartikel` (`bestellID`, `artikelID`, `anzahl`) VALUES
+(55555, 1, 2),
+(55555, 5312483, 7),
+(134842, 711, 6);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bestellung`
+-- Tabellenstruktur für Tabelle `bestellung`
 --
 
 CREATE TABLE `bestellung` (
@@ -99,10 +110,20 @@ CREATE TABLE `bestellung` (
   `erledigt` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `bestellung`
+--
+
+INSERT INTO `bestellung` (`bestellNummer`, `lieferant`, `erledigt`) VALUES
+('123456', 'Obst und Gemüse GmbH', 0),
+('134842', 'BoFrost', 0),
+('453846', 'Warenhandel Walzer', 1),
+('55555', 'Fünfer Lieferungen', 0);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mitarbeiter`
+-- Tabellenstruktur für Tabelle `mitarbeiter`
 --
 
 CREATE TABLE `mitarbeiter` (
@@ -118,7 +139,7 @@ CREATE TABLE `mitarbeiter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
--- Dumping data for table `mitarbeiter`
+-- Daten für Tabelle `mitarbeiter`
 --
 
 INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `strasse`, `hausNr`, `plz`, `ort`, `stundenLohn`) VALUES
@@ -128,7 +149,7 @@ INSERT INTO `mitarbeiter` (`mitarbeiterId`, `anrede`, `vorname`, `nachname`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `umsatz`
+-- Tabellenstruktur für Tabelle `umsatz`
 --
 
 CREATE TABLE `umsatz` (
@@ -138,7 +159,7 @@ CREATE TABLE `umsatz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `umsatz`
+-- Daten für Tabelle `umsatz`
 --
 
 INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
@@ -157,57 +178,57 @@ INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
 (12, '2019-01-15 23:00:00', 80);
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `accounts`
+-- Indizes für die Tabelle `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`accountId`);
 
 --
--- Indexes for table `artikel`
+-- Indizes für die Tabelle `artikel`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`artikelNummer`);
 
 --
--- Indexes for table `bestellteartikel`
+-- Indizes für die Tabelle `bestellteartikel`
 --
 ALTER TABLE `bestellteartikel`
   ADD PRIMARY KEY (`bestellID`,`artikelID`);
 
 --
--- Indexes for table `bestellung`
+-- Indizes für die Tabelle `bestellung`
 --
 ALTER TABLE `bestellung`
   ADD PRIMARY KEY (`bestellNummer`);
 
 --
--- Indexes for table `mitarbeiter`
+-- Indizes für die Tabelle `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
   ADD PRIMARY KEY (`mitarbeiterId`);
 
 --
--- Indexes for table `umsatz`
+-- Indizes für die Tabelle `umsatz`
 --
 ALTER TABLE `umsatz`
   ADD PRIMARY KEY (`umsatzNr`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
+-- AUTO_INCREMENT für Tabelle `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `accountId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `mitarbeiter`
+-- AUTO_INCREMENT für Tabelle `mitarbeiter`
 --
 ALTER TABLE `mitarbeiter`
   MODIFY `mitarbeiterId` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
