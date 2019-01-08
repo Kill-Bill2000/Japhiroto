@@ -218,21 +218,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         txfVerschickt.setEditable(false);
         txfVerschickt.setText("Anzahl");
-        txfVerschickt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfVerschicktActionPerformed(evt);
-            }
-        });
 
         lblVerschickt.setText("Verschickt:");
 
         txfInBearb.setEditable(false);
         txfInBearb.setText("Anzahl");
-        txfInBearb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfInBearbActionPerformed(evt);
-            }
-        });
 
         lblInBearb.setText("In Bearbeitung:");
 
@@ -504,14 +494,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         new LagerArtikelSuchen().setVisible(true);
     }//GEN-LAST:event_btnWarehouseListActionPerformed
-
-    private void txfVerschicktActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfVerschicktActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfVerschicktActionPerformed
-
-    private void txfInBearbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfInBearbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfInBearbActionPerformed
 
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
         // TODO add your handling code here:
