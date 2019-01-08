@@ -634,7 +634,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
     }
     
-    private LocalDateTime convertStringIntoLocalDateTime(String inputString){
+    /*private LocalDateTime convertStringIntoLocalDateTime(String inputString){
         
         String[] partsDateTime = inputString.split(" ");
         String date = partsDateTime[0];        
@@ -655,7 +655,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //                                                                                System.out.println("hourFrom " + hourFrom);
 //                                                                                System.out.println("minuteFrom " + minuteFrom);
         return LocalDateTime.of(year, month, day, hour, minute);
-    }
+    }*/
     
     private LocalDate convertStringIntoLocalDate(String inputString){
         
@@ -680,16 +680,16 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
         String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
         
-        LocalDateTime dateTimeFrom = convertStringIntoLocalDateTime(selectedFrom);
-        LocalDateTime dateTimeUntil = convertStringIntoLocalDateTime(selectedUntil);
+//        LocalDateTime dateTimeFrom = convertStringIntoLocalDateTime(selectedFrom);
+//        LocalDateTime dateTimeUntil = convertStringIntoLocalDateTime(selectedUntil);
 
         LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
         LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
         
         //getting duration between selected dates#
-        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
-        int differenceHour = (int) duration.toHours();
-        int differenceMinute = (int) duration.toMinutes();
+//        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
+//        int differenceHour = (int) duration.toHours();
+//        int differenceMinute = (int) duration.toMinutes();
         
         Period period = Period.between(dateFrom, dateUntil);
         int differenceDay = period.getDays();
@@ -699,11 +699,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("differenceDay " + differenceDay);
 //        System.out.println("differenceMonth " + differenceMonth);
         //TESTEND
-        
-        int monthFrom = dateTimeFrom.getMonth().getValue();
-        int dayFrom = dateTimeFrom.getDayOfMonth();
-        int hourFrom = dateTimeFrom.getHour();
-        int minuteFrom = dateTimeFrom.getMinute();
+//      
+        int yearFrom = dateFrom.getYear();
+        int monthFrom = dateFrom.getMonth().getValue();
+        int dayFrom = dateFrom.getDayOfMonth();
+//        int hourFrom = dateTimeFrom.getHour();
+//        int minuteFrom = dateTimeFrom.getMinute();
                 
                 
         int scaleX = 1;
@@ -711,21 +712,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         if (differenceMonth == 0) {
             if (differenceDay == 0){
-                if (differenceHour == 0){
-                    if (differenceMinute == 0){
-                        JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    if (differenceMinute >= 1){
-//                        System.out.println("using differenceMinute " + differenceMinute);
-                        scaleX = differenceMinute; //+1 to show enought values in graph  
-                        usedValue = minuteFrom;
-                    } 
-                }
-                if (differenceHour >= 1){
-//                    System.out.println("using differenceHour " + differenceHour);
-                    scaleX = differenceHour; //+1 to show enought values in graph  
-                    usedValue = hourFrom;
-                } 
+                JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                return 0;
             }
             if (differenceDay >= 1){
 //                System.out.println("using differenceDay " + differenceDay);
@@ -734,9 +722,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             }
         }        
         if (differenceMonth >= 1) {
-//            System.out.println("using differenceMonth " + differenceMonth);
-            scaleX = differenceMonth; //+1 to show enought values in graph 
-            usedValue = monthFrom;
+          JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu groß, maximal 31 Tage sind zugelassen", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+          return 0;
         }
         
         // draw scale 
@@ -752,35 +739,45 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("spacingX " + spacingX);
 //        //TESTEND
         
+        ArrayList<Umsatz> datesArrList= new ArrayList<>(); 
+
+        try {             
+            datesArrList = database.getAllSales();
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
         
-        //works when using days (period < 1 Month)
-        int countOver30 = 1;
+//        int countOver30 = 1;
+        
         
         for (int i = 0; i < scaleX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-//            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            int labeling = Integer.valueOf(usedValue) + i;
+            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//            int labeling = Integer.valueOf(usedValue) + i;
             
             //changes the font size to smaller numbers in order to fit more 
-            if (scaleX > 20) {
-                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
-            }
-            
-            if (labeling <= 30) {               
-                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            }            
-            if (labeling > 30) {                
-                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
-                countOver30 = countOver30 +1;
+//            if (scaleX > 20) {
+//                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
+//            }
+//            
+//            if (labeling <= 30) {               
+//                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//            }            
+//            if (labeling > 30) {                
+//                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
+//                countOver30 = countOver30 +1;
 //                System.out.println("countOver30 " + countOver30);
-            }                 
+//            }                 
         }
         
-        // Y-axis
-//        for (int i = 1; i < sizeY/20 - 2; i++) {
-//            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-//            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+//        for (int i = 0; i < scaleY; i++) {
+//            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
 //        }
+
         return spacingX;
     }
         
@@ -848,12 +845,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("difference " + scaleY);
         
         for (int i = 0; i < scaleY; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);            
-        } 
-        
-        for (int i = 0; i < scaleY; i++) {
+            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);    
             diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
-        }
+        } 
         
         // SETTING THE VALUES
         
@@ -868,7 +862,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             int posY = 0;
             for (int j = 0; j < scaleY; j++) {
                 String selectedItem = ComBoxDateUntil.getItemAt(i);    
-                int day = convertStringIntoLocalDateTime(selectedItem).getDayOfMonth();
+                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
                 posX = zeroX + spacingX*day - 3;  
                 posY = zeroY - spacingY * j + 5;
                                     
@@ -884,7 +878,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     //////////// UNUSED  ////////////    
     //////////// METHODS ////////////
     //////////// BELOW   ////////////
-    
+    /*
     private int drawAllSelectedDates(){  
         
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
@@ -1209,6 +1203,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
     }
+    
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComBoxDateFrom;
     private javax.swing.JComboBox<String> ComBoxDateUntil;
