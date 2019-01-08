@@ -719,9 +719,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        System.out.println("differenceMonth " + differenceMonth);
         //TESTEND
 //      
-
-        int dayFrom = dateFrom.getDayOfMonth();
-
         int scaleX = 1;
         
         if (differenceMonth == 0) {
@@ -778,15 +775,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     }
         
     private ArrayList<Integer> drawSelectedSales(){  
-
-//        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
-//        ComBoxDateFrom.setModel(listFrom);  
-//        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
-//        ComBoxDateUntil.setModel(listUntil);
-//                
-//        ComBoxDateFrom.addItem("10.05.2018"); 
-//        ComBoxDateUntil.addItem("05.06.2018"); 
-       
+      
         ArrayList<Umsatz> salesArrList= new ArrayList<>();  
         
         try {             
@@ -798,23 +787,21 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-//        for (int i = 0; i < salesArrList.size(); i++) {
-//            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
-//            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
-//        }   
+
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+
+        LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
+        LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
                
-//        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
-//        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
-        
-        int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
-        int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
+        Period period = Period.between(dateFrom, dateUntil);
+        int differenceDay = period.getDays();
         
 //        System.out.println("selectedFrom " + selectedFrom);
 //        System.out.println("selectedUntil " + selectedUntil);
 //        Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
-        int scaleY = selectedUntilIndex - selectedFromIndex;
+        int scaleY = differenceDay;
         
         int lengthY = zeroY - 15; 
         int spacingY = lengthY / scaleY;
@@ -842,8 +829,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         sortedSales.sort(Comparator.naturalOrder());
 
 //        System.out.println("difference " + scaleY);
- 
-        
+         
         for (int i = 0; i < scaleY; i++) {
             diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);
             
@@ -854,26 +840,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // SETTING THE VALUES
         
         ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();     
-        int startIndex = ComBoxDateFrom.getSelectedIndex();
-        int endIndex = ComBoxDateUntil.getSelectedIndex();
-        int loopLength = endIndex;
-        
-//        if (!(usedValuesOnXArr.size() == usedValuesOnYArr.size())) {
-//            JOptionPane.showMessageDialog(this, "Leider ist ein fehler aufgetreten", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-//        }
-        
-        if (usedValuesOnXArr.size() > usedValuesOnYArr.size()) {
-            loopLength = usedValuesOnXArr.size();
-        }
-        if (usedValuesOnXArr.size() < usedValuesOnYArr.size()) {
-            loopLength = usedValuesOnYArr.size();
-        }
-        
+               
 //        Collections.reverse(usedValuesOnXArr);
         
         System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
         System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
-        for (int i = 0; i < loopLength; i++) {
+        for (int i = 0; i < differenceDay; i++) {
             
             System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
             System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
