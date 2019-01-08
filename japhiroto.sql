@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 08. Jan 2019 um 23:38
+-- Erstellungszeit: 08. Jan 2019 um 23:48
 -- Server-Version: 10.1.37-MariaDB
 -- PHP-Version: 7.3.0
 
@@ -94,9 +94,10 @@ CREATE TABLE `bestellteartikel` (
 --
 
 INSERT INTO `bestellteartikel` (`bestellID`, `artikelID`, `anzahl`) VALUES
-(55555, 1, 2),
-(55555, 5312483, 7),
-(134842, 711, 6);
+(2728, 1, 1),
+(2728, 711, 1),
+(55555, 457842, 1),
+(55555, 531874, 1);
 
 -- --------------------------------------------------------
 
@@ -115,10 +116,10 @@ CREATE TABLE `bestellung` (
 --
 
 INSERT INTO `bestellung` (`bestellNummer`, `lieferant`, `erledigt`) VALUES
-('123456', 'Obst und Gemüse GmbH', 0),
-('134842', 'BoFrost', 0),
-('453846', 'Warenhandel Walzer', 1),
-('55555', 'Fünfer Lieferungen', 0);
+('12345', 'Obst und Gemüse GmbH', 0),
+('5526', 'BoFrost', 1),
+('55555', 'Fünfer', 0),
+('8899552', 'Bauhaus', 0);
 
 -- --------------------------------------------------------
 
@@ -163,19 +164,19 @@ CREATE TABLE `umsatz` (
 --
 
 INSERT INTO `umsatz` (`umsatzNr`, `zeitstempel`, `umsatz`) VALUES
-(0, '2019-01-08 22:05:55', 0.8),
-(1, '2019-01-08 22:06:04', 1),
-(2, '2019-01-08 23:00:00', 10),
-(3, '2019-01-09 23:00:00', 20),
-(4, '2019-01-10 23:00:00', 30),
-(5, '2019-01-11 23:00:00', 40),
-(6, '2019-01-09 23:00:00', 20),
-(7, '2019-01-10 23:00:00', 30),
-(8, '2019-01-11 23:00:00', 40),
-(9, '2019-01-12 23:00:00', 50),
-(10, '2019-01-13 23:00:00', 60),
-(11, '2019-01-14 23:00:00', 70),
-(12, '2019-01-15 23:00:00', 80);
+(0, '2019-01-08 21:05:55', 0.8),
+(1, '2019-01-08 21:06:04', 1),
+(2, '2019-01-08 22:00:00', 10),
+(3, '2019-01-09 22:00:00', 20),
+(4, '2019-01-10 22:00:00', 30),
+(5, '2019-01-11 22:00:00', 40),
+(6, '2019-01-09 22:00:00', 20),
+(7, '2019-01-10 22:00:00', 30),
+(8, '2019-01-11 22:00:00', 40),
+(9, '2019-01-12 22:00:00', 50),
+(10, '2019-01-13 22:00:00', 60),
+(11, '2019-01-14 22:00:00', 70),
+(12, '2019-01-15 22:00:00', 80);
 
 --
 -- Indizes der exportierten Tabellen
@@ -210,12 +211,6 @@ ALTER TABLE `bestellung`
 --
 ALTER TABLE `mitarbeiter`
   ADD PRIMARY KEY (`mitarbeiterId`);
-
---
--- Indizes für die Tabelle `umsatz`
---
-ALTER TABLE `umsatz`
-  ADD PRIMARY KEY (`umsatzNr`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
