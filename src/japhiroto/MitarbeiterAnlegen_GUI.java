@@ -72,7 +72,7 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
         btnAnlegen = new javax.swing.JButton();
         btnZurueck = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Anlegen");
         setResizable(false);
 
@@ -149,9 +149,8 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
                                         .addComponent(txfVorname)
                                         .addComponent(txfStrasse, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                         .addComponent(txfOrt)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txfHausnr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                                            .addComponent(txfPLZ, javax.swing.GroupLayout.Alignment.LEADING)))
+                                        .addComponent(txfHausnr, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                                        .addComponent(txfPLZ))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txfLohnEuro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

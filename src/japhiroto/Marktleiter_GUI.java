@@ -128,6 +128,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         btnLoadList = new javax.swing.JButton();
         btnLoadDates = new javax.swing.JButton();
         btnMitarbeiterAnlegen = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -272,6 +273,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Account Erstellen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -324,6 +332,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnMitarbeiterAnlegen))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -416,7 +426,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMitarbeiter)
-                    .addComponent(btnMitarbeiterAnlegen))
+                    .addComponent(btnMitarbeiterAnlegen)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLoadList)
@@ -602,6 +613,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private void btnMitarbeiterAnlegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMitarbeiterAnlegenActionPerformed
         new MitarbeiterAnlegen_GUI().setVisible(true);
     }//GEN-LAST:event_btnMitarbeiterAnlegenActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new AccountErstellen_GUI().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
@@ -1063,6 +1078,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnShowSales;
     private javax.swing.JButton btnWarehouseList;
     private java.awt.Canvas cvDrawField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jListEmployees;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAnrede;
