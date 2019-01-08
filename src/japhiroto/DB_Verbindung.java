@@ -128,6 +128,36 @@ public class DB_Verbindung {
         
     }
     
+    public ArrayList<Umsatz> getAllSales() throws SQLException{
+        //returns array with all employees from the database
+        
+        Umsatz sale;
+        ArrayList<Umsatz> salesArray;
+        
+        String comm = String.format("SELECT * FROM umsatz ");
+        ResultSet rs = abfragen(comm);
+        
+        salesArray = new ArrayList<>();                   
+   
+        while (rs.next()) {   
+            
+//            String[] partsUntil = rs.getString(2).split(" ");
+//            String splittedString = partsUntil[0];      
+//       
+//            sale = new Umsatz(rs.getInt(1), splittedString, rs.getDouble(3));
+            sale = new Umsatz(rs.getInt(1), rs.getTimestamp(2), rs.getDouble(3));
+
+            salesArray.add(sale);
+
+        } 
+        
+        //        TESTDATA
+//        salesArray.add(new Umsatz(1,"10.05.2018",88.5));
+//        salesArray.add(new Umsatz(2,"11.05.2018",100.5));
+//        salesArray.add(new Umsatz(3,"12.05.2018",200.7));       
+
+        return salesArray;   
+    }   
         
     public void mitarbeiterAnlegen(Mitarbeiter marb) throws SQLException{
         //der übergebene Mitabeiter wird der DB hinzugefügt

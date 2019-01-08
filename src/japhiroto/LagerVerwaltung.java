@@ -27,8 +27,8 @@ public class LagerVerwaltung {
     public boolean verbindungSchliessen() throws SQLException{
         return verbindung.verbindungSchliessen();
     }
-    
-    public void artikelHinzufuegen(Artikel art) throws SQLException{
+
+    public void artikelHinzufuegen(Artikel art)throws SQLException{
         verbindung.artikelHinzufuegen(art);
     }
     
