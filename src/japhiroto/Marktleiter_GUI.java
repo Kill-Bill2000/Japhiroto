@@ -713,10 +713,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Bitte zuerst die Daten Laden", "ERROR", JOptionPane.INFORMATION_MESSAGE);
         }
-    
+        
         LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
         LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
-               
+        
+        if (dateFrom.isAfter(dateUntil)) {
+            JOptionPane.showMessageDialog(this, "Datum im Feld `Von` darf nicht nach dem Datum im Feld `Bis` liegen", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+       
         Period period = Period.between(dateFrom, dateUntil);
         int differenceDay = period.getDays();
         int differenceMonth = period.getMonths();            
@@ -875,8 +879,15 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
 //            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
             
-            int posX = usedValuesOnXArr.get(i);
-            int posY = usedValuesOnYArr.get(i);
+            int posX = 0;
+            int posY = 0;
+            
+            try {
+                posX = usedValuesOnXArr.get(i);
+                posY = usedValuesOnYArr.get(i);
+            } catch (Exception e) {
+            }
+    
             
 //            System.out.println("posX " + posX);
 //            System.out.println("posY " + posY);
