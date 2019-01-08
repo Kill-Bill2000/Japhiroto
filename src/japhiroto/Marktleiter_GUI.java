@@ -72,7 +72,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         setProperties();                  
     }
     
-    public void setProperties(){
+    private void setProperties(){
         //Position in der Mitte des Bildschirms
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation((int)(screenSize.getWidth() - this.getWidth()) / 2, (int)(screenSize.getHeight() - this.getHeight()) / 2);
