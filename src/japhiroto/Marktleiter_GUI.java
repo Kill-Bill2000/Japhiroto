@@ -479,10 +479,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
-//        cvDrawField.repaint();
-//        diagram.setColor(Color.white);
-//        diagram.fillRect(0,0,sizeX, sizeY);
-//        diagram.clearRect(0,0,sizeX, sizeY);
+        diagram.clearRect(0, 0, cvDrawField.getWidth(), cvDrawField.getHeight());
+
         drawAxes();
         drawSelectedDates();
         drawSelectedSales();
@@ -663,11 +661,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         String[] partsDateTime = inputString.split(" ");
         String date = partsDateTime[0];        
-        String time = partsDateTime[1];
-        
+        String time = partsDateTime[1];        
 //                                                                                System.out.println("Date " + FromDate);
-//                                                                                System.out.println("Time " + FromTime);
-        
+//                                                                                System.out.println("Time " + FromTime);        
         String[] partsDate = date.split("\\-");
         int year = Integer.valueOf(partsDate[0]);        
         int month = Integer.valueOf(partsDate[1]);
@@ -675,155 +671,44 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         String[] TimePartsFrom = time.split("\\:");
         int hour = Integer.valueOf(TimePartsFrom[0]);        
-        int minute = Integer.valueOf(TimePartsFrom[1]);
-        
+        int minute = Integer.valueOf(TimePartsFrom[1]);        
 //                                                                                System.out.println("yearFrom " + yearFrom);
 //                                                                                System.out.println("monthFrom " + monthFrom);
 //                                                                                System.out.println("dayFrom " + dayFrom);
 //                                                                                System.out.println("hourFrom " + hourFrom);
 //                                                                                System.out.println("minuteFrom " + minuteFrom);
-
         return LocalDateTime.of(year, month, day, hour, minute);
     }
     
-    private LocalDateTime dateTimeFrom(){
-              
-        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-
-        //input type String
-//        String selectedFrom = "2018-05-01";
-//        String selectedUntil = "2018-11-05"; 
-
-        //String splitting
+    private LocalDate convertStringIntoLocalDate(String inputString){
         
-        //Splitting the from combobox      
-        String[] partsDateTimeFrom = selectedFrom.split(" ");
-        String FromDate = partsDateTimeFrom[0];        
-        String FromTime = partsDateTimeFrom[1];
-        
+        String[] partsDateTime = inputString.split(" ");
+        String date = partsDateTime[0];         
 //                                                                                System.out.println("Date " + FromDate);
-//                                                                                System.out.println("Time " + FromTime);
-        
-        String[] partsFrom = FromDate.split("\\-");
-        int yearFrom = Integer.valueOf(partsFrom[0]);        
-        int monthFrom = Integer.valueOf(partsFrom[1]);
-        int dayFrom = Integer.valueOf(partsFrom[2]);
-        
-        String[] TimePartsFrom = FromTime.split("\\:");
-        int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
-        int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
-        
+//                                                                                System.out.println("Time " + FromTime);        
+        String[] partsDate = date.split("\\-");
+        int year = Integer.valueOf(partsDate[0]);        
+        int month = Integer.valueOf(partsDate[1]);
+        int day = Integer.valueOf(partsDate[2]);
 //                                                                                System.out.println("yearFrom " + yearFrom);
 //                                                                                System.out.println("monthFrom " + monthFrom);
 //                                                                                System.out.println("dayFrom " + dayFrom);
 //                                                                                System.out.println("hourFrom " + hourFrom);
 //                                                                                System.out.println("minuteFrom " + minuteFrom);
-
-        return LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
+        return LocalDate.of(year, month, day);
     }
     
-    private LocalDateTime dateTimeUntil(){
-              
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-                                                                  
-//                                                                                System.out.println("Switching to until ");
-        //Splitting the until combobox        
-        String[] partsDateTimeUntil = selectedUntil.split(" ");
-        String UntilDate = partsDateTimeUntil[0];        
-        String UntilTime = partsDateTimeUntil[1];
-        
-//                                                                                System.out.println("Date " + UntilDate);
-//                                                                                System.out.println("Time " + UntilTime);
-                                                                                
-        String[] partsUntil = UntilDate.split("\\-");
-        int yearUntil = Integer.valueOf(partsUntil[0]);      
-        int monthUntil = Integer.valueOf(partsUntil[1]);
-        int dayUntil = Integer.valueOf(partsUntil[2]);
-        
-        String[] TimePartsUntil = UntilTime.split("\\:");
-        int hourUntil = Integer.valueOf(TimePartsUntil[0]);        
-        int minuteUntil = Integer.valueOf(TimePartsUntil[1]);
 
-//                                                                                System.out.println("yearFrom " + yearFrom);
-//                                                                                System.out.println("monthFrom " + monthFrom);
-//                                                                                System.out.println("dayFrom " + dayFrom);
-//                                                                                System.out.println("hourUntil " + hourUntil);
-//                                                                                System.out.println("minuteUntil " + minuteUntil);
-
-        return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
-    }
-    
-    private  LocalDate dateFrom(){
-              
-        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-       
-        //Splitting the from combobox      
-        String[] partsDateTimeFrom = selectedFrom.split(" ");
-        String FromDate = partsDateTimeFrom[0];        
-        
-//                                                                                System.out.println("Date " + FromDate);
-//                                                                                System.out.println("Time " + FromTime);
-        
-        String[] partsFrom = FromDate.split("\\-");
-        int yearFrom = Integer.valueOf(partsFrom[0]);        
-        int monthFrom = Integer.valueOf(partsFrom[1]);
-        int dayFrom = Integer.valueOf(partsFrom[2]);
-        
-        
-//                                                                                System.out.println("yearFrom " + yearFrom);
-//                                                                                System.out.println("monthFrom " + monthFrom);
-//                                                                                System.out.println("dayFrom " + dayFrom);
-//                                                                                System.out.println("hourFrom " + hourFrom);
-//                                                                                System.out.println("minuteFrom " + minuteFrom);
-                                                                                
-//                                                                                System.out.println("Switching to until ");
-        //Splitting the until combobox        
-        String[] partsDateTimeUntil = selectedUntil.split(" ");
-        
-//                                                                                System.out.println("Date " + UntilDate);
-//                                                                                System.out.println("Time " + UntilTime);
-                                                                                
-        return LocalDate.of(yearFrom, monthFrom, dayFrom);
-    }
-    
-    private LocalDate dateUntil(){
-              
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-        
-      
-//                                                                                System.out.println("Date " + FromDate);
-//                                                                                System.out.println("Time " + FromTime);
-                                                                        
-//                                                                                System.out.println("Switching to until ");
-        //Splitting the until combobox        
-        String[] partsDateTimeUntil = selectedUntil.split(" ");
-        String UntilDate = partsDateTimeUntil[0];        
-        
-//                                                                                System.out.println("Date " + UntilDate);
-//                                                                                System.out.println("Time " + UntilTime);
-                                                                                
-        String[] partsUntil = UntilDate.split("\\-");
-        int yearUntil = Integer.valueOf(partsUntil[0]);      
-        int monthUntil = Integer.valueOf(partsUntil[1]);
-        int dayUntil = Integer.valueOf(partsUntil[2]);
-        
-//                                                                                System.out.println("yearFrom " + yearFrom);
-//                                                                                System.out.println("monthFrom " + monthFrom);
-//                                                                                System.out.println("dayFrom " + dayFrom);
-//                                                                                System.out.println("hourUntil " + hourUntil);
-//                                                                                System.out.println("minuteUntil " + minuteUntil);
-
-        return LocalDate.of(yearUntil, monthUntil, dayUntil);
-    }    
-    
     private int drawSelectedDates(){  
-        LocalDateTime dateTimeFrom = dateTimeFrom();
-        LocalDateTime dateTimeUntil = dateTimeUntil();
-        //conversion String to LocalDate
-    
-        LocalDate dateFrom = dateFrom();
-        LocalDate dateUntil = dateUntil();
+        
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        
+        LocalDateTime dateTimeFrom = convertStringIntoLocalDateTime(selectedFrom);
+        LocalDateTime dateTimeUntil = convertStringIntoLocalDateTime(selectedUntil);
+
+        LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
+        LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
         
         //getting duration between selected dates#
         Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
@@ -922,7 +807,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        }
         return spacingX;
     }
-    
+        
     private int drawSelectedSales(){  
 
 //        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
@@ -995,29 +880,157 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         }
         
         // SETTING THE VALUES
-            
+        
+        int spacingX = drawSelectedDates();     
         int startIndex = ComBoxDateFrom.getSelectedIndex();
         int endIndex = ComBoxDateUntil.getSelectedIndex();
         
+        
         for (int i = startIndex; i < endIndex; i++) {
-            String activeItem = ComBoxDateUntil.getItemAt(i);    
-
+            String selectedItem = ComBoxDateUntil.getItemAt(i);    
+            int day = convertStringIntoLocalDateTime(selectedItem).getDayOfMonth();
+            
+            for (int j = 0; j < scaleY; j++) {
+                diagram.drawString("X", zeroX + j*day, zeroY - spacingY * j);
+            }
         }
-        convertStringIntoLocalDateTime(activeItem).getDayOfMonth();
-        
-        
-        
-        int spacingX = drawSelectedDates(); 
-        
-        
-        
-        for (int i = 0; i < scaleY; i++) {
-            diagram.drawString("X", zeroX + i*spacingX, zeroY - spacingY * i);
-        }
-        
-        
         
         return spacingY;
+    }
+    
+    //////////// UNUSED  ////////////    
+    //////////// METHODS ////////////
+    //////////// BELOW   ////////////
+    
+    private  LocalDate dateFrom(){
+              
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+       
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
+        
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
+        int yearFrom = Integer.valueOf(partsFrom[0]);        
+        int monthFrom = Integer.valueOf(partsFrom[1]);
+        int dayFrom = Integer.valueOf(partsFrom[2]);
+        
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+                                                                                
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        return LocalDate.of(yearFrom, monthFrom, dayFrom);
+    }
+    
+    private LocalDate dateUntil(){
+              
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        
+      
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+                                                                        
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        String UntilDate = partsDateTimeUntil[0];        
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        String[] partsUntil = UntilDate.split("\\-");
+        int yearUntil = Integer.valueOf(partsUntil[0]);      
+        int monthUntil = Integer.valueOf(partsUntil[1]);
+        int dayUntil = Integer.valueOf(partsUntil[2]);
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
+
+        return LocalDate.of(yearUntil, monthUntil, dayUntil);
+    }    
+       
+    private LocalDateTime dateTimeFrom(){
+              
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+
+        //input type String
+//        String selectedFrom = "2018-05-01";
+//        String selectedUntil = "2018-11-05"; 
+
+        //String splitting
+        
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
+        String FromTime = partsDateTimeFrom[1];
+        
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
+        int yearFrom = Integer.valueOf(partsFrom[0]);        
+        int monthFrom = Integer.valueOf(partsFrom[1]);
+        int dayFrom = Integer.valueOf(partsFrom[2]);
+        
+        String[] TimePartsFrom = FromTime.split("\\:");
+        int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
+        int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+
+        return LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
+    }
+    
+    private LocalDateTime dateTimeUntil(){
+              
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+                                                                  
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        String UntilDate = partsDateTimeUntil[0];        
+        String UntilTime = partsDateTimeUntil[1];
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        String[] partsUntil = UntilDate.split("\\-");
+        int yearUntil = Integer.valueOf(partsUntil[0]);      
+        int monthUntil = Integer.valueOf(partsUntil[1]);
+        int dayUntil = Integer.valueOf(partsUntil[2]);
+        
+        String[] TimePartsUntil = UntilTime.split("\\:");
+        int hourUntil = Integer.valueOf(TimePartsUntil[0]);        
+        int minuteUntil = Integer.valueOf(TimePartsUntil[1]);
+
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
+
+        return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
     }
     
     private LocalDateTime allDates(){
