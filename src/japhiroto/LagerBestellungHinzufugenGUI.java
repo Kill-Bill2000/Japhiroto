@@ -177,7 +177,8 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Bestellung hinzufügen");
 
         lblBestellung.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblBestellung.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
