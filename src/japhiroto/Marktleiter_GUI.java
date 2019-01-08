@@ -743,29 +743,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
             int usedValuesOnX = datesArrList.get(i).getZeitstempel().getDayOfMonth();
             diagram.drawString(usedValuesOnX + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            usedValuesOnXArr.add(usedValuesOnX);
-            
-//            int labeling = Integer.valueOf(usedValue) + i;
-            
-            //changes the font size to smaller numbers in order to fit more 
-//            if (scaleX > 20) {
-//                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
-//            }
-//            
-//            if (labeling <= 30) {               
-//                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
-//            }            
-//            if (labeling > 30) {                
-//                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
-//                countOver30 = countOver30 +1;
-//                System.out.println("countOver30 " + countOver30);
-//            }                 
+            usedValuesOnXArr.add(usedValuesOnX);            
         }
-        
-//        for (int i = 0; i < scaleY; i++) {
-//            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
-//        }
-
         return usedValuesOnXArr;
     }
         
