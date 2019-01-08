@@ -72,7 +72,7 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
         btnZurueck = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Anlegen");
+        setTitle("Mitarbeiter anlegen");
         setResizable(false);
 
         lblUeberschrift.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

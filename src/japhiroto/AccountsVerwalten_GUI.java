@@ -88,6 +88,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
         btnLaden = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Accounts verwalten");
 
         lblUeberschrift.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblUeberschrift.setText("Accounts verwalten");
