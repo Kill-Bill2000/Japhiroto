@@ -24,157 +24,161 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSeparator1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblMitarbeiter" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="scrlPanAuswahl" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="lblAuswahl" min="-2" pref="55" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnLoadList" min="-2" pref="96" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfStrasse" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblHausNr" max="32767" attributes="0"/>
-                                  <Component id="txfHausNr" min="-2" pref="48" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfVorname" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txfNachname" min="-2" pref="99" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblStundenlohn" max="32767" attributes="0"/>
-                                  <Component id="txfStundenlohn" min="-2" pref="71" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfOrt" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnPrint" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblStatusBestellungen" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblBestellt" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblVerschickt" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblInBearb" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txfBestellt" max="32767" attributes="0"/>
-                                                  <Component id="txfVerschickt" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txfInBearb" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Component id="btnOrders" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnWarehouseList" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnShowSales" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ComBoxDateFrom" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDatumauswahl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="lblDatumVon" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="lblDatumBis" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="ComBoxDateUntil" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                          <Component id="lblMitarbeiter" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="lblUmsatz" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cvDrawField" min="-2" pref="500" max="-2" attributes="0"/>
+                      <EmptySpace pref="451" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="scrlPanAuswahl" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblAuswahl" min="-2" pref="55" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnLoadList" min="-2" pref="96" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txfMitarbeiterID" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txfAnrede" min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblAnrede" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfStrasse" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblHausNr" max="32767" attributes="0"/>
+                                          <Component id="txfHausNr" min="-2" pref="48" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblPLZ" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfPLZ" min="-2" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="lblVorname" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfVorname" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txfNachname" min="-2" pref="99" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblStundenlohn" max="32767" attributes="0"/>
+                                          <Component id="txfStundenlohn" min="-2" pref="71" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="lblOrt" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txfOrt" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lblBestellt" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="lblVerschickt" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="lblInBearb" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="txfBestellt" max="32767" attributes="0"/>
+                                                              <Component id="txfVerschickt" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="txfInBearb" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="lblStatusBestellungen" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Component id="lblDatumauswahl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                          <Component id="lblDatumBis" min="-2" pref="25" max="-2" attributes="0"/>
+                                                          <Component id="lblDatumVon" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="ComBoxDateFrom" min="-2" pref="148" max="-2" attributes="0"/>
+                                                          <Component id="ComBoxDateUntil" min="-2" pref="148" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="btnOrders" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnWarehouseList" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                                      <Component id="btnShowSales" min="-2" pref="185" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnLoadDates" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cvDrawField" min="-2" pref="500" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
+          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="lblUmsatz" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lblUmsatz" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnShowSales" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDatumauswahl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="btnWarehouseList" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="btnOrders" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblDatumVon" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="ComBoxDateUntil" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="ComBoxDateFrom" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                          <Component id="lblDatumBis" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
+                      <Component id="lblDatumauswahl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ComBoxDateFrom" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDatumVon" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="ComBoxDateUntil" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDatumBis" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnLoadDates" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnShowSales" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnWarehouseList" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnOrders" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblStatusBestellungen" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -191,31 +195,24 @@
                           <Component id="txfInBearb" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblInBearb" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
-                      <Component id="btnPrint" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="cvDrawField" min="-2" pref="400" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="cvDrawField" min="-2" pref="400" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblMitarbeiter" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnLoadList" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAuswahl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblMitarbeiter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnLoadList" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAuswahl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrlPanAuswahl" min="-2" pref="139" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="scrlPanAuswahl" min="-2" pref="139" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblVorname" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblAnrede" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -228,7 +225,7 @@
                                   <Component id="txfMitarbeiterID" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblNachname" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -243,17 +240,17 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="lblStarsse" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txfStrasse" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="lblHausNr" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txfHausNr" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblOrt" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPLZ" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -267,7 +264,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -348,24 +345,22 @@
         <Property name="text" type="java.lang.String" value="Nachname"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="ComBoxDateUntil">
+    <Component class="javax.swing.JComboBox" name="ComBoxDateFrom">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComBoxDateFromActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDatumauswahl">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Datumauswahl"/>
+        <Property name="text" type="java.lang.String" value="Datumauswahl:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDatumVon">
@@ -378,19 +373,14 @@
         <Property name="text" type="java.lang.String" value="Bis:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="ComBoxDateFrom">
+    <Component class="javax.swing.JComboBox" name="ComBoxDateUntil">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComBoxDateFromActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComBoxDateUntilActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -430,14 +420,6 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="Anzahl"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnPrint">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;  Aktuelle&lt;br /&gt;Darstellung&lt;br /&gt;  Drucken&lt;/html&gt;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblBestellt">
       <Properties>
@@ -545,6 +527,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadListActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLoadDates">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Daten Laden"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadDatesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
