@@ -77,6 +77,12 @@ public class Kasse_Verwaltung {
     }
     public void artikelAbziehen(ArrayList<Artikel> artikelliste) throws SQLException, IOException{
         for (int i = 0; i < artikelliste.size(); i++) {
+            if(artikelliste.get(i).getArtikelNummer().equals(0)){
+                artikelliste.remove(i);
+            }
+        }
+        
+        for (int i = 0; i < artikelliste.size(); i++) {
             dieDB_Verbindung.verkaufeArtikel(artikelliste.get(i).getArtikelNummer(), artikelliste.get(i).getAnzahl());
         }
     }
@@ -90,15 +96,15 @@ public class Kasse_Verwaltung {
     }
     public String ausgabeHeader(){
         String text;
-        text = "  IT-Schule Stuttgart Testladen24\n"+
-                "      Breitwießenstraße 20-22\n"+
-                "          70565 Stuttgart\n"+
-                "   Tel.: +49 (0) 711 216 89 –053\n\n\n"; 
+        text = "  IT-Schule Stuttgart Testladen24\r\n"+
+                "      Breitwießenstraße 20-22\r\n"+
+                "          70565 Stuttgart\r\n"+
+                "   Tel.: +49 (0) 711 216 89 –053\r\n\r\n\r\n"; 
         return text;
     }
     
     public String kassenzettelErstellen(ArrayList<Artikel> artikelliste){
-        String ausgabe="Artikel:"+"\n"+"\n";
+        String ausgabe="Artikel:"+"\r\n"+"\r\n";
         for (int i = 0; i < artikelliste.size();i++) {
             String name,leerzeichen="";
             int anzahlBuchstaben;
@@ -112,17 +118,17 @@ public class Kasse_Verwaltung {
                 for (int j=0; j<=anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
-                ausgabe = ausgabe + teil1+"-"+"\n"+
-                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
-                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n";
+                ausgabe = ausgabe + teil1+"-"+"\r\n"+
+                teil2+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\r\n"+
+                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\r\n"+"\r\n";
             }
             else{
                 anzahlLeerzeichen = 28 - anzahlBuchstaben;
                 for (int j=0; j<anzahlLeerzeichen; j++){
                     leerzeichen = leerzeichen +" ";
                 }
-                ausgabe= ausgabe +name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\n"+
-                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\n"+"\n";
+                ausgabe= ausgabe +name+leerzeichen+artikelliste.get(i).getPreis()+"€"+"\r\n"+
+                        "Anzahl: "+artikelliste.get(i).getAnzahl()+"\r\n"+"\r\n";
             }
         }
         return ausgabe;
@@ -137,8 +143,8 @@ public class Kasse_Verwaltung {
         sGegeben = df.format(gegeben);
         sRueck = df.format(rueck);
         sGesamt = df.format(gesamt);
-        ausgabe = "=============================="+"\n"+"Gesamt:                  "+sGesamt+"€"+"\n"+"Gegeben:                 "+sGegeben+"€"+"\n"+
-                "Zurück:                  "+sRueck+"€"+"\n"+"\n"+"Vielen Dank für"+"\n"+"Ihren Einkauf!";
+        ausgabe = "=============================="+"\r\n"+"Gesamt:                  "+sGesamt+"€"+"\r\n"+"Gegeben:                 "+sGegeben+"€"+"\r\n"+
+                "Zurück:                  "+sRueck+"€"+"\r\n"+"\r\n"+"Vielen Dank für"+"\r\n"+"Ihren Einkauf!";
         
         return ausgabe;
     }

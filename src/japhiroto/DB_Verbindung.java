@@ -8,6 +8,8 @@ package japhiroto;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -99,14 +101,14 @@ public class DB_Verbindung {
     
     private void updaten(String sqlBefehl) throws SQLException{
         //erstellt ein Statement mit dem übergebenen SQL-Befehl und 
-        //sendet ein Update (ISERT, UPDATE, DELETE) an die DB
+        //sendet ein Update (INSERT, UPDATE, DELETE) an die DB
         //Statement wird dann wieder geschlossen
         Statement stmt;
         
         stmt = con.createStatement();
         stmt.executeUpdate(sqlBefehl);
         
-        stmt.close();
+        //stmt.close();
     }
       
 //    Setzt den Umsatz der Kasse in die DB
@@ -455,7 +457,7 @@ public class DB_Verbindung {
         ArrayList<Artikel> artikel = new ArrayList<>();
         String befehl;
         
-        befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);;
+        befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
             artikel.add(new Artikel(rs.getString("bezeichnung"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
@@ -463,4 +465,10 @@ public class DB_Verbindung {
         
         return artikel;
     }
+    
+    public void artikelHinzufuegen(Artikel art) throws SQLException{
+        String befehl = String.format("INSERT INTO artikel VALUES ('%1$s', '%2$s', '%3$s', '%4$s')", art.getArtikelNummer(), art.getName(), art.getPreis(), art.getAnzahl());
+        updaten(befehl);
+    }
+    
 }
