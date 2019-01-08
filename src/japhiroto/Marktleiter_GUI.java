@@ -741,6 +741,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         for (int i = 0; i < scaleX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
+            
             int usedValuesOnX = datesArrList.get(i).getZeitstempel().getDayOfMonth();
             diagram.drawString(usedValuesOnX + ".", zeroX + i*spacingX - 5, zeroY + 20);
             usedValuesOnXArr.add(usedValuesOnX);            
@@ -748,7 +749,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         return usedValuesOnXArr;
     }
         
-    private int drawSelectedSales(){  
+    private ArrayList<Double> drawSelectedSales(){  
 
 //        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
 //        ComBoxDateFrom.setModel(listFrom);  
@@ -810,36 +811,53 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         sortedSales.sort(Comparator.naturalOrder());
 
 //        System.out.println("difference " + scaleY);
+        ArrayList<Double> usedValuesOnYArr= new ArrayList<>(); 
         
         for (int i = 0; i < scaleY; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);    
+            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);
+            Double usedValuesOnY = sortedSales.get(i);
             diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
+            usedValuesOnYArr.add(usedValuesOnY);
         } 
         
         // SETTING THE VALUES
         
-//        int spacingX = drawSelectedDates();     
-//        int startIndex = ComBoxDateFrom.getSelectedIndex();
-//        int endIndex = ComBoxDateUntil.getSelectedIndex();
-//        
-//        
-//        for (int i = startIndex; i < endIndex; i++) {
-//            
-//            int posX = 0;
-//            int posY = 0;
-//            for (int j = 0; j < scaleY; j++) {
-//                String selectedItem = ComBoxDateUntil.getItemAt(i);    
-//                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
-//                posX = zeroX + spacingX*day - 3;  
-//                posY = zeroY - spacingY * j + 5;
-//                                    
-//                
-//               
-//            }
-//             diagram.drawString("X", posX, posY);
+        ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();     
+        int startIndex = ComBoxDateFrom.getSelectedIndex();
+        int endIndex = ComBoxDateUntil.getSelectedIndex();
+         int loopLength = 0;
+        
+//        if (!(usedValuesOnXArr.size() == usedValuesOnYArr.size())) {
+//            JOptionPane.showMessageDialog(this, "Leider ist ein fehler aufgetreten", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
 //        }
         
-        return spacingY;
+        if (usedValuesOnXArr.size() > usedValuesOnYArr.size()) {
+            loopLength = usedValuesOnXArr.size();
+        }
+        if (usedValuesOnXArr.size() < usedValuesOnYArr.size()) {
+            loopLength = usedValuesOnYArr.size();
+        }
+        for (int i = 0; i < loopLength; i++) {
+            
+            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
+            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
+            
+            int posX = zeroX + usedValuesOnXArr.size();
+            int posY = zeroY - usedValuesOnYArr.size();
+            
+            System.out.println("posX " + posX);
+            System.out.println("posY " + posY);
+//                String selectedItem = ComBoxDateUntil.getItemAt(i);    
+//                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
+//                posX = zeroX + spacingX.get(i)*day - 3;  
+//                posY = zeroY - spacingY * j + 5;                                   
+                
+              
+             diagram.drawString("X", posX, posY);
+             
+        }
+        
+        return usedValuesOnYArr;
     }
     
     //////////// UNUSED  ////////////    
