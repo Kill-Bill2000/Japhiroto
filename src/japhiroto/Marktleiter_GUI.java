@@ -595,7 +595,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             ComBoxDateFrom.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
             ComBoxDateUntil.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
         }
-        System.out.println(salesDatesArrList.get(1).getZeitstempel().format(formatter)); 
+//        System.out.println(salesDatesArrList.get(1).getZeitstempel().format(formatter)); 
     }//GEN-LAST:event_btnLoadDatesActionPerformed
 
     private void ComBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateFromActionPerformed
@@ -775,12 +775,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", zeroX + i*spacingX - 5, zeroY + 20);
         }
         
-        System.out.println("differenceDayX = " + differenceDay);
+//        System.out.println("differenceDayX = " + differenceDay);
         
         for (int i = 0; i <= differenceDay; i++) {
             int usedValuesOnX = zeroX + i*spacingX - 5;
             usedValuesOnXArr.add(usedValuesOnX);
-            System.out.println("usedValuesOnX = " + usedValuesOnX);
+//            System.out.println("usedValuesOnX = " + usedValuesOnX);
         }
         return usedValuesOnXArr;
     }
@@ -831,7 +831,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         ArrayList<Integer> usedValuesOnYArr= new ArrayList<>(); 
         List<Double> sortedSales = new ArrayList();
         
-        System.out.println("differenceDay = " + differenceDay);
+//        System.out.println("differenceDay = " + differenceDay);
         
         for (int i = 0; i < scaleY; i++) {
             sortedSales.add(i, salesArrList.get(i).getUmsatz());            
@@ -840,14 +840,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         for (int i = 0; i <= differenceDay; i++) {
             int usedValuesOnY = zeroY - spacingY * i;
             usedValuesOnYArr.add(usedValuesOnY);
-            System.out.println("usedValuesOnY = " + usedValuesOnY);
-            System.out.println("sortedSales = " + sortedSales.get(i));
+//            System.out.println("usedValuesOnY = " + usedValuesOnY);
+//            System.out.println("sortedSales = " + sortedSales.get(i));
         }
         
         sortedSales.sort(Comparator.naturalOrder());
 
         for (int i = 0; i <= differenceDay; i++) {
-            System.out.println("sortedSales = " + sortedSales.get(i));
+//            System.out.println("sortedSales = " + sortedSales.get(i));
         }
         
 //        System.out.println("difference " + scaleY);
@@ -859,18 +859,18 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         // SETTING THE VALUES
         
-        System.out.println("Calling drawSelectedDates()");
+//        System.out.println("Calling drawSelectedDates()");
         ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();   
         
-        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
-        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+//        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+//        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
                
 //        Collections.reverse(usedValuesOnXArr);
         
-        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
-        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+//        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+//        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
         
-        for (int i = 0; i < differenceDay; i++) {
+        for (int i = 0; i <= differenceDay; i++) {
             
 //            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
 //            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
