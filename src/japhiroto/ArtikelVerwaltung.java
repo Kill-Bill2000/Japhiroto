@@ -82,5 +82,11 @@ public class ArtikelVerwaltung {
         }
         db.verkaufeArtikel(artNr, anz);
     }
+    public void verbindungSchliessen() throws SQLException {
+        db.verbindungSchliessen();
+    }
+    public ArrayList<Artikel> sucheArtikel(String gesuchteArtNr) throws SQLException {
+        return db.getArtikelFromNr(gesuchteArtNr);
+    }
 }
 
