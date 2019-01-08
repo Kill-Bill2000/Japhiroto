@@ -771,10 +771,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         ArrayList<Integer> usedValuesOnXArr= new ArrayList<>(); 
         
         for (int i = 0; i < scaleX + 1; i++) {
-            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-            
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);        
+            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", zeroX + i*spacingX - 5, zeroY + 20);
+        }
+        
+        System.out.println("differenceDayX = " + differenceDay);
+        
+        for (int i = 0; i < differenceDay; i++) {
             int usedValuesOnX = zeroX + i*spacingX - 5;
-            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", usedValuesOnX, zeroY + 20);
             usedValuesOnXArr.add(usedValuesOnX);
             System.out.println("usedValuesOnX = " + usedValuesOnX);
         }
@@ -826,11 +830,17 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // Y-axis
         ArrayList<Integer> usedValuesOnYArr= new ArrayList<>(); 
         List<Double> sortedSales = new ArrayList();
-        for (int i = 0; i < scaleY; i++) {
-            sortedSales.add(i, salesArrList.get(i).getUmsatz());
+        
+        System.out.println("differenceDay = " + differenceDay);
+        
+        for (int i = 0; i < differenceDay; i++) {
             int usedValuesOnY = zeroY - spacingY * i;
             usedValuesOnYArr.add(usedValuesOnY);
             System.out.println("usedValuesOnY = " + usedValuesOnY);
+        }
+        
+        for (int i = 0; i < scaleY; i++) {
+            sortedSales.add(i, salesArrList.get(i).getUmsatz());
         }
         
         sortedSales.sort(Comparator.naturalOrder());
@@ -846,30 +856,29 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         // SETTING THE VALUES
         
-        ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();     
-               
-//        Collections.reverse(usedValuesOnXArr);
+        System.out.println("Calling drawSelectedDates()");
+        ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();   
         
         System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
         System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+               
+        Collections.reverse(usedValuesOnXArr);
+        
+        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+        
         for (int i = 0; i < differenceDay; i++) {
             
-            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
-            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
-//            
+//            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
+//            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
+            
             int posX = usedValuesOnXArr.get(i);
             int posY = usedValuesOnYArr.get(i);
             
-            System.out.println("posX " + posX);
-            System.out.println("posY " + posY);
-//                String selectedItem = ComBoxDateUntil.getItemAt(i);    
-//                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
-//                posX = zeroX + spacingX.get(i)*day - 3;  
-//                posY = zeroY - spacingY * j + 5;                                   
-                
-              
-             diagram.drawString("•", posX+2, posY + 5);
-             
+//            System.out.println("posX " + posX);
+//            System.out.println("posY " + posY);
+            
+            diagram.drawString("•", posX+2, posY + 5);             
         }
         
         return usedValuesOnYArr;
