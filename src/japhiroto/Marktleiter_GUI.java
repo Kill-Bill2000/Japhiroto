@@ -13,10 +13,11 @@ import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -274,89 +275,88 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMitarbeiter, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblUmsatz))
-                        .addContainerGap(451, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(scrlPanAuswahl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblAuswahl, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnLoadList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblID)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblAnrede))
-                                    .addComponent(lblStarsse)
-                                    .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPLZ)
-                                            .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblVorname)
-                                    .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblNachname)
-                                            .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblStundenlohn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblOrt)
-                                    .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(lblBestellt)
-                                                                .addComponent(lblVerschickt)
-                                                                .addComponent(lblInBearb))
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(txfBestellt)
-                                                                .addComponent(txfVerschickt)
-                                                                .addComponent(txfInBearb)))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(lblStatusBestellungen)
-                                                            .addGap(18, 18, 18)))
-                                                    .addComponent(lblDatumauswahl)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                            .addComponent(lblDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblDatumVon))
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(6, 6, 6))
-                                            .addComponent(btnOrders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(btnWarehouseList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnShowSales, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnLoadDates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblAuswahl, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(btnLoadList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txfMitarbeiterID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txfAnrede, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblID)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblAnrede))
+                            .addComponent(lblStarsse)
+                            .addComponent(txfStrasse, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblHausNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txfHausNr, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPLZ)
+                                    .addComponent(txfPLZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblVorname)
+                            .addComponent(txfVorname, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNachname)
+                                    .addComponent(txfNachname, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblStundenlohn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txfStundenlohn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblOrt)
+                            .addComponent(txfOrt, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lblBestellt)
+                                                        .addComponent(lblVerschickt)
+                                                        .addComponent(lblInBearb))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txfBestellt)
+                                                        .addComponent(txfVerschickt)
+                                                        .addComponent(txfInBearb)))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(lblStatusBestellungen)
+                                                    .addGap(18, 18, 18)))
+                                            .addComponent(lblDatumauswahl)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(lblDatumBis, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblDatumVon))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(ComBoxDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(ComBoxDateUntil, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(6, 6, 6))
+                                    .addComponent(btnOrders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnWarehouseList, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnShowSales, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnLoadDates, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cvDrawField, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
             .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
@@ -479,9 +479,13 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
+//        cvDrawField.repaint();
+//        diagram.setColor(Color.white);
+//        diagram.fillRect(0,0,sizeX, sizeY);
+//        diagram.clearRect(0,0,sizeX, sizeY);
         drawAxes();
         drawSelectedDates();
-        drawSales();
+        drawSelectedSales();
     }//GEN-LAST:event_btnShowSalesActionPerformed
 
     private void btnLoadListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadListActionPerformed
@@ -655,10 +659,9 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
     }
     
-    private void drawSelectedDates(){  
-      
+    private LocalDateTime dateTimeFrom(){
+              
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
         //input type String
 //        String selectedFrom = "2018-05-01";
@@ -671,8 +674,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         String FromDate = partsDateTimeFrom[0];        
         String FromTime = partsDateTimeFrom[1];
         
-                                                                                System.out.println("Date " + FromDate);
-                                                                                System.out.println("Time " + FromTime);
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
         
         String[] partsFrom = FromDate.split("\\-");
         int yearFrom = Integer.valueOf(partsFrom[0]);        
@@ -683,20 +686,27 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
         int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
         
-                                                                                System.out.println("yearFrom " + yearFrom);
-                                                                                System.out.println("monthFrom " + monthFrom);
-                                                                                System.out.println("dayFrom " + dayFrom);
-                                                                                System.out.println("hourFrom " + hourFrom);
-                                                                                System.out.println("minuteFrom " + minuteFrom);
-                                                                                
-                                                                                System.out.println("Switching to until ");
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+
+        return LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
+    }
+    
+    private LocalDateTime dateTimeUntil(){
+              
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+                                                                  
+//                                                                                System.out.println("Switching to until ");
         //Splitting the until combobox        
         String[] partsDateTimeUntil = selectedUntil.split(" ");
         String UntilDate = partsDateTimeUntil[0];        
         String UntilTime = partsDateTimeUntil[1];
         
-                                                                                System.out.println("Date " + UntilDate);
-                                                                                System.out.println("Time " + UntilTime);
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
                                                                                 
         String[] partsUntil = UntilDate.split("\\-");
         int yearUntil = Integer.valueOf(partsUntil[0]);      
@@ -704,21 +714,88 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int dayUntil = Integer.valueOf(partsUntil[2]);
         
         String[] TimePartsUntil = UntilTime.split("\\:");
-        int hourUntil = Integer.valueOf(TimePartsFrom[0]);        
-        int minuteUntil = Integer.valueOf(TimePartsFrom[1]);
+        int hourUntil = Integer.valueOf(TimePartsUntil[0]);        
+        int minuteUntil = Integer.valueOf(TimePartsUntil[1]);
 
-                                                                                System.out.println("yearFrom " + yearFrom);
-                                                                                System.out.println("monthFrom " + monthFrom);
-                                                                                System.out.println("dayFrom " + dayFrom);
-                                                                                System.out.println("hourUntil " + hourUntil);
-                                                                                System.out.println("minuteUntil " + minuteUntil);
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
 
-        //conversion String to LocalDate
-        LocalDateTime dateTimeFrom = LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
-        LocalDateTime dateTimeUntil = LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
+        return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
+    }
+    
+        private  LocalDate dateFrom(){
+              
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+       
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
         
-        LocalDate dateFrom = LocalDate.of(yearFrom, monthFrom, dayFrom);
-        LocalDate dateUntil = LocalDate.of(yearUntil, monthUntil, dayUntil);
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
+        int yearFrom = Integer.valueOf(partsFrom[0]);        
+        int monthFrom = Integer.valueOf(partsFrom[1]);
+        int dayFrom = Integer.valueOf(partsFrom[2]);
+        
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+                                                                                
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        return LocalDate.of(yearFrom, monthFrom, dayFrom);
+    }
+    
+    private LocalDate dateUntil(){
+              
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+      
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+                                                                        
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        String UntilDate = partsDateTimeUntil[0];        
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        String[] partsUntil = UntilDate.split("\\-");
+        int yearUntil = Integer.valueOf(partsUntil[0]);      
+        int monthUntil = Integer.valueOf(partsUntil[1]);
+        int dayUntil = Integer.valueOf(partsUntil[2]);
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
+
+        return LocalDate.of(yearUntil, monthUntil, dayUntil);
+    }    
+    
+    private int drawSelectedDates(){  
+        LocalDateTime dateTimeFrom = dateTimeFrom();
+        LocalDateTime dateTimeUntil = dateTimeUntil();
+        //conversion String to LocalDate
+    
+        LocalDate dateFrom = dateFrom();
+        LocalDate dateUntil = dateUntil();
         
         //getting duration between selected dates#
         Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
@@ -734,6 +811,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         System.out.println("differenceMonth " + differenceMonth);
         //TESTEND
         
+        int monthFrom = dateTimeFrom.getMonth().getValue();
+        int dayFrom = dateTimeFrom.getDayOfMonth();
+        int hourFrom = dateTimeFrom.getHour();
+        int minuteFrom = dateTimeFrom.getMinute();
+                
+                
         int scaleX = 1;
         int usedValue = 0;
         
@@ -809,11 +892,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
 //            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
 //        }
-
+        return spacingX;
     }
     
-    private void drawSales(){  
-        
+    private int drawSelectedSales(){  
+
 //        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
 //        ComBoxDateFrom.setModel(listFrom);  
 //        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
@@ -822,7 +905,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        ComBoxDateFrom.addItem("10.05.2018"); 
 //        ComBoxDateUntil.addItem("05.06.2018"); 
        
-        ArrayList<Umsatz> salesArrList= new ArrayList<>();
+        ArrayList<Umsatz> salesArrList= new ArrayList<>();  
         
         try {             
             salesArrList = database.getAllSales();
@@ -838,113 +921,120 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
 //            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
 //        }   
-              
+               
         Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
         Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
         
+        int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
+        int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
+        
         System.out.println("selectedFrom " + selectedFrom);
         System.out.println("selectedUntil " + selectedUntil);
+//        Double differenceUnrounded = selectedUntil-selectedFrom;
+//        int scaleY = differenceUnrounded.intValue();
+        int scaleY = selectedUntilIndex - selectedFromIndex;
         
-        int scaleY = 1;
-        int usedValue = 0;
-        
-        int lengthY = sizeY - zeroY - 15; 
-        int spacingX = lengthY / scaleY;
+        int lengthY = zeroY - 15; 
+        int spacingY = lengthY / scaleY;
         //TEST:
-//        System.out.println("sizeX " + sizeX);
-//        System.out.println("zeroX " + zeroX);
-//        System.out.println("lengthX " + lengthX);
-//        System.out.println("scaleX " + scaleX);
-//        System.out.println("spacingX " + spacingX);
+        System.out.println("sizeY " + sizeY);
+        System.out.println("zeroY " + zeroY);
+        System.out.println("lengthY " + lengthY);
+        System.out.println("scaleY " + scaleY);
+        System.out.println("spacingY " + spacingY);
 //        //TESTEND
         
         
         //works when using days (period < 1 Month)
-        int countOver30 = 1;
               
         // Y-axis
-        for (int i = 1; i < sizeY/20 - 2; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-            diagram.drawString(""+i, zeroX - 30, zeroY - i*20 + 5);
+
+        List<Double> sortedSales = new ArrayList();
+        for (int i = 0; i < scaleY; i++) {
+            sortedSales.add(i, salesArrList.get(i).getUmsatz());
         }
+        
+        sortedSales.sort(Comparator.naturalOrder());
 
+        System.out.println("difference " + scaleY);
+        
+        for (int i = 0; i < scaleY; i++) {
+            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);            
+        } 
+        
+        for (int i = 0; i < scaleY; i++) {
+            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
+        }
+        
+        int spacingX = drawSelectedDates(); 
+
+        for (int i = 0; i < scaleY; i++) {
+            diagram.drawString("X", zeroX + i*spacingX, zeroY - spacingY * i);
+        }
+        
+        return spacingY;
     }
-    private void drawSalesStringDate(){  
-        //testline
-//        diagram.drawLine(zeroX, zeroY, sizeX, 0);
-
-        // draw axes  
-        diagram.drawLine(zeroX - 5, zeroY, sizeX - 15, zeroY);
-        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25);
-        
-//        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-//        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();            
-        String selectedFrom = "15.09.2018";
-        String selectedUntil = "30.09.2018"; 
-        
-        String[] parts1 = selectedFrom.split("\\.");
-        String dayFrom = parts1[0];
-        String monthFrom = parts1[1];
-        String yearFrom = parts1[2];
-        
-        String[] parts2 = selectedUntil.split("\\.");
-        String dayUntil = parts2[0];
-        String monthUntil = parts2[1];
-        String yearUntil = parts2[2];        
-        
-        //TEST:
-//        System.out.println(dayFrom);
-//        System.out.println(monthFrom);
-//        System.out.println(yearFrom);
-//
-//        System.out.println(dayUntil);
-//        System.out.println(monthUntil);
-//        System.out.println(yearUntil);       
+ 
+    private LocalDateTime allDates(){
               
-        int differenceDay = Integer.valueOf(dayUntil) - Integer.valueOf(dayFrom);
-        int differenceMonth = Integer.valueOf(monthUntil) - Integer.valueOf(monthFrom);
-                
-        //TEST:
-        System.out.println("differenceDay " + differenceDay);
-        System.out.println("differenceMonth " + differenceMonth);
-        
-        int scaleX = 1;
-        
-        if (differenceDay < 30) {
-            scaleX = differenceDay;
-        }
-//        
-        if (differenceDay > 30) {
-            scaleX = differenceMonth;
-        }
-        
-        // draw scale 
-        // X-axis
-        
-        int lengthX = sizeX - zeroX; 
-        int spacingX = sizeX / scaleX;
-//        int NumberLinexX = lengthX / spacingX;
-        
-        System.out.println("sizeX " + sizeX);
-        System.out.println("zeroX " + zeroX);
-        System.out.println("lengthX " + lengthX);
-        System.out.println("scaleX " + scaleX);
-        System.out.println("spacingX " + spacingX);
-//        System.out.println("NumberLinexX " + NumberLinexX);
-        
-        for (int i = 0; i < spacingX + 1; i++) {
-            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);            
-        }
-        
-        // Y-axis
-        for (int i = 1; i < sizeY/20 - 2; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
-        }
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
 
+        //input type String
+//        String selectedFrom = "2018-05-01";
+//        String selectedUntil = "2018-11-05"; 
+
+        //String splitting
+        
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
+        String FromTime = partsDateTimeFrom[1];
+        
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
+        int yearFrom = Integer.valueOf(partsFrom[0]);        
+        int monthFrom = Integer.valueOf(partsFrom[1]);
+        int dayFrom = Integer.valueOf(partsFrom[2]);
+        
+        String[] TimePartsFrom = FromTime.split("\\:");
+        int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
+        int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+                                                                                
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        String UntilDate = partsDateTimeUntil[0];        
+        String UntilTime = partsDateTimeUntil[1];
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        String[] partsUntil = UntilDate.split("\\-");
+        int yearUntil = Integer.valueOf(partsUntil[0]);      
+        int monthUntil = Integer.valueOf(partsUntil[1]);
+        int dayUntil = Integer.valueOf(partsUntil[2]);
+        
+        String[] TimePartsUntil = UntilTime.split("\\:");
+        int hourUntil = Integer.valueOf(TimePartsUntil[0]);        
+        int minuteUntil = Integer.valueOf(TimePartsUntil[1]);
+
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
+
+        return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComBoxDateFrom;
     private javax.swing.JComboBox<String> ComBoxDateUntil;
