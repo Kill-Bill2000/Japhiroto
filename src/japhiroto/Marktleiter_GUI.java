@@ -481,7 +481,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         drawAxes();
         drawSelectedDates();
-        drawSales();
+//        drawSales();
     }//GEN-LAST:event_btnShowSalesActionPerformed
 
     private void btnLoadListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadListActionPerformed
@@ -721,7 +721,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         LocalDate dateUntil = LocalDate.of(yearUntil, monthUntil, dayUntil);
         
         //getting duration between selected dates#
-        Duration duration = Duration.between(dateFrom, dateUntil);
+        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
         int differenceHour = (int) duration.toHours();
         int differenceMinute = (int) duration.toMinutes();
         
@@ -829,10 +829,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         
-        for (int i = 0; i < salesArrList.size(); i++) {
-            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
-            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
-        }   
+//        for (int i = 0; i < salesArrList.size(); i++) {
+//            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
+//            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
+//        }   
               
         String selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).toString();
         String selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).toString();
