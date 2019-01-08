@@ -259,6 +259,16 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
             
             verb.mitarbeiterAnlegen(marb);
             
+            JOptionPane.showMessageDialog(this, "Mitarbeiter erfolgreich hinzugefügt.", "Erfolg", JOptionPane.INFORMATION_MESSAGE);
+            
+            txfVorname.setText("");
+            txfNachname.setText("");
+            txfStrasse.setText("");
+            txfHausnr.setText("");
+            txfPLZ.setText("");
+            txfOrt.setText("");
+            txfLohnEuro.setText("");
+            txfLohnCent.setText("");
             
         } catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
@@ -267,6 +277,9 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Falscher Wert für 'Hausnummer', 'PLZ' oder 'Lohn' eingegeben", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
+        
+        
+        
     }//GEN-LAST:event_btnAnlegenActionPerformed
 
     private void setProperties(){
