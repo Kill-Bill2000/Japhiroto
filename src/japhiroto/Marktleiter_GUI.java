@@ -740,9 +740,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         if (differenceMonth == 0) {
             if (differenceDay == 0){
                 if (differenceHour == 0){
-                    System.out.println("using differenceMinute " + differenceMinute);
-                    scaleX = differenceMinute; //+1 to show enought values in graph  
-                    usedValue = minuteFrom;
+                    if (differenceMinute == 0){
+                        JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    if (differenceMinute >= 1){
+                        System.out.println("using differenceMinute " + differenceMinute);
+                        scaleX = differenceMinute; //+1 to show enought values in graph  
+                        usedValue = minuteFrom;
+                    } 
                 }
                 if (differenceHour >= 1){
                     System.out.println("using differenceHour " + differenceHour);
