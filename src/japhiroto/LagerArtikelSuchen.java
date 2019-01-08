@@ -270,6 +270,9 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
 
     private void btnNeueSucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNeueSucheActionPerformed
         diaArtNrEingeben.setVisible(true);
+        diaArtNrEingeben.setLocation(this.getLocation());
+        diaArtNrEingeben.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        diaArtNrEingeben.setTitle("Artikelsuche");
     }//GEN-LAST:event_btnNeueSucheActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
