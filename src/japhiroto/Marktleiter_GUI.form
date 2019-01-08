@@ -361,7 +361,7 @@
           <StringArray count="0"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -392,7 +392,7 @@
           <StringArray count="0"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -406,7 +406,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Umsatz Anzeigen"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -417,7 +417,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Lager Anzeigen"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -428,7 +428,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Bestellungen Anzeigen"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -533,7 +533,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Liste Laden"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -544,7 +544,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Daten Laden"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -555,7 +555,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="neuen Mitarbeiter anlegen"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -566,7 +566,7 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Accounts verwalten"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Handcursor"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <Events>

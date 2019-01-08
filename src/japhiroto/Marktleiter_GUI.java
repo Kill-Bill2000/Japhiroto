@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -163,7 +164,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblNachname.setText("Nachname");
 
-        ComBoxDateFrom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComBoxDateFrom.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComBoxDateFromActionPerformed(evt);
@@ -176,7 +177,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         lblDatumBis.setText("Bis:");
 
-        ComBoxDateUntil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComBoxDateUntil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ComBoxDateUntil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComBoxDateUntilActionPerformed(evt);
@@ -184,7 +185,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnShowSales.setText("Umsatz Anzeigen");
-        btnShowSales.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnShowSales.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnShowSales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowSalesActionPerformed(evt);
@@ -192,7 +193,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnWarehouseList.setText("Lager Anzeigen");
-        btnWarehouseList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnWarehouseList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnWarehouseList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnWarehouseListActionPerformed(evt);
@@ -200,7 +201,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnOrders.setText("Bestellungen Anzeigen");
-        btnOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdersActionPerformed(evt);
@@ -246,7 +247,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         cvDrawField.setBackground(new java.awt.Color(255, 255, 255));
 
         btnLoadList.setText("Liste Laden");
-        btnLoadList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLoadList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLoadList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadListActionPerformed(evt);
@@ -254,7 +255,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnLoadDates.setText("Daten Laden");
-        btnLoadDates.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLoadDates.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLoadDates.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadDatesActionPerformed(evt);
@@ -262,7 +263,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         btnMitarbeiterAnlegen.setText("neuen Mitarbeiter anlegen");
-        btnMitarbeiterAnlegen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMitarbeiterAnlegen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMitarbeiterAnlegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMitarbeiterAnlegenActionPerformed(evt);
@@ -270,7 +271,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
 
         jButton1.setText("Accounts verwalten");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -498,10 +499,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
-//        cvDrawField.repaint();
-//        diagram.setColor(Color.white);
-//        diagram.fillRect(0,0,sizeX, sizeY);
-//        diagram.clearRect(0,0,sizeX, sizeY);
+        diagram.clearRect(0, 0, cvDrawField.getWidth(), cvDrawField.getHeight());
+
         drawAxes();
         drawSelectedDates();
         drawSelectedSales();
@@ -655,6 +654,365 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
     }
     
+    
+    private void drawAxes(){
+        //testline
+//        diagram.drawLine(zeroX, zeroY, sizeX, 0);
+
+        // draw axes  
+        diagram.drawLine(zeroX - 5, zeroY, sizeX - 15, zeroY);
+        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25); 
+        
+    }
+    
+    /*private LocalDateTime convertStringIntoLocalDateTime(String inputString){
+        
+        String[] partsDateTime = inputString.split(" ");
+        String date = partsDateTime[0];        
+        String time = partsDateTime[1];        
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);        
+        String[] partsDate = date.split("\\-");
+        int year = Integer.valueOf(partsDate[0]);        
+        int month = Integer.valueOf(partsDate[1]);
+        int day = Integer.valueOf(partsDate[2]);
+        
+        String[] TimePartsFrom = time.split("\\:");
+        int hour = Integer.valueOf(TimePartsFrom[0]);        
+        int minute = Integer.valueOf(TimePartsFrom[1]);        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+        return LocalDateTime.of(year, month, day, hour, minute);
+    }*/
+    
+    private LocalDate convertStringIntoLocalDate(String inputString){
+        
+        String[] partsDateTime = inputString.split(" ");
+        String date = partsDateTime[0];         
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);        
+        String[] partsDate = date.split("\\-");
+        int year = Integer.valueOf(partsDate[0]);        
+        int month = Integer.valueOf(partsDate[1]);
+        int day = Integer.valueOf(partsDate[2]);
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+        return LocalDate.of(year, month, day);
+    }
+    
+    private ArrayList<Integer> drawSelectedDates(){  
+        
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+
+        LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
+        LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
+               
+        Period period = Period.between(dateFrom, dateUntil);
+        int differenceDay = period.getDays();
+        int differenceMonth = period.getMonths();            
+  
+        //TEST:
+//        System.out.println("differenceDay " + differenceDay);
+//        System.out.println("differenceMonth " + differenceMonth);
+        //TESTEND
+//      
+
+        int dayFrom = dateFrom.getDayOfMonth();
+
+        int scaleX = 1;
+        
+        if (differenceMonth == 0) {
+            if (differenceDay == 0){
+                JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                return null;
+            }
+            if (differenceDay >= 1){
+//                System.out.println("using differenceDay " + differenceDay);
+                scaleX = differenceDay; //+1 to show enought values in graph  
+            }
+        }        
+        if (differenceMonth >= 1) {
+          JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu groß, maximal 31 Tage sind zugelassen", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+          return null;
+        }
+        
+        // draw scale 
+        // X-axis
+        
+        int lengthX = sizeX - zeroX - 15; 
+        int spacingX = lengthX / scaleX;
+        //TEST:
+//        System.out.println("sizeX " + sizeX);
+//        System.out.println("zeroX " + zeroX);
+//        System.out.println("lengthX " + lengthX);
+//        System.out.println("scaleX " + scaleX);
+//        System.out.println("spacingX " + spacingX);
+//        //TESTEND
+        
+        ArrayList<Umsatz> datesArrList= new ArrayList<>(); 
+
+        try {             
+            datesArrList = database.getAllSales();
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        ArrayList<Integer> usedValuesOnXArr= new ArrayList<>(); 
+        
+        for (int i = 0; i < scaleX + 1; i++) {
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
+            
+            int usedValuesOnX = zeroX + i*spacingX - 5;
+            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", usedValuesOnX, zeroY + 20);
+            usedValuesOnXArr.add(usedValuesOnX);
+            System.out.println("usedValuesOnX = " + usedValuesOnX);
+        }
+        return usedValuesOnXArr;
+    }
+        
+    private ArrayList<Integer> drawSelectedSales(){  
+
+//        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
+//        ComBoxDateFrom.setModel(listFrom);  
+//        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
+//        ComBoxDateUntil.setModel(listUntil);
+//                
+//        ComBoxDateFrom.addItem("10.05.2018"); 
+//        ComBoxDateUntil.addItem("05.06.2018"); 
+       
+        ArrayList<Umsatz> salesArrList= new ArrayList<>();  
+        
+        try {             
+            salesArrList = database.getAllSales();
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+//        for (int i = 0; i < salesArrList.size(); i++) {
+//            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
+//            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
+//        }   
+               
+//        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
+//        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
+        
+        int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
+        int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
+        
+//        System.out.println("selectedFrom " + selectedFrom);
+//        System.out.println("selectedUntil " + selectedUntil);
+//        Double differenceUnrounded = selectedUntil-selectedFrom;
+//        int scaleY = differenceUnrounded.intValue();
+        int scaleY = selectedUntilIndex - selectedFromIndex;
+        
+        int lengthY = zeroY - 15; 
+        int spacingY = lengthY / scaleY;
+        //TEST:
+//        System.out.println("sizeY " + sizeY);
+//        System.out.println("zeroY " + zeroY);
+//        System.out.println("lengthY " + lengthY);
+//        System.out.println("scaleY " + scaleY);
+//        System.out.println("spacingY " + spacingY);
+//        //TESTEND
+        
+        
+        //works when using days (period < 1 Month)
+              
+        // Y-axis
+        ArrayList<Integer> usedValuesOnYArr= new ArrayList<>(); 
+        List<Double> sortedSales = new ArrayList();
+        for (int i = 0; i < scaleY; i++) {
+            sortedSales.add(i, salesArrList.get(i).getUmsatz());
+            int usedValuesOnY = zeroY - spacingY * i;
+            usedValuesOnYArr.add(usedValuesOnY);
+            System.out.println("usedValuesOnY = " + usedValuesOnY);
+        }
+        
+        sortedSales.sort(Comparator.naturalOrder());
+
+//        System.out.println("difference " + scaleY);
+ 
+        
+        for (int i = 0; i < scaleY; i++) {
+            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);
+            
+            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
+
+        } 
+        
+        // SETTING THE VALUES
+        
+        ArrayList<Integer> usedValuesOnXArr = drawSelectedDates();     
+        int startIndex = ComBoxDateFrom.getSelectedIndex();
+        int endIndex = ComBoxDateUntil.getSelectedIndex();
+        int loopLength = 0;
+        
+//        if (!(usedValuesOnXArr.size() == usedValuesOnYArr.size())) {
+//            JOptionPane.showMessageDialog(this, "Leider ist ein fehler aufgetreten", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+//        }
+        
+        if (usedValuesOnXArr.size() > usedValuesOnYArr.size()) {
+            loopLength = usedValuesOnXArr.size();
+        }
+        if (usedValuesOnXArr.size() < usedValuesOnYArr.size()) {
+            loopLength = usedValuesOnYArr.size();
+        }
+        
+//        Collections.reverse(usedValuesOnXArr);
+        
+        System.out.println("usedValuesOnXArr.get(1) " + usedValuesOnXArr.get(1));
+        System.out.println("usedValuesOnYArr.get(1) " + usedValuesOnYArr.get(1));
+        for (int i = 0; i < loopLength; i++) {
+            
+            System.out.println("usedValuesOnXArr.get(i) " + usedValuesOnXArr.get(i));
+            System.out.println("usedValuesOnYArr.get(i) " + usedValuesOnYArr.get(i));
+//            
+            int posX = usedValuesOnXArr.get(i);
+            int posY = usedValuesOnYArr.get(i);
+            
+            System.out.println("posX " + posX);
+            System.out.println("posY " + posY);
+//                String selectedItem = ComBoxDateUntil.getItemAt(i);    
+//                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
+//                posX = zeroX + spacingX.get(i)*day - 3;  
+//                posY = zeroY - spacingY * j + 5;                                   
+                
+              
+             diagram.drawString("X", posX+2, posY + 5);
+             
+        }
+        
+        return usedValuesOnYArr;
+    }
+    
+    //////////// UNUSED  ////////////    
+    //////////// METHODS ////////////
+    //////////// BELOW   ////////////
+    /*
+    private int drawAllSelectedDates(){  
+        
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        
+        LocalDateTime dateTimeFrom = convertStringIntoLocalDateTime(selectedFrom);
+        LocalDateTime dateTimeUntil = convertStringIntoLocalDateTime(selectedUntil);
+
+        LocalDate dateFrom = convertStringIntoLocalDate(selectedFrom);
+        LocalDate dateUntil = convertStringIntoLocalDate(selectedUntil);
+        
+        //getting duration between selected dates#
+        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
+        int differenceHour = (int) duration.toHours();
+        int differenceMinute = (int) duration.toMinutes();
+        
+        Period period = Period.between(dateFrom, dateUntil);
+        int differenceDay = period.getDays();
+        int differenceMonth = period.getMonths();            
+  
+        //TEST:
+//        System.out.println("differenceDay " + differenceDay);
+//        System.out.println("differenceMonth " + differenceMonth);
+        //TESTEND
+        
+        int monthFrom = dateTimeFrom.getMonth().getValue();
+        int dayFrom = dateTimeFrom.getDayOfMonth();
+        int hourFrom = dateTimeFrom.getHour();
+        int minuteFrom = dateTimeFrom.getMinute();
+                
+                
+        int scaleX = 1;
+        int usedValue = 0;
+        
+        if (differenceMonth == 0) {
+            if (differenceDay == 0){
+                if (differenceHour == 0){
+                    if (differenceMinute == 0){
+                        JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    if (differenceMinute >= 1){
+//                        System.out.println("using differenceMinute " + differenceMinute);
+                        scaleX = differenceMinute; //+1 to show enought values in graph  
+                        usedValue = minuteFrom;
+                    } 
+                }
+                if (differenceHour >= 1){
+//                    System.out.println("using differenceHour " + differenceHour);
+                    scaleX = differenceHour; //+1 to show enought values in graph  
+                    usedValue = hourFrom;
+                } 
+            }
+            if (differenceDay >= 1){
+//                System.out.println("using differenceDay " + differenceDay);
+                scaleX = differenceDay; //+1 to show enought values in graph  
+                usedValue = dayFrom;
+            }
+        }        
+        if (differenceMonth >= 1) {
+//            System.out.println("using differenceMonth " + differenceMonth);
+            scaleX = differenceMonth; //+1 to show enought values in graph 
+            usedValue = monthFrom;
+        }
+        
+        // draw scale 
+        // X-axis
+        
+        int lengthX = sizeX - zeroX - 15; 
+        int spacingX = lengthX / scaleX;
+        //TEST:
+//        System.out.println("sizeX " + sizeX);
+//        System.out.println("zeroX " + zeroX);
+//        System.out.println("lengthX " + lengthX);
+//        System.out.println("scaleX " + scaleX);
+//        System.out.println("spacingX " + spacingX);
+//        //TESTEND
+        
+        
+        //works when using days (period < 1 Month)
+        int countOver30 = 1;
+        
+        for (int i = 0; i < scaleX + 1; i++) {
+            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
+//            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            int labeling = Integer.valueOf(usedValue) + i;
+            
+            //changes the font size to smaller numbers in order to fit more 
+            if (scaleX > 20) {
+                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
+            }
+            
+            if (labeling <= 30) {               
+                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            }            
+            if (labeling > 30) {                
+                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
+                countOver30 = countOver30 +1;
+//                System.out.println("countOver30 " + countOver30);
+            }                 
+        }
+        
+        // Y-axis
+//        for (int i = 1; i < sizeY/20 - 2; i++) {
+//            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+//            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+//        }
+        return spacingX;
+    }
+    
     private void drawBasicGraph(){  
         //testline
 //        diagram.drawLine(zeroX, zeroY, sizeX, 0);    
@@ -679,16 +1037,70 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
     }
     
-    private void drawAxes(){
-        //testline
-//        diagram.drawLine(zeroX, zeroY, sizeX, 0);
-
-        // draw axes  
-        diagram.drawLine(zeroX - 5, zeroY, sizeX - 15, zeroY);
-        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 25); 
+    private  LocalDate dateFrom(){
+              
+        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+       
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
         
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
+        int yearFrom = Integer.valueOf(partsFrom[0]);        
+        int monthFrom = Integer.valueOf(partsFrom[1]);
+        int dayFrom = Integer.valueOf(partsFrom[2]);
+        
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourFrom " + hourFrom);
+//                                                                                System.out.println("minuteFrom " + minuteFrom);
+                                                                                
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        return LocalDate.of(yearFrom, monthFrom, dayFrom);
     }
     
+    private LocalDate dateUntil(){
+              
+        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
+        
+      
+//                                                                                System.out.println("Date " + FromDate);
+//                                                                                System.out.println("Time " + FromTime);
+                                                                        
+//                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        String UntilDate = partsDateTimeUntil[0];        
+        
+//                                                                                System.out.println("Date " + UntilDate);
+//                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        String[] partsUntil = UntilDate.split("\\-");
+        int yearUntil = Integer.valueOf(partsUntil[0]);      
+        int monthUntil = Integer.valueOf(partsUntil[1]);
+        int dayUntil = Integer.valueOf(partsUntil[2]);
+        
+//                                                                                System.out.println("yearFrom " + yearFrom);
+//                                                                                System.out.println("monthFrom " + monthFrom);
+//                                                                                System.out.println("dayFrom " + dayFrom);
+//                                                                                System.out.println("hourUntil " + hourUntil);
+//                                                                                System.out.println("minuteUntil " + minuteUntil);
+
+        return LocalDate.of(yearUntil, monthUntil, dayUntil);
+    }    
+       
     private LocalDateTime dateTimeFrom(){
               
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
@@ -756,256 +1168,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
     }
     
-        private  LocalDate dateFrom(){
-              
-        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-       
-        //Splitting the from combobox      
-        String[] partsDateTimeFrom = selectedFrom.split(" ");
-        String FromDate = partsDateTimeFrom[0];        
-        
-//                                                                                System.out.println("Date " + FromDate);
-//                                                                                System.out.println("Time " + FromTime);
-        
-        String[] partsFrom = FromDate.split("\\-");
-        int yearFrom = Integer.valueOf(partsFrom[0]);        
-        int monthFrom = Integer.valueOf(partsFrom[1]);
-        int dayFrom = Integer.valueOf(partsFrom[2]);
-        
-        
-//                                                                                System.out.println("yearFrom " + yearFrom);
-//                                                                                System.out.println("monthFrom " + monthFrom);
-//                                                                                System.out.println("dayFrom " + dayFrom);
-//                                                                                System.out.println("hourFrom " + hourFrom);
-//                                                                                System.out.println("minuteFrom " + minuteFrom);
-                                                                                
-//                                                                                System.out.println("Switching to until ");
-        //Splitting the until combobox        
-        String[] partsDateTimeUntil = selectedUntil.split(" ");
-        
-//                                                                                System.out.println("Date " + UntilDate);
-//                                                                                System.out.println("Time " + UntilTime);
-                                                                                
-        return LocalDate.of(yearFrom, monthFrom, dayFrom);
-    }
-    
-    private LocalDate dateUntil(){
-              
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-      
-//                                                                                System.out.println("Date " + FromDate);
-//                                                                                System.out.println("Time " + FromTime);
-                                                                        
-//                                                                                System.out.println("Switching to until ");
-        //Splitting the until combobox        
-        String[] partsDateTimeUntil = selectedUntil.split(" ");
-        String UntilDate = partsDateTimeUntil[0];        
-        
-//                                                                                System.out.println("Date " + UntilDate);
-//                                                                                System.out.println("Time " + UntilTime);
-                                                                                
-        String[] partsUntil = UntilDate.split("\\-");
-        int yearUntil = Integer.valueOf(partsUntil[0]);      
-        int monthUntil = Integer.valueOf(partsUntil[1]);
-        int dayUntil = Integer.valueOf(partsUntil[2]);
-        
-//                                                                                System.out.println("yearFrom " + yearFrom);
-//                                                                                System.out.println("monthFrom " + monthFrom);
-//                                                                                System.out.println("dayFrom " + dayFrom);
-//                                                                                System.out.println("hourUntil " + hourUntil);
-//                                                                                System.out.println("minuteUntil " + minuteUntil);
-
-        return LocalDate.of(yearUntil, monthUntil, dayUntil);
-    }    
-    
-    private int drawSelectedDates(){  
-        LocalDateTime dateTimeFrom = dateTimeFrom();
-        LocalDateTime dateTimeUntil = dateTimeUntil();
-        //conversion String to LocalDate
-    
-        LocalDate dateFrom = dateFrom();
-        LocalDate dateUntil = dateUntil();
-        
-        //getting duration between selected dates#
-        Duration duration = Duration.between(dateTimeFrom, dateTimeUntil);
-        int differenceHour = (int) duration.toHours();
-        int differenceMinute = (int) duration.toMinutes();
-        
-        Period period = Period.between(dateFrom, dateUntil);
-        int differenceDay = period.getDays();
-        int differenceMonth = period.getMonths();            
-  
-        //TEST:
-        System.out.println("differenceDay " + differenceDay);
-        System.out.println("differenceMonth " + differenceMonth);
-        //TESTEND
-        
-        int monthFrom = dateTimeFrom.getMonth().getValue();
-        int dayFrom = dateTimeFrom.getDayOfMonth();
-        int hourFrom = dateTimeFrom.getHour();
-        int minuteFrom = dateTimeFrom.getMinute();
-                
-                
-        int scaleX = 1;
-        int usedValue = 0;
-        
-        if (differenceMonth == 0) {
-            if (differenceDay == 0){
-                if (differenceHour == 0){
-                    if (differenceMinute == 0){
-                        JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    if (differenceMinute >= 1){
-                        System.out.println("using differenceMinute " + differenceMinute);
-                        scaleX = differenceMinute; //+1 to show enought values in graph  
-                        usedValue = minuteFrom;
-                    } 
-                }
-                if (differenceHour >= 1){
-                    System.out.println("using differenceHour " + differenceHour);
-                    scaleX = differenceHour; //+1 to show enought values in graph  
-                    usedValue = hourFrom;
-                } 
-            }
-            if (differenceDay >= 1){
-                System.out.println("using differenceDay " + differenceDay);
-                scaleX = differenceDay; //+1 to show enought values in graph  
-                usedValue = dayFrom;
-            }
-        }        
-        if (differenceMonth >= 1) {
-            System.out.println("using differenceMonth " + differenceMonth);
-            scaleX = differenceMonth; //+1 to show enought values in graph 
-            usedValue = monthFrom;
-        }
-        
-        // draw scale 
-        // X-axis
-        
-        int lengthX = sizeX - zeroX - 15; 
-        int spacingX = lengthX / scaleX;
-        //TEST:
-//        System.out.println("sizeX " + sizeX);
-//        System.out.println("zeroX " + zeroX);
-//        System.out.println("lengthX " + lengthX);
-//        System.out.println("scaleX " + scaleX);
-//        System.out.println("spacingX " + spacingX);
-//        //TESTEND
-        
-        
-        //works when using days (period < 1 Month)
-        int countOver30 = 1;
-        
-        for (int i = 0; i < scaleX + 1; i++) {
-            diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-//            diagram.drawString(Integer.valueOf(dayFrom) + i + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            int labeling = Integer.valueOf(usedValue) + i;
-            
-            //changes the font size to smaller numbers in order to fit more 
-            if (scaleX > 20) {
-                    diagram.setFont(diagram.getFont().deriveFont(9.0f));                               
-            }
-            
-            if (labeling <= 30) {               
-                diagram.drawString(labeling + ".", zeroX + i*spacingX - 5, zeroY + 20);
-            }            
-            if (labeling > 30) {                
-                diagram.drawString(countOver30 + ".", zeroX + i*spacingX - 5, zeroY + 20);
-                countOver30 = countOver30 +1;
-                System.out.println("countOver30 " + countOver30);
-            }                 
-        }
-        
-        // Y-axis
-//        for (int i = 1; i < sizeY/20 - 2; i++) {
-//            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-//            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
-//        }
-        return spacingX;
-    }
-    
-    private int drawSelectedSales(){  
-
-//        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
-//        ComBoxDateFrom.setModel(listFrom);  
-//        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
-//        ComBoxDateUntil.setModel(listUntil);
-//                
-//        ComBoxDateFrom.addItem("10.05.2018"); 
-//        ComBoxDateUntil.addItem("05.06.2018"); 
-       
-        ArrayList<Umsatz> salesArrList= new ArrayList<>();  
-        
-        try {             
-            salesArrList = database.getAllSales();
-        } catch (SQLException ex) {
-            getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
-                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
-                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-//        for (int i = 0; i < salesArrList.size(); i++) {
-//            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
-//            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
-//        }   
-               
-        Double selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).getUmsatz();
-        Double selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).getUmsatz();
-        
-        int selectedFromIndex = ComBoxDateFrom.getSelectedIndex();
-        int selectedUntilIndex = ComBoxDateUntil.getSelectedIndex();
-        
-        System.out.println("selectedFrom " + selectedFrom);
-        System.out.println("selectedUntil " + selectedUntil);
-//        Double differenceUnrounded = selectedUntil-selectedFrom;
-//        int scaleY = differenceUnrounded.intValue();
-        int scaleY = selectedUntilIndex - selectedFromIndex;
-        
-        int lengthY = zeroY - 15; 
-        int spacingY = lengthY / scaleY;
-        //TEST:
-        System.out.println("sizeY " + sizeY);
-        System.out.println("zeroY " + zeroY);
-        System.out.println("lengthY " + lengthY);
-        System.out.println("scaleY " + scaleY);
-        System.out.println("spacingY " + spacingY);
-//        //TESTEND
-        
-        
-        //works when using days (period < 1 Month)
-              
-        // Y-axis
-
-        List<Double> sortedSales = new ArrayList();
-        for (int i = 0; i < scaleY; i++) {
-            sortedSales.add(i, salesArrList.get(i).getUmsatz());
-        }
-        
-        sortedSales.sort(Comparator.naturalOrder());
-
-        System.out.println("difference " + scaleY);
-        
-        for (int i = 0; i < scaleY; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - spacingY * i, zeroX + 5, zeroY - spacingY * i);            
-        } 
-        
-        for (int i = 0; i < scaleY; i++) {
-            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
-        }
-        
-        int spacingX = drawSelectedDates(); 
-
-        for (int i = 0; i < scaleY; i++) {
-            diagram.drawString("X", zeroX + i*spacingX, zeroY - spacingY * i);
-        }
-        
-        return spacingY;
-    }
- 
     private LocalDateTime allDates(){
               
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
@@ -1066,6 +1228,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 
         return LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
     }
+    
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComBoxDateFrom;
     private javax.swing.JComboBox<String> ComBoxDateUntil;
