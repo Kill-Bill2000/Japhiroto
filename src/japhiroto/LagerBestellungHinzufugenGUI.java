@@ -312,6 +312,9 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
 
     private void btnArtikelHinzufugenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtikelHinzufugenActionPerformed
         diaArtikelHinzufugen.setVisible(true);
+        diaArtikelHinzufugen.setLocation(this.getLocation());
+        diaArtikelHinzufugen.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+        diaArtikelHinzufugen.setTitle("Artikel hinzufügen");
     }//GEN-LAST:event_btnArtikelHinzufugenActionPerformed
 
     private void btnDiaSuchenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiaSuchenActionPerformed
