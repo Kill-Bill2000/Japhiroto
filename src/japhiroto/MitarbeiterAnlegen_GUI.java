@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,9 +32,11 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
             verb = new DB_Verbindung();
             verb.verbindungAufbauen();
         } catch (IOException ex) {
-            Logger.getLogger(MitarbeiterAnlegen_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
-            Logger.getLogger(MitarbeiterAnlegen_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -258,9 +261,11 @@ public class MitarbeiterAnlegen_GUI extends javax.swing.JFrame {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(MitarbeiterAnlegen_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch(NumberFormatException ex){
-            Logger.getLogger(MitarbeiterAnlegen_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Falscher Wert für 'Hausnummer', 'PLZ' oder 'Lohn' eingegeben", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAnlegenActionPerformed
 

@@ -53,10 +53,8 @@
                                       <Component id="txfVorname" max="32767" attributes="0"/>
                                       <Component id="txfStrasse" alignment="0" pref="200" max="32767" attributes="0"/>
                                       <Component id="txfOrt" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txfHausnr" alignment="0" pref="85" max="32767" attributes="0"/>
-                                          <Component id="txfPLZ" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="txfHausnr" alignment="0" pref="85" max="32767" attributes="0"/>
+                                      <Component id="txfPLZ" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txfLohnEuro" min="-2" pref="85" max="-2" attributes="0"/>
