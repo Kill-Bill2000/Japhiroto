@@ -58,12 +58,16 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         zeroX = sizeX - 475;
         zeroY = sizeY - 30;
         
+        
+            
         try {
             database = new DB_Verbindung();
             database.verbindungAufbauen();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Could not establish connection to the database", "Error", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         }
+        
         
         setProperties();                  
     }
@@ -131,6 +135,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Marktleiter");
         setResizable(false);
 
         lblUmsatz.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -526,7 +531,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         try {
             employeesArrList = database.getAllEmployeesArrayList();
         } catch (SQLException ex) {
-            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
@@ -563,7 +569,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             txfOrt.setText(database.getEmployeeData(name, surname).getOrt());
             txfStundenlohn.setText(Double.toString(database.getEmployeeData(name, surname).getStundenLohn()));
         } catch (SQLException ex) {
-            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error at: database.getEmployeeData() " 
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
@@ -590,7 +597,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         try {             
             salesDatesArrList = database.getAllSales();
         } catch (SQLException ex) {
-            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error at: database.getAllSales() " 
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
@@ -943,7 +951,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         try {             
             salesArrList = database.getAllSales();
         } catch (SQLException ex) {
-            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
