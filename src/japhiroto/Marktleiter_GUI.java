@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -481,9 +480,12 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     private void btnShowSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSalesActionPerformed
         // TODO add your handling code here:
 //        cvDrawField.repaint();
+//        diagram.setColor(Color.white);
+//        diagram.fillRect(0,0,sizeX, sizeY);
+//        diagram.clearRect(0,0,sizeX, sizeY);
         drawAxes();
         drawSelectedDates();
-        drawSales();
+        drawSelectedSales();
     }//GEN-LAST:event_btnShowSalesActionPerformed
 
     private void btnLoadListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadListActionPerformed
@@ -657,7 +659,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
     }
     
-    private void drawSelectedDates(){  
+    private int drawSelectedDates(){  
       
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
         String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
@@ -811,11 +813,11 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
 //            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
 //        }
-
+        return spacingX;
     }
     
-    private void drawSales(){  
-        
+    private int drawSelectedSales(){  
+
 //        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
 //        ComBoxDateFrom.setModel(listFrom);  
 //        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
@@ -849,7 +851,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         System.out.println("selectedFrom " + selectedFrom);
         System.out.println("selectedUntil " + selectedUntil);
-        Double differenceUnrounded = selectedUntil-selectedFrom;
+//        Double differenceUnrounded = selectedUntil-selectedFrom;
 //        int scaleY = differenceUnrounded.intValue();
         int scaleY = selectedUntilIndex - selectedFromIndex;
         
@@ -885,7 +887,10 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
             diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
         }
         
+        int spacingX = drawSelectedDates();    
+
         
+        return spacingY;
     }
  
 
