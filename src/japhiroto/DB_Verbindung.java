@@ -470,5 +470,25 @@ public class DB_Verbindung {
         String befehl = String.format("INSERT INTO artikel VALUES ('%1$s', '%2$s', '%3$s', '%4$s')", art.getArtikelNummer(), art.getName(), art.getPreis(), art.getAnzahl());
         updaten(befehl);
     }
+
+    public void artikelBestellen(String bestellNr, String lieferant) throws SQLException {
+        String befehl;
+        
+        befehl = String.format("INSERT INTO bestellung VALUES ('%1$s', '%2$s', 0)", bestellNr, lieferant);
+        
+        updaten(befehl);
+    }
+    public void artikelBestellenSQL(ArrayList<Artikel> artikel, String bestellNr) throws SQLException {
+        for (int i = 0; i < artikel.size(); i++) {
+            Artikel aktuell;
+            String bef;
+            
+            aktuell = artikel.get(i);
+            
+            bef = String.format("INSERT INTO bestellteartikel VALUES ('%1$s', '%2$s', '%3$s')", bestellNr, aktuell.getArtikelNummer(), aktuell.getAnzahl());
+            System.out.println(bef);
+            updaten(bef);
+        }
+    }
     
 }

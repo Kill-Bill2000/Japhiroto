@@ -32,4 +32,9 @@ public class BestellungVerwalten {
     public void wareAngekommen(String bestNr, String artNr, int intEingang) throws SQLException, IOException {
         db.wareAngekommen(bestNr, artNr, intEingang);
     }
+    
+    public void artikelBestellen(ArrayList<Artikel> artikel, String bestellNr, String lieferant) throws SQLException {
+        db.artikelBestellen(bestellNr, lieferant);
+        db.artikelBestellenSQL(artikel, bestellNr);
+    }
 }
