@@ -367,7 +367,7 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         } catch (ArrayIndexOutOfBoundsException ex){
             getToolkit().beep();    //Fehler-Ton
-            JOptionPane.showMessageDialog(this, "Bitte zugehörigen Mitarbeiter auswählen.", "Auswahlfehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Zugehöriger Mitarbeiter muss ausgewählt werden.", "Auswahlfehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnErstellenActionPerformed
 
@@ -395,6 +395,9 @@ public class AccountsVerwalten_GUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank \nkonnte nicht hergestellt werden.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+        } catch (ArrayIndexOutOfBoundsException ex){
+            getToolkit().beep();    //Fehler-Ton
+            JOptionPane.showMessageDialog(this, "Benutzername muss ausgewählt werden.", "Auswahlfehler", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_cbbBenutzerAnsActionPerformed
