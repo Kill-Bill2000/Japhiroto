@@ -10,8 +10,10 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -571,7 +573,8 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         for (int i = 0; i < salesDatesArrList.size(); i++) {
             ComBoxDateFrom.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
             ComBoxDateUntil.addItem(salesDatesArrList.get(i).getZeitstempel().format(formatter).toString());
-        }           
+        }
+        System.out.println(salesDatesArrList.get(1).getZeitstempel().format(formatter)); 
     }//GEN-LAST:event_btnLoadDatesActionPerformed
 
     private void ComBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComBoxDateFromActionPerformed
@@ -662,24 +665,69 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        String selectedUntil = "2018-11-05"; 
 
         //String splitting
-        String[] partsFrom = selectedFrom.split("\\-");
+        
+        //Splitting the from combobox      
+        String[] partsDateTimeFrom = selectedFrom.split(" ");
+        String FromDate = partsDateTimeFrom[0];        
+        String FromTime = partsDateTimeFrom[1];
+        
+                                                                                System.out.println("Date " + FromDate);
+                                                                                System.out.println("Time " + FromTime);
+        
+        String[] partsFrom = FromDate.split("\\-");
         int yearFrom = Integer.valueOf(partsFrom[0]);        
         int monthFrom = Integer.valueOf(partsFrom[1]);
         int dayFrom = Integer.valueOf(partsFrom[2]);
         
-        String[] partsUntil = selectedUntil.split("\\-");
+        String[] TimePartsFrom = FromTime.split("\\:");
+        int hourFrom = Integer.valueOf(TimePartsFrom[0]);        
+        int minuteFrom = Integer.valueOf(TimePartsFrom[1]);
+        
+                                                                                System.out.println("yearFrom " + yearFrom);
+                                                                                System.out.println("monthFrom " + monthFrom);
+                                                                                System.out.println("dayFrom " + dayFrom);
+                                                                                System.out.println("hourFrom " + hourFrom);
+                                                                                System.out.println("minuteFrom " + minuteFrom);
+                                                                                
+                                                                                System.out.println("Switching to until ");
+        //Splitting the until combobox        
+        String[] partsDateTimeUntil = selectedUntil.split(" ");
+        String UntilDate = partsDateTimeUntil[0];        
+        String UntilTime = partsDateTimeUntil[1];
+        
+                                                                                System.out.println("Date " + UntilDate);
+                                                                                System.out.println("Time " + UntilTime);
+                                                                                
+        String[] partsUntil = UntilDate.split("\\-");
         int yearUntil = Integer.valueOf(partsUntil[0]);      
         int monthUntil = Integer.valueOf(partsUntil[1]);
-        int dayUntil = Integer.valueOf(partsUntil[2]);        
+        int dayUntil = Integer.valueOf(partsUntil[2]);
         
+        String[] TimePartsUntil = UntilTime.split("\\:");
+        int hourUntil = Integer.valueOf(TimePartsFrom[0]);        
+        int minuteUntil = Integer.valueOf(TimePartsFrom[1]);
+
+                                                                                System.out.println("yearFrom " + yearFrom);
+                                                                                System.out.println("monthFrom " + monthFrom);
+                                                                                System.out.println("dayFrom " + dayFrom);
+                                                                                System.out.println("hourUntil " + hourUntil);
+                                                                                System.out.println("minuteUntil " + minuteUntil);
+
         //conversion String to LocalDate
+        LocalDateTime dateTimeFrom = LocalDateTime.of(yearFrom, monthFrom, dayFrom, hourFrom, minuteFrom);
+        LocalDateTime dateTimeUntil = LocalDateTime.of(yearUntil, monthUntil, dayUntil,hourUntil, minuteUntil);
+        
         LocalDate dateFrom = LocalDate.of(yearFrom, monthFrom, dayFrom);
         LocalDate dateUntil = LocalDate.of(yearUntil, monthUntil, dayUntil);
         
         //getting duration between selected dates#
-        Period duration = Period.between(dateFrom, dateUntil);
-        int differenceDay = duration.getDays();
-        int differenceMonth = duration.getMonths();              
+        Duration duration = Duration.between(dateFrom, dateUntil);
+        int differenceHour = (int) duration.toHours();
+        int differenceMinute = (int) duration.toMinutes();
+        
+        Period period = Period.between(dateFrom, dateUntil);
+        int differenceDay = period.getDays();
+        int differenceMonth = period.getMonths();            
   
         //TEST:
         System.out.println("differenceDay " + differenceDay);
@@ -690,9 +738,23 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         int usedValue = 0;
         
         if (differenceMonth == 0) {
-            System.out.println("using differenceDay " + differenceDay);
-            scaleX = differenceDay; //+1 to show enought values in graph  
-            usedValue = dayFrom;
+            if (differenceDay == 0){
+                if (differenceHour == 0){
+                    System.out.println("using differenceMinute " + differenceMinute);
+                    scaleX = differenceMinute; //+1 to show enought values in graph  
+                    usedValue = minuteFrom;
+                }
+                if (differenceHour >= 1){
+                    System.out.println("using differenceHour " + differenceHour);
+                    scaleX = differenceHour; //+1 to show enought values in graph  
+                    usedValue = hourFrom;
+                } 
+            }
+            if (differenceDay >= 1){
+                System.out.println("using differenceDay " + differenceDay);
+                scaleX = differenceDay; //+1 to show enought values in graph  
+                usedValue = dayFrom;
+            }
         }        
         if (differenceMonth >= 1) {
             System.out.println("using differenceMonth " + differenceMonth);
