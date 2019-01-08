@@ -623,29 +623,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         });
     }
     
-    private void drawBasicGraph(){  
-        //testline
-//        diagram.drawLine(zeroX, zeroY, sizeX, 0);    
-                
-        // draw axes        
-        diagram.drawLine(zeroX - 10, zeroY, sizeX - 15, zeroY);
-        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 15);
-        
-        
-        // draw scale 
-        // X-axis
-        for (int i = 1; i < sizeX/20 - 2; i++) {
-            diagram.drawLine(zeroX + i*20, zeroY - 5, zeroX + i*20, zeroY + 5);
-            diagram.drawString(""+i, zeroX + i*20 - 3, zeroY + 20);            
-        }
-        
-        // Y-axis
-        for (int i = 1; i < sizeY/20 - 2; i++) {
-            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
-            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
-        }
-
-    }
     
     private void drawAxes(){
         //testline
@@ -698,7 +675,6 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         return LocalDate.of(year, month, day);
     }
     
-
     private int drawSelectedDates(){  
         
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
@@ -901,6 +877,30 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     //////////// UNUSED  ////////////    
     //////////// METHODS ////////////
     //////////// BELOW   ////////////
+    
+    private void drawBasicGraph(){  
+        //testline
+//        diagram.drawLine(zeroX, zeroY, sizeX, 0);    
+                
+        // draw axes        
+        diagram.drawLine(zeroX - 10, zeroY, sizeX - 15, zeroY);
+        diagram.drawLine(zeroX, sizeY - 385, zeroX, sizeY - 15);
+        
+        
+        // draw scale 
+        // X-axis
+        for (int i = 1; i < sizeX/20 - 2; i++) {
+            diagram.drawLine(zeroX + i*20, zeroY - 5, zeroX + i*20, zeroY + 5);
+            diagram.drawString(""+i, zeroX + i*20 - 3, zeroY + 20);            
+        }
+        
+        // Y-axis
+        for (int i = 1; i < sizeY/20 - 2; i++) {
+            diagram.drawLine(zeroX - 5, zeroY - i*20, zeroX + 5, zeroY - i*20);
+            diagram.drawString(""+i, zeroX - 20, zeroY - i*20 + 5);
+        }
+
+    }
     
     private  LocalDate dateFrom(){
               
