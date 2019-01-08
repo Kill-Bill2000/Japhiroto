@@ -675,7 +675,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         return LocalDate.of(year, month, day);
     }
     
-    private int drawSelectedDates(){  
+    private ArrayList<Integer> drawSelectedDates(){  
         
         String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
         String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
@@ -700,7 +700,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         if (differenceMonth == 0) {
             if (differenceDay == 0){
                 JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu gering", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-                return 0;
+                return null;
             }
             if (differenceDay >= 1){
 //                System.out.println("using differenceDay " + differenceDay);
@@ -709,7 +709,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         }        
         if (differenceMonth >= 1) {
           JOptionPane.showMessageDialog(this, "Der Zeitunterschied ist zu groß, maximal 31 Tage sind zugelassen", "Hinweis", JOptionPane.INFORMATION_MESSAGE);
-          return 0;
+          return null;
         }
         
         // draw scale 
@@ -737,9 +737,14 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
         
+        ArrayList<Integer> usedValuesOnXArr= new ArrayList<>(); 
+        
         for (int i = 0; i < scaleX + 1; i++) {
             diagram.drawLine(zeroX + i*spacingX, zeroY - 5, zeroX + i*spacingX, zeroY + 5);
-            diagram.drawString(datesArrList.get(i).getZeitstempel().getDayOfMonth() + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            int usedValuesOnX = datesArrList.get(i).getZeitstempel().getDayOfMonth();
+            diagram.drawString(usedValuesOnX + ".", zeroX + i*spacingX - 5, zeroY + 20);
+            usedValuesOnXArr.add(usedValuesOnX);
+            
 //            int labeling = Integer.valueOf(usedValue) + i;
             
             //changes the font size to smaller numbers in order to fit more 
@@ -761,7 +766,7 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //            diagram.drawString(sortedSales.get(i)+"", zeroX - 30, zeroY - spacingY * i);
 //        }
 
-        return spacingX;
+        return usedValuesOnXArr;
     }
         
     private int drawSelectedSales(){  
@@ -834,26 +839,26 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
         
         // SETTING THE VALUES
         
-        int spacingX = drawSelectedDates();     
-        int startIndex = ComBoxDateFrom.getSelectedIndex();
-        int endIndex = ComBoxDateUntil.getSelectedIndex();
-        
-        
-        for (int i = startIndex; i < endIndex; i++) {
-            
-            int posX = 0;
-            int posY = 0;
-            for (int j = 0; j < scaleY; j++) {
-                String selectedItem = ComBoxDateUntil.getItemAt(i);    
-                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
-                posX = zeroX + spacingX*day - 3;  
-                posY = zeroY - spacingY * j + 5;
-                                    
-                
-               
-            }
-             diagram.drawString("X", posX, posY);
-        }
+//        int spacingX = drawSelectedDates();     
+//        int startIndex = ComBoxDateFrom.getSelectedIndex();
+//        int endIndex = ComBoxDateUntil.getSelectedIndex();
+//        
+//        
+//        for (int i = startIndex; i < endIndex; i++) {
+//            
+//            int posX = 0;
+//            int posY = 0;
+//            for (int j = 0; j < scaleY; j++) {
+//                String selectedItem = ComBoxDateUntil.getItemAt(i);    
+//                int day = convertStringIntoLocalDate(selectedItem).getDayOfMonth();
+//                posX = zeroX + spacingX*day - 3;  
+//                posY = zeroY - spacingY * j + 5;
+//                                    
+//                
+//               
+//            }
+//             diagram.drawString("X", posX, posY);
+//        }
         
         return spacingY;
     }
