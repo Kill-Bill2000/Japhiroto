@@ -57,7 +57,7 @@ public class LagerHinzufuegenGUI extends javax.swing.JFrame {
         txfPreisCent = new javax.swing.JTextField();
         lblEuro1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Artikel hinzufügen");
         setResizable(false);
 

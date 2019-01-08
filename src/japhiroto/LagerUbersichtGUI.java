@@ -47,7 +47,8 @@ public class LagerUbersichtGUI extends javax.swing.JFrame {
         btnArtikelHinzufuegen = new javax.swing.JButton();
         btnBestellung = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lager");
 
         lblLagerLager.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblLagerLager.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -162,16 +162,17 @@ public class DB_Verbindung {
     public void mitarbeiterAnlegen(Mitarbeiter marb) throws SQLException{
         //der übergebene Mitabeiter wird der DB hinzugefügt
         
-        String befehl = String.format("INSERT INTO Mitarbeiter VALUES ('%1$s', '%2$s', '%3$s', '%4$s', '%5$d', '%6$d', '%7$s', '%8$f)",
+        String befehl = String.format("INSERT INTO mitarbeiter (anrede, vorname, nachname, strasse, hausNr, plz, ort, stundenLohn) VALUES ('%1$s', '%2$s', '%3$s', '%4$s', %5$d, %6$d, '%7$s', %8$s);",
                 marb.getAnrede(), marb.getVorname(), marb.getNachname(), marb.getStrasse(), marb.getHausNr(), marb.getPlz(), marb.getOrt(), marb.getStundenLohn());
-        
+
+
         updaten(befehl);
     }
         
     public void mitarbeiterBearbeiten(Mitarbeiter mitarb) throws SQLException{
         
         String befehl = String.format("UPDATE Mitarbeiter SET (anrede = '%1$s', vorname = '%2$s', nachname = '%3$s', strasse = '%4$s'"
-                 + "hausNr = '%5$d', plz = '%6$d', ort = '%7$s', stundenLohn = '%8$f) WHERE mitarbeiterId = %9$d", 
+                 + "hausNr = '%5$d', plz = '%6$d', ort = '%7$s', stundenLohn = %8$s) WHERE mitarbeiterId = %9$d", 
                 mitarb.getAnrede(), mitarb.getVorname(), mitarb.getNachname(), mitarb.getStrasse(), mitarb.getHausNr(), mitarb.getPlz(), mitarb.getOrt(), mitarb.getStundenLohn(), mitarb.getMitarbeiterId());
         
         updaten(befehl);
@@ -216,6 +217,26 @@ public class DB_Verbindung {
         return employee;
     } 
         
+    public ArrayList<Account> getAllAccountsArrayList() throws SQLException{
+        Account acc;
+        ArrayList <Account> accList;
+        
+        accList = new ArrayList<>();
+        String comm = String.format("SELECT * FROM accounts");
+        ResultSet rs = abfragen(comm);
+        
+        
+        while (rs.next()) {            
+       
+            acc = new Account(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+
+            accList.add(acc);
+
+        }
+        
+        return accList;
+    }
+    
     public ArrayList<Mitarbeiter> getAllEmployeesArrayList() throws SQLException{
         //returns array with all employees from the database
         
@@ -489,6 +510,26 @@ public class DB_Verbindung {
             System.out.println(bef);
             updaten(bef);
         }
+    }
+    
+    public int getBestellungenInsgesamt() throws SQLException{
+        String befehl = "SELECT COUNT(bestellNummer) FROM bestellung";
+                
+        ResultSet rs = abfragen(befehl);
+        
+        rs.next();
+        
+        return rs.getInt(1);
+    }
+    
+    public int getBestellungenInBearbeitung() throws SQLException{
+        String befehl = "SELECT COUNT(bestellNummer) FROM bestellung WHERE erledigt = 0";
+                
+        ResultSet rs = abfragen(befehl);
+        
+        rs.next();
+        
+        return rs.getInt(1);
     }
     
 }

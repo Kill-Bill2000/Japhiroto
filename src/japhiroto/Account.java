@@ -21,6 +21,8 @@ public class Account {
         // 1 = Kassierer
         // 2 = Lagerist
 
+    public Account(){}
+    
     public Account(int accountId, int mitarbeiterId, String benutzername, String passwort, int rolle) {
         //initialisiert die Variablen mit den übergebenen Werten
         this.accountId = accountId;
