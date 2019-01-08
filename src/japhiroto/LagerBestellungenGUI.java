@@ -186,7 +186,8 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Bestellungen");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -297,6 +298,9 @@ public class LagerBestellungenGUI extends javax.swing.JFrame {
             }
             else {
                 diaWareneingang.setVisible(true);
+                diaWareneingang.setLocation(this.getLocation());
+                diaWareneingang.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Japhiroto_kurz_schwarz_16.png")));
+                diaWareneingang.setTitle("Wareneingang");
                 diaWareneingang.setSize(380, 590);
                 txfWarenBestellNr.setText(bestellung.get(selectZeile).getBestellNr());
                 DefaultTableModel model = (DefaultTableModel) tblWarenArtikel.getModel();       //aktuelle Bestellungen in Tabelle anzeigen

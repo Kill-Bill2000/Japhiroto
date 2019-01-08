@@ -512,4 +512,24 @@ public class DB_Verbindung {
         }
     }
     
+    public int getBestellungenInsgesamt() throws SQLException{
+        String befehl = "SELECT COUNT(bestellNummer) FROM bestellung";
+                
+        ResultSet rs = abfragen(befehl);
+        
+        rs.next();
+        
+        return rs.getInt(1);
+    }
+    
+    public int getBestellungenInBearbeitung() throws SQLException{
+        String befehl = "SELECT COUNT(bestellNummer) FROM bestellung WHERE erledigt = 0";
+                
+        ResultSet rs = abfragen(befehl);
+        
+        rs.next();
+        
+        return rs.getInt(1);
+    }
+    
 }
