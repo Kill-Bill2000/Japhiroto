@@ -258,7 +258,7 @@ public class LagerArtikelSuchen extends javax.swing.JFrame {
         catch (SQLException ex) {
             getToolkit().beep();    //Fehler-Ton
             JOptionPane.showMessageDialog(this, "Die Verbindung zur Datenbank konnte nicht hergestellt werden."
-                    + "\nDie Zugangsdaten sind nicht gültig.", "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
+                    + "\nDie Zugangsdaten sind nicht gültig. " + ex.getMessage(), "Verbindungsfehler", JOptionPane.ERROR_MESSAGE);
         }
         catch(NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Keine Artikel gefunden!");

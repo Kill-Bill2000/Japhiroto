@@ -430,7 +430,7 @@ public class DB_Verbindung {
         befehl = String.format("SELECT * FROM artikel WHERE artikelNummer LIKE '%1$s' OR artikelNummer LIKE '%2$s' OR artikelNummer LIKE '%3$s' OR artikelNummer = '%4$s'", gesuchteArtNr + "%", "%" + gesuchteArtNr, "%" + gesuchteArtNr + "%", gesuchteArtNr);
         ResultSet rs = abfragen(befehl);
         while(rs.next()) {
-            artikel.add(new Artikel(rs.getString("bezeichnung"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
+            artikel.add(new Artikel(rs.getString("artikelName"),rs.getDouble("verkaufPreis"),rs.getString("artikelNummer"), rs.getInt("bestand")));
         }
         
         return artikel;
