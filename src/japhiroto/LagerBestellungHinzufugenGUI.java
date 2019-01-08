@@ -10,8 +10,6 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,9 +34,11 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
             bestellung = new BestellungVerwalten();
             setProperties();
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Leider ist ein Fehler aufgetreten!");
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Ein unbekannter Fehler ist aufgetreten.", "Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!");
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Ein Datenbank-Fehler ist aufgetreten.", "SQL-Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -336,9 +336,11 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
                 model.addRow(new Object[]{aktuell.getArtikelNummer(), aktuell.getName()});
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!");
+            getToolkit().beep();
+                JOptionPane.showMessageDialog(this, "Ein Datenbank-Fehler ist aufgetreten.", "SQL-Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Es wurde kein Artikel gefunden!");
+            getToolkit().beep();
+                JOptionPane.showMessageDialog(this, "Keinen Artikel gefunden", "Fehler", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_btnDiaSuchenActionPerformed
@@ -353,7 +355,8 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
         
         
         if (select == -1) {
-            JOptionPane.showMessageDialog(this, "Es wurde kein Artikel ausgewählt!");
+           getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Es wurde kein Artikel ausgewählt.", "Auswahl-Fehler", JOptionPane.ERROR_MESSAGE);
         }
         else {
             try {
@@ -365,7 +368,8 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
                 
                 artikel.add(e);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!");
+                getToolkit().beep();
+                JOptionPane.showMessageDialog(this, "Ein Datenbank-Fehler ist aufgetreten.", "SQL-Fehler", JOptionPane.ERROR_MESSAGE);
             }
             diaArtikelHinzufugen.setVisible(false);
             gesuchteLeeren();
@@ -393,11 +397,14 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
             }
             bestellung.artikelBestellen(artikel, bestellNr, lieferant);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!\n" + ex.getMessage());
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Ein Datenbank-Fehler ist aufgetreten.", "SQL-Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Bitte überprüfen Sie die Stückzahl der bestellten Artikel!");
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Falsche Stückzahl der Artikel eingegeben.", "Format-Fehler", JOptionPane.ERROR_MESSAGE);
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Leider ist ein Fehler aufgetreten!\n" + ex.getMessage());
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Ein Fehler ist aufgetreten:\n" + ex.getMessage(), "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBestellungHinzufugenActionPerformed
 
@@ -407,17 +414,24 @@ public class LagerBestellungHinzufugenGUI extends javax.swing.JFrame {
             bestellung.verbindungSchliessen();
             verwaltung.verbindungSchliessen();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Leider ist ein SQL-Fehler aufgetreten!");
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Ein Datenbank-Fehler ist aufgetreten.", "DB-Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnZuruckActionPerformed
 
     private void btnArtikelLoschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtikelLoschenActionPerformed
-        int select;
+        try{
+            int select;
+            select = tblArtikel.getSelectedRow();
         
-        select = tblArtikel.getSelectedRow();
+            artikel.remove(select);
+            bestellungAktualisieren();
+        } catch (ArrayIndexOutOfBoundsException ex){
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Artikel zum Löschen auswählen", "Artikel wählen", JOptionPane.ERROR_MESSAGE);
+        }
         
-        artikel.remove(select);
-        bestellungAktualisieren();
+        
     }//GEN-LAST:event_btnArtikelLoschenActionPerformed
 
     /**
