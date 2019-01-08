@@ -5,6 +5,10 @@
  */
 package japhiroto;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author robin
@@ -12,13 +16,14 @@ package japhiroto;
 public class Umsatz {
     
     private int umsatzNr;
-    private String zeitstempel;
+//    private String zeitstempel;
+    private LocalDateTime zeitstempel;
     private double umsatz;
 
-    public Umsatz(int umsatzNr, String zeitstempel, double umsatz) {
+    public Umsatz(int umsatzNr, Timestamp zeitstempel, double umsatz) {
         //initialisiert die Variablen mit den übergebenen Werten
         this.umsatzNr = umsatzNr;
-        this.zeitstempel = zeitstempel;
+        this.zeitstempel = zeitstempel.toLocalDateTime();
         this.umsatz = umsatz;
     }
 
@@ -27,32 +32,26 @@ public class Umsatz {
     }
 
     public int getUmsatzNr() {
-        //gibt die gespeicherte Mitarbeiter-ID aus
         return umsatzNr;
     }
 
     public void setUmsatzNr(int umsatzNr) {
-        //speichert die übergebene Mitarbeiter-ID in die Variable
         this.umsatzNr = umsatzNr;
     }
 
-    public String getZeitstempel() {
-        //gibt die gespeicherte Anrede aus
+    public LocalDateTime getZeitstempel() {
         return zeitstempel;
     }
 
-    public void setZeitstempel(String zeitstempel) {
-        //speichert die übergebene Anrede in die Variable
+    public void setZeitstempel(LocalDateTime zeitstempel) {
         this.zeitstempel = zeitstempel;
     }
 
     public double getUmsatz() {
-        //gibt den gespeicherten Stundenlohn aus
         return umsatz;
     }
 
     public void setUmsatz(double umsatz) {
-        //speichert den übergebenen Stundenlohn in die Variable
         this.umsatz = umsatz;
     }
     

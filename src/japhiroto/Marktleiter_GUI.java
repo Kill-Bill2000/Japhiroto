@@ -551,21 +551,22 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
 //        ComBoxDateFrom.addItem("10.05.2018"); 
 //        ComBoxDateUntil.addItem("05.06.2018"); 
        
-        ArrayList<Umsatz> salesArrList= new ArrayList<>();
+        ArrayList<Umsatz> salesDatesArrList= new ArrayList<>();
         
         try {             
-            salesArrList = database.getAllSales();
+            salesDatesArrList = database.getAllSales();
         } catch (SQLException ex) {
             Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllSales() " 
                     + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
                     + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
         }
+        System.out.println(salesDatesArrList.get(1).getZeitstempel());
         
-        for (int i = 0; i < salesArrList.size(); i++) {
-            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel());
-            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel());
+        for (int i = 0; i < salesDatesArrList.size(); i++) {
+            ComBoxDateFrom.addItem(salesDatesArrList.get(i).getZeitstempel().toString());
+            ComBoxDateUntil.addItem(salesDatesArrList.get(i).getZeitstempel().toString());
         }           
     }//GEN-LAST:event_btnLoadDatesActionPerformed
 
@@ -741,10 +742,38 @@ public class Marktleiter_GUI extends javax.swing.JFrame {
     }
     
     private void drawSales(){  
-      
-        String selectedFrom = ComBoxDateFrom.getSelectedItem().toString();
-        String selectedUntil = ComBoxDateUntil.getSelectedItem().toString();
-
+        
+//        DefaultComboBoxModel listFrom = new DefaultComboBoxModel();
+//        ComBoxDateFrom.setModel(listFrom);  
+//        DefaultComboBoxModel listUntil = new DefaultComboBoxModel();
+//        ComBoxDateUntil.setModel(listUntil);
+//                
+//        ComBoxDateFrom.addItem("10.05.2018"); 
+//        ComBoxDateUntil.addItem("05.06.2018"); 
+       
+        ArrayList<Umsatz> salesArrList= new ArrayList<>();
+        
+        try {             
+            salesArrList = database.getAllSales();
+        } catch (SQLException ex) {
+            Logger.getLogger(Marktleiter_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error at: database.getAllEmployeesArray() " 
+                    + "\n LocalizedMessage:  " + ex.getLocalizedMessage() + "\n Message: " + ex.getMessage() 
+                    + "\n String: " + ex.toString(), "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        for (int i = 0; i < salesArrList.size(); i++) {
+            ComBoxDateFrom.addItem(salesArrList.get(i).getZeitstempel().toString());
+            ComBoxDateUntil.addItem(salesArrList.get(i).getZeitstempel().toString());
+        }   
+              
+        String selectedFrom = salesArrList.get(ComBoxDateFrom.getSelectedIndex()).toString();
+        String selectedUntil = salesArrList.get(ComBoxDateUntil.getSelectedIndex()).toString();
+        
+        System.out.println("selectedFrom " + selectedFrom);
+        System.out.println("selectedUntil " + selectedUntil);
+        
         //input type String
 //        String selectedFrom = "2018-05-01";
 //        String selectedUntil = "2018-11-05"; 

@@ -139,10 +139,11 @@ public class DB_Verbindung {
    
         while (rs.next()) {   
             
-            String[] partsUntil = rs.getString(2).split(" ");
-            String splittedString = partsUntil[0];      
-       
-            sale = new Umsatz(rs.getInt(1), splittedString, rs.getDouble(3));
+//            String[] partsUntil = rs.getString(2).split(" ");
+//            String splittedString = partsUntil[0];      
+//       
+//            sale = new Umsatz(rs.getInt(1), splittedString, rs.getDouble(3));
+            sale = new Umsatz(rs.getInt(1), rs.getTimestamp(2), rs.getDouble(3));
 
             salesArray.add(sale);
 
